@@ -79,7 +79,7 @@ import java.util.List;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-// hello there
+
 @TeleOp(name="Concept: Vuforia Navigation", group ="Concept")
 //@Disabled
 public class VuforiaTest extends LinearOpMode {
