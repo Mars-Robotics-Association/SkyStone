@@ -21,7 +21,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  * using VuforiaDemo in FTC.
  */
 @Autonomous(name = "Vuforia")
-public class VuforiaDemo extends LinearOpMode
+public class VuforiaTest2 extends LinearOpMode
 {
     // Variables to be used for later
     private VuforiaLocalizer vuforiaLocalizer;
