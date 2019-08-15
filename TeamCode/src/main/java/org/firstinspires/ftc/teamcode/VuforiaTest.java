@@ -28,7 +28,7 @@
  */
 //test commit from within android studio
 package org.firstinspires.ftc.teamcode;
-// I'M SORRY JON
+
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
