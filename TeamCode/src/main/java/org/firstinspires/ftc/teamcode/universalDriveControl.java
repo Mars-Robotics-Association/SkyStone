@@ -19,10 +19,10 @@ public class universalDriveControl extends OpMode {
     private ElapsedTime runtime = new ElapsedTime();
 
 
-    double a;
-    double b;
-    double c;
-    double d;
+    double leftStickY;
+    double leftStickX;
+    double rightStickX;
+    double rightStickY;
     boolean xButton;
     boolean yButton;
     boolean aButton;
@@ -36,7 +36,7 @@ public class universalDriveControl extends OpMode {
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
-        
+
     }
 
     @Override
@@ -58,14 +58,16 @@ public class universalDriveControl extends OpMode {
 
         //telemetry.addData("LIFT POWER:", LIFT_POWER);
         //telemetry.update();
-        a = gamepad1.left_stick_y;//controls left and right  motors
-        b = gamepad1.left_stick_x;//controls rear and front  motors
-        c = gamepad1.right_stick_x;// controls turning
-        d = gamepad1.right_stick_y;
+         leftStickY = gamepad1.left_stick_y;//controls left and right  motors
+       leftStickX = gamepad1.left_stick_x;//controls rear and front  motors
+        rightStickX = gamepad1.right_stick_x;// controls turning
+        rightStickY = gamepad1.right_stick_y;
         xButton = gamepad1.x;
         yButton = gamepad1.y;
         bButton = gamepad1.b;
         aButton = gamepad1.a;
+        telemetry.addData("Status", "Initialized");
+        telemetry.update();
 
     }
 
