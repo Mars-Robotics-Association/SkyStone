@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class universalDriveControl {
     double a;
-    a = gamepad1.right_stick_y;;
+    a = gamepad1.right_stick_y;
 
 }
 
