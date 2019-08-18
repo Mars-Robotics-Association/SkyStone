@@ -33,6 +33,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.RobotLog;
+import com.vuforia.HINT;
+import com.vuforia.Vuforia;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.MatrixF;
@@ -85,6 +87,9 @@ import java.util.List;
 public class VuforiaTest extends LinearOpMode {
 
     public static final String TAG = "Vuforia Navigation Sample";
+    float RobotX = 0;
+    float RobotY = 0;
+    float RobotAngle = 0;
 
     OpenGLMatrix lastLocation = null;
 
@@ -130,7 +135,7 @@ public class VuforiaTest extends LinearOpMode {
          * Instantiate the Vuforia engine
          */
         vuforia = ClassFactory.getInstance().createVuforia(parameters);
-
+        Vuforia.setHint(HINT.HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS, 4);
         /**
          * Load the data sets that for the trackable objects we wish to track. These particular data
          * sets are stored in the 'assets' part of our application (you'll see them in the Android
@@ -318,8 +323,17 @@ public class VuforiaTest extends LinearOpMode {
              */
             if (lastLocation != null) {
                 //  RobotLog.vv(TAG, "robot=%s", format(lastLocation));
-                telemetry.addData("Pos", format(lastLocation));
-            } else {
+                float[] coordinates = lastLocation.getTranslation().getData();
+                RobotX = coordinates[0];
+                RobotY = coordinates[1];
+                RobotAngle = Orientation.getOrientation(lastLocation, AxesReference.EXTRINSIC, AxesOrder.XYX, AngleUnit.DEGREES).thirdAngle;
+
+                //telemetry.addData("Pos", format(lastLocation));
+                telemetry.addData("X", RobotX);
+                telemetry.addData("Y", RobotY);
+                telemetry.addData("Rot", RobotAngle);
+            }
+            else {
                 telemetry.addData("Pos", "Unknown");
             }
             telemetry.update();
