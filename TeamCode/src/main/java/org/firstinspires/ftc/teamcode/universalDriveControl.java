@@ -11,8 +11,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 
-@TeleOp(name="universalDriveControl", group="Iterative Opmode")
-//@Disabled
+
 
 public class universalDriveControl extends OpMode {
 
@@ -32,24 +31,10 @@ public class universalDriveControl extends OpMode {
 //    public boolean
 
     // @Override
-    public void init() {
 
-        telemetry.addData("Status", "Initialized");
-        telemetry.update();
+     //   telemetry.addData("Status", "Initialized");
+       // telemetry.update();
 
-    }
-
-    @Override
-    public void init_loop() {
-
-    }
-
-    @Override
-    public void start() {
-
-        runtime.reset();
-
-    }
 
 
     @Override
@@ -66,7 +51,7 @@ public class universalDriveControl extends OpMode {
         yButton = gamepad1.y;
         bButton = gamepad1.b;
         aButton = gamepad1.a;
-        telemetry.addData("Status", "Initialized");
+        telemetry.addData("X", "Initialized");
         telemetry.update();
 
     }
