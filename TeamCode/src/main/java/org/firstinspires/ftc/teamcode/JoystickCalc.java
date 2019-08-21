@@ -22,7 +22,7 @@ public class JoystickCalc
 
     public void calculate ()
     {
-//This is a test comment with GPG signature again again
+
         leftStickY = (opmode.gamepad1.left_stick_y * -1 );
         leftStickX = opmode.gamepad1.left_stick_x;
         rightStickX = opmode.gamepad1.right_stick_x;
