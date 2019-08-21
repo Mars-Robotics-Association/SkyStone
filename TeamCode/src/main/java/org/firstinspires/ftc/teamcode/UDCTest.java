@@ -41,8 +41,7 @@ public class UDCTest extends OpMode {
 
     @Override
     public void loop() {
-// test comment 3-1
-        //yeet
+//committed from script
 joyCalc.calculate();
 test1 = joyCalc.leftStickX;
         //telemetry.addData("X", "joyCalc.leftStickX");
