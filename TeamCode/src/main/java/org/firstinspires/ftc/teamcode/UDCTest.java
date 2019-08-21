@@ -19,9 +19,11 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 
 public class UDCTest extends OpMode {
 
-    private ElapsedTime runtime = new ElapsedTime();
-
-
+  //  private ElapsedTime runtime = null;
+   joystickcalc joyCalc = new joystickcalc();
+   
+//     joystickcalc joyCalc = null;
+    double test1;
     public void init() {
 
     }
@@ -41,8 +43,9 @@ public class UDCTest extends OpMode {
     @Override
     public void loop() {
 
-
-        telemetry.addData("X", "joystickcalc.leftStickX");
+joyCalc.calculate();
+test1 = joyCalc.leftStickX;
+        //telemetry.addData("X", "joyCalc.leftStickX");
         telemetry.update();
     }
 
