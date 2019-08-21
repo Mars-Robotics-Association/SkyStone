@@ -36,6 +36,10 @@ public class universalDriveControl extends OpMode {
        // telemetry.update();
 
 
+    @Override
+    public void init() {
+
+    }
 
     @Override
     public void loop() {

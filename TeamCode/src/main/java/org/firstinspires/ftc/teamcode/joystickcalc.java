@@ -46,8 +46,13 @@ public class joystickcalc {
         runtime.reset();
     }
 
-    public void GoForward(double inches) {
+
+
+    public void calculate(double inches) {
 
 
 
-    }}
+    }
+
+
+}
