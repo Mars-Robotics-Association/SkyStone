@@ -19,8 +19,9 @@ public class UDCTest extends OpMode
     public void loop() {
 
         joystickCalc.calculate();
-        test1 = joystickCalc.leftStickX;
-        telemetry.addData("X", test1);
+
+        telemetry.addData("X", joystickCalc.leftStickX);
+        telemetry.addData("Y", joystickCalc.leftStickY);
         telemetry.update();
     }
 }
