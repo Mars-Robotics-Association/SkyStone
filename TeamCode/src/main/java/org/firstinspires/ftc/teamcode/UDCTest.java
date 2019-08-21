@@ -41,7 +41,7 @@ public class UDCTest extends OpMode {
 
     @Override
     public void loop() {
-//committed from git desktop 22
+//committed from git desktop 4
 joyCalc.calculate();
 test1 = joyCalc.leftStickX;
         //telemetry.addData("X", "joyCalc.leftStickX");
