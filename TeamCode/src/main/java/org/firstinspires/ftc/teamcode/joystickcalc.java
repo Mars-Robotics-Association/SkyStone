@@ -29,26 +29,47 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 //@Disabled
 
 /**
- * Created by Matthew on 9/20/2018.
+ * Formatting stolen from Matthew, which was originally created on 9/20/2018.
+ * Created by Isaac on 8/20/2019.
  */
 
-public class joystickcalc {
+public class joystickcalc extends OpMode{
 
     private ElapsedTime runtime = new ElapsedTime();
 
-
+    double leftStickY;
+    double leftStickX;
+    double rightStickX;
+    double rightStickY;
+    boolean xButton;
+    boolean yButton;
+    boolean aButton;
+    boolean bButton;
 
     private LinearOpMode lin_opmode;
 
-    public joystickcalc(Telemetry telemetry, HardwareMap hardwareMap, LinearOpMode linopmode)   {
 
-        lin_opmode=linopmode;
-        runtime.reset();
+    @Override
+    public void init() {
+
+    }
+    public void loop() {
+
     }
 
 
 
-    public void calculate(double inches) {
+    public void calculate () {
+
+        leftStickY = gamepad1.left_stick_y;
+        leftStickX = gamepad1.left_stick_x;
+        rightStickX = gamepad1.right_stick_x;
+        rightStickY = gamepad1.right_stick_y;
+        xButton = gamepad1.x;
+        yButton = gamepad1.y;
+        bButton = gamepad1.b;
+        aButton = gamepad1.a;
+
 
 
 
