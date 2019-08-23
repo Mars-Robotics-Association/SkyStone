@@ -8,8 +8,12 @@ public class JoystickCalc
 
     double leftStickY;
     double leftStickX;
+    double leftStickBaring;
+    double leftStickPower;
     double rightStickX;
     double rightStickY;
+    double rightStickBaring;
+    double rightStickPower;
     boolean xButton;
     boolean yButton;
     boolean aButton;
@@ -36,7 +40,7 @@ if(leftStickY > 0){
 //quadrants A and Dif()
           if(leftStickX > 0){
 
-              
+           leftStickBaring =  Math.toDegrees(Math.atan((leftStickX)/(leftStickY)));
 
 
             }
