@@ -6,6 +6,8 @@
 //
 // Also uses IMU to drive in a straight line when not avoiding an obstacle.
 
+//https://ftcforum.usfirst.org/forum/ftc-technology/blocks-programming/53473-need-help-with-velocity-and-position-functions-of-the-imu-bno055-sensor
+
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
@@ -94,6 +96,7 @@ public class DriveAvoidImu extends LinearOpMode
             telemetry.addData("1 imu heading", lastAngles.firstAngle);
             telemetry.addData("2 global heading", globalAngle);
             telemetry.addData("3 correction", correction);
+            //telemetry.addData("pos", getPosition());
             telemetry.update();
 
             leftMotor.setPower(power - correction);
