@@ -75,12 +75,17 @@ if(leftStickY == 0){
     if(leftStickX == 0){
         //in the center
     }
-
-
+    
 }
 
-    }
+
+
+    } //closes calculate
 
 
 
-}
+
+
+
+
+}// closes class "JoystickCalc"
