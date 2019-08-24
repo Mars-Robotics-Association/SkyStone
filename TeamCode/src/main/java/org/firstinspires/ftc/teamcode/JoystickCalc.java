@@ -35,12 +35,12 @@ public class JoystickCalc
         yButton = opmode.gamepad1.y;
         bButton = opmode.gamepad1.b;
         aButton = opmode.gamepad1.a;
-
+        leftStickBaring =  Math.toDegrees(Math.atan((leftStickX)/(leftStickY)));
 if(leftStickY > 0){
 //quadrants A and Dif()
           if(leftStickX > 0){
 
-           leftStickBaring =  Math.toDegrees(Math.atan((leftStickX)/(leftStickY)));
+
 
 
             }
