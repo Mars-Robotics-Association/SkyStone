@@ -7,14 +7,14 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 public class UDCTest extends OpMode
 {
     JoystickCalc joystickCalc;
-    JoystickCalcTest jcTest;
+    //JoystickCalcTest jcTest;
     double test1;
 
     @Override
     public void init()
     {
         joystickCalc = new JoystickCalc(this);
-        jcTest = new JoystickCalcTest(this);
+        //jcTest = new JoystickCalcTest(this);
 
     }
 
@@ -22,11 +22,11 @@ public class UDCTest extends OpMode
     public void loop() {
 
         joystickCalc.calculate();
-        jcTest.calculate();
+        //jcTest.calculate();
         telemetry.addData("left X", joystickCalc.leftStickX);
         telemetry.addData("left Y", joystickCalc.leftStickY);
         telemetry.addData("Left Baring", joystickCalc.leftStickBaring);
-        telemetry.addData("Left Baring TEST", jcTest.leftStickBaringTest);
+        //telemetry.addData("Left Baring TEST", jcTest.leftStickBaringTest);
         telemetry.addData("Left Power", joystickCalc.leftStickPower);
         telemetry.addData("right X", joystickCalc.rightStickX);
         telemetry.addData("right Y", joystickCalc.rightStickY);
