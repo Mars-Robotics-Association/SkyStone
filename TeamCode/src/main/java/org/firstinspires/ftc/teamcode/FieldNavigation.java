@@ -52,7 +52,7 @@ public class FieldNavigation
             CurrentY = vuforia.RobotY;
             CurrentRot = GetRotation(vuforia);
         }
-        //UDC.Stop()
+        //UDC.StopMoving()
         //UDC.RotateTo(TargetRot)
     }
 
