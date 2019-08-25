@@ -20,6 +20,7 @@ public class JoystickCalcOld
         this.opmode = opmode;
     }
     double leftStickBaringTest = 0;
+    double leftStickPower = 0;
 
     public void calculate ()
     {
@@ -47,6 +48,7 @@ public class JoystickCalcOld
             leftStickBaringTest = 1/Math.atan(tanA); //get measurement of joystick angle
         }
         leftStickBaringTest = Math.toDegrees(3.1415 - leftStickBaringTest);
+        leftStickPower = (leftStickX + leftStickY)/2;
         //END EXPERIMENTAL
 
     } //closes calculate
