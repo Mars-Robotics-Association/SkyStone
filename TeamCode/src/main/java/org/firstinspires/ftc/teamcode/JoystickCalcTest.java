@@ -8,12 +8,8 @@ public class JoystickCalcTest
 
     double leftStickY;
     double leftStickX;
-    double leftStickBaring;
-    double leftStickPower;
     double rightStickX;
     double rightStickY;
-    double rightStickBaring;
-    double rightStickPower;
     boolean xButton;
     boolean yButton;
     boolean aButton;
