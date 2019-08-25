@@ -35,7 +35,7 @@ public class JoystickCalc
         yButton = opmode.gamepad1.y;
         bButton = opmode.gamepad1.b;
         aButton = opmode.gamepad1.a;
-        
+
         if(leftStickY > 0){
 //quadrants A and Dif()
             if(leftStickX > 0){
