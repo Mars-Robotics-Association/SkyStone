@@ -18,6 +18,7 @@ public class JoystickCalc
     boolean yButton;
     boolean aButton;
     boolean bButton;
+    double leftStickBaringTest;
 
     public JoystickCalc(OpMode opmode)
     {
@@ -41,7 +42,7 @@ public class JoystickCalc
         double Y = leftStickY; //X input
         double X = leftStickX; //Y input
         double tanA = Y/X; //tangent of the angle
-        double joystickAngle = Math.atan(tanA); //get measurement of joystick angle
+         leftStickBaringTest = Math.atan(tanA); //get measurement of joystick angle
         //END EXPERIMENTAL
 
         if(leftStickY > 0){

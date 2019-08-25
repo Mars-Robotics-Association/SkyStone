@@ -23,6 +23,7 @@ public class UDCTest extends OpMode
         telemetry.addData("left X", joystickCalc.leftStickX);
         telemetry.addData("left Y", joystickCalc.leftStickY);
         telemetry.addData("Left Baring", joystickCalc.leftStickBaring);
+        telemetry.addData("Left Baring", joystickCalc.leftStickBaringTest);
         telemetry.addData("Left Power", joystickCalc.leftStickPower);
         telemetry.addData("right X", joystickCalc.rightStickX);
         telemetry.addData("right Y", joystickCalc.rightStickY);
