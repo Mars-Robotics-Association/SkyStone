@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-public class JoystickCalcTest
+public class JoystickCalcOld
 {
     private OpMode opmode;
 
@@ -18,9 +18,8 @@ public class JoystickCalcTest
     boolean yButton;
     boolean aButton;
     boolean bButton;
-    double leftStickBaringTest;
 
-    public JoystickCalcTest(OpMode opmode)
+    public JoystickCalcOld(OpMode opmode)
     {
         this.opmode = opmode;
     }
@@ -37,6 +36,7 @@ public class JoystickCalcTest
         bButton = opmode.gamepad1.b;
         aButton = opmode.gamepad1.a;
 
+<<<<<<< Updated upstream:TeamCode/src/main/java/org/firstinspires/ftc/teamcode/JoystickCalcTest.java
         //EXPERIMENTAL CODE
         //Calculate angle of joystick
         double Y = leftStickY; //X input
@@ -45,6 +45,51 @@ public class JoystickCalcTest
         leftStickBaringTest = Math.atan(tanA); //get measurement of joystick angle
         leftStickBaringTest = Math.toDegrees(3.1415 - leftStickBaringTest);
         //END EXPERIMENTAL
+=======
+        if(leftStickY > 0){
+//quadrants A and Dif()
+            if(leftStickX > 0){
+
+                leftStickBaring =  Math.toDegrees(Math.atan((leftStickX)/(leftStickY)));
+
+
+            }
+            if(leftStickX < 0){
+                //quadrant D
+            }
+            if(leftStickX == 0){
+                //along y axis
+            }
+        }
+        if(leftStickY < 0){
+//quadrants C and B
+            if(leftStickX > 0){
+                //quadrant B
+            }
+            if(leftStickX < 0){
+                //quadrant C
+            }
+            if(leftStickX == 0){
+                //along y axis
+            }
+
+        }
+        if(leftStickY == 0){
+//along x axis
+            if(leftStickX > 0){
+                //along right x axis
+            }
+            if(leftStickX < 0){
+                //along left x axis
+            }
+            if(leftStickX == 0){
+                //in the center
+            }
+
+        }
+
+
+>>>>>>> Stashed changes:TeamCode/src/main/java/org/firstinspires/ftc/teamcode/JoystickCalcOld.java
 
     } //closes calculate
 
