@@ -42,7 +42,8 @@ public class JoystickCalc
         double Y = leftStickY; //X input
         double X = leftStickX; //Y input
         double tanA = Y/X; //tangent of the angle
-         leftStickBaringTest = Math.atan(tanA); //get measurement of joystick angle
+        leftStickBaringTest = Math.atan(tanA); //get measurement of joystick angle
+        leftStickBaringTest = Math.toDegrees(3.1415 - leftStickBaringTest);
         //END EXPERIMENTAL
 
         if(leftStickY > 0){

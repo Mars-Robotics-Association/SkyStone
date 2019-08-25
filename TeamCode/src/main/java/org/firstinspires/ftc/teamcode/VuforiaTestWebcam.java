@@ -94,7 +94,8 @@ import java.util.Locale;
 
 @TeleOp(name="Concept: Vuforia Nav Webcam", group ="Concept")
 //@Disabled
-public class VuforiaTestWebcam extends LinearOpMode {
+public class VuforiaTestWebcam extends LinearOpMode
+{
 
     public static final String TAG = "Vuforia Navigation Sample";
     float RobotX = 0;
