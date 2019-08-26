@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import android.opengl.Matrix;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -36,11 +38,23 @@ public class UDCTest extends OpMode
         telemetry.update();
 
         robotAngle = vuforia.RobotAngle;
-        
     }
 
     double GetRelativeDegrees(double JoystickAngle, double RobotAngle)
     {
         return (JoystickAngle - RobotAngle);
+    }
+
+    void CalculateWheelSpeeds(double degrees)
+    {
+        double FrontRight = 0;
+        double FrontLeft = 0;
+        double RearRight = 0;
+        double RearLeft = 0;
+
+        FrontRight = Math.cos(Math.toRadians(degrees + 45));
+        FrontLeft = Math.cos(Math.toRadians(degrees - 45));
+        RearRight = Math.cos(Math.toRadians(degrees - 45));
+        RearLeft = Math.cos(Math.toRadians(degrees + 45));
     }
 }
