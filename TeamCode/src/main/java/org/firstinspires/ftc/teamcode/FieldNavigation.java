@@ -35,8 +35,8 @@ public class FieldNavigation
         //Calculate angle of movement (no obstacle avoidance)
         double triY = Math.abs(CurrentY - TargetY); //vertical length
         double triX = Math.abs(CurrentX - TargetX); //horizontal length
-        double tanA = triY/triX; //tangent of the angle
-        double absoluteAngle = Math.atan(tanA); //get measurement of angle relative to 0 degrees on the field
+        double absoluteAngle = Math.atan2(triY,triX); //get measurement of joystick angle
+        absoluteAngle = Math.toDegrees(3.1415 - absoluteAngle);
 
         //UDC.MoveAtAngle(absoluteAngle)
 
