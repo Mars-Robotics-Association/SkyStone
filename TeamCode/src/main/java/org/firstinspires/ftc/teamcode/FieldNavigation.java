@@ -34,6 +34,7 @@ public class FieldNavigation extends OpMode
     public void  init()
     {
         UDC = new UDCTest();
+        Vuforia = new VuforiaTestWebcam();
     }
 
     @Override
@@ -73,10 +74,9 @@ public class FieldNavigation extends OpMode
         }
     }
 
-    public void NavigateToLocation(float x, float y, float orientation, VuforiaTestWebcam vuforia)
+    public void NavigateToLocation(float x, float y, float orientation)
     {
         //set values
-        Vuforia = vuforia;
         TargetX = x;
         TargetY = y;
         TargetRot = orientation;
@@ -89,6 +89,10 @@ public class FieldNavigation extends OpMode
         double triX = Math.abs(CurrentX - TargetX); //horizontal length
         double absoluteAngle = Math.atan2(triY,triX); //get measurement of joystick angle
         absoluteAngle = Math.toDegrees(3.1415 - absoluteAngle);
+        if(absoluteAngle < 0)//convert degrees to positive if needed
+        {
+            absoluteAngle = 360 - absoluteAngle;
+        }
 
         UDC.MoveAtAngle(absoluteAngle, 1);
         Navigating = true;
