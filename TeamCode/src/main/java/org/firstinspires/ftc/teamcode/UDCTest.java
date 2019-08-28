@@ -10,7 +10,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class UDCTest extends OpMode
 {
     //JoystickCalc joystickCalc;
-    JoystickCalcOld jcTest;
     VuforiaTestWebcam vuforia;
     double robotAngle;
 
@@ -24,11 +23,11 @@ public class UDCTest extends OpMode
     double RearRightPower = 0;
     double RearLeftPower = 0;
 
+
     @Override
     public void init()
     {
-        //joystickCalc = new JoystickCalc(this);
-        jcTest = new JoystickCalcOld(this);
+        //Get hardware components
         FrontRight = hardwareMap.get(DcMotor.class, "FrontRight");
         FrontLeft = hardwareMap.get(DcMotor.class, "FrontLeft");
         RearRight = hardwareMap.get(DcMotor.class, "RearRight");
@@ -36,37 +35,73 @@ public class UDCTest extends OpMode
     }
 
     @Override
-    public void loop() {
-
-        //joystickCalc.calculate();
-        jcTest.calculate();
-        //telemetry.addData("left X", joystickCalc.leftStickX);
-        //telemetry.addData("left Y", joystickCalc.leftStickY);
-        //telemetry.addData("Left Baring", joystickCalc.leftStickBaring);
-        telemetry.addData("Left Baring TEST", jcTest.leftStickBaringTest);
-        telemetry.addData("Left Power", jcTest.leftStickPower);
-        //telemetry.addData("right X", joystickCalc.rightStickX);
-        //telemetry.addData("right Y", joystickCalc.rightStickY);
-        //telemetry.addData("Right Baring", joystickCalc.rightStickBaring);
-        //telemetry.addData("Right Power", joystickCalc.rightStickPower);
-        telemetry.update();
-
+    public void loop()
+    {
+        //get robot angle TODO: USE GYRO!
         robotAngle = vuforia.RobotAngle;
     }
 
     public  void  MoveAtAngle(double angle, double speed)
     {
+        //get relative angle and calculate wheel speeds
         double relativeAngle = angle + robotAngle;
         CalculateWheelSpeeds(relativeAngle);
+        //set the powers of the motors
+        FrontRight.setPower(FrontRightPower);
+        FrontLeft.setPower(FrontLeftPower);
+        RearRight.setPower(RearRightPower);
+        RearLeft.setPower(RearLeftPower);
     }
 
-    double GetRelativeDegrees(double JoystickAngle, double RobotAngle)
+    public void RotateTo(double angle, double speed)
     {
-        return (JoystickAngle - RobotAngle);
+         if (angle > robotAngle) //turn left
+         {
+            RearLeft.setPower(speed);
+            FrontLeft.setPower(speed);
+            FrontRight.setPower(speed);
+            RearRight.setPower(speed);
+         }
+         if (angle < robotAngle) //turn right
+         {
+             RearLeft.setPower(-speed);
+             FrontLeft.setPower(-speed);
+             FrontRight.setPower(-speed);
+             RearRight.setPower(-speed);
+         }
     }
+
+    public void RawTurn(boolean right, double speed)
+    {
+        if (!right) //turn left
+        {
+            RearLeft.setPower(speed);
+            FrontLeft.setPower(speed);
+            FrontRight.setPower(speed);
+            RearRight.setPower(speed);
+        }
+        if (right) //turn right
+        {
+            RearLeft.setPower(-speed);
+            FrontLeft.setPower(-speed);
+            FrontRight.setPower(-speed);
+            RearRight.setPower(-speed);
+        }
+    }
+
+    public void  StopMotors()
+    {
+        FrontRight.setPower(0);
+        FrontLeft.setPower(0);
+        RearRight.setPower(0);
+        RearLeft.setPower(0);
+    }
+
+
 
     void CalculateWheelSpeeds(double degrees)
     {
+        //Wheel speeds are calculated using cosine with a shift
         FrontRightPower = Math.cos(Math.toRadians(degrees + 45));
         FrontLeftPower = Math.cos(Math.toRadians(degrees - 45));
         RearRightPower = Math.cos(Math.toRadians(degrees - 45));

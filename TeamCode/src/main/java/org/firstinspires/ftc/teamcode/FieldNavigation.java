@@ -9,11 +9,14 @@ Class that completes the following goals:
  */
 
 
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+
 import org.firstinspires.ftc.robotcore.external.navigation.MotionDetection;
 
-public class FieldNavigation
+public class FieldNavigation extends OpMode
 {
-    double closeEnoughThreshold = 20;
+    double closeEnoughThresholdDist = 20; //in mm
+    double closeEnoughThresholdRot = 5; //in degrees
 
     double TargetX = 0;
     double TargetY = 0;
@@ -22,15 +25,64 @@ public class FieldNavigation
     double CurrentY = 0;
     double CurrentRot = 0;
 
+    UDCTest UDC;
+    VuforiaTestWebcam Vuforia;
+    boolean Navigating = false;
+    boolean Rotating = false;
+
+    @Override
+    public void  init()
+    {
+        UDC = new UDCTest();
+    }
+
+    @Override
+    public void  loop()
+    {
+        if(Navigating)
+        {
+            if (!CheckCloseEnoughDistance()) //If not close to target
+            {
+                //update values
+                CurrentX = Vuforia.RobotX;
+                CurrentY = Vuforia.RobotY;
+                CurrentRot = GetRotation(Vuforia);
+            }
+            else {
+                UDC.StopMotors();
+                UDC.RotateTo(TargetRot, 0.5);
+                Rotating = true;
+                Navigating = false;
+            }
+        }
+
+        if(Rotating)
+        {
+            if (!CheckCloseEnoughRotation())
+            {
+                //update values
+                CurrentX = Vuforia.RobotX;
+                CurrentY = Vuforia.RobotY;
+                CurrentRot = GetRotation(Vuforia);
+            }
+            else
+            {
+                UDC.StopMotors();
+                Rotating = false;
+            }
+        }
+    }
+
     public void NavigateToLocation(float x, float y, float orientation, VuforiaTestWebcam vuforia)
     {
         //set values
+        Vuforia = vuforia;
         TargetX = x;
         TargetY = y;
         TargetRot = orientation;
-        CurrentX = vuforia.RobotX;
-        CurrentY = vuforia.RobotY;
-        CurrentRot = GetRotation(vuforia);
+        CurrentX = Vuforia.RobotX;
+        CurrentY = Vuforia.RobotY;
+        CurrentRot = GetRotation(Vuforia);
 
         //Calculate angle of movement (no obstacle avoidance)
         double triY = Math.abs(CurrentY - TargetY); //vertical length
@@ -38,28 +90,23 @@ public class FieldNavigation
         double absoluteAngle = Math.atan2(triY,triX); //get measurement of joystick angle
         absoluteAngle = Math.toDegrees(3.1415 - absoluteAngle);
 
-        //UDC.MoveAtAngle(absoluteAngle)
-
-        NavigationLoop(vuforia);
+        UDC.MoveAtAngle(absoluteAngle, 1);
+        Navigating = true;
     }
 
-    public void NavigationLoop(VuforiaTestWebcam vuforia)
-    {
-        while(!CheckCloseEnough()) //If not close to target
-        {
-            //update values
-            CurrentX = vuforia.RobotX;
-            CurrentY = vuforia.RobotY;
-            CurrentRot = GetRotation(vuforia);
-        }
-        //UDC.StopMoving()
-        //UDC.RotateTo(TargetRot)
-    }
-
-    public boolean CheckCloseEnough()
+    public boolean CheckCloseEnoughDistance()
     {
         //use distance formula to check if in radius
-        if(Math.sqrt(Math.pow(TargetX - CurrentX, 2) + Math.pow(TargetY - CurrentY, 2)) < closeEnoughThreshold)
+        if(Math.sqrt(Math.pow(TargetX - CurrentX, 2) + Math.pow(TargetY - CurrentY, 2)) < closeEnoughThresholdDist)
+        {
+            return true;
+        }
+        else return false;
+    }
+
+    public boolean CheckCloseEnoughRotation()
+    {
+        if(Vuforia.RobotAngle < TargetRot + closeEnoughThresholdRot && Vuforia.RobotAngle > TargetRot - closeEnoughThresholdRot)
         {
             return true;
         }

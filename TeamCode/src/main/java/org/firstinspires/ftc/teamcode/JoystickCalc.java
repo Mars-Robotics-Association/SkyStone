@@ -36,49 +36,12 @@ public class JoystickCalc
         bButton = opmode.gamepad1.b;
         aButton = opmode.gamepad1.a;
 
-        if(leftStickY > 0){
-//quadrants A and Dif()
-            if(leftStickX > 0){
-
-                leftStickBaring =  Math.toDegrees(Math.atan((leftStickX)/(leftStickY)));
-
-
-            }
-            if(leftStickX < 0){
-                //quadrant D
-            }
-            if(leftStickX == 0){
-                //along y axis
-            }
-        }
-        if(leftStickY < 0){
-//quadrants C and B
-            if(leftStickX > 0){
-                //quadrant B
-            }
-            if(leftStickX < 0){
-                //quadrant C
-            }
-            if(leftStickX == 0){
-                //along y axis
-            }
-
-        }
-        if(leftStickY == 0){
-//along x axis
-            if(leftStickX > 0){
-                //along right x axis
-            }
-            if(leftStickX < 0){
-                //along left x axis
-            }
-            if(leftStickX == 0){
-                //in the center
-            }
-
-        }
-
-
+        //Calculate angle of joystick
+        double Y = leftStickY; //X input
+        double X = leftStickX; //Y input
+        leftStickBaring = Math.atan2(Y,X); //get measurement of joystick angle
+        leftStickBaring = Math.toDegrees(3.1415 - leftStickBaring);
+        leftStickPower = (leftStickX + leftStickY)/2;
 
     } //closes calculate
 
