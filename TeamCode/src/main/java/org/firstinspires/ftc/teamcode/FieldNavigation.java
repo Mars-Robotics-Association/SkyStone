@@ -11,9 +11,6 @@ Class that completes the following goals:
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.MotionDetection;
-
 public class FieldNavigation extends OpMode
 {
     double closeEnoughThresholdDist = 20; //in mm
@@ -27,7 +24,7 @@ public class FieldNavigation extends OpMode
     double CurrentRot = 0;
 
     UDCTest UDC;
-    VuforiaTestWebcam Vuforia;
+    VuforiaTest Vuforia;
     IMU imu;
 
     boolean Navigating = false;
@@ -37,7 +34,7 @@ public class FieldNavigation extends OpMode
     public void  init()
     {
         UDC = new UDCTest();
-        Vuforia = new VuforiaTestWebcam();
+        Vuforia = new VuforiaTest();
         imu = new IMU();
     }
 

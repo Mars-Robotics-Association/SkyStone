@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class UDCTest extends OpMode
 {
     //JoystickCalc joystickCalc;
-    VuforiaTestWebcam vuforia;
+    VuforiaTest vuforia;
     double robotAngle;
 
     DcMotor FrontRight;

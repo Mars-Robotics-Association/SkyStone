@@ -8,7 +8,7 @@ import com.vuforia.Vec3F;
 import java.util.List;
 
 
-//Program should allow robot to move in a square pattern
+//Program should allow robot to move in a square pattern using a list of destinations
 @Autonomous(name = "SquareAutonomous", group = "Autonomous")
 public class SquareAutonomous extends OpMode
 {
