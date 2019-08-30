@@ -25,7 +25,6 @@ public class FieldNavigation extends OpMode
 
     UDCTest UDC;
     VuforiaTest Vuforia;
-    IMU imu;
 
     boolean Navigating = false;
     boolean Rotating = false;
@@ -35,7 +34,6 @@ public class FieldNavigation extends OpMode
     {
         UDC = new UDCTest();
         Vuforia = new VuforiaTest();
-        imu = new IMU();
     }
 
     @Override
@@ -48,7 +46,7 @@ public class FieldNavigation extends OpMode
                 //update values
                 CurrentX = Vuforia.RobotX;
                 CurrentY = Vuforia.RobotY;
-                CurrentRot = GetRotation();
+                CurrentRot = UDC.GetRotation();
             }
             else {
                 UDC.StopMotors();
@@ -65,7 +63,7 @@ public class FieldNavigation extends OpMode
                 //update values
                 CurrentX = Vuforia.RobotX;
                 CurrentY = Vuforia.RobotY;
-                CurrentRot = GetRotation();
+                CurrentRot = UDC.GetRotation();
             }
             else
             {
@@ -83,7 +81,7 @@ public class FieldNavigation extends OpMode
         TargetRot = orientation;
         CurrentX = Vuforia.RobotX;
         CurrentY = Vuforia.RobotY;
-        CurrentRot = GetRotation();
+        CurrentRot = UDC.GetRotation();
 
         //Calculate angle of movement (no obstacle avoidance)
         double triY = Math.abs(CurrentY - TargetY); //vertical length
@@ -118,10 +116,6 @@ public class FieldNavigation extends OpMode
         else return false;
     }
 
-    public float GetRotation()
-    {
-        float angle = imu.angles.firstAngle;
-        return angle;
-    }
+
 
 }

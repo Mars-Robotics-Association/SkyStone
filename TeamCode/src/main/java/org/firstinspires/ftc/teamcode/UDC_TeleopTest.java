@@ -2,19 +2,13 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DigitalChannel;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.ElapsedTime;
-
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 @TeleOp(name="UDC_TeleopTest", group="Iterative Opmode")
 public class UDC_TeleopTest extends OpMode
 {
     JoystickCalc Jc;
-    UDCTest UDC;
+    SkyStoneBot Bot;
 
     double DriveSpeed = 1;
     double TurnSpeed = 0.5;
@@ -24,7 +18,7 @@ public class UDC_TeleopTest extends OpMode
     public void init()
     {
         Jc = new JoystickCalc(this);
-        UDC = new UDCTest();
+        Bot = new SkyStoneBot();
     }
 
     @Override
@@ -35,23 +29,23 @@ public class UDC_TeleopTest extends OpMode
 
         if(Jc.leftStickPower > JoystickThreshold) //Move
         {
-            UDC.MoveAtAngle(Jc.leftStickBaring, DriveSpeed * Jc.leftStickPower);
+            Bot.MoveAtAngle(Jc.leftStickBaring, DriveSpeed * Jc.leftStickPower);
             telemetry.addData("Moving", Jc.leftStickBaring);
         }
 
         else if(Jc.rightStickX > JoystickThreshold) //Turn Right
         {
-           UDC.RawTurn(true, TurnSpeed);
+            Bot.RawTurn(true, TurnSpeed);
         }
 
         else if(Jc.rightStickX < JoystickThreshold) //Turn Left
         {
-            UDC.RawTurn(false, TurnSpeed);
+            Bot.RawTurn(false, TurnSpeed);
         }
 
         else //STOP
         {
-            UDC.StopMotors();
+            Bot.StopMotors();
         }
 
 

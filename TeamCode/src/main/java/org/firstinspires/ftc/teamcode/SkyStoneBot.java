@@ -1,13 +1,9 @@
 package org.firstinspires.ftc.teamcode;
 
-import android.opengl.Matrix;
-
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@TeleOp
-public class UDCTest extends OpMode
+public class SkyStoneBot extends OpMode implements Robot
 {
     double RobotAngle = 0;
 
@@ -41,7 +37,8 @@ public class UDCTest extends OpMode
         RobotAngle = GetRobotAngle();
     }
 
-    public  void  MoveAtAngle(double angle, double speed)
+    @Override
+    public void MoveAtAngle(double angle, double speed)
     {
         //get relative angle and calculate wheel speeds
         double relativeAngle = angle + RobotAngle;
@@ -53,24 +50,26 @@ public class UDCTest extends OpMode
         RearLeft.setPower(RearLeftPower);
     }
 
+    @Override
     public void RotateTo(double angle, double speed)
     {
-         if (angle > RobotAngle) //turn left
-         {
+        if (angle > RobotAngle) //turn left
+        {
             RearLeft.setPower(speed);
             FrontLeft.setPower(speed);
             FrontRight.setPower(speed);
             RearRight.setPower(speed);
-         }
-         if (angle < RobotAngle) //turn right
-         {
-             RearLeft.setPower(-speed);
-             FrontLeft.setPower(-speed);
-             FrontRight.setPower(-speed);
-             RearRight.setPower(-speed);
-         }
+        }
+        if (angle < RobotAngle) //turn right
+        {
+            RearLeft.setPower(-speed);
+            FrontLeft.setPower(-speed);
+            FrontRight.setPower(-speed);
+            RearRight.setPower(-speed);
+        }
     }
 
+    @Override
     public void RawTurn(boolean right, double speed)
     {
         if (!right) //turn left
@@ -89,7 +88,8 @@ public class UDCTest extends OpMode
         }
     }
 
-    public void  StopMotors()
+    @Override
+    public void StopMotors()
     {
         FrontRight.setPower(0);
         FrontLeft.setPower(0);
@@ -97,9 +97,8 @@ public class UDCTest extends OpMode
         RearLeft.setPower(0);
     }
 
-
-
-    void CalculateWheelSpeeds(double degrees)
+    @Override
+    public void CalculateWheelSpeeds(double degrees)
     {
         //Wheel speeds are calculated using cosine with a shift
         FrontRightPower = Math.cos(Math.toRadians(degrees + 45));
@@ -108,9 +107,9 @@ public class UDCTest extends OpMode
         RearLeftPower = Math.cos(Math.toRadians(degrees + 45));
     }
 
+    @Override
     public float GetRobotAngle()
     {
         return imu.angles.firstAngle;
     }
-
 }
