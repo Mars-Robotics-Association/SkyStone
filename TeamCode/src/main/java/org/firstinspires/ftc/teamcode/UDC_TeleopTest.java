@@ -36,6 +36,7 @@ public class UDC_TeleopTest extends OpMode
         if(Jc.leftStickPower > JoystickThreshold) //Move
         {
             UDC.MoveAtAngle(Jc.leftStickBaring, DriveSpeed);
+            telemetry.addData("Moving", Jc.leftStickBaring);
         }
 
         else if(Jc.rightStickX > JoystickThreshold) //Turn Right
@@ -47,10 +48,13 @@ public class UDC_TeleopTest extends OpMode
         {
             UDC.RawTurn(false, TurnSpeed);
         }
+
         else //STOP
         {
             UDC.StopMotors();
         }
+
+
 
         telemetry.addData("Left Baring", Jc.leftStickBaring);
         telemetry.addData("Left Power", Jc.leftStickPower);

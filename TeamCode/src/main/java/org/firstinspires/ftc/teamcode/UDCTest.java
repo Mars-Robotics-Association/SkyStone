@@ -10,8 +10,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class UDCTest extends OpMode
 {
     //JoystickCalc joystickCalc;
-    VuforiaTest vuforia;
-    double robotAngle;
+    double robotAngle = 0;
 
     DcMotor FrontRight;
     DcMotor FrontLeft;
@@ -22,7 +21,6 @@ public class UDCTest extends OpMode
     double FrontLeftPower = 0;
     double RearRightPower = 0;
     double RearLeftPower = 0;
-
 
     @Override
     public void init()
@@ -38,7 +36,6 @@ public class UDCTest extends OpMode
     public void loop()
     {
         //get robot angle TODO: USE GYRO!
-        robotAngle = vuforia.RobotAngle;
     }
 
     public  void  MoveAtAngle(double angle, double speed)
