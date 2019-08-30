@@ -46,7 +46,7 @@ public class FieldNavigation extends OpMode
                 //update values
                 CurrentX = Vuforia.RobotX;
                 CurrentY = Vuforia.RobotY;
-                CurrentRot = UDC.GetRotation();
+                CurrentRot = UDC.GetRobotAngle();
             }
             else {
                 UDC.StopMotors();
@@ -63,7 +63,7 @@ public class FieldNavigation extends OpMode
                 //update values
                 CurrentX = Vuforia.RobotX;
                 CurrentY = Vuforia.RobotY;
-                CurrentRot = UDC.GetRotation();
+                CurrentRot = UDC.GetRobotAngle();
             }
             else
             {
@@ -81,7 +81,7 @@ public class FieldNavigation extends OpMode
         TargetRot = orientation;
         CurrentX = Vuforia.RobotX;
         CurrentY = Vuforia.RobotY;
-        CurrentRot = UDC.GetRotation();
+        CurrentRot = UDC.GetRobotAngle();
 
         //Calculate angle of movement (no obstacle avoidance)
         double triY = Math.abs(CurrentY - TargetY); //vertical length

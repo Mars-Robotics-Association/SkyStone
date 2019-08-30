@@ -19,6 +19,10 @@ public class SkyStoneBot extends OpMode implements Robot
 
     IMU imu;
 
+    double TargetRot = 0;
+    double CloseEnoughThresholdRot = 5;
+    boolean isRotating = false;
+
     @Override
     public void init()
     {
@@ -35,19 +39,28 @@ public class SkyStoneBot extends OpMode implements Robot
     {
         //get robot angle
         RobotAngle = GetRobotAngle();
+
+        if(isRotating)
+        {
+            if(CheckCloseEnoughRotation())
+            {
+                StopMotors();
+                CalculateWheelSpeeds(RobotAngle);
+                //set the powers of the motors
+                FrontRight.setPower(FrontRightPower);
+                FrontLeft.setPower(FrontLeftPower);
+                RearRight.setPower(RearRightPower);
+                RearLeft.setPower(RearLeftPower);
+                isRotating = false;
+            }
+        }
     }
 
     @Override
     public void MoveAtAngle(double angle, double speed)
     {
-        //get relative angle and calculate wheel speeds
-        double relativeAngle = angle + RobotAngle;
-        CalculateWheelSpeeds(relativeAngle);
-        //set the powers of the motors
-        FrontRight.setPower(FrontRightPower);
-        FrontLeft.setPower(FrontLeftPower);
-        RearRight.setPower(RearRightPower);
-        RearLeft.setPower(RearLeftPower);
+        TargetRot = angle;
+        isRotating = true;
     }
 
     @Override
@@ -111,5 +124,14 @@ public class SkyStoneBot extends OpMode implements Robot
     public float GetRobotAngle()
     {
         return imu.angles.firstAngle;
+    }
+
+    public boolean CheckCloseEnoughRotation()
+    {
+        if(GetRobotAngle() < TargetRot + CloseEnoughThresholdRot && GetRobotAngle() > TargetRot - CloseEnoughThresholdRot)
+        {
+            return true;
+        }
+        else return false;
     }
 }
