@@ -35,7 +35,7 @@ public class UDC_TeleopTest extends OpMode
 
         if(Jc.leftStickPower > JoystickThreshold) //Move
         {
-            UDC.MoveAtAngle(Jc.leftStickBaring, DriveSpeed);
+            UDC.MoveAtAngle(Jc.leftStickBaring, DriveSpeed * Jc.leftStickPower);
             telemetry.addData("Moving", Jc.leftStickBaring);
         }
 
