@@ -6,14 +6,14 @@ public class JoystickCalc
 {
     private OpMode opmode;
 
-    double leftStickY;
-    double leftStickX;
-    double leftStickBaring;
-    double leftStickPower;
-    double rightStickX;
-    double rightStickY;
-    double rightStickBaring;
-    double rightStickPower;
+    double leftStickY = 0;
+    double leftStickX = 0;
+    double leftStickBaring = 0;
+    double leftStickPower = 0;
+    double rightStickX = 0;
+    double rightStickY = 0;
+    double rightStickBaring = 0;
+    double rightStickPower = 0;
     boolean xButton;
     boolean yButton;
     boolean aButton;

@@ -102,6 +102,15 @@ public class IMU extends LinearOpMode
 
         // Loop and update the dashboard
         while (opModeIsActive()) {
+            telemetry.addAction(new Runnable() { @Override public void run()
+            {
+                // Acquiring the angles is relatively expensive; we don't want
+                // to do that in each of the three items that need that info, as that's
+                // three times the necessary expense.
+                angles   = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+                gravity  = imu.getGravity();
+            }
+            });
             telemetry.update();
         }
     }
@@ -114,15 +123,7 @@ public class IMU extends LinearOpMode
 
         // At the beginning of each telemetry update, grab a bunch of data
         // from the IMU that we will then display in separate lines.
-        telemetry.addAction(new Runnable() { @Override public void run()
-                {
-                // Acquiring the angles is relatively expensive; we don't want
-                // to do that in each of the three items that need that info, as that's
-                // three times the necessary expense.
-                angles   = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-                gravity  = imu.getGravity();
-                }
-            });
+
 
         telemetry.addLine()
             .addData("status", new Func<String>() {
