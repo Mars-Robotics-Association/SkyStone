@@ -40,19 +40,12 @@ public class JoystickCalc
         double Y = leftStickY; //X input
         double X = leftStickX; //Y input
         leftStickBaring = Math.atan2(Y,X); //get measurement of joystick angle
-        leftStickBaring = Math.toDegrees(3.1415 - leftStickBaring);
         if(leftStickBaring < 0)//convert degrees to positive if needed
         {
-            leftStickBaring = 360 - leftStickBaring;
+            leftStickBaring = 360 + leftStickBaring;
         }
-        leftStickPower = (leftStickX + leftStickY)/2;
+        //Distance formula for calculating joystick power
+        leftStickPower = Math.abs(Math.sqrt(Math.pow(leftStickX - 0, 2) + Math.pow(leftStickY - 0, 2)));
 
-    } //closes calculate
-
-
-
-
-
-
-
-}// closes class "JoystickCalc"
+    }
+}

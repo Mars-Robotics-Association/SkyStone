@@ -87,10 +87,9 @@ public class FieldNavigation extends OpMode
         double triY = Math.abs(CurrentY - TargetY); //vertical length
         double triX = Math.abs(CurrentX - TargetX); //horizontal length
         double absoluteAngle = Math.atan2(triY,triX); //get measurement of joystick angle
-        absoluteAngle = Math.toDegrees(3.1415 - absoluteAngle);
         if(absoluteAngle < 0)//convert degrees to positive if needed
         {
-            absoluteAngle = 360 - absoluteAngle;
+            absoluteAngle = 360 + absoluteAngle;
         }
 
         UDC.MoveAtAngle(absoluteAngle, 1);
