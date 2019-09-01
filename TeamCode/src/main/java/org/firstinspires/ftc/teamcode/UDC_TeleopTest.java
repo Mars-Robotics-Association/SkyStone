@@ -30,7 +30,7 @@ public class UDC_TeleopTest extends OpMode
         if(Jc.leftStickPower > JoystickThreshold) //Move
         {
             Bot.MoveAtAngle(Jc.leftStickBaring, DriveSpeed * Jc.leftStickPower);
-            telemetry.addData("Moving", Jc.leftStickBaring);
+            telemetry.addData("Moving", true);
         }
 
         else if(Jc.rightStickX > JoystickThreshold) //Turn Right
@@ -40,7 +40,7 @@ public class UDC_TeleopTest extends OpMode
 
         else if(Jc.rightStickX < JoystickThreshold) //Turn Left
         {
-            Bot.RawTurn(false, TurnSpeed);
+            //Bot.RawTurn(false, TurnSpeed);
         }
 
         else //STOP
@@ -54,6 +54,7 @@ public class UDC_TeleopTest extends OpMode
         telemetry.addData("Left Power", Jc.leftStickPower);
         telemetry.addData("Right X", Jc.rightStickX);
         telemetry.addData("Right Y", Jc.rightStickY);
+        telemetry.addData("Controller ", gamepad1.left_stick_x);
         telemetry.update();
 
     }

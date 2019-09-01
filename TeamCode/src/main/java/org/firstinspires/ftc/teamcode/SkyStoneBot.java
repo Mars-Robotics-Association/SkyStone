@@ -25,6 +25,7 @@ public class SkyStoneBot extends OpMode implements Robot
     public void init()
     {
         imu = new IMU();
+
         //Get hardware components
         FrontRight = hardwareMap.get(DcMotor.class, "FrontRight");
         FrontLeft = hardwareMap.get(DcMotor.class, "FrontLeft");
@@ -35,13 +36,13 @@ public class SkyStoneBot extends OpMode implements Robot
     @Override
     public void loop()
     {
-        //get robot angle
-        RobotAngle = GetRobotAngle();
+
     }
 
     @Override
     public void MoveAtAngle(double angle, double speed)
     {
+        //RobotAngle = GetRobotAngle();
         //get relative angle and calculate wheel speeds
         double relativeAngle = angle + RobotAngle;
         CalculateWheelSpeeds(relativeAngle);
@@ -55,6 +56,7 @@ public class SkyStoneBot extends OpMode implements Robot
     @Override
     public void RotateTo(double angle, double speed)
     {
+        //RobotAngle = GetRobotAngle();
         if (angle > RobotAngle) //turn left
         {
             RearLeft.setPower(speed);
@@ -74,6 +76,7 @@ public class SkyStoneBot extends OpMode implements Robot
     @Override
     public void RawTurn(boolean right, double speed)
     {
+        //RobotAngle = GetRobotAngle();
         if (!right) //turn left
         {
             RearLeft.setPower(speed);
@@ -102,6 +105,7 @@ public class SkyStoneBot extends OpMode implements Robot
     @Override
     public void CalculateWheelSpeeds(double degrees)
     {
+        //RobotAngle = GetRobotAngle();
         //Wheel speeds are calculated using cosine with a shift
         FrontRightPower = -Math.cos(Math.toRadians(degrees + 45));
         FrontLeftPower = Math.cos(Math.toRadians(degrees - 45));
