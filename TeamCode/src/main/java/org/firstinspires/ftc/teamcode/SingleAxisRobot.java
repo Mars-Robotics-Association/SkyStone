@@ -78,13 +78,25 @@ public class SingleAxisRobot extends OpMode implements Robot
     @Override
     public void RawTurn(boolean right, double speed)
     {
-        
+        Speed = speed;
+        if (!right) //turn left
+        {
+            RightPower = -Speed;
+            LeftPower = -Speed;
+        }
+        if (right) //turn right
+        {
+            RightPower = Speed;
+            LeftPower = Speed;
+        }
     }
 
     @Override
     public void StopMotors()
     {
         isRotating = false;
+        RightPower = 0;
+        LeftPower = 0;
     }
 
     @Override
@@ -113,7 +125,7 @@ public class SingleAxisRobot extends OpMode implements Robot
                 amountOff = 360 - amountOff;
             }
 
-            if(turnToFront)
+            if(turnToFront) //which way to turn
             {
                 if(amountOff >= 0 && amountOff <= 180) //turn left
                 {
@@ -127,9 +139,19 @@ public class SingleAxisRobot extends OpMode implements Robot
                     LeftPower = Speed;
                 }
             }
-            else
+            else //if we want to go backwards, reverse the turn direction
             {
+                if(amountOff >= 0 && amountOff <= 180) //turn right
+                {
+                    RightPower = Speed;
+                    LeftPower = Speed;
+                }
 
+                if(amountOff > 180 && amountOff < 360) //turn left
+                {
+                    RightPower = -Speed;
+                    LeftPower = -Speed;
+                }
             }
         }
     }
