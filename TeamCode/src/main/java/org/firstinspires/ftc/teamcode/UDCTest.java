@@ -47,10 +47,10 @@ public class UDCTest extends OpMode
         double relativeAngle = angle + RobotAngle;
         CalculateWheelSpeeds(relativeAngle);
         //set the powers of the motors
-        FrontRight.setPower(FrontRightPower);
-        FrontLeft.setPower(FrontLeftPower);
-        RearRight.setPower(RearRightPower);
-        RearLeft.setPower(RearLeftPower);
+        FrontRight.setPower(FrontRightPower * speed);
+        FrontLeft.setPower(FrontLeftPower * speed);
+        RearRight.setPower(RearRightPower * speed);
+        RearLeft.setPower(RearLeftPower * speed);
     }
 
     public void RotateTo(double angle, double speed)
@@ -102,9 +102,9 @@ public class UDCTest extends OpMode
     void CalculateWheelSpeeds(double degrees)
     {
         //Wheel speeds are calculated using cosine with a shift
-        FrontRightPower = Math.cos(Math.toRadians(degrees + 45));
+        FrontRightPower = -Math.cos(Math.toRadians(degrees + 45));
         FrontLeftPower = Math.cos(Math.toRadians(degrees - 45));
-        RearRightPower = Math.cos(Math.toRadians(degrees - 45));
+        RearRightPower = -Math.cos(Math.toRadians(degrees - 45));
         RearLeftPower = Math.cos(Math.toRadians(degrees + 45));
     }
 

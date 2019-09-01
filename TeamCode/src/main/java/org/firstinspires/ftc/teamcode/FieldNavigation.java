@@ -48,7 +48,7 @@ public class FieldNavigation extends OpMode
                 CurrentY = Vuforia.RobotY;
                 CurrentRot = UDC.GetRobotAngle();
             }
-            else {
+            else { //Stop and rotate to target
                 UDC.StopMotors();
                 UDC.RotateTo(TargetRot, 0.5);
                 Rotating = true;
@@ -58,14 +58,14 @@ public class FieldNavigation extends OpMode
 
         if(Rotating)
         {
-            if (!CheckCloseEnoughRotation())
+            if (!CheckCloseEnoughRotation()) //if not at rotation target
             {
                 //update values
                 CurrentX = Vuforia.RobotX;
                 CurrentY = Vuforia.RobotY;
                 CurrentRot = UDC.GetRobotAngle();
             }
-            else
+            else //Stop
             {
                 UDC.StopMotors();
                 Rotating = false;
