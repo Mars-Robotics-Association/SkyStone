@@ -27,6 +27,7 @@ public class SkyStoneBot extends OpMode implements Robot
     double RearLeftPower = 0;
 
     IMU imu;
+    private OpMode opmode;
 
     @Override
     public void init()
@@ -40,9 +41,9 @@ public class SkyStoneBot extends OpMode implements Robot
 
     }
 
-    public SkyStoneBot()
+    public SkyStoneBot(OpMode opmode)
     {
-
+        this.opmode = opmode;
     }
 
     public void Start()

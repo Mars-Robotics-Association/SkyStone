@@ -18,7 +18,7 @@ public class UDC_TeleopTest extends OpMode
     public void init()
     {
         Jc = new JoystickCalc(this);
-        Bot = new SkyStoneBot();
+        Bot = new SkyStoneBot(this);
         Bot.Start();
     }
 
