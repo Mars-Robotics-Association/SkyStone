@@ -4,10 +4,17 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+
 @TeleOp(name="SkyStoneBase", group="DEBUG")
 public class SkyStoneBot extends OpMode implements Robot
 {
-    double RobotAngle = 0;
+    double RobotAngle = 90;
+    Orientation Angles;
 
     DcMotor FrontRight;
     DcMotor FrontLeft;
@@ -24,8 +31,26 @@ public class SkyStoneBot extends OpMode implements Robot
     @Override
     public void init()
     {
-        imu = new IMU();
 
+    }
+
+    @Override
+    public void loop()
+    {
+
+    }
+
+    public SkyStoneBot()
+    {
+
+    }
+
+    public void Start()
+    {
+        telemetry.addData("SkyStoneStart", true);
+        telemetry.update();
+        imu = new IMU();
+        //Angles = imu.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         //Get hardware components
         FrontRight = hardwareMap.get(DcMotor.class, "FrontRight");
         FrontLeft = hardwareMap.get(DcMotor.class, "FrontLeft");
@@ -33,10 +58,11 @@ public class SkyStoneBot extends OpMode implements Robot
         RearLeft = hardwareMap.get(DcMotor.class, "RearLeft");
     }
 
-    @Override
-    public void loop()
+    public void Loop()
     {
-
+        //RobotAngle = Angles.firstAngle;
+        telemetry.addData("IMU: ", imu);
+        telemetry.update();
     }
 
     @Override

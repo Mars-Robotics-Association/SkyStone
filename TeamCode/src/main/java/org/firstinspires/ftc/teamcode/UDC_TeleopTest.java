@@ -19,14 +19,16 @@ public class UDC_TeleopTest extends OpMode
     {
         Jc = new JoystickCalc(this);
         Bot = new SkyStoneBot();
+        Bot.Start();
     }
 
     @Override
     public void loop()
     {
+        Bot.Loop();
         //Update telemetry and get joystick input
         Jc.calculate();
-
+        telemetry.addData("Bot", Bot);
         if(Jc.leftStickPower > JoystickThreshold) //Move
         {
             Bot.MoveAtAngle(Jc.leftStickBaring, DriveSpeed * Jc.leftStickPower);
