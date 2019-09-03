@@ -5,21 +5,21 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 public class SingleAxisRobot extends OpMode implements Robot
 {
-    double RobotAngle = 0;
+    static double RobotAngle = 0;
 
-    DcMotor Right;
-    DcMotor Left;
+    static DcMotor Right;
+    static DcMotor Left;
 
-    double RightPower = 0;
-    double LeftPower = 0;
+    static double RightPower = 0;
+    static double LeftPower = 0;
 
-    IMU imu;
+    static IMU imu;
 
-    double TargetRot = 0;
-    double CloseEnoughThresholdRot = 5;
-    boolean isRotating = false;
-    double Speed = 0;
-    boolean FacingForwards = true; //whether robot is going to move forwards or backwards
+    static double TargetRot = 0;
+    static double CloseEnoughThresholdRot = 5;
+    static boolean isRotating = false;
+    static double Speed = 0;
+    static boolean FacingForwards = true; //whether robot is going to move forwards or backwards
 
     @Override
     public void init()

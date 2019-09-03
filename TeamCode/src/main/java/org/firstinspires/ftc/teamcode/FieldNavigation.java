@@ -13,21 +13,21 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 public class FieldNavigation extends OpMode
 {
-    double closeEnoughThresholdDist = 20; //in mm
-    double closeEnoughThresholdRot = 5; //in degrees
+    static double closeEnoughThresholdDist = 20; //in mm
+    static double closeEnoughThresholdRot = 5; //in degrees
 
-    double TargetX = 0;
-    double TargetY = 0;
-    double TargetRot = 0;
-    double CurrentX = 0;
-    double CurrentY = 0;
-    double CurrentRot = 0;
+    static double TargetX = 0;
+    static double TargetY = 0;
+    static double TargetRot = 0;
+    static double CurrentX = 0;
+    static double CurrentY = 0;
+    static double CurrentRot = 0;
 
-    UDCTest UDC;
-    VuforiaTest Vuforia;
+    static UDCTest UDC;
+    static VuforiaTest Vuforia;
 
-    boolean Navigating = false;
-    boolean Rotating = false;
+    static boolean Navigating = false;
+    static boolean Rotating = false;
 
     @Override
     public void  init()

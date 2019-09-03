@@ -13,20 +13,20 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 @TeleOp(name="SkyStoneBase", group="DEBUG")
 public class SkyStoneBot extends OpMode implements Robot
 {
-    double RobotAngle = 90;
-    Orientation Angles;
+    static double RobotAngle = 90;
+    static Orientation Angles;
 
-    DcMotor FrontRight;
-    DcMotor FrontLeft;
-    DcMotor RearRight;
-    DcMotor RearLeft;
+    static DcMotor FrontRight;
+    static DcMotor FrontLeft;
+    static DcMotor RearRight;
+    static DcMotor RearLeft;
 
-    double FrontRightPower = 0;
-    double FrontLeftPower = 0;
-    double RearRightPower = 0;
-    double RearLeftPower = 0;
+    static double FrontRightPower = 0;
+    static double FrontLeftPower = 0;
+    static double RearRightPower = 0;
+    static double RearLeftPower = 0;
 
-    IMU imu;
+    static IMU imu;
     private OpMode opmode;
 
     @Override

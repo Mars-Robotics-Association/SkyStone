@@ -104,9 +104,9 @@ public class VuforiaTestWebcam extends LinearOpMode
 {
 
     public static final String TAG = "Vuforia Navigation Sample";
-    float RobotX = 0;
-    float RobotY = 0;
-    float RobotAngle = 0;
+    static float RobotX = 0;
+    static float RobotY = 0;
+    static float RobotAngle = 0;
 
     OpenGLMatrix lastLocation = null;
 

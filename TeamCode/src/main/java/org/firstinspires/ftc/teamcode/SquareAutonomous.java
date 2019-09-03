@@ -12,17 +12,17 @@ import java.util.List;
 @Autonomous(name = "SquareAutonomous", group = "Autonomous")
 public class SquareAutonomous extends OpMode
 {
-    FieldNavigation nav;
+    static FieldNavigation nav;
 
     //Vec3F is a location structured as (x,y,rotation)
-    Vec3F[] navPoints = {
+    static Vec3F[] navPoints = {
             new Vec3F(-2000, -2000, 0),
             new Vec3F(2000, -2000, 90),
             new Vec3F(2000, 2000, 180),
             new Vec3F(-2000, 2000, 270)
     };
-    int waypointIndex = 0;
-    boolean reachedDestination = true;
+    static int waypointIndex = 0;
+    static boolean reachedDestination = true;
 
     public void init()
     {

@@ -7,16 +7,18 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 @TeleOp(name="UDC_TeleopTest", group="Iterative Opmode")
 public class UDC_TeleopTest extends OpMode
 {
-    JoystickCalc Jc = new JoystickCalc(this);
-    SkyStoneBot Bot = new SkyStoneBot(this);
+    static JoystickCalc Jc;
+    static SkyStoneBot Bot;
 
-    double DriveSpeed = 1;
-    double TurnSpeed = 0.5;
-    double JoystickThreshold = 0.2;
+    static double DriveSpeed = 1;
+    static double TurnSpeed = 0.5;
+    static double JoystickThreshold = 0.2;
 
     @Override
     public void init()
     {
+        Jc = new JoystickCalc(this);
+        Bot = new SkyStoneBot(this);
         Bot.Start();
     }
 

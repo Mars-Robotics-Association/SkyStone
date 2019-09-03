@@ -63,11 +63,11 @@ public class IMU extends LinearOpMode
     //----------------------------------------------------------------------------------------------
 
     // The IMU sensor object
-    BNO055IMU imu;
+    static BNO055IMU imu;
 
     // State used for updating telemetry
-    Orientation angles;
-    Acceleration gravity;
+    static Orientation angles;
+    static Acceleration gravity;
 
     //----------------------------------------------------------------------------------------------
     // Main logic
