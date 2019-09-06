@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-public class SingleAxisRobot extends OpMode implements Robot
+public class SingleAxisRobot implements Robot
 {
     static double RobotAngle = 0;
 
@@ -23,20 +23,28 @@ public class SingleAxisRobot extends OpMode implements Robot
 
     OpMode opmode;
 
-    public SingleAxisRobot(OpMode opMode){this.opmode = opmode;}
+    public SingleAxisRobot(OpMode opMode){this.opmode = opMode;}
 
     @Override
-    public void init()
+    public void Init()
     {
         imu = new IMU(opmode);
+        imu.Init();
         //Get hardware components
-        Right = hardwareMap.get(DcMotor.class, "Right");
-        Left = hardwareMap.get(DcMotor.class, "Left");
+        Right = opmode.hardwareMap.get(DcMotor.class, "Right");
+        Left = opmode.hardwareMap.get(DcMotor.class, "Left");
     }
 
     @Override
-    public void loop()
+    public void Start()
     {
+        imu.Start();
+    }
+
+    @Override
+    public void Loop()
+    {
+        imu.Loop();
         //get robot angle
         RobotAngle = GetRobotAngle();
 

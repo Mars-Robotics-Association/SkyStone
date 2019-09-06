@@ -5,16 +5,22 @@ package org.firstinspires.ftc.teamcode;
  */
 public interface Robot
 {
-    public abstract void MoveAtAngle(double angle, double speed);
+    void Init();
 
-    public void RotateTo(double angle, double speed);
+    void Start();
 
-    public void RawTurn(boolean right, double speed);
+    void Loop();
 
-    public void  StopMotors();
+    void MoveAtAngle(double angle, double speed);
+
+    void RotateTo(double angle, double speed);
+
+    void RawTurn(boolean right, double speed);
+
+    void  StopMotors();
 
     void CalculateWheelSpeeds(double degrees);
 
-    public float GetRobotAngle();
+    float GetRobotAngle();
 
 }

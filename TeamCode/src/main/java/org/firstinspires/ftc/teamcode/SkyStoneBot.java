@@ -33,6 +33,7 @@ public class SkyStoneBot implements Robot
         this.opmode = opmode;
     }
 
+    @Override
     public void Init()
     {
         opmode.telemetry.addData("SkyStoneStart", true);
@@ -47,11 +48,13 @@ public class SkyStoneBot implements Robot
         RearLeft = opmode.hardwareMap.get(DcMotor.class, "RearLeft");
     }
 
+    @Override
     public void Start()
     {
         //imu.Start();
     }
 
+    @Override
     public void Loop()
     {
         //imu.Loop()
@@ -86,7 +89,7 @@ public class SkyStoneBot implements Robot
             FrontRight.setPower(speed);
             RearRight.setPower(speed);
         }
-        if (angle < RobotAngle) //turn right
+        else //turn right
         {
             RearLeft.setPower(-speed);
             FrontLeft.setPower(-speed);

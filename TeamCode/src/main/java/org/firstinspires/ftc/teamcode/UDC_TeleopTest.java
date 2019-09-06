@@ -22,7 +22,7 @@ public class UDC_TeleopTest extends OpMode
     }
 
     @Override
-    public void init_loop()
+    public void start()
     {
         Bot.Start();
     }
