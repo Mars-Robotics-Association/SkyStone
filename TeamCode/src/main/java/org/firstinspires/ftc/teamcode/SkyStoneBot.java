@@ -10,36 +10,23 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
-@TeleOp(name="SkyStoneBase", group="DEBUG")
-public class SkyStoneBot extends OpMode implements Robot
+public class SkyStoneBot implements Robot
 {
-    static double RobotAngle = 90;
-    static Orientation Angles;
+    private double RobotAngle = 90;
+    private Orientation Angles;
 
-    static DcMotor FrontRight;
-    static DcMotor FrontLeft;
-    static DcMotor RearRight;
-    static DcMotor RearLeft;
+    private DcMotor FrontRight;
+    private DcMotor FrontLeft;
+    private DcMotor RearRight;
+    private DcMotor RearLeft;
 
-    static double FrontRightPower = 0;
-    static double FrontLeftPower = 0;
-    static double RearRightPower = 0;
-    static double RearLeftPower = 0;
+    private double FrontRightPower = 0;
+    private double FrontLeftPower = 0;
+    private double RearRightPower = 0;
+    private double RearLeftPower = 0;
 
-    static IMU imu;
+    private IMU imu;
     private OpMode opmode;
-
-    @Override
-    public void init()
-    {
-
-    }
-
-    @Override
-    public void loop()
-    {
-
-    }
 
     public SkyStoneBot(OpMode opmode)
     {
@@ -48,22 +35,24 @@ public class SkyStoneBot extends OpMode implements Robot
 
     public void Start()
     {
-        telemetry.addData("SkyStoneStart", true);
-        telemetry.update();
-        imu = new IMU();
+        opmode.telemetry.addData("SkyStoneStart", true);
+        opmode.telemetry.update();
+        imu = new IMU(this.opmode);
         //Angles = imu.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+
         //Get hardware components
-        FrontRight = hardwareMap.get(DcMotor.class, "FrontRight");
-        FrontLeft = hardwareMap.get(DcMotor.class, "FrontLeft");
-        RearRight = hardwareMap.get(DcMotor.class, "RearRight");
-        RearLeft = hardwareMap.get(DcMotor.class, "RearLeft");
+        FrontRight = opmode.hardwareMap.get(DcMotor.class, "FrontRight");
+        FrontLeft = opmode.hardwareMap.get(DcMotor.class, "FrontLeft");
+        RearRight = opmode.hardwareMap.get(DcMotor.class, "RearRight");
+        RearLeft = opmode.hardwareMap.get(DcMotor.class, "RearLeft");
     }
 
     public void Loop()
     {
-        //RobotAngle = Angles.firstAngle;
-        telemetry.addData("IMU: ", imu);
-        telemetry.update();
+        Angles = imu.angles;
+        RobotAngle = Angles.firstAngle;
+        opmode.telemetry.addData("IMU: ", imu);
+        opmode.telemetry.update();
     }
 
     @Override

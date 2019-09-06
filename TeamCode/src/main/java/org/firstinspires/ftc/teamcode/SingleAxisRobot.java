@@ -21,10 +21,14 @@ public class SingleAxisRobot extends OpMode implements Robot
     static double Speed = 0;
     static boolean FacingForwards = true; //whether robot is going to move forwards or backwards
 
+    OpMode opmode;
+
+    public SingleAxisRobot(OpMode opMode){this.opmode = opmode;}
+
     @Override
     public void init()
     {
-        imu = new IMU();
+        imu = new IMU(opmode);
         //Get hardware components
         Right = hardwareMap.get(DcMotor.class, "Right");
         Left = hardwareMap.get(DcMotor.class, "Left");

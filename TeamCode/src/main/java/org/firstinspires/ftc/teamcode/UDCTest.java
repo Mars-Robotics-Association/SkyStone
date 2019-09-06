@@ -1,3 +1,4 @@
+/*
 package org.firstinspires.ftc.teamcode;
 
 import android.opengl.Matrix;
@@ -6,7 +7,6 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@TeleOp
 public class UDCTest extends OpMode
 {
     double RobotAngle = 0;
@@ -113,4 +113,4 @@ public class UDCTest extends OpMode
         return imu.angles.firstAngle;
     }
 
-}
+}*/

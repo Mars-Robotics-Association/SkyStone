@@ -55,26 +55,26 @@ import java.util.Locale;
  *
  * @see <a href="http://www.adafruit.com/products/2472">Adafruit IMU</a>
  */
-@TeleOp(name = "Sensor: BNO055 IMU", group = "Sensor")
-public class IMU extends LinearOpMode
+public class IMU
     {
-    //----------------------------------------------------------------------------------------------
-    // State
-    //----------------------------------------------------------------------------------------------
 
     // The IMU sensor object
-    static BNO055IMU imu;
+    private BNO055IMU imu;
 
     // State used for updating telemetry
-    static Orientation angles;
-    static Acceleration gravity;
+    Orientation angles;
+    Acceleration gravity;
 
-    //----------------------------------------------------------------------------------------------
-    // Main logic
-    //----------------------------------------------------------------------------------------------
+    OpMode opmode;
 
-        @Override public void runOpMode() {
 
+        public IMU(OpMode opMode)
+        {
+            this.opmode = opMode;
+        }
+
+        public void Init()
+        {
             // Set up the parameters with which we will use our IMU. Note that integration
             // algorithm here just reports accelerations to the logcat log; it doesn't actually
             // provide positional information.
@@ -89,22 +89,22 @@ public class IMU extends LinearOpMode
             // Retrieve and initialize the IMU. We expect the IMU to be attached to an I2C port
             // on a Core Device Interface Module, configured to be a sensor of type "AdaFruit IMU",
             // and named "imu".
-            imu = hardwareMap.get(BNO055IMU.class, "imu");
+            imu = opmode.hardwareMap.get(BNO055IMU.class, "imu");
             imu.initialize(parameters);
 
             // Set up our telemetry dashboard
             composeTelemetry();
+        }
 
-            // Wait until we're told to go
-            waitForStart();
-
+        public void Start()
+        {
             // Start the logging of measured acceleration
             imu.startAccelerationIntegration(new Position(), new Velocity(), 1000);
+        }
 
-            // Loop and update the dashboard
-            while (opModeIsActive()) {
-                telemetry.update();
-            }
+        public void Loop()
+        {
+            opmode.telemetry.update();
         }
 
         //----------------------------------------------------------------------------------------------
@@ -115,7 +115,7 @@ public class IMU extends LinearOpMode
 
             // At the beginning of each telemetry update, grab a bunch of data
             // from the IMU that we will then display in separate lines.
-            telemetry.addAction(new Runnable() { @Override public void run()
+            opmode.telemetry.addAction(new Runnable() { @Override public void run()
             {
                 // Acquiring the angles is relatively expensive; we don't want
                 // to do that in each of the three items that need that info, as that's
@@ -125,7 +125,7 @@ public class IMU extends LinearOpMode
             }
             });
 
-            telemetry.addLine()
+            opmode.telemetry.addLine()
                     .addData("status", new Func<String>() {
                         @Override public String value() {
                             return imu.getSystemStatus().toShortString();
@@ -137,7 +137,7 @@ public class IMU extends LinearOpMode
                         }
                     });
 
-            telemetry.addLine()
+            opmode.telemetry.addLine()
                     .addData("heading", new Func<String>() {
                         @Override public String value() {
                             return formatAngle(angles.angleUnit, angles.firstAngle);
@@ -154,7 +154,7 @@ public class IMU extends LinearOpMode
                         }
                     });
 
-            telemetry.addLine()
+            opmode.telemetry.addLine()
                     .addData("grvty", new Func<String>() {
                         @Override public String value() {
                             return gravity.toString();

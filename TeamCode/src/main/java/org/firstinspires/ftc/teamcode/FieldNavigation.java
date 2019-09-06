@@ -23,7 +23,7 @@ public class FieldNavigation extends OpMode
     static double CurrentY = 0;
     static double CurrentRot = 0;
 
-    static UDCTest UDC;
+    static SkyStoneBot Bot;
     static VuforiaTest Vuforia;
 
     static boolean Navigating = false;
@@ -32,7 +32,7 @@ public class FieldNavigation extends OpMode
     @Override
     public void  init()
     {
-        UDC = new UDCTest();
+        Bot = new SkyStoneBot(this);
         Vuforia = new VuforiaTest();
     }
 
@@ -46,11 +46,11 @@ public class FieldNavigation extends OpMode
                 //update values
                 CurrentX = Vuforia.RobotX;
                 CurrentY = Vuforia.RobotY;
-                CurrentRot = UDC.GetRobotAngle();
+                CurrentRot = Bot.GetRobotAngle();
             }
             else { //Stop and rotate to target
-                UDC.StopMotors();
-                UDC.RotateTo(TargetRot, 0.5);
+                Bot.StopMotors();
+                Bot.RotateTo(TargetRot, 0.5);
                 Rotating = true;
                 Navigating = false;
             }
@@ -63,11 +63,11 @@ public class FieldNavigation extends OpMode
                 //update values
                 CurrentX = Vuforia.RobotX;
                 CurrentY = Vuforia.RobotY;
-                CurrentRot = UDC.GetRobotAngle();
+                CurrentRot = Bot.GetRobotAngle();
             }
             else //Stop
             {
-                UDC.StopMotors();
+                Bot.StopMotors();
                 Rotating = false;
             }
         }
@@ -81,7 +81,7 @@ public class FieldNavigation extends OpMode
         TargetRot = orientation;
         CurrentX = Vuforia.RobotX;
         CurrentY = Vuforia.RobotY;
-        CurrentRot = UDC.GetRobotAngle();
+        CurrentRot = Bot.GetRobotAngle();
 
         //Calculate angle of movement (no obstacle avoidance)
         double triY = Math.abs(CurrentY - TargetY); //vertical length
@@ -92,7 +92,7 @@ public class FieldNavigation extends OpMode
             absoluteAngle = 360 + absoluteAngle;
         }
 
-        UDC.MoveAtAngle(absoluteAngle, 1);
+        Bot.MoveAtAngle(absoluteAngle, 1);
         Navigating = true;
     }
 
