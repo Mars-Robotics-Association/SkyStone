@@ -382,7 +382,7 @@ public class VuforiaTestWebcam extends LinearOpMode
         telemetry.update();
         waitForStart();
 
-        /** Start tracking the data sets we care about. */
+        /** Init tracking the data sets we care about. */
         targetsRoverRuckus.activate();
 
         boolean buttonPressed = false;

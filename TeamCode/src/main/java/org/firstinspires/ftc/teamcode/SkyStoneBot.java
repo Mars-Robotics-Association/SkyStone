@@ -33,12 +33,12 @@ public class SkyStoneBot implements Robot
         this.opmode = opmode;
     }
 
-    public void Start()
+    public void Init()
     {
         opmode.telemetry.addData("SkyStoneStart", true);
         opmode.telemetry.update();
         //imu = new IMU(this.opmode);
-        //Angles = imu.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+        //imu.Init()
 
         //Get hardware components
         FrontRight = opmode.hardwareMap.get(DcMotor.class, "FrontRight");
@@ -47,8 +47,14 @@ public class SkyStoneBot implements Robot
         RearLeft = opmode.hardwareMap.get(DcMotor.class, "RearLeft");
     }
 
+    public void Start()
+    {
+        //imu.Start();
+    }
+
     public void Loop()
     {
+        //imu.Loop()
         //Angles = imu.angles;
         //RobotAngle = Angles.firstAngle;
         //opmode.telemetry.addData("IMU: ", imu);

@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 @TeleOp(name="UDC_TeleopTest", group="Iterative Opmode")
 public class UDC_TeleopTest extends OpMode
@@ -19,6 +18,12 @@ public class UDC_TeleopTest extends OpMode
     {
         Jc = new JoystickCalc(this);
         Bot = new SkyStoneBot(this);
+        Bot.Init();
+    }
+
+    @Override
+    public void init_loop()
+    {
         Bot.Start();
     }
 

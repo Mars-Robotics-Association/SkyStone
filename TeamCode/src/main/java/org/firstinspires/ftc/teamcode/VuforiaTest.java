@@ -287,7 +287,7 @@ public class VuforiaTest extends LinearOpMode {
         telemetry.update();
         waitForStart();
 
-        /** Start tracking the data sets we care about. */
+        /** Init tracking the data sets we care about. */
         targetsRoverRuckus.activate();
 
         while (opModeIsActive()) {
