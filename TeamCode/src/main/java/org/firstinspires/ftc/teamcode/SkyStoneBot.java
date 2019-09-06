@@ -12,8 +12,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 public class SkyStoneBot implements Robot
 {
-    private double RobotAngle = 90;
-    private Orientation Angles;
+    private double RobotAngle = 0;
+    //private Orientation Angles;
 
     private DcMotor FrontRight;
     private DcMotor FrontLeft;
@@ -25,7 +25,7 @@ public class SkyStoneBot implements Robot
     private double RearRightPower = 0;
     private double RearLeftPower = 0;
 
-    private IMU imu;
+    //private IMU imu;
     private OpMode opmode;
 
     public SkyStoneBot(OpMode opmode)
@@ -37,7 +37,7 @@ public class SkyStoneBot implements Robot
     {
         opmode.telemetry.addData("SkyStoneStart", true);
         opmode.telemetry.update();
-        imu = new IMU(this.opmode);
+        //imu = new IMU(this.opmode);
         //Angles = imu.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
 
         //Get hardware components
@@ -49,9 +49,9 @@ public class SkyStoneBot implements Robot
 
     public void Loop()
     {
-        Angles = imu.angles;
-        RobotAngle = Angles.firstAngle;
-        opmode.telemetry.addData("IMU: ", imu);
+        //Angles = imu.angles;
+        //RobotAngle = Angles.firstAngle;
+        //opmode.telemetry.addData("IMU: ", imu);
         opmode.telemetry.update();
     }
 
@@ -132,6 +132,6 @@ public class SkyStoneBot implements Robot
     @Override
     public float GetRobotAngle()
     {
-        return imu.angles.firstAngle;
+        return 0;
     }
 }
