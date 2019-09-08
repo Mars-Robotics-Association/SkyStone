@@ -39,7 +39,9 @@ public class JoystickCalc
         //Calculate angle of joystick
         double Y = leftStickY; //X input
         double X = leftStickX; //Y input
-        leftStickBaring = Math.atan2(Y,X); //get measurement of joystick angle
+        leftStickBaring = Math.atan2(Y,-X); //get measurement of joystick angle
+        leftStickBaring = Math.toDegrees(leftStickBaring);
+        leftStickBaring -= 90;
         if(leftStickBaring < 0)//convert degrees to positive if needed
         {
             leftStickBaring = 360 + leftStickBaring;

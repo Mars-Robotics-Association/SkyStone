@@ -45,9 +45,9 @@ public class UDC_TeleopTest extends OpMode
             Bot.RawTurn(true, TurnSpeed);
         }
 
-        else if(Jc.rightStickX < JoystickThreshold) //Turn Left
+        else if(Jc.rightStickX < -JoystickThreshold) //Turn Left
         {
-            //Bot.RawTurn(false, TurnSpeed);
+            Bot.RawTurn(false, TurnSpeed);
         }
 
         else //STOP
