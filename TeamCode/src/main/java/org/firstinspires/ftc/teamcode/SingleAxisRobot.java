@@ -55,7 +55,7 @@ public class SingleAxisRobot implements Robot
                 StopMotors();
                 isRotating = false;
             }
-            CalculateWheelSpeeds(RobotAngle);
+            CalculateWheelSpeeds(RobotAngle, 1);
         }
 
         //set the powers of the motors
@@ -112,7 +112,7 @@ public class SingleAxisRobot implements Robot
     }
 
     @Override
-    public void CalculateWheelSpeeds(double degrees)
+    public void CalculateWheelSpeeds(double degrees, double speed)
     {
         if(CheckCloseEnoughRotation()) //if the robot is on track
         {

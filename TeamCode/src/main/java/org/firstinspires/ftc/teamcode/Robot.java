@@ -19,7 +19,7 @@ public interface Robot
 
     void  StopMotors();
 
-    void CalculateWheelSpeeds(double degrees);
+    void CalculateWheelSpeeds(double degrees, double speed);
 
     float GetRobotAngle();
 

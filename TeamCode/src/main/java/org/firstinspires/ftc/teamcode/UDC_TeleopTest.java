@@ -33,7 +33,13 @@ public class UDC_TeleopTest extends OpMode
         Bot.Loop();
         //Update telemetry and get joystick input
         Jc.calculate();
-        telemetry.addData("Bot", Bot);
+
+        //Reset Gyro if needed
+        if(Jc.xButton)
+        {
+            Bot.OffsetGyro();
+        }
+
         if(Jc.leftStickPower > JoystickThreshold) //Move
         {
             Bot.MoveAtAngle(Jc.leftStickBaring, DriveSpeed * Jc.leftStickPower);

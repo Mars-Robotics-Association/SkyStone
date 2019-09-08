@@ -13,6 +13,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 public class SkyStoneBot implements Robot
 {
     private double RobotAngle = 0;
+    private double RobotAngleOffset = 0;
     //private Orientation Angles;
 
     private DcMotor FrontRight;
@@ -59,9 +60,14 @@ public class SkyStoneBot implements Robot
     {
         //imu.Loop()
         //Angles = imu.angles;
-        //RobotAngle = Angles.firstAngle;
+        //RobotAngle = Angles.firstAngle - RobotAngleOffset;
         //opmode.telemetry.addData("IMU: ", imu);
         opmode.telemetry.update();
+    }
+
+    public void OffsetGyro()
+    {
+        RobotAngleOffset = RobotAngle;
     }
 
     @Override
@@ -70,7 +76,7 @@ public class SkyStoneBot implements Robot
         //RobotAngle = GetRobotAngle();
         //get relative angle and calculate wheel speeds
         double relativeAngle = angle + RobotAngle;
-        CalculateWheelSpeeds(relativeAngle);
+        CalculateWheelSpeeds(relativeAngle, speed);
         //set the powers of the motors
         FrontRight.setPower(FrontRightPower);
         FrontLeft.setPower(FrontLeftPower);
@@ -128,14 +134,14 @@ public class SkyStoneBot implements Robot
     }
 
     @Override
-    public void CalculateWheelSpeeds(double degrees)
+    public void CalculateWheelSpeeds(double degrees, double speed)
     {
         //RobotAngle = GetRobotAngle();
         //Wheel speeds are calculated using cosine with a shift
-        FrontRightPower = -Math.cos(Math.toRadians(degrees + 45));
-        FrontLeftPower = Math.cos(Math.toRadians(degrees - 45));
-        RearRightPower = -Math.cos(Math.toRadians(degrees - 45));
-        RearLeftPower = Math.cos(Math.toRadians(degrees + 45));
+        FrontRightPower = -Math.cos(Math.toRadians(degrees + 45)) * speed;
+        FrontLeftPower = Math.cos(Math.toRadians(degrees - 45)) * speed;
+        RearRightPower = -Math.cos(Math.toRadians(degrees - 45)) * speed;
+        RearLeftPower = Math.cos(Math.toRadians(degrees + 45)) * speed;
     }
 
     @Override
