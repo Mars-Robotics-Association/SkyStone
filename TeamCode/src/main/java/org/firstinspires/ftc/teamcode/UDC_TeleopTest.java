@@ -9,8 +9,8 @@ public class UDC_TeleopTest extends OpMode
     private JoystickCalc Jc = null;
     private SkyStoneBot Bot = null;
 
-    private double DriveSpeed = 1;
-    private double TurnSpeed = 0.5;
+    private double DriveSpeedMultiplier = 1;
+    private double TurnSpeedMultiplier = 0.4;
     private double JoystickThreshold = 0.2;
 
     @Override
@@ -34,6 +34,8 @@ public class UDC_TeleopTest extends OpMode
         //Update telemetry and get joystick input
         Jc.calculate();
 
+        double turnSpeed = Math.abs(Jc.rightStickX);
+
         //Reset Gyro if needed
         if(Jc.xButton)
         {
@@ -42,19 +44,45 @@ public class UDC_TeleopTest extends OpMode
 
         if(Jc.leftStickPower > JoystickThreshold) //Move
         {
-            Bot.MoveAtAngle(Jc.leftStickBaring, DriveSpeed * Jc.leftStickPower);
+            boolean turnRight = false;
+            if (Jc.rightStickX > JoystickThreshold)
+            {
+                turnRight = true;
+            }
+            if (Jc.rightStickX <= JoystickThreshold)
+            {
+                turnRight = false;
+            }
+
+            Bot.MoveAtAngleTurning(Jc.leftStickBaring, DriveSpeedMultiplier * Jc.leftStickPower, turnRight, turnSpeed*TurnSpeedMultiplier);
             telemetry.addData("Moving", true);
         }
 
         else if(Jc.rightStickX > JoystickThreshold) //Turn Right
         {
-            Bot.RawTurn(true, TurnSpeed);
+            Bot.RawTurn(true, turnSpeed*TurnSpeedMultiplier);
         }
 
         else if(Jc.rightStickX < -JoystickThreshold) //Turn Left
         {
-            Bot.RawTurn(false, TurnSpeed);
+            Bot.RawTurn(false, turnSpeed*TurnSpeedMultiplier);
         }
+
+        /*if(Jc.leftStickPower > JoystickThreshold) //Move
+        {
+            Bot.MoveAtAngle(Jc.leftStickBaring, DriveSpeedMultiplier * Jc.leftStickPower);
+            telemetry.addData("Moving", true);
+        }
+
+        else if(Jc.rightStickX > JoystickThreshold) //Turn Right
+        {
+            Bot.RawTurn(true, turnSpeed*TurnSpeedMultiplier);
+        }
+
+        else if(Jc.rightStickX < -JoystickThreshold) //Turn Left
+        {
+            Bot.RawTurn(false, turnSpeed*TurnSpeedMultiplier);
+        }*/
 
         else //STOP
         {

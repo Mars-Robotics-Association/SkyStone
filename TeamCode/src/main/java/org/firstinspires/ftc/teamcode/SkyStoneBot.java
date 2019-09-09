@@ -84,6 +84,19 @@ public class SkyStoneBot implements Robot
         RearLeft.setPower(RearLeftPower);
     }
 
+    public void MoveAtAngleTurning(double angle, double speed, boolean turnRight, double turnSpeed)
+    {
+        //RobotAngle = GetRobotAngle();
+        //get relative angle and calculate wheel speeds
+        double relativeAngle = angle + RobotAngle;
+        CalculateWheelSpeedsTurning(relativeAngle, speed, turnRight, turnSpeed);
+        //set the powers of the motors
+        FrontRight.setPower(FrontRightPower);
+        FrontLeft.setPower(FrontLeftPower);
+        RearRight.setPower(RearRightPower);
+        RearLeft.setPower(RearLeftPower);
+    }
+
     @Override
     public void RotateTo(double angle, double speed)
     {
@@ -136,12 +149,30 @@ public class SkyStoneBot implements Robot
     @Override
     public void CalculateWheelSpeeds(double degrees, double speed)
     {
-        //RobotAngle = GetRobotAngle();
         //Wheel speeds are calculated using cosine with a shift
         FrontRightPower = -Math.cos(Math.toRadians(degrees + 45)) * speed;
         FrontLeftPower = Math.cos(Math.toRadians(degrees - 45)) * speed;
         RearRightPower = -Math.cos(Math.toRadians(degrees - 45)) * speed;
         RearLeftPower = Math.cos(Math.toRadians(degrees + 45)) * speed;
+    }
+
+    public void CalculateWheelSpeedsTurning(double degrees, double speed, boolean turnRight, double turnSpeed)
+    {
+        double turnOffset = 0;
+        if (!turnRight) //turn left
+        {
+            turnOffset = turnSpeed;
+        }
+        if (turnRight) //turn right
+        {
+            turnOffset = -turnSpeed;
+        }
+
+        //Wheel speeds are calculated using cosine with a shift
+        FrontRightPower = (-Math.cos(Math.toRadians(degrees + 45)) * speed) + turnOffset;
+        FrontLeftPower = (Math.cos(Math.toRadians(degrees - 45)) * speed) + turnOffset;
+        RearRightPower = (-Math.cos(Math.toRadians(degrees - 45)) * speed) + turnOffset;
+        RearLeftPower = (Math.cos(Math.toRadians(degrees + 45)) * speed) + turnOffset;
     }
 
     @Override
