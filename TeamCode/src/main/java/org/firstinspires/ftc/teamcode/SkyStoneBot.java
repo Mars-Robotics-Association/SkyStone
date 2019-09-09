@@ -14,7 +14,7 @@ public class SkyStoneBot implements Robot
 {
     private double RobotAngle = 0;
     private double RobotAngleOffset = 0;
-    //private Orientation Angles;
+    private Orientation Angles;
 
     private DcMotor FrontRight;
     private DcMotor FrontLeft;
@@ -26,7 +26,7 @@ public class SkyStoneBot implements Robot
     private double RearRightPower = 0;
     private double RearLeftPower = 0;
 
-    //private IMU imu;
+    private IMU imu;
     private OpMode opmode;
 
     public SkyStoneBot(OpMode opmode)
@@ -39,8 +39,8 @@ public class SkyStoneBot implements Robot
     {
         opmode.telemetry.addData("SkyStoneStart", true);
         opmode.telemetry.update();
-        //imu = new IMU(this.opmode);
-        //imu.Init()
+        imu = new IMU(this.opmode);
+        imu.Init();
 
         //Get hardware components
         FrontRight = opmode.hardwareMap.get(DcMotor.class, "FrontRight");
@@ -52,16 +52,16 @@ public class SkyStoneBot implements Robot
     @Override
     public void Start()
     {
-        //imu.Start();
+        imu.Start();
     }
 
     @Override
     public void Loop()
     {
-        //imu.Loop()
-        //Angles = imu.angles;
-        //RobotAngle = Angles.firstAngle - RobotAngleOffset;
-        //opmode.telemetry.addData("IMU: ", imu);
+        imu.Loop();
+        Angles = imu.angles;
+        RobotAngle = Angles.firstAngle - RobotAngleOffset;
+        opmode.telemetry.addData("IMU: ", imu);
         opmode.telemetry.update();
     }
 
