@@ -34,6 +34,7 @@ public class UDC_TeleopTest extends OpMode
         //Update telemetry and get joystick input
         Jc.calculate();
 
+        //calculate the absolute value of the right x for turn speed
         double turnSpeed = Math.abs(Jc.rightStickX);
 
         //Reset Gyro if needed
@@ -44,6 +45,7 @@ public class UDC_TeleopTest extends OpMode
 
         if(Jc.leftStickPower > JoystickThreshold) //Move
         {
+            //if we need to turn while moving, choose direction
             boolean turnRight = false;
             if (Jc.rightStickX > JoystickThreshold)
             {
@@ -54,6 +56,7 @@ public class UDC_TeleopTest extends OpMode
                 turnRight = false;
             }
 
+            //Make robot move at the angle of the left joystick at the determined speed while applying a turn to the value of the right joystick
             Bot.MoveAtAngleTurning(Jc.leftStickBaring, DriveSpeedMultiplier * Jc.leftStickPower, turnRight, turnSpeed*TurnSpeedMultiplier);
             telemetry.addData("Moving", true);
         }
@@ -90,7 +93,7 @@ public class UDC_TeleopTest extends OpMode
         }
 
 
-
+        //update telemetry
         telemetry.addData("Left Baring", Jc.leftStickBaring);
         telemetry.addData("Left Power", Jc.leftStickPower);
         telemetry.addData("Right X", Jc.rightStickX);

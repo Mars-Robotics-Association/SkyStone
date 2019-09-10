@@ -73,7 +73,6 @@ public class SkyStoneBot implements Robot
     @Override
     public void MoveAtAngle(double angle, double speed)
     {
-        //RobotAngle = GetRobotAngle();
         //get relative angle and calculate wheel speeds
         double relativeAngle = angle + RobotAngle;
         CalculateWheelSpeeds(relativeAngle, speed);
@@ -84,9 +83,9 @@ public class SkyStoneBot implements Robot
         RearLeft.setPower(RearLeftPower);
     }
 
+    //allows robot to corkscrew
     public void MoveAtAngleTurning(double angle, double speed, boolean turnRight, double turnSpeed)
     {
-        //RobotAngle = GetRobotAngle();
         //get relative angle and calculate wheel speeds
         double relativeAngle = angle + RobotAngle;
         CalculateWheelSpeedsTurning(relativeAngle, speed, turnRight, turnSpeed);
@@ -100,7 +99,6 @@ public class SkyStoneBot implements Robot
     @Override
     public void RotateTo(double angle, double speed)
     {
-        //RobotAngle = GetRobotAngle();
         if (angle > RobotAngle) //turn left
         {
             RearLeft.setPower(speed);
@@ -156,8 +154,10 @@ public class SkyStoneBot implements Robot
         RearLeftPower = Math.cos(Math.toRadians(degrees + 45)) * speed;
     }
 
+    //allows for corkscrewing
     public void CalculateWheelSpeedsTurning(double degrees, double speed, boolean turnRight, double turnSpeed)
     {
+        //offset to be added to motor speeds
         double turnOffset = 0;
         if (!turnRight) //turn left
         {
@@ -168,6 +168,7 @@ public class SkyStoneBot implements Robot
             turnOffset = -turnSpeed;
         }
 
+        //TODO: check if turn offset needs to be moved into Math.cos()
         //Wheel speeds are calculated using cosine with a shift
         FrontRightPower = (-Math.cos(Math.toRadians(degrees + 45)) * speed) + turnOffset;
         FrontLeftPower = (Math.cos(Math.toRadians(degrees - 45)) * speed) + turnOffset;
