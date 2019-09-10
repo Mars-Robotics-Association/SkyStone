@@ -9,8 +9,12 @@ public class UDC_TeleopTest extends OpMode
     private JoystickCalc Jc = null;
     private SkyStoneBot Bot = null;
 
-    private double DriveSpeedMultiplier = 1;
-    private double TurnSpeedMultiplier = 0.4;
+    private double BaseDriveSpeedMultiplier = 1;
+    private double BaseTurnSpeedMultiplier = 0.4;
+    private double DriveSpeedMultiplier;
+    private double TurnSpeedMultiplier;
+    private boolean normalMode = true;
+
     private double JoystickThreshold = 0.2;
 
     @Override
@@ -19,6 +23,10 @@ public class UDC_TeleopTest extends OpMode
         Jc = new JoystickCalc(this);
         Bot = new SkyStoneBot(this);
         Bot.Init();
+
+        //set speeds:
+        DriveSpeedMultiplier = BaseDriveSpeedMultiplier;
+        TurnSpeedMultiplier = BaseTurnSpeedMultiplier;
     }
 
     @Override
@@ -41,6 +49,23 @@ public class UDC_TeleopTest extends OpMode
         if(Jc.xButton)
         {
             Bot.OffsetGyro();
+        }
+
+        //switch between normal and slow mode
+        if(Jc.yButton)
+        {
+            if(normalMode)
+            {
+                DriveSpeedMultiplier = BaseDriveSpeedMultiplier/2;
+                TurnSpeedMultiplier = BaseTurnSpeedMultiplier/2;
+                normalMode = false;
+            }
+            else
+            {
+                DriveSpeedMultiplier = BaseDriveSpeedMultiplier;
+                TurnSpeedMultiplier = BaseTurnSpeedMultiplier;
+                normalMode = true;
+            }
         }
 
         if(Jc.leftStickPower > JoystickThreshold) //Move

@@ -147,7 +147,9 @@ public class SkyStoneBot implements Robot
     @Override
     public void CalculateWheelSpeeds(double degrees, double speed)
     {
-        //Wheel speeds are calculated using cosine with a shift
+        /*Wheel speed is calculated by getting the cosine wave (which we found matches the speed that
+         * the wheels need to go) with a positive 45 or negative 45 shift, depending on the wheel. This works
+         * so that no matter the degrees, it will always come out with the right value.*/
         FrontRightPower = -Math.cos(Math.toRadians(degrees + 45)) * speed;
         FrontLeftPower = Math.cos(Math.toRadians(degrees - 45)) * speed;
         RearRightPower = -Math.cos(Math.toRadians(degrees - 45)) * speed;
@@ -169,7 +171,10 @@ public class SkyStoneBot implements Robot
         }
 
         //TODO: check if turn offset needs to be moved into Math.cos()
-        //Wheel speeds are calculated using cosine with a shift
+        /*Wheel speed is calculated by getting the cosine wave (which we found matches the speed that
+        * the wheels need to go) with a positive 45 or negative 45 shift, depending on the wheel. This works
+        * so that no matter the degrees, it will always come out with the right value. A turn offset is added
+        * to the end for corkscrewing, or turning while driving*/
         FrontRightPower = (-Math.cos(Math.toRadians(degrees + 45)) * speed) + turnOffset;
         FrontLeftPower = (Math.cos(Math.toRadians(degrees - 45)) * speed) + turnOffset;
         RearRightPower = (-Math.cos(Math.toRadians(degrees - 45)) * speed) + turnOffset;
