@@ -34,6 +34,15 @@ public class SkyStoneBot implements Robot
         this.opmode = opmode;
     }
 
+    public double GetGyroOffset()
+    {
+        return RobotAngleOffset;
+    }
+    public double GetFinalGyro()
+    {
+        return RobotAngle;
+    }
+
     @Override
     public void Init()
     {
@@ -67,6 +76,7 @@ public class SkyStoneBot implements Robot
 
     public void OffsetGyro()
     {
+        RobotAngle = Angles.firstAngle - RobotAngleOffset;
         RobotAngleOffset = RobotAngle;
     }
 
@@ -170,7 +180,6 @@ public class SkyStoneBot implements Robot
             turnOffset = -turnSpeed;
         }
 
-        //TODO: check if turn offset needs to be moved into Math.cos()
         /*Wheel speed is calculated by getting the cosine wave (which we found matches the speed that
         * the wheels need to go) with a positive 45 or negative 45 shift, depending on the wheel. This works
         * so that no matter the degrees, it will always come out with the right value. A turn offset is added

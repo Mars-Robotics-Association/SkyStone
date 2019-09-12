@@ -60,7 +60,11 @@ public class UDC_TeleopTest extends OpMode
                 TurnSpeedMultiplier = BaseTurnSpeedMultiplier/2;
                 normalMode = false;
             }
-            else
+
+        }
+        if(Jc.bButton)
+        {
+            if(!normalMode)
             {
                 DriveSpeedMultiplier = BaseDriveSpeedMultiplier;
                 TurnSpeedMultiplier = BaseTurnSpeedMultiplier;
@@ -119,6 +123,8 @@ public class UDC_TeleopTest extends OpMode
 
 
         //update telemetry
+        telemetry.addData("Gyro Offset", Bot.GetGyroOffset());
+        telemetry.addData("Gyro Final Rot", Bot.GetFinalGyro());
         telemetry.addData("Left Baring", Jc.leftStickBaring);
         telemetry.addData("Left Power", Jc.leftStickPower);
         telemetry.addData("Right X", Jc.rightStickX);
