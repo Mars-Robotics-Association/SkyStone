@@ -76,8 +76,8 @@ public class SkyStoneBot implements Robot
 
     public void OffsetGyro()
     {
-        RobotAngle = Angles.firstAngle - RobotAngleOffset;
-        RobotAngleOffset = RobotAngle;
+        Orientation a = imu.angles;
+        RobotAngleOffset = a.firstAngle;
     }
 
     @Override
