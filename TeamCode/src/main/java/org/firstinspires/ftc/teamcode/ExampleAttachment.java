@@ -19,12 +19,14 @@ public class ExampleAttachment implements Attachment
         Opmode = opMode;
     }
 
-    public void init()
+    @Override
+    public void Init()
     {
         Motor = Opmode.hardwareMap.get(DcMotor.class, "ExampleAttachment");
     }
 
-    public void loop()
+    @Override
+    public void Loop()
     {
         if(IsRunning)
         {
@@ -42,5 +44,6 @@ public class ExampleAttachment implements Attachment
     public void Stop()
     {
         //Put code for stopping here
+        IsRunning = false;
     }
 }
