@@ -26,10 +26,12 @@ public class SquareAutonomous extends OpMode
 
     public void init()
     {
-        nav = new FieldNavigation();
+        nav = new FieldNavigation(this);
+        nav.Init();
     }
     public void loop()
     {
+        nav.Loop();
         if(reachedDestination) //navigate to next waypoint
         {
             //get vector data and set destination

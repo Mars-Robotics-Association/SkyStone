@@ -11,33 +11,38 @@ Class that completes the following goals:
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-public class FieldNavigation extends OpMode
+public class FieldNavigation
 {
-    static double closeEnoughThresholdDist = 20; //in mm
-    static double closeEnoughThresholdRot = 5; //in degrees
+    private double closeEnoughThresholdDist = 20; //in mm
+    private double closeEnoughThresholdRot = 5; //in degrees
 
-    static double TargetX = 0;
-    static double TargetY = 0;
-    static double TargetRot = 0;
-    static double CurrentX = 0;
-    static double CurrentY = 0;
-    static double CurrentRot = 0;
+    private double TargetX = 0;
+    private double TargetY = 0;
+    private double TargetRot = 0;
+    private double CurrentX = 0;
+    private double CurrentY = 0;
+    private double CurrentRot = 0;
 
-    static SkyStoneBot Bot;
-    static VuforiaTest Vuforia;
+    private SkyStoneBot Bot;
+    private VuforiaTest Vuforia;
 
-    static boolean Navigating = false;
-    static boolean Rotating = false;
+    private boolean Navigating = false;
+    private boolean Rotating = false;
 
-    @Override
-    public void  init()
+    private OpMode opmode;
+
+    public FieldNavigation (OpMode setOpmode)
     {
-        Bot = new SkyStoneBot(this);
+        this.opmode = setOpmode;
+    }
+
+    public void  Init()
+    {
+        Bot = new SkyStoneBot(opmode);
         Vuforia = new VuforiaTest();
     }
 
-    @Override
-    public void  loop()
+    public void  Loop()
     {
         if(Navigating)
         {
