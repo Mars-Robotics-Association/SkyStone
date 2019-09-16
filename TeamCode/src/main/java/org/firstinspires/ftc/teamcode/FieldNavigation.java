@@ -40,6 +40,7 @@ public class FieldNavigation
     {
         Bot = new SkyStoneBot(opmode);
         Vuforia = new VuforiaTest();
+        Bot.OffsetGyro();
     }
 
     public void  Loop()
