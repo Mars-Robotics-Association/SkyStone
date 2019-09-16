@@ -12,26 +12,30 @@ import java.util.List;
 @Autonomous(name = "SquareAutonomous", group = "Autonomous")
 public class SquareAutonomous extends OpMode
 {
-    static FieldNavigation nav;
+    private FieldNavigation nav;
+    private ExampleAttachment attachment;
 
     //Vec3F is a location structured as (x,y,rotation)
-    static Vec3F[] navPoints = {
+    private Vec3F[] navPoints = {
             new Vec3F(-2000, -2000, 0),
             new Vec3F(2000, -2000, 90),
             new Vec3F(2000, 2000, 180),
             new Vec3F(-2000, 2000, 270)
     };
-    static int waypointIndex = 0;
-    static boolean reachedDestination = true;
+    private int waypointIndex = 0;
+    private boolean reachedDestination = true;
 
     public void init()
     {
         nav = new FieldNavigation(this);
+        attachment = new ExampleAttachment(this);
         nav.Init();
+        attachment.Init();
     }
     public void loop()
     {
         nav.Loop();
+        attachment.Loop();
         if(reachedDestination) //navigate to next waypoint
         {
             //get vector data and set destination
@@ -45,6 +49,11 @@ public class SquareAutonomous extends OpMode
                 waypointIndex = 0; //reset
             }
             else waypointIndex +=1; //add to index
+
+            if(waypointIndex == 1)
+            {
+                attachment.Run();
+            }
         }
         else //check if done navigating
         {

@@ -40,11 +40,13 @@ public class FieldNavigation
     {
         Bot = new SkyStoneBot(opmode);
         Vuforia = new VuforiaTest();
+        Bot.Init();
         Bot.OffsetGyro();
     }
 
     public void  Loop()
     {
+        Bot.Loop();
         if(Navigating)
         {
             if (!CheckCloseEnoughDistance()) //If not close to target
@@ -77,14 +79,20 @@ public class FieldNavigation
                 Rotating = false;
             }
         }
+
+        if(!Navigating && !Rotating)//stop if shouldn't do anything
+        {
+            Bot.StopMotors();
+        }
     }
 
-    public void NavigateToLocation(float x, float y, float orientation)
+    public void NavigateToLocation(double x, double y, double angle)
     {
+        StopAll();
         //set values
         TargetX = x;
         TargetY = y;
-        TargetRot = orientation;
+        TargetRot = angle;
         CurrentX = Vuforia.RobotX;
         CurrentY = Vuforia.RobotY;
         CurrentRot = Bot.GetRobotAngle();
@@ -100,6 +108,20 @@ public class FieldNavigation
 
         Bot.MoveAtAngle(absoluteAngle, 1);
         Navigating = true;
+    }
+
+    public void RotateTo(double angle)
+    {
+        StopAll();
+        TargetRot = angle;
+        Rotating = true;
+    }
+
+    public void StopAll()//Stops everything movement-wise
+    {
+        Bot.StopMotors();
+        Navigating = false;
+        Rotating = false;
     }
 
     public boolean CheckCloseEnoughDistance()
