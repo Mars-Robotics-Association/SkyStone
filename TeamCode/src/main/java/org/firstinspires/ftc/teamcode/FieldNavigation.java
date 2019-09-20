@@ -24,7 +24,7 @@ public class FieldNavigation
     private double CurrentRot = 0;
 
     private SkyStoneBot Bot;
-    private VuforiaTest Vuforia;
+    private SkystoneVuforiaPhone Vuforia;
 
     private boolean Navigating = false;
     private boolean Rotating = false;
@@ -39,22 +39,24 @@ public class FieldNavigation
     public void  Init()
     {
         Bot = new SkyStoneBot(opmode);
-        Vuforia = new VuforiaTest();
+        Vuforia = new SkystoneVuforiaPhone(opmode);
         Bot.Init();
         Bot.OffsetGyro();
+        Vuforia.Init();
     }
 
     public void  Loop()
     {
         Bot.Loop();
+        Vuforia.Loop();
+        CurrentRot = Bot.GetRobotAngle();
         if(Navigating)
         {
             if (!CheckCloseEnoughDistance()) //If not close to target
             {
                 //update values
-                CurrentX = Vuforia.RobotX;
-                CurrentY = Vuforia.RobotY;
-                CurrentRot = Bot.GetRobotAngle();
+                CurrentX = Vuforia.GetRobotX();
+                CurrentY = Vuforia.GetRobotY();
             }
             else { //Stop and rotate to target
                 Bot.StopMotors();
@@ -69,9 +71,8 @@ public class FieldNavigation
             if (!CheckCloseEnoughRotation()) //if not at rotation target
             {
                 //update values
-                CurrentX = Vuforia.RobotX;
-                CurrentY = Vuforia.RobotY;
-                CurrentRot = Bot.GetRobotAngle();
+                CurrentX = Vuforia.GetRobotX();
+                CurrentY = Vuforia.GetRobotY();
             }
             else //Stop
             {
@@ -93,8 +94,8 @@ public class FieldNavigation
         TargetX = x;
         TargetY = y;
         TargetRot = angle;
-        CurrentX = Vuforia.RobotX;
-        CurrentY = Vuforia.RobotY;
+        CurrentX = Vuforia.GetRobotX();
+        CurrentY = Vuforia.GetRobotY();
         CurrentRot = Bot.GetRobotAngle();
 
         //Calculate angle of movement (no obstacle avoidance)
@@ -136,7 +137,7 @@ public class FieldNavigation
 
     public boolean CheckCloseEnoughRotation()
     {
-        if(Vuforia.RobotAngle < TargetRot + closeEnoughThresholdRot && Vuforia.RobotAngle > TargetRot - closeEnoughThresholdRot)
+        if(CurrentRot < TargetRot + closeEnoughThresholdRot && CurrentRot > TargetRot - closeEnoughThresholdRot)
         {
             return true;
         }
