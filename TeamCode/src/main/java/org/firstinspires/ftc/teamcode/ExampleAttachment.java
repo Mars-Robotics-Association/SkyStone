@@ -22,7 +22,7 @@ public class ExampleAttachment implements Attachment
     @Override
     public void Init()
     {
-        Motor = Opmode.hardwareMap.get(DcMotor.class, "ExampleAttachment");
+        //Motor = Opmode.hardwareMap.get(DcMotor.class, "ExampleAttachment");
     }
 
     @Override

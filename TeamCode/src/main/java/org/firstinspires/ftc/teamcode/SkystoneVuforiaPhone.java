@@ -86,11 +86,10 @@ import static org.firstinspires.ftc.robotcore.external.navigation.AxesReference.
  * is explained below.
  */
 
-@TeleOp(name="Concept: Vuforia Navigation", group ="Concept")
 //@Disabled
-public class SkystoneVuforiaPhone {
+public class SkystoneVuforiaPhone extends OpMode {
 
-    public static final String TAG = "Vuforia Navigation Sample";
+    public static final String TAG = "Vuforia Navigation Skystone Phone";
     private double RobotX = 0;
     private double RobotY = 0;
     private double RobotAngle = 0;
@@ -118,6 +117,16 @@ public class SkystoneVuforiaPhone {
     public double GetRobotY()
     {
         return RobotY;
+    }
+
+    @Override
+    public void init() {
+
+    }
+
+    @Override
+    public void loop() {
+
     }
 
     public void Init(){
@@ -276,10 +285,10 @@ public class SkystoneVuforiaPhone {
          * plane) is then CCW, as one would normally expect from the usual classic 2D geometry.
          */
         OpenGLMatrix phoneLocationOnRobot = OpenGLMatrix
-                .translation(mmBotWidth/2,203,228)
+                .translation(0,216,216)
                 .multiplied(Orientation.getRotationMatrix(
                         AxesReference.EXTRINSIC, AxesOrder.YZY,
-                        AngleUnit.DEGREES, -90, 0, 0));
+                        AngleUnit.DEGREES, -180, 90, 0));
         RobotLog.ii(TAG, "phone=%s", format(phoneLocationOnRobot));
 
         /**
