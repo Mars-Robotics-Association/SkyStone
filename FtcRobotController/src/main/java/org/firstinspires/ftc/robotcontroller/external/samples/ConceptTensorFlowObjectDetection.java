@@ -68,8 +68,12 @@ public class ConceptTensorFlowObjectDetection extends LinearOpMode {
      * Once you've obtained a license key, copy the string from the Vuforia web site
      * and paste it in to your code on the next line, between the double quotes.
      */
+<<<<<<< HEAD
     private static final String VUFORIA_KEY =
             " -- YOUR NEW VUFORIA KEY GOES HERE  --- ";
+=======
+    private static final String VUFORIA_KEY = " -- YOUR NEW VUFORIA KEY GOES HERE  --- ";
+>>>>>>> master
 
     /**
      * {@link #vuforia} is the variable we will use to store our instance of the Vuforia
@@ -109,6 +113,14 @@ public class ConceptTensorFlowObjectDetection extends LinearOpMode {
         waitForStart();
 
         if (opModeIsActive()) {
+<<<<<<< HEAD
+=======
+            /** Activate TensorFlow Object Detection. */
+            if (tfod != null) {
+                tfod.activate();
+            }
+
+>>>>>>> master
             while (opModeIsActive()) {
                 if (tfod != null) {
                     // getUpdatedRecognitions() will return null if no new information is available since
@@ -116,6 +128,7 @@ public class ConceptTensorFlowObjectDetection extends LinearOpMode {
                     List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
                     if (updatedRecognitions != null) {
                       telemetry.addData("# Object Detected", updatedRecognitions.size());
+<<<<<<< HEAD
 
                       // step through the list of recognitions and display boundary info.
                       int i = 0;
@@ -125,6 +138,30 @@ public class ConceptTensorFlowObjectDetection extends LinearOpMode {
                                           recognition.getLeft(), recognition.getTop());
                         telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
                                 recognition.getRight(), recognition.getBottom());
+=======
+                      if (updatedRecognitions.size() == 3) {
+                        int goldMineralX = -1;
+                        int silverMineral1X = -1;
+                        int silverMineral2X = -1;
+                        for (Recognition recognition : updatedRecognitions) {
+                          if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
+                            goldMineralX = (int) recognition.getLeft();
+                          } else if (silverMineral1X == -1) {
+                            silverMineral1X = (int) recognition.getLeft();
+                          } else {
+                            silverMineral2X = (int) recognition.getLeft();
+                          }
+                        }
+                        if (goldMineralX != -1 && silverMineral1X != -1 && silverMineral2X != -1) {
+                          if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
+                            telemetry.addData("Gold Mineral Position", "Left");
+                          } else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
+                            telemetry.addData("Gold Mineral Position", "Right");
+                          } else {
+                            telemetry.addData("Gold Mineral Position", "Center");
+                          }
+                        }
+>>>>>>> master
                       }
                       telemetry.update();
                     }
