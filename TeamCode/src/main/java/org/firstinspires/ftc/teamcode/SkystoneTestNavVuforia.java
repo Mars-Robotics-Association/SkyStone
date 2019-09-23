@@ -26,18 +26,18 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-//test commit from within android studio
+
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.RobotLog;
-import com.vuforia.HINT;
-import com.vuforia.Vuforia;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.matrices.MatrixF;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
@@ -86,10 +86,11 @@ import static org.firstinspires.ftc.robotcore.external.navigation.AxesReference.
  * is explained below.
  */
 
+@TeleOp(name="Concept: Vuforia Navigation Skystone TEST", group ="Concept")
 //@Disabled
-public class SkystoneVuforiaPhone extends OpMode {
+public class SkystoneTestNavVuforia extends LinearOpMode {
 
-    public static final String TAG = "Vuforia Navigation Skystone Phone";
+    public static final String TAG = "Vuforia Navigation SS TEST";
     private double RobotX = 0;
     private double RobotY = 0;
     private double RobotAngle = 0;
@@ -105,31 +106,7 @@ public class SkystoneVuforiaPhone extends OpMode {
      */
     VuforiaLocalizer vuforia;
 
-    public SkystoneVuforiaPhone(OpMode newOpmode)
-    {
-        opmode = newOpmode;
-    }
-
-    public double GetRobotX()
-    {
-        return RobotX;
-    }
-    public double GetRobotY()
-    {
-        return RobotY;
-    }
-
-    @Override
-    public void init() {
-
-    }
-
-    @Override
-    public void loop() {
-
-    }
-
-    public void Init(){
+    @Override public void runOpMode() {
         float mmPerInch        = 25.4f;
         float mmBotWidth       = 18 * mmPerInch;            // ... or whatever is right for your robot
         float mmFTCFieldWidth  = (12*12 - 2) * mmPerInch;   // the FTC field is ~11'10" center-to-center of the glass panels
@@ -138,7 +115,7 @@ public class SkystoneVuforiaPhone extends OpMode {
          * To start up Vuforia, tell it the view that we wish to use for camera monitor (on the RC phone);
          * If no camera monitor is desired, use the parameterless constructor instead (commented out below).
          */
-        int cameraMonitorViewId = opmode.hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", opmode.hardwareMap.appContext.getPackageName());
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
 
         // OR...  Do Not Activate the Camera Monitor View, to save power
@@ -169,15 +146,7 @@ public class SkystoneVuforiaPhone extends OpMode {
          * Instantiate the Vuforia engine
          */
         vuforia = ClassFactory.getInstance().createVuforia(parameters);
-        Vuforia.setHint(HINT.HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS, 4);
-        /**
-         * Load the data sets that for the trackable objects we wish to track. These particular data
-         * sets are stored in the 'assets' part of our application (you'll see them in the Android
-         * Studio 'Project' view over there on the left of the screen). You can make your own datasets
-         * with the Vuforia Target Manager: https://developer.vuforia.com/target-manager. PDFs for the
-         * example "StonesAndChips", datasets can be found in in this project in the
-         * documentation directory.
-         */
+
         // Load the data sets that for the trackable objects. These particular data
         // sets are stored in the 'assets' part of our application.
         VuforiaTrackables targetsSkyStone = this.vuforia.loadTrackablesFromAsset("Skystone");
@@ -288,7 +257,7 @@ public class SkystoneVuforiaPhone extends OpMode {
                 .translation(0,216,216)
                 .multiplied(Orientation.getRotationMatrix(
                         AxesReference.EXTRINSIC, AxesOrder.YZY,
-                        AngleUnit.DEGREES, 180, 90, 0));
+                        AngleUnit.DEGREES, -180, 90, 0));
         RobotLog.ii(TAG, "phone=%s", format(phoneLocationOnRobot));
 
         /**
@@ -306,7 +275,7 @@ public class SkystoneVuforiaPhone extends OpMode {
          *
          * C = phoneLocationOnRobot  maps   phone coords -> robot coords
          * P = tracker.getPose()     maps   image target coords -> phone coords
-         * L = stonesLocationOnField maps   image target coords -> field coords
+         * L = redTargetLocationOnField maps   image target coords -> field coords
          *
          * So
          *
@@ -323,45 +292,37 @@ public class SkystoneVuforiaPhone extends OpMode {
         /** Wait for the game to begin */
         telemetry.addData(">", "Press Play to start tracking");
         telemetry.update();
+        waitForStart();
 
-        /** Init tracking the data sets we care about. */
+        /** Start tracking the data sets we care about. */
         targetsSkyStone.activate();
-    }
 
-    public void Loop()
-    {
-        for (VuforiaTrackable trackable : allTrackables) {
-            /**
-             * getUpdatedRobotLocation() will return null if no new information is available since
-             * the last time that call was made, or if the trackable is not currently visible.
-             * getRobotLocation() will return null if the trackable is not currently visible.
-             */
-            telemetry.addData(trackable.getName(), ((VuforiaTrackableDefaultListener)trackable.getListener()).isVisible() ? "Visible" : "Not Visible");    //
+        while (opModeIsActive()) {
 
-            OpenGLMatrix robotLocationTransform = ((VuforiaTrackableDefaultListener)trackable.getListener()).getUpdatedRobotLocation();
-            if (robotLocationTransform != null) {
-                lastLocation = robotLocationTransform;
+            for (VuforiaTrackable trackable : allTrackables) {
+                /**
+                 * getUpdatedRobotLocation() will return null if no new information is available since
+                 * the last time that call was made, or if the trackable is not currently visible.
+                 * getRobotLocation() will return null if the trackable is not currently visible.
+                 */
+                telemetry.addData(trackable.getName(), ((VuforiaTrackableDefaultListener)trackable.getListener()).isVisible() ? "Visible" : "Not Visible");    //
+
+                OpenGLMatrix robotLocationTransform = ((VuforiaTrackableDefaultListener)trackable.getListener()).getUpdatedRobotLocation();
+                if (robotLocationTransform != null) {
+                    lastLocation = robotLocationTransform;
+                }
             }
+            /**
+             * Provide feedback as to where the robot was last located (if we know).
+             */
+            if (lastLocation != null) {
+                //  RobotLog.vv(TAG, "robot=%s", format(lastLocation));
+                telemetry.addData("Pos", format(lastLocation));
+            } else {
+                telemetry.addData("Pos", "Unknown");
+            }
+            telemetry.update();
         }
-        /**
-         * Provide feedback as to where the robot was last located (if we know).
-         */
-        if (lastLocation != null) {
-            //  RobotLog.vv(TAG, "robot=%s", format(lastLocation));
-            float[] coordinates = lastLocation.getTranslation().getData();
-            RobotX = coordinates[0];
-            RobotY = coordinates[1];
-            RobotAngle = Orientation.getOrientation(lastLocation, AxesReference.EXTRINSIC, AxesOrder.XYX, AngleUnit.DEGREES).thirdAngle;
-
-            //telemetry.addData("Pos", format(lastLocation));
-            telemetry.addData("X", RobotX);
-            telemetry.addData("Y", RobotY);
-            telemetry.addData("Rot", RobotAngle);
-        }
-        else {
-            telemetry.addData("Pos", "Unknown");
-        }
-        telemetry.update();
     }
 
     /**
