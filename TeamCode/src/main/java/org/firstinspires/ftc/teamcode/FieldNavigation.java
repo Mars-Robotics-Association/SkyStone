@@ -49,14 +49,15 @@ public class FieldNavigation
     {
         Bot.Loop();
         Vuforia.Loop();
+        //update values
         CurrentRot = Bot.GetRobotAngle();
+        CurrentX = Vuforia.GetRobotX();
+        CurrentY = Vuforia.GetRobotY();
         if(Navigating)
         {
             if (!CheckCloseEnoughDistance()) //If not close to target
             {
-                //update values
-                CurrentX = Vuforia.GetRobotX();
-                CurrentY = Vuforia.GetRobotY();
+
             }
             else { //Stop and rotate to target
                 Bot.StopMotors();

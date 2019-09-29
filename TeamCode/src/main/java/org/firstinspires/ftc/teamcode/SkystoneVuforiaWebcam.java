@@ -94,12 +94,12 @@ import static org.firstinspires.ftc.robotcore.external.navigation.AxesReference.
  * is explained below.
  */
 
-@TeleOp(name="Concept: Vuforia Nav Webcam", group ="Concept")
+@TeleOp(name="Concept: Vuforia Nav Webcam Skystone", group ="Concept")
 //@Disabled
 public class SkystoneVuforiaWebcam extends LinearOpMode
 {
 
-    public static final String TAG = "Vuforia Navigation Sample";
+    public static final String TAG = "Vuforia Navigation Skystone Webcam";
     static float RobotX = 0;
     static float RobotY = 0;
     static float RobotAngle = 0;
