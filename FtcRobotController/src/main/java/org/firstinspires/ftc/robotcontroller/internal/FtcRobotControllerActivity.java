@@ -102,10 +102,6 @@ import com.qualcomm.robotcore.wifi.NetworkType;
 import org.firstinspires.ftc.ftccommon.external.SoundPlayingRobotMonitor;
 import org.firstinspires.ftc.ftccommon.internal.FtcRobotControllerWatchdogService;
 import org.firstinspires.ftc.ftccommon.internal.ProgramAndManageActivity;
-<<<<<<< HEAD
-=======
-import org.firstinspires.ftc.onbotjava.OnBotJavaClassLoader;
->>>>>>> master
 import org.firstinspires.ftc.onbotjava.OnBotJavaHelperImpl;
 import org.firstinspires.ftc.onbotjava.OnBotJavaProgrammingMode;
 import org.firstinspires.ftc.robotcore.external.navigation.MotionDetection;
@@ -587,7 +583,6 @@ public class FtcRobotControllerActivity extends Activity
       }
       return true;
     } else if (id == R.id.action_program_and_manage) {
-<<<<<<< HEAD
       if (isRobotRunning()) {
         Intent programmingModeIntent = new Intent(AppUtil.getDefContext(), ProgramAndManageActivity.class);
         RobotControllerWebInfo webInfo = programmingModeManager.getWebServer().getConnectionInformation();
@@ -596,12 +591,6 @@ public class FtcRobotControllerActivity extends Activity
       } else {
         AppUtil.getInstance().showToast(UILocation.ONLY_LOCAL, context.getString(R.string.toastWifiUpBeforeProgrammingMode));
       }
-=======
-      Intent programmingModeIntent = new Intent(AppUtil.getDefContext(), ProgramAndManageActivity.class);
-      RobotControllerWebInfo webInfo = programmingModeManager.getWebServer().getConnectionInformation();
-      programmingModeIntent.putExtra(LaunchActivityConstantsList.RC_WEB_INFO, webInfo.toJson());
-      startActivity(programmingModeIntent);
->>>>>>> master
     } else if (id == R.id.action_inspection_mode) {
       Intent inspectionModeIntent = new Intent(AppUtil.getDefContext(), RcInspectionActivity.class);
       startActivity(inspectionModeIntent);
