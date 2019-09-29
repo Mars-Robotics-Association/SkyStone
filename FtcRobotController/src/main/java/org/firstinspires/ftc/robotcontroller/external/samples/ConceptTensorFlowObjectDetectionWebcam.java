@@ -109,14 +109,6 @@ public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
         waitForStart();
 
         if (opModeIsActive()) {
-<<<<<<< HEAD
-=======
-            /** Activate TensorFlow Object Detection. */
-            if (tfod != null) {
-                tfod.activate();
-            }
-
->>>>>>> master
             while (opModeIsActive()) {
                 if (tfod != null) {
                     // getUpdatedRecognitions() will return null if no new information is available since
