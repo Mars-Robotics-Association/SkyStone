@@ -6,51 +6,33 @@ import com.vuforia.Vec3F;
 
 
 //Program should allow robot to move in a square pattern using a list of destinations
-@Autonomous(name = "SquareAutonomous", group = "Autonomous")
-public class SquareAutonomous extends OpMode
+@Autonomous(name = "Vuforia Test Auto", group = "Autonomous")
+public class VuforiaTestAutonomous extends OpMode
 {
     private FieldNavigationBot1 nav;
-    //private ExampleAttachment attachment;
+    private ExampleAttachment attachment;
 
     //Vec3F is a location structured as (x,y,rotation)
-    private Vec3F[] navPoints;
+    private Vec3F[] navPoints = {
+            new Vec3F(-2000, -2000, 0),
+            new Vec3F(2000, -2000, 90),
+            new Vec3F(2000, 2000, 180),
+            new Vec3F(-2000, 2000, 270)
+    };
     private int waypointIndex = 0;
     private boolean reachedDestination = true;
 
-    @Override
     public void init()
     {
-        telemetry.addData("SA Line: ", 28);
         nav = new FieldNavigationBot1(this);
-        telemetry.addData("SA Line: ", 30);
-        //attachment = new ExampleAttachment(this);
+        attachment = new ExampleAttachment(this);
         nav.Init();
-        telemetry.addData("SA Line: ", 33);
-        //attachment.Init();
-
-        navPoints  = new Vec3F[]{
-                new Vec3F(-48, -48, 0),
-                new Vec3F(48, -48, 90),
-                new Vec3F(48, 48, 180),
-                new Vec3F(-48, 48, 270)
-        };
+        attachment.Init();
     }
-
-    @Override
-    public void start()
-    {
-        nav.Start();
-    }
-
-    @Override
     public void loop()
     {
-        telemetry.addData("SA Line: ", 46);
-        telemetry.update();
         nav.Loop();
-        telemetry.addData("SA Line: ", 48);
-        telemetry.update();
-        //attachment.Loop();
+        attachment.Loop();
         if(reachedDestination) //navigate to next waypoint
         {
             //get vector data and set destination
@@ -67,7 +49,7 @@ public class SquareAutonomous extends OpMode
 
             if(waypointIndex == 1)
             {
-                //attachment.Run();
+                attachment.Run();
             }
         }
         else //check if done navigating
