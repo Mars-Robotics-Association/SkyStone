@@ -12,10 +12,10 @@ import java.util.List;
 
 
 
-@Autonomous(name = "buildingZoneDouble", group = "Autonomous")
-public class buildingZoneDouble extends OpMode
+@Autonomous(name = "buildingZoneDoubleMirror", group = "Autonomous")
+public class buildingZoneDoubleMirror extends OpMode
 {
-    float mirrorx = 1;
+    float mirrorx = -1;
     float mirrory = 1;
     private FieldNavigation nav;
     private ExampleAttachment attachment;

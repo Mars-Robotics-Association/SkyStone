@@ -12,10 +12,10 @@ import java.util.List;
 
 
 
-@Autonomous(name = "buildingZoneDouble", group = "Autonomous")
-public class buildingZoneDouble extends OpMode
+@Autonomous(name = "depotSingleMirror", group = "Autonomous")
+public class depotSingleMirror extends OpMode
 {
-    float mirrorx = 1;
+    float mirrorx = -1;
     float mirrory = 1;
     private FieldNavigation nav;
     private ExampleAttachment attachment;
@@ -23,11 +23,11 @@ public class buildingZoneDouble extends OpMode
     //Vec3F is a location structured as (x,y,rotation)
     private Vec3F[] navPoints = {
             //max value is 1828.8
-            new Vec3F(mirrorx*-36,mirrory*48,0),
-            new Vec3F(mirrorx*60,mirrory*48,0),
-            new Vec3F(mirrorx*-36,mirrory*-48,0),
-            new Vec3F(mirrorx*-36,mirrory*36,-90),
-
+            new Vec3F(mirrorx*-36,mirrory*-48,180),
+            new Vec3F(mirrorx*-36,mirrory*36,90),
+            new Vec3F(mirrorx*-36,mirrory*-48,180),
+            new Vec3F(mirrorx*-36,mirrory*36,90),
+            new Vec3F(mirrorx*-36,mirrory*0,-90),
     };
     private int waypointIndex = 0;
     private boolean reachedDestination = true;
