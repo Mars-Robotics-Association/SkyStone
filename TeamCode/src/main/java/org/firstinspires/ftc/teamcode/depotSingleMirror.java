@@ -23,11 +23,11 @@ public class depotSingleMirror extends OpMode
     //Vec3F is a location structured as (x,y,rotation)
     private Vec3F[] navPoints = {
             //max value is 1828.8
-            new Vec3F(mirrorx*-914,mirrory*-1219,180),
-            new Vec3F(mirrorx*-914,mirrory*914,90),
-            new Vec3F(mirrorx*-914,mirrory*-1219,180),
-            new Vec3F(mirrorx*-914,mirrory*914,90),
-            new Vec3F(mirrorx*-914,mirrory*0,-90),
+            new Vec3F(mirrorx*-36,mirrory*-48,180),
+            new Vec3F(mirrorx*-36,mirrory*36,90),
+            new Vec3F(mirrorx*-36,mirrory*-48,180),
+            new Vec3F(mirrorx*-36,mirrory*36,90),
+            new Vec3F(mirrorx*-36,mirrory*0,-90),
     };
     private int waypointIndex = 0;
     private boolean reachedDestination = true;

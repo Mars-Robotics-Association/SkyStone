@@ -23,10 +23,10 @@ public class buildingZoneDouble extends OpMode
     //Vec3F is a location structured as (x,y,rotation)
     private Vec3F[] navPoints = {
             //max value is 1828.8
-            new Vec3F(mirrorx*-914,mirrory*1219,0),
-            new Vec3F(mirrorx*1524,mirrory*1219,0),
-            new Vec3F(mirrorx*-914,mirrory*-1219,0),
-            new Vec3F(mirrorx*-914,mirrory*914,-90),
+            new Vec3F(mirrorx*-36,mirrory*48,0),
+            new Vec3F(mirrorx*60,mirrory*48,0),
+            new Vec3F(mirrorx*-36,mirrory*-48,0),
+            new Vec3F(mirrorx*-36,mirrory*36,-90),
 
     };
     private int waypointIndex = 0;
