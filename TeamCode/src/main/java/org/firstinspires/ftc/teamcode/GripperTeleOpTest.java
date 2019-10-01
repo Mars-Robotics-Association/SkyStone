@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 @TeleOp(name="Gripper Test", group="Iterative Opmode")
 public class GripperTeleOpTest extends OpMode
 {
-//test
+//test again
 
     boolean a;
     boolean b;
