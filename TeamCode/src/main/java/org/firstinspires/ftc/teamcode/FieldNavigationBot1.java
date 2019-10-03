@@ -11,9 +11,9 @@ Class that completes the following goals:
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-public class FieldNavigation
+public class FieldNavigationBot1
 {
-    private double closeEnoughThresholdDist = 20; //in mm
+    private double closeEnoughThresholdDist = .5; //in inches
     private double closeEnoughThresholdRot = 5; //in degrees
 
     private double TargetX = 0;
@@ -31,23 +31,34 @@ public class FieldNavigation
 
     private OpMode opmode;
 
-    public FieldNavigation (OpMode setOpmode)
+    public boolean firstRound = true;
+
+    public FieldNavigationBot1(OpMode setOpmode)
     {
         this.opmode = setOpmode;
     }
 
-    public void  Init()
+    public void Init()
     {
         Bot = new SkyStoneBot(opmode);
         Vuforia = new SkystoneVuforiaPhone(opmode);
         Bot.Init();
-        Bot.OffsetGyro();
         Vuforia.Init();
     }
 
-    public void  Loop()
+    public void Start()
+    {
+        Bot.Start();
+    }
+
+    public void Loop()
     {
         Bot.Loop();
+        if(firstRound)
+        {
+            Bot.OffsetGyro();
+            firstRound = false;
+        }
         Vuforia.Loop();
         //update values
         CurrentRot = Bot.GetRobotAngle();

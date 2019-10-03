@@ -2,35 +2,26 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.vuforia.Vec2F;
 import com.vuforia.Vec3F;
-
-import java.util.List;
 
 
 //Program should allow robot to move in a square pattern using a list of destinations
-
-
-
-@Autonomous(name = "buildingZoneSingleMirror", group = "Autonomous")
-public class buildingZoneSingleMirror extends OpMode
+@Autonomous(name = "Vuforia Test Auto", group = "Autonomous")
+public class VuforiaTestAutonomous extends OpMode
 {
-    float mirrorx = -1;
-    float mirrory = 1;
     private FieldNavigationBot1 nav;
     private ExampleAttachment attachment;
 
     //Vec3F is a location structured as (x,y,rotation)
     private Vec3F[] navPoints = {
-            //max value is 1828.8
-            new Vec3F(mirrorx*24,mirrory*48,180),
-            new Vec3F(mirrorx*60,mirrory*48,180),
-            new Vec3F(mirrorx*60,0,-90)
-
+            new Vec3F(-2000, -2000, 0),
+            new Vec3F(2000, -2000, 90),
+            new Vec3F(2000, 2000, 180),
+            new Vec3F(-2000, 2000, 270)
     };
     private int waypointIndex = 0;
     private boolean reachedDestination = true;
-    @Override
+
     public void init()
     {
         nav = new FieldNavigationBot1(this);
@@ -38,7 +29,6 @@ public class buildingZoneSingleMirror extends OpMode
         nav.Init();
         attachment.Init();
     }
-    @Override
     public void loop()
     {
         nav.Loop();
@@ -71,4 +61,3 @@ public class buildingZoneSingleMirror extends OpMode
         }
     }
 }
-
