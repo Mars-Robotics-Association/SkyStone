@@ -17,7 +17,7 @@ public class buildingZoneSingle extends OpMode
 {
     float mirrorx = 1;
     float mirrory = 1;
-    private FieldNavigation nav;
+    private FieldNavigationBot1 nav;
     private ExampleAttachment attachment;
 
     //Vec3F is a location structured as (x,y,rotation)
@@ -33,7 +33,7 @@ public class buildingZoneSingle extends OpMode
     @Override
     public void init()
     {
-        nav = new FieldNavigation(this);
+        nav = new FieldNavigationBot1(this);
         attachment = new ExampleAttachment(this);
         nav.Init();
         attachment.Init();
