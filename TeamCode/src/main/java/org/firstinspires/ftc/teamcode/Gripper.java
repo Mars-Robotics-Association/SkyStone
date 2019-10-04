@@ -63,13 +63,22 @@ public class Gripper implements Attachment{
     static double GripperAngle = 0;
     private Servo GripperL = null;
     private Servo GripperR = null;
-    OpMode Opmode;
+    private Servo GripperRotate = null;
+
+
+    OpMode opmode;
+
+    public Gripper(OpMode thatopmode){
+    opmode = thatopmode;
+
+
+    }
 
     public void Init() {
 
-        GripperL= Opmode.hardwareMap.servo.get("GripperL");
-        GripperR= Opmode.hardwareMap.servo.get("GripperR");
-        GripperR= Opmode.hardwareMap.servo.get("GripperRotate");
+        GripperL= opmode.hardwareMap.servo.get("GripperL");
+        GripperR= opmode.hardwareMap.servo.get("GripperR");
+        GripperRotate= opmode.hardwareMap.servo.get("GripperRotate");
 
 
     }
@@ -78,8 +87,8 @@ public class Gripper implements Attachment{
       //  GripperLAngle = (GripperAngle * 1);
       //  GripperRAngle = (GripperAngle * -1);
 
-        GripperL.setPosition(GripperLAngle);
-        GripperR.setPosition(GripperRAngle);
+    //    GripperL.setPosition(GripperLAngle);
+     //   GripperR.setPosition(GripperRAngle);
 
 
 
@@ -104,13 +113,15 @@ public class Gripper implements Attachment{
 
     public void GripperOpen(){
 
-        GripperL.setPosition(50);
-        GripperR.setPosition(140);
+        GripperR.setPosition(0.27);
+        GripperL.setPosition(0.77);
+
+
     }
     public void GripperClose(){
 
-        GripperL.setPosition(93);
-        GripperR.setPosition(87);
+        GripperL.setPosition(0.516);
+        GripperR.setPosition(0.483);
 
     }
 
