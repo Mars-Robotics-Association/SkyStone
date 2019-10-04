@@ -103,14 +103,15 @@ public class Gripper implements Attachment{
 
 
     public void GripperOpen(){
-        GripperLAngle = 50;
-        GripperRAngle = 140;
-        updateGrippers();
+
+        GripperL.setPosition(50);
+        GripperR.setPosition(140);
     }
     public void GripperClose(){
-        GripperLAngle = 93;
-        GripperRAngle = 87;
-       updateGrippers();
+
+        GripperL.setPosition(93);
+        GripperR.setPosition(87);
+
     }
 
 }
