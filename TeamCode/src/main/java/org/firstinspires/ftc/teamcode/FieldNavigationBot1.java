@@ -53,17 +53,27 @@ public class FieldNavigationBot1
 
     public void Loop()
     {
+        opmode.telemetry.addData("TargetX = ", TargetX);
+        opmode.telemetry.addData("TargetY = ", TargetY);
+        opmode.telemetry.addData("TargetRot = ", TargetRot);
+        opmode.telemetry.addData("CurrentX = ", CurrentX);
+        opmode.telemetry.addData("CurrentY = ", CurrentY);
+        opmode.telemetry.addData("CurrentRot = ", CurrentRot);
+        opmode.telemetry.update();
         Bot.Loop();
         if(firstRound)
         {
             Bot.OffsetGyro();
             firstRound = false;
         }
+
+        CurrentRot = Bot.GetFinalGyro();
         Vuforia.Loop();
         //update values
-        CurrentRot = Bot.GetRobotAngle();
         CurrentX = Vuforia.GetRobotX();
         CurrentY = Vuforia.GetRobotY();
+
+
         if(Navigating)
         {
             if (!CheckCloseEnoughDistance()) //If not close to target
