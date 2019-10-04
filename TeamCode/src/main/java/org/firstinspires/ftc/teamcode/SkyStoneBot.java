@@ -166,6 +166,22 @@ public class SkyStoneBot implements Robot
         RearLeftPower = Math.cos(Math.toRadians(degrees + 45)) * speed;
     }
 
+
+    public void PickUpStone()
+    {
+
+    }
+
+    public void PickupSkystone()
+    {
+
+    }
+
+    public void PutDownStone()
+    {
+
+    }
+
     //allows for corkscrewing
     public void CalculateWheelSpeedsTurning(double degrees, double speed, boolean turnRight, double turnSpeed)
     {
@@ -195,4 +211,5 @@ public class SkyStoneBot implements Robot
     {
         return 0;
     }
+
 }

@@ -6,7 +6,9 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 @TeleOp(name="Gripper Test", group="Iterative Opmode")
 public class GripperTeleOpTest extends OpMode
 {
-//haha, yes
+    public Gripper gripper;
+
+
 
     boolean a;
     boolean b;
@@ -15,10 +17,10 @@ public class GripperTeleOpTest extends OpMode
     @Override
     public void init()
     {
+        gripper = new Gripper();
 
-
-        a = gamepad1.a;
-        b = gamepad1.b;
+        a = gamepad1.left_bumper;
+        b = gamepad1.right_bumper;   // might wanna change this to triggers
 
 
 
@@ -36,10 +38,10 @@ public class GripperTeleOpTest extends OpMode
     {
 
         if(a){
-
+gripper.GripperClose();
         }
         if(b){
-
+            gripper.GripperOpen();
         }
 
 
