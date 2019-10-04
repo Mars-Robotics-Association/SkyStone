@@ -2,40 +2,53 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.vuforia.Vec2F;
 import com.vuforia.Vec3F;
-
-import java.util.List;
 
 
 //Program should allow robot to move in a square pattern using a list of destinations
 @Autonomous(name = "SquareAutonomous", group = "Autonomous")
 public class SquareAutonomous extends OpMode
 {
-    private FieldNavigation nav;
-    private ExampleAttachment attachment;
+    private FieldNavigationBot1 nav;
+    //private ExampleAttachment attachment;
 
     //Vec3F is a location structured as (x,y,rotation)
-    private Vec3F[] navPoints = {
-            new Vec3F(-2000, -2000, 0),
-            new Vec3F(2000, -2000, 90),
-            new Vec3F(2000, 2000, 180),
-            new Vec3F(-2000, 2000, 270)
-    };
+    private Vec3F[] navPoints;
     private int waypointIndex = 0;
     private boolean reachedDestination = true;
 
+    @Override
     public void init()
     {
-        nav = new FieldNavigation(this);
-        attachment = new ExampleAttachment(this);
+        telemetry.addData("SA Line: ", 28);
+        nav = new FieldNavigationBot1(this);
+        telemetry.addData("SA Line: ", 30);
+        //attachment = new ExampleAttachment(this);
         nav.Init();
-        attachment.Init();
+        telemetry.addData("SA Line: ", 33);
+        //attachment.Init();
+
+        navPoints  = new Vec3F[]{
+                new Vec3F(-48, -48, 0),
+                new Vec3F(48, -48, 90),
+                new Vec3F(48, 48, 180),
+                new Vec3F(-48, 48, 270)
+        };
     }
+
+    @Override
+    public void start()
+    {
+        nav.Start();
+    }
+
+    @Override
     public void loop()
     {
         nav.Loop();
-        attachment.Loop();
+        telemetry.addData("SA Line: ", 48);
+        telemetry.update();
+        //attachment.Loop();
         if(reachedDestination) //navigate to next waypoint
         {
             //get vector data and set destination
@@ -52,7 +65,7 @@ public class SquareAutonomous extends OpMode
 
             if(waypointIndex == 1)
             {
-                attachment.Run();
+                //attachment.Run();
             }
         }
         else //check if done navigating

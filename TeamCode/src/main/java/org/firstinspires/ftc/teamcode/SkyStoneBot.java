@@ -69,7 +69,9 @@ public class SkyStoneBot implements Robot
     {
         imu.Loop();
         Angles = imu.angles;
+        opmode.telemetry.addData("Robot Rot before offset: ", Angles.firstAngle);
         RobotAngle = Angles.firstAngle - RobotAngleOffset;
+        opmode.telemetry.addData("Robot Rot Final: ", RobotAngle);
         opmode.telemetry.addData("IMU: ", imu);
         opmode.telemetry.update();
     }
@@ -166,6 +168,22 @@ public class SkyStoneBot implements Robot
         RearLeftPower = Math.cos(Math.toRadians(degrees + 45)) * speed;
     }
 
+
+    public void PickUpStone()
+    {
+
+    }
+
+    public void PickupSkystone()
+    {
+
+    }
+
+    public void PutDownStone()
+    {
+
+    }
+
     //allows for corkscrewing
     public void CalculateWheelSpeedsTurning(double degrees, double speed, boolean turnRight, double turnSpeed)
     {
@@ -195,4 +213,5 @@ public class SkyStoneBot implements Robot
     {
         return 0;
     }
+
 }

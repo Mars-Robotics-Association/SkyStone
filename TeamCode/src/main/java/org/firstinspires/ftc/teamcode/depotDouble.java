@@ -17,16 +17,16 @@ public class depotDouble extends OpMode
 {
     float mirrorx = 1;
     float mirrory = 1;
-    private FieldNavigation nav;
+    private FieldNavigationBot1 nav;
     private ExampleAttachment attachment;
 
     //Vec3F is a location structured as (x,y,rotation)
     private Vec3F[] navPoints = {
             //max value is 1828.8
-            new Vec3F(mirrorx*-914,mirrory*-1219,0),
-            new Vec3F(mirrorx*-914,mirrory*1219,0),
-            new Vec3F(mirrorx*1524,mirrory*1219,0),
-            new Vec3F(mirrorx*1524,0,-90)
+            new Vec3F(mirrorx*-914,mirrory*-48,0),
+            new Vec3F(mirrorx*-914,mirrory*48,0),
+            new Vec3F(mirrorx*60,mirrory*48,0),
+            new Vec3F(mirrorx*60,0,-90)
 
     };
     private int waypointIndex = 0;
@@ -34,7 +34,7 @@ public class depotDouble extends OpMode
     @Override
     public void init()
     {
-        nav = new FieldNavigation(this);
+        nav = new FieldNavigationBot1(this);
         attachment = new ExampleAttachment(this);
         nav.Init();
         attachment.Init();
