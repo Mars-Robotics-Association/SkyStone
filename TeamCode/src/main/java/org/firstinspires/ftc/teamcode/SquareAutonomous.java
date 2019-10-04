@@ -45,8 +45,6 @@ public class SquareAutonomous extends OpMode
     @Override
     public void loop()
     {
-        telemetry.addData("SA Line: ", 46);
-        telemetry.update();
         nav.Loop();
         telemetry.addData("SA Line: ", 48);
         telemetry.update();

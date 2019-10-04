@@ -90,7 +90,7 @@ public class SkystoneVuforiaPhone {
     private double RobotX = 0;
     private double RobotY = 0;
     private OpMode opMode;
-    private List<VuforiaTrackable> allTrackables;
+    private List<VuforiaTrackable> allTrackables  = new ArrayList<VuforiaTrackable>();
 
     // IMPORTANT:  For Phone Camera, set 1) the camera source and 2) the orientation, based on how your phone is mounted:
     // 1) Camera Source.  Valid choices are:  BACK (behind screen) or FRONT (selfie side)
@@ -205,7 +205,7 @@ public class SkystoneVuforiaPhone {
         rear2.setName("Rear Perimeter 2");
 
         // For convenience, gather together all the trackable objects in one easily-iterable collection */
-        List<VuforiaTrackable> allTrackables = new ArrayList<VuforiaTrackable>();
+        //List<VuforiaTrackable> allTrackables = new ArrayList<VuforiaTrackable>();
         allTrackables.addAll(targetsSkyStone);
 
         /**
