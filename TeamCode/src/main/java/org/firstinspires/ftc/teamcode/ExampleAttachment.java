@@ -46,4 +46,19 @@ public class ExampleAttachment implements Attachment
         //Put code for stopping here
         IsRunning = false;
     }
+
+    @Override
+    public void ArmForward() {
+
+    }
+
+    @Override
+    public void ArmBackward() {
+
+    }
+
+    @Override
+    public void ArmStops() {
+
+    }
 }
