@@ -130,7 +130,7 @@ public class MarsNewYearDemoTeleop extends OpMode {
 
         }*/
 
-        if(Math.abs(b) > threshold * 4) { 
+        if(Math.abs(b) > threshold * 4) {
             DriveR.setPower(-b * TURN_SPEED);
             DriveL.setPower(-b * TURN_SPEED);
         }
