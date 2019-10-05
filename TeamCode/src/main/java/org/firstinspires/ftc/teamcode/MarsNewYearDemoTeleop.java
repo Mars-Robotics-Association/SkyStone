@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 @TeleOp(name="demoTeleop", group="Iterative Opmode")
 //@Disabled
 
@@ -112,56 +114,57 @@ public class MarsNewYearDemoTeleop extends OpMode {
         telemetry.addData("gp1_lstick_x", "value %f", b);
         telemetry.addData("gp1_lstick_y", "value %f", a);
 
-        if (b < -threshold)//Turn left
+        /*if (b < -threshold)//Turn left
         {
 
             DriveR.setPower(-b * TURN_SPEED);
             DriveL.setPower(-b * TURN_SPEED);
+            telemetry.addData("Movement: ", "Turn left");
 
         } 
-        else if (b > threshold)//Turn right
+        if (b > threshold)//Turn right
         {
-            DriveR.setPower(b * TURN_SPEED);
-            DriveL.setPower(b * TURN_SPEED);
+            DriveR.setPower(-b * TURN_SPEED);
+            DriveL.setPower(-b * TURN_SPEED);
+            telemetry.addData("Movement: ", "Turn right");
 
-        } 
-        else 
+        }*/
+
+        if(Math.abs(b) > threshold * 4) { 
+            DriveR.setPower(-b * TURN_SPEED);
+            DriveL.setPower(-b * TURN_SPEED);
+        }
+
+        else
         {
             if (a > threshold)//Go forwards
             {
                 telemetry.addData("Going forwards: ", true);
                 DriveL.setPower(a * MAX_SPEED);
                 DriveR.setPower(-a * MAX_SPEED);
-            } 
+            }
             else if (a < -threshold)//Go backwards
             {
                 telemetry.addData("Going forwards: ", false);
                 DriveL.setPower(a * MAX_SPEED);
                 DriveR.setPower(-a * MAX_SPEED);
-            } 
+            }
             else//Stop
             {
                 DriveR.setPower(0);
                 DriveL.setPower(0);
             }
 
-        }
 
+            //Operates intake system
+            if (gamepad1.left_bumper) {
+                Intake.setPower(0.3);
 
-        //Operates intake system
-        if (gamepad1.left_bumper)
-
-        {
-            Intake.setPower(0.3);
-
-        } 
-        else if (gamepad1.right_bumper) 
-        {
-            Intake.setPower(-1);
-        } 
-        else 
-        {
-            Intake.setPower(0);
+            } else if (gamepad1.right_bumper) {
+                Intake.setPower(-1);
+            } else {
+                Intake.setPower(0);
+            }
         }
 
     /*
