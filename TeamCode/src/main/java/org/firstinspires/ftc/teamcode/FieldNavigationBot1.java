@@ -124,6 +124,8 @@ public class FieldNavigationBot1
         double triY = Math.abs(CurrentY - TargetY); //vertical length
         double triX = Math.abs(CurrentX - TargetX); //horizontal length
         double absoluteAngle = Math.atan2(triY,triX); //get measurement of joystick angle
+        absoluteAngle = Math.toDegrees(absoluteAngle);
+        absoluteAngle -= 90;
         if(absoluteAngle < 0)//convert degrees to positive if needed
         {
             absoluteAngle = 360 + absoluteAngle;

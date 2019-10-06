@@ -1,17 +1,9 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-
-public class ExampleAttachment implements Attachment {
-
-    public ExampleAttachment(OpMode opMode)
-    {
-
-    }
-
+public class ArmAttachment implements Attachment {
     @Override
     public void Init() {
-
+        
     }
 
     @Override

@@ -110,21 +110,6 @@ public class Gripper implements Attachment{
 
     }
 
-    @Override
-    public void ArmForward() {
-        
-    }
-
-    @Override
-    public void ArmBackward() {
-
-    }
-
-    @Override
-    public void ArmStops() {
-
-    }
-
 
     public void GripperOpen(){
 

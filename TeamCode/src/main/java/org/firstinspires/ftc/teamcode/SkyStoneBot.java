@@ -169,7 +169,7 @@ public class SkyStoneBot implements Robot
     }
 
 
-    public void PickUpStone()
+    /*public void PickUpStone()
     {
 
     }
@@ -182,7 +182,7 @@ public class SkyStoneBot implements Robot
     public void PutDownStone()
     {
 
-    }
+    }*/
 
     //allows for corkscrewing
     public void CalculateWheelSpeedsTurning(double degrees, double speed, boolean turnRight, double turnSpeed)
