@@ -48,7 +48,8 @@ public class SquareAutonomous extends OpMode
         nav.Loop();
         telemetry.addData("SA Line: ", 48);
         telemetry.update();
-        //attachment.Loop();
+        //attachment.Loop();    
+        telemetry.addData("index: ", waypointIndex);
         if(reachedDestination) //navigate to next waypoint
         {
             //get vector data and set destination
