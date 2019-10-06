@@ -110,7 +110,6 @@ public class Gripper implements Attachment{
 
     }
 
-
     public void GripperOpen(){
 
         GripperR.setPosition(0.27);
