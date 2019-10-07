@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 public class ArmAttachment implements Attachment {
     @Override
     public void Init() {
-        
+
     }
 
     @Override

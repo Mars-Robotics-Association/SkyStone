@@ -13,7 +13,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 public class FieldNavigationBot1
 {
-    private double closeEnoughThresholdDist = .5; //in inches
+    private double closeEnoughThresholdDist = 5; //in inches
     private double closeEnoughThresholdRot = 5; //in degrees
 
     private double TargetX = 0;
