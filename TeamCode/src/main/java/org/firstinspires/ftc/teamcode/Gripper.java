@@ -121,7 +121,6 @@ public class Gripper implements Attachment{
 
         GripperL.setPosition(0.516);
         GripperR.setPosition(0.483);
-
     }
 
 }

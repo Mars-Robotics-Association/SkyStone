@@ -21,8 +21,6 @@ public class GripperTeleOpTest extends OpMode
         gripper.Init();
 
 
-
-
     }
 
     @Override
