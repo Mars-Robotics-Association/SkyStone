@@ -13,7 +13,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 public class FieldNavigationBot1
 {
-    private double closeEnoughThresholdDist = .5; //in inches
+    private double closeEnoughThresholdDist = 10; //in inches
     private double closeEnoughThresholdRot = 5; //in degrees
 
     private double TargetX = 0;
@@ -22,6 +22,8 @@ public class FieldNavigationBot1
     private double CurrentX = 0;
     private double CurrentY = 0;
     private double CurrentRot = 0;
+
+    private double absoluteAngle = 0;
 
     private SkyStoneBot Bot;
     private SkystoneVuforiaPhone Vuforia;
@@ -53,17 +55,28 @@ public class FieldNavigationBot1
 
     public void Loop()
     {
+        opmode.telemetry.addData("TargetX = ", TargetX);
+        opmode.telemetry.addData("TargetY = ", TargetY);
+        opmode.telemetry.addData("TargetRot = ", TargetRot);
+        opmode.telemetry.addData("CurrentX = ", CurrentX);
+        opmode.telemetry.addData("CurrentY = ", CurrentY);
+        opmode.telemetry.addData("CurrentRot = ", CurrentRot);
+        opmode.telemetry.addData("Travel Rot: ", absoluteAngle);
+        opmode.telemetry.update();
         Bot.Loop();
         if(firstRound)
         {
             Bot.OffsetGyro();
             firstRound = false;
         }
+
+        CurrentRot = Bot.GetFinalGyro();
         Vuforia.Loop();
         //update values
-        CurrentRot = Bot.GetRobotAngle();
         CurrentX = Vuforia.GetRobotX();
         CurrentY = Vuforia.GetRobotY();
+
+
         if(Navigating)
         {
             if (!CheckCloseEnoughDistance()) //If not close to target
@@ -113,7 +126,9 @@ public class FieldNavigationBot1
         //Calculate angle of movement (no obstacle avoidance)
         double triY = Math.abs(CurrentY - TargetY); //vertical length
         double triX = Math.abs(CurrentX - TargetX); //horizontal length
-        double absoluteAngle = Math.atan2(triY,triX); //get measurement of joystick angle
+        absoluteAngle = Math.atan2(triY,triX); //get measurement of joystick angle
+        absoluteAngle = Math.toDegrees(absoluteAngle);
+        absoluteAngle -= 180;
         if(absoluteAngle < 0)//convert degrees to positive if needed
         {
             absoluteAngle = 360 + absoluteAngle;

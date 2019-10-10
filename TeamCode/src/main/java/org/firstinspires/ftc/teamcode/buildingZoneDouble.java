@@ -18,7 +18,6 @@ public class buildingZoneDouble extends OpMode
     float mirrorx = 1;
     float mirrory = 1;
     private FieldNavigationBot1 nav;
-    private ExampleAttachment attachment;
 
     //Vec3F is a location structured as (x,y,rotation)
     private Vec3F[] navPoints = {
@@ -35,15 +34,12 @@ public class buildingZoneDouble extends OpMode
     public void init()
     {
         nav = new FieldNavigationBot1(this);
-        attachment = new ExampleAttachment(this);
         nav.Init();
-        attachment.Init();
     }
     @Override
     public void loop()
     {
         nav.Loop();
-        attachment.Loop();
         if(reachedDestination) //navigate to next waypoint
         {
             //get vector data and set destination
@@ -60,7 +56,6 @@ public class buildingZoneDouble extends OpMode
 
             if(waypointIndex == 1)
             {
-                attachment.Run();
             }
         }
         else //check if done navigating

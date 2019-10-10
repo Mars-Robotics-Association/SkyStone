@@ -2,17 +2,11 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
-/*
-This is an example script that outlines an idea for managing attachments in a cleaner manner.
- */
-public class ExampleAttachment implements Attachment
-{
-
-    boolean IsRunning = false;
-    DcMotor Motor;
-    OpMode Opmode;
+public class ExampleAttachment implements Attachment {
+    private double number;
+    private DcMotor motor;
+    private OpMode Opmode;
 
     public ExampleAttachment(OpMode opMode)
     {
@@ -20,30 +14,28 @@ public class ExampleAttachment implements Attachment
     }
 
     @Override
-    public void Init()
-    {
-        //Motor = Opmode.hardwareMap.get(DcMotor.class, "ExampleAttachment");
+    public void Init() {
+
     }
 
     @Override
-    public void Loop()
-    {
-        if(IsRunning)
-        {
-            //put code for running here
-        }
+    public void Loop() {
+
     }
 
     @Override
-    public void Run()
-    {
-        IsRunning = true;
+    public void Run() {
+
     }
 
     @Override
-    public void Stop()
+    public void Stop() {
+
+
+    }
+
+    public void YourCustomMethod(double variable)
     {
-        //Put code for stopping here
-        IsRunning = false;
+        //put code here
     }
 }

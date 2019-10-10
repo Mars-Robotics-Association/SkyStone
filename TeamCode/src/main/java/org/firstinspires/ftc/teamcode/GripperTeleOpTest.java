@@ -17,9 +17,8 @@ public class GripperTeleOpTest extends OpMode
     @Override
     public void init()
     {
-        gripper = new Gripper();
-
-
+        gripper = new Gripper(this);
+        gripper.Init();
 
 
     }
@@ -35,15 +34,15 @@ public class GripperTeleOpTest extends OpMode
     public void loop()
     {
 
-        a = gamepad1.left_bumper;
-        b = gamepad1.right_bumper;   // might wanna change this to triggers
+     //   a = gamepad1.left_bumper;
+     //   b = gamepad1.right_bumper;   // might wanna change this to triggers
 
 
 
-        if(a){
+        if(gamepad1.left_bumper){
             gripper.GripperClose();
         }
-        if(b){
+        if(gamepad1.right_bumper){
             gripper.GripperOpen();
         }
 

@@ -29,7 +29,7 @@ public class SquareAutonomous extends OpMode
         //attachment.Init();
 
         navPoints  = new Vec3F[]{
-                new Vec3F(-48, -48, 0),
+                new Vec3F(-48, 48, 0),
                 new Vec3F(48, -48, 90),
                 new Vec3F(48, 48, 180),
                 new Vec3F(-48, 48, 270)
@@ -49,6 +49,7 @@ public class SquareAutonomous extends OpMode
         telemetry.addData("SA Line: ", 48);
         telemetry.update();
         //attachment.Loop();
+        telemetry.addData("index: ", waypointIndex);
         if(reachedDestination) //navigate to next waypoint
         {
             //get vector data and set destination
