@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp(name="UDC_TeleopTest", group="Iterative Opmode")
-public class UDC_TeleopTest extends OpMode
+public class UDC_Teleop extends OpMode
 {
     private JoystickCalc Jc = null;
     private SkyStoneBot Bot = null;
@@ -17,13 +17,20 @@ public class UDC_TeleopTest extends OpMode
 
     private double JoystickThreshold = 0.2;
 
+    public Gripper gripper;
+    public ArmAttachment arm;
+
+
     @Override
     public void init()
     {
         Jc = new JoystickCalc(this);
         Bot = new SkyStoneBot(this);
         Bot.Init();
-
+        gripper = new Gripper(this);
+        gripper.Init();
+        arm = new ArmAttachment(this);
+        arm.Init();
         //set speeds:
         DriveSpeedMultiplier = BaseDriveSpeedMultiplier;
         TurnSpeedMultiplier = BaseTurnSpeedMultiplier;
@@ -120,6 +127,36 @@ public class UDC_TeleopTest extends OpMode
         {
             Bot.StopMotors();
         }
+        if(gamepad1.left_bumper){
+            gripper.GripperClose();
+        }
+        if(gamepad1.right_bumper){
+            gripper.GripperOpen();
+        }
+        if(gamepad1.dpad_up) {
+            arm.LiftUp();}
+        else if(gamepad1.dpad_down) {
+                arm.LiftDown();}
+        else {
+            arm.LiftStopVertical();
+        }
+
+
+
+
+
+        if(gamepad1.dpad_left) {
+            arm.LiftLeft();}
+         else if (gamepad1.dpad_right) {
+            arm.LiftRight();}
+        else{
+            arm.LiftStopHorizontal();
+    }
+
+
+
+
+
 
 
         //update telemetry
