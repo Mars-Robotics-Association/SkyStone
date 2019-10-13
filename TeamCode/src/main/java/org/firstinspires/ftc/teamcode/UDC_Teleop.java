@@ -14,6 +14,7 @@ public class UDC_Teleop extends OpMode
     private double DriveSpeedMultiplier;
     private double TurnSpeedMultiplier;
     private boolean normalMode = true;
+    private double gripperPosition = 0.5;
 
     private double JoystickThreshold = 0.2;
 
@@ -24,6 +25,7 @@ public class UDC_Teleop extends OpMode
     @Override
     public void init()
     {
+        gripperPosition = 0.5;
         Jc = new JoystickCalc(this);
         Bot = new SkyStoneBot(this);
         Bot.Init();
@@ -133,6 +135,7 @@ public class UDC_Teleop extends OpMode
         if(gamepad1.right_bumper){
             gripper.GripperOpen();
         }
+
         if(gamepad1.dpad_up) {
             arm.LiftUp();}
         else if(gamepad1.dpad_down) {
@@ -140,6 +143,20 @@ public class UDC_Teleop extends OpMode
         else {
             arm.LiftStopVertical();
         }
+
+        if(gamepad2.dpad_left) {
+            gripperPosition+=0.005;
+            gripper.GripperRotatePosition(gripperPosition);
+        }
+
+        if(gamepad2.dpad_right) {
+            gripperPosition -= 0.005;
+            gripper.GripperRotatePosition(gripperPosition);
+        }
+        if(gripperPosition>1){ gripperPosition = 1;}
+        if(gripperPosition<0){gripperPosition=0;}
+
+
 
 
 

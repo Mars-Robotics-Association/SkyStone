@@ -123,4 +123,9 @@ public class Gripper implements Attachment{
         GripperR.setPosition(0.483);
     }
 
+    public void GripperRotatePosition(double position){
+
+        GripperRotate.setPosition(position);
+    }
+
 }
