@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name="UDC_TeleopTest", group="Iterative Opmode")
+@TeleOp(name="UDC_Teleop", group="Iterative Opmode")
 public class UDC_Teleop extends OpMode
 {
     private JoystickCalc Jc = null;
