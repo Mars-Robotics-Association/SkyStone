@@ -10,7 +10,4 @@ public interface Attachment
     public void Loop();
     public void Run();
     public void Stop();
-    //public void ArmForward();
-    //public void ArmBackward();
-    //public void ArmStops();
 }
