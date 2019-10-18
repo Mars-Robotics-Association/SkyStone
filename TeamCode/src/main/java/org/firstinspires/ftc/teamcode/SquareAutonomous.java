@@ -29,10 +29,10 @@ public class SquareAutonomous extends OpMode
         //attachment.Init();
 
         navPoints  = new Vec3F[]{
-                new Vec3F(-48, 48, 0),
-                new Vec3F(48, -48, 90),
-                new Vec3F(48, 48, 180),
-                new Vec3F(-48, 48, 270)
+                new Vec3F(36, 36, 0),
+                new Vec3F(36, -36, 90),
+                new Vec3F(36, 36, 180),
+                new Vec3F(36, -36, 270)
         };
     }
 

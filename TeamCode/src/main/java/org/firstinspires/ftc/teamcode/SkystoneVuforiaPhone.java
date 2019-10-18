@@ -350,7 +350,7 @@ public class SkystoneVuforiaPhone {
             // express position (translation) of robot in inches.
             VectorF translation = lastLocation.getTranslation();
             RobotX = translation.get(0) / mmPerInch;
-            RobotY = translation.get(1) / mmPerInch;
+            RobotY = translation.get(1) / -mmPerInch;
 
 
             // express the rotation of the robot in degrees.
