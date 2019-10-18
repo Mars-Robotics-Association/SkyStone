@@ -164,7 +164,7 @@ public class UDC_Teleop extends OpMode
 
         if(gamepad1.dpad_left) {
             arm.LiftLeft();}
-         else if (gamepad1.dpad_right) {
+        else if (gamepad1.dpad_right) {
             arm.LiftRight();}
         else{
             arm.LiftStopHorizontal();
