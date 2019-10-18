@@ -129,17 +129,17 @@ public class UDC_Teleop extends OpMode
         {
             Bot.StopMotors();
         }
-        if(gamepad1.left_bumper){
+        if(gamepad2.left_bumper){
             gripper.GripperClose();
         }
-        if(gamepad1.right_bumper){
+        if(gamepad2.right_bumper){
             gripper.GripperOpen();
         }
 
         if(gamepad1.dpad_up) {
             arm.LiftUp();}
         else if(gamepad1.dpad_down) {
-                arm.LiftDown();}
+            arm.LiftDown();}
         else {
             arm.LiftStopVertical();
         }
