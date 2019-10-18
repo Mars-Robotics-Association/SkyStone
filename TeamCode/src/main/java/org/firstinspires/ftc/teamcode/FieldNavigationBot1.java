@@ -62,7 +62,6 @@ public class FieldNavigationBot1
         opmode.telemetry.addData("CurrentY = ", CurrentY);
         opmode.telemetry.addData("CurrentRot = ", CurrentRot);
         opmode.telemetry.addData("Travel Rot: ", absoluteAngle);
-        opmode.telemetry.update();
         Bot.Loop();
         if(firstRound)
         {
@@ -95,14 +94,17 @@ public class FieldNavigationBot1
 
             if (!CheckCloseEnoughDistance()) //If not close to target
             {
-
+                opmode.telemetry.addData("Not close enough: ", true);
             }
             else { //Stop and rotate to target
+                opmode.telemetry.addData("Not close enough: ", false);
                 Bot.StopMotors();
                 Bot.RotateTo(TargetRot, 0.5);
                 Rotating = true;
                 Navigating = false;
             }
+
+            opmode.telemetry.update();
         }
 
         if(Rotating)
@@ -138,7 +140,7 @@ public class FieldNavigationBot1
         CurrentRot = Bot.GetRobotAngle();
 
         //Calculate angle of movement (no obstacle avoidance)
-        double triY = Math.abs(CurrentY - TargetY); //vertical length
+        double triY = -Math.abs(CurrentY - TargetY); //vertical length
         double triX = Math.abs(CurrentX - TargetX); //horizontal length
         absoluteAngle = Math.atan2(triY,triX); //get measurement of joystick angle
         absoluteAngle = Math.toDegrees(absoluteAngle);

@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - _JavaDebugSketchpad",
+            "request": "launch",
+            "mainClass": "org.firstinspires.ftc.teamcode._JavaDebugSketchpad"
+        }
+    ]
+}
