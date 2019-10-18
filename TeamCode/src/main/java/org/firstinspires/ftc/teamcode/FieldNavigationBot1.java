@@ -79,6 +79,20 @@ public class FieldNavigationBot1
 
         if(Navigating)
         {
+            //Calculate angle of movement (no obstacle avoidance)
+            double triY = Math.abs(CurrentY - TargetY); //vertical length
+            double triX = Math.abs(CurrentX - TargetX); //horizontal length
+            absoluteAngle = Math.atan2(triY,triX); //get measurement of joystick angle
+            absoluteAngle = Math.toDegrees(absoluteAngle);
+            absoluteAngle -= 180;
+            if(absoluteAngle < 0)//convert degrees to positive if needed
+            {
+                absoluteAngle = 360 + absoluteAngle;
+            }
+
+            Bot.MoveAtAngle(absoluteAngle, 1);
+
+
             if (!CheckCloseEnoughDistance()) //If not close to target
             {
 
