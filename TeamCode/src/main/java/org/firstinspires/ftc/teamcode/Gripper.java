@@ -122,6 +122,20 @@ public class Gripper implements Attachment{
         GripperL.setPosition(0.516);
         GripperR.setPosition(0.483);
     }
+    public void GripperCloseLeft(){
+        GripperL.setPosition(0.516);
+    }
+
+    public void GripperOpenLeft(){
+        GripperL.setPosition(0.77);
+    }
+    public void GripperCloseRight(){
+        GripperR.setPosition(0.483);
+    }
+
+    public void GripperOpenRight(){
+        GripperR.setPosition(0.27);
+    }
 
     public void GripperRotatePosition(double position){
 
