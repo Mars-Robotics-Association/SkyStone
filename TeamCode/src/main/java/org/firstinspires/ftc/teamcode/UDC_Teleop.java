@@ -134,7 +134,7 @@ public class UDC_Teleop extends OpMode
         }
         if(gamepad2.right_bumper){
             gripper.GripperOpen();
-//        }
+        }
 //        if(gamepad2.right_trigger){
 //            gripper.GripperOpenRight();
 //        }else{
