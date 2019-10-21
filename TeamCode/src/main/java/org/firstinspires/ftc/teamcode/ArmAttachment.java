@@ -102,8 +102,12 @@ public class ArmAttachment implements Attachment {
     }
     public void LiftLeft () {
         ArmRotateLeft.setPower(0.9);
+        ArmRotateRight.setPower(-0.9);
     }
-    public void LiftRight () { ArmRotateRight.setPower(-0.9); }
+
+    public void LiftRight () {  ArmRotateLeft.setPower (-0.9);
+        ArmRotateRight.setPower (0.9); }
+
     public void LiftStopHorizontal () {
         ArmRotateLeft.setPower (0);
         ArmRotateRight.setPower (0);
