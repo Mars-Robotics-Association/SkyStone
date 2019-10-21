@@ -1,5 +1,4 @@
 package org.firstinspires.ftc.teamcode;
-//isaac did this
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -59,8 +58,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 public class ArmAttachment implements Attachment {
     private DcMotor ArmForward = null;
     private DcMotor ArmBackward = null;
-    private DcMotor ArmRotate = null;
-
+    private DcMotor ArmRotateLeft = null;
+    private DcMotor ArmRotateRight = null;
     OpMode opmode;
 
     public ArmAttachment(OpMode thatopmode) {
@@ -70,9 +69,8 @@ public class ArmAttachment implements Attachment {
 
         ArmForward= opmode.hardwareMap.dcMotor.get("ArmForward");
         ArmBackward= opmode.hardwareMap.dcMotor.get("ArmBackward");
-        ArmRotate= opmode.hardwareMap.dcMotor.get("ArmRotate");
-
-
+        ArmRotateLeft= opmode.hardwareMap.dcMotor.get("ArmRotateLeft");
+        ArmRotateRight= opmode.hardwareMap.dcMotor.get("ArmRotateRight");
     }
 
 
@@ -103,13 +101,16 @@ public class ArmAttachment implements Attachment {
         ArmBackward.setPower(0);
     }
     public void LiftLeft () {
-        ArmRotate.setPower(0.9);
+        ArmRotateLeft.setPower(0.9);
+        ArmRotateRight.setPower(-0.9);
     }
-    public void LiftRight () {
-        ArmRotate.setPower(-0.9);
-    }
+
+    public void LiftRight () {  ArmRotateLeft.setPower (-0.9);
+        ArmRotateRight.setPower (0.9); }
+
     public void LiftStopHorizontal () {
-        ArmRotate.setPower (0);
+        ArmRotateLeft.setPower (0);
+        ArmRotateRight.setPower (0);
     }
 
 }
