@@ -58,8 +58,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 public class ArmAttachment implements Attachment {
     private DcMotor ArmForward = null;
     private DcMotor ArmBackward = null;
-    private DcMotor ArmRotateLeft = null;
-    private DcMotor ArmRotateRight = null;
+    private DcMotor ArmLeft = null;
+    private DcMotor ArmRight = null;
     OpMode opmode;
 
     public ArmAttachment(OpMode thatopmode) {
@@ -69,8 +69,8 @@ public class ArmAttachment implements Attachment {
 
         ArmForward= opmode.hardwareMap.dcMotor.get("ArmForward");
         ArmBackward= opmode.hardwareMap.dcMotor.get("ArmBackward");
-        ArmRotateLeft= opmode.hardwareMap.dcMotor.get("ArmRotateLeft");
-        ArmRotateRight= opmode.hardwareMap.dcMotor.get("ArmRotateRight");
+        ArmLeft= opmode.hardwareMap.dcMotor.get("ArmLeft");
+        ArmRight= opmode.hardwareMap.dcMotor.get("ArmRight");
     }
 
 
@@ -89,28 +89,29 @@ public class ArmAttachment implements Attachment {
 //test
     }
     public void LiftUp () {
-        ArmForward.setPower(0.9);
-        ArmBackward.setPower(0.9);
+        ArmForward.setPower(0.2);
+        ArmBackward.setPower(0.2);
     }
     public void LiftDown () {
-        ArmForward.setPower(-0.9);
-        ArmBackward.setPower(-0.9);
+        ArmForward.setPower(-0.2);
+        ArmBackward.setPower(-0.2);
     }
     public void LiftStopVertical () {
         ArmForward.setPower(0);
         ArmBackward.setPower(0);
     }
     public void LiftLeft () {
-        ArmRotateLeft.setPower(0.9);
-        ArmRotateRight.setPower(-0.9);
+        ArmLeft.setPower(0.2);
+        ArmRight.setPower(-0.2);
     }
 
-    public void LiftRight () {  ArmRotateLeft.setPower (-0.9);
-        ArmRotateRight.setPower (0.9); }
+    public void LiftRight () {
+        ArmLeft.setPower (-0.2);
+        ArmRight.setPower (0.2); }
 
     public void LiftStopHorizontal () {
-        ArmRotateLeft.setPower (0);
-        ArmRotateRight.setPower (0);
+        ArmLeft.setPower (0);
+        ArmRight.setPower (0);
     }
 
 }
