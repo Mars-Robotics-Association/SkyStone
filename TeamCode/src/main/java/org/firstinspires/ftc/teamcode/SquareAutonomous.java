@@ -1,15 +1,47 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.util.ElapsedTime;
 import com.vuforia.Vec3F;
 
 
-//Program should allow robot to move in a square pattern using a list of destinations
+//Test Program for using a linear system of navigation with the WaypointManager
 @Autonomous(name = "SquareAutonomous", group = "Autonomous")
-public class SquareAutonomous extends OpMode
+public class SquareAutonomous extends LinearOpMode
 {
-    private FieldNavigationBot1 nav;
+    private WaypointManager waypointManager;
+    private SkyStoneBot bot;
+    private ElapsedTime runtime = new ElapsedTime();
+
+
+    @Override
+    public void runOpMode()
+    {
+        //INIT
+        bot = new SkyStoneBot(this);
+        waypointManager = new WaypointManager(this, 180, bot);
+
+        // Wait for the game to start (driver presses PLAY)
+        waitForStart();
+
+        //START
+        runtime.reset();
+
+        //LOOP
+        while (opModeIsActive())
+        {
+
+        }
+
+    }
+    //private ExampleAttachment attachment;
+
+
+}
+
+    /*private FieldNavigationBot1 nav;
     //private ExampleAttachment attachment;
 
     //Vec3F is a location structured as (x,y,rotation)
@@ -21,7 +53,7 @@ public class SquareAutonomous extends OpMode
     public void init()
     {
         telemetry.addData("SA Line: ", 28);
-        nav = new FieldNavigationBot1(this);
+        nav = new FieldNavigationBot1(this, 180);
         telemetry.addData("SA Line: ", 30);
         //attachment = new ExampleAttachment(this);
         nav.Init();
@@ -77,4 +109,4 @@ public class SquareAutonomous extends OpMode
             }
         }
     }
-}
+*/

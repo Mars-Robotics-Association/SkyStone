@@ -35,7 +35,7 @@ public class FieldNavigationBot1
 
     public boolean firstRound = true;
 
-    public FieldNavigationBot1(OpMode setOpmode, double startAngle)
+    public FieldNavigationBot1(OpMode setOpmode, double startAngle, Robot robot)
     {
         this.opmode = setOpmode;
         StartAngle = startAngle;
@@ -91,7 +91,6 @@ public class FieldNavigationBot1
             }
 
             Bot.MoveAtAngle(absoluteAngle, 0.5);
-
 
             if (!CheckCloseEnoughDistance()) //If not close to target
             {
