@@ -167,6 +167,13 @@ public class UDC_Teleop extends OpMode
         if(gripperPosition>1){ gripperPosition = 1;}
         if(gripperPosition<0){gripperPosition=0;}
 
+        if(gamepad1.a){
+            arm.PickUpStone();
+        }
+        if(gamepad1.b){
+            arm.PutDownStone();
+        }
+
 
 
 

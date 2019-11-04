@@ -115,7 +115,7 @@ public class ArmAttachment implements Attachment {
         ArmLeft.setPower (0);
         ArmRight.setPower (0);
     }
-    public void PickUpBlock(){
+    public void PickUpStone(){
         do{
             LiftDown();
         }while(ArmLeft.getCurrentPosition() == 0 && ArmRight.getCurrentPosition() == 0);
@@ -124,7 +124,7 @@ public class ArmAttachment implements Attachment {
         gripper.GripperClose();
     }
 
-    public void PutDownBlock(){
+    public void PutDownStone(){
         do{
             LiftDown();
         }while(ArmLeft.getCurrentPosition() == 0 && ArmRight.getCurrentPosition() == 0);
