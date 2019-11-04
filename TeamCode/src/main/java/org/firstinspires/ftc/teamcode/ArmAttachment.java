@@ -62,6 +62,8 @@ public class ArmAttachment implements Attachment {
     private DcMotor ArmRight = null;
     OpMode opmode;
 
+    public Gripper gripper;
+
     public ArmAttachment(OpMode thatopmode) {
         opmode = thatopmode;
     }
@@ -113,5 +115,23 @@ public class ArmAttachment implements Attachment {
         ArmLeft.setPower (0);
         ArmRight.setPower (0);
     }
+    public void PickUpBlock(){
+        do{
+            LiftDown();
+        }while(ArmLeft.getCurrentPosition() == 0 && ArmRight.getCurrentPosition() == 0);
+        //0 is down for arm motors
+        LiftStopVertical();
+        gripper.GripperClose();
+    }
+
+    public void PutDownBlock(){
+        do{
+            LiftDown();
+        }while(ArmLeft.getCurrentPosition() == 0 && ArmRight.getCurrentPosition() == 0);
+        LiftStopHorizontal();
+        gripper.GripperOpen();
+    }
+
+
 
 }
