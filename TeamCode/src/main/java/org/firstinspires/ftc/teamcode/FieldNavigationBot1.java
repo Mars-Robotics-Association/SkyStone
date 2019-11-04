@@ -22,11 +22,11 @@ public class FieldNavigationBot1
     private double CurrentX = 0;
     private double CurrentY = 0;
     private double CurrentRot = 0;
-
+    private double StartAngle = 0;
     private double absoluteAngle = 0;
 
     private SkyStoneBot Bot;
-    private SkystoneVuforiaPhone Vuforia;
+    private SkystoneVuforiaWebcam Vuforia;
 
     private boolean Navigating = false;
     private boolean Rotating = false;
@@ -35,15 +35,16 @@ public class FieldNavigationBot1
 
     public boolean firstRound = true;
 
-    public FieldNavigationBot1(OpMode setOpmode)
+    public FieldNavigationBot1(OpMode setOpmode, double startAngle)
     {
         this.opmode = setOpmode;
+        StartAngle = startAngle;
     }
 
     public void Init()
     {
         Bot = new SkyStoneBot(opmode);
-        Vuforia = new SkystoneVuforiaPhone(opmode);
+        Vuforia = new SkystoneVuforiaWebcam(opmode, "Webcam 1");
         Bot.Init();
         Vuforia.Init();
     }
@@ -79,11 +80,11 @@ public class FieldNavigationBot1
         if(Navigating)
         {
             //Calculate angle of movement (no obstacle avoidance)
-            double triY = Math.abs(CurrentY - -TargetY); //vertical length
-            double triX = Math.abs(CurrentX - -TargetX); //horizontal length
+            double triY = Math.abs(CurrentY + TargetY); //vertical length
+            double triX = Math.abs(CurrentX + TargetX); //horizontal length
             absoluteAngle = Math.atan2(triY,triX); //get measurement of joystick angle
             absoluteAngle = Math.toDegrees(absoluteAngle);
-            //absoluteAngle -= 180;
+            absoluteAngle -= StartAngle;
             if(absoluteAngle < 0)//convert degrees to positive if needed
             {
                 absoluteAngle = 360 + absoluteAngle;
