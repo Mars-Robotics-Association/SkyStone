@@ -10,6 +10,7 @@ Class that completes the following goals:
 
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.vuforia.Vec3F;
 
 public class FieldNavigationBot1
 {
@@ -28,12 +29,17 @@ public class FieldNavigationBot1
     private SkyStoneBot Bot;
     private SkystoneVuforiaWebcam Vuforia;
 
-    private boolean Navigating = false;
-    private boolean Rotating = false;
+    public boolean Navigating = false;
+    public boolean Rotating = false;
 
     private OpMode opmode;
 
     public boolean firstRound = true;
+
+    public Vec3F GetLocationAndRotation()
+    {
+        return new Vec3F((float)CurrentX, (float)CurrentY, (float)CurrentRot);
+    }
 
     public FieldNavigationBot1(OpMode setOpmode, double startAngle, Robot robot)
     {

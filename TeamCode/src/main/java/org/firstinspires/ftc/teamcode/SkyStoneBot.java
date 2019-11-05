@@ -86,7 +86,10 @@ public class SkyStoneBot implements Robot
     public void MoveAtAngle(double angle, double speed)
     {
         //get relative angle and calculate wheel speeds
+        double relativeAngle = angle + RobotAngle;
+/*
         double relativeAngle = angle + RobotAngle + 90;
+*/
         CalculateWheelSpeeds(relativeAngle, speed);
         //set the powers of the motors
         FrontRight.setPower(FrontRightPower);
