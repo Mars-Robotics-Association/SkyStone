@@ -33,7 +33,7 @@ public class buildingZoneSingle extends OpMode
     @Override
     public void init()
     {
-        nav = new FieldNavigationBot1(this);
+  //      nav = new FieldNavigationBot1(this);
         attachment = new ExampleAttachment(this);
         nav.Init();
         attachment.Init();
