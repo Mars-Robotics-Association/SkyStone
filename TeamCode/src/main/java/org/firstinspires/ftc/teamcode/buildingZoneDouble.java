@@ -33,7 +33,7 @@ public class buildingZoneDouble extends OpMode
     @Override
     public void init()
     {
-        nav = new FieldNavigationBot1(this);
+        //nav = new FieldNavigationBot1(this);
         nav.Init();
     }
     @Override

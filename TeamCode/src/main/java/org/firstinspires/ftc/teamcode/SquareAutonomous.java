@@ -9,16 +9,14 @@ import com.vuforia.Vec3F;
 
 //Test Program for using a linear system of navigation with the WaypointManager
 @Autonomous(name = "SquareAutonomous", group = "Autonomous")
-public class SquareAutonomous extends LinearOpMode
-{
+public class SquareAutonomous extends LinearOpMode {
     private NavigationManager navigationManager;
     private SkyStoneBot bot;
     private ElapsedTime runtime = new ElapsedTime();
 
 
     @Override
-    public void runOpMode()
-    {
+    public void runOpMode() {
         //INIT
         bot = new SkyStoneBot(this);
         navigationManager = new NavigationManager(this, 180, bot);
@@ -30,43 +28,16 @@ public class SquareAutonomous extends LinearOpMode
         runtime.reset();
 
         //Start LOOP thread
-        LoopThread R1 = new LoopThread( navigationManager);
+        LoopThread R1 = new LoopThread(navigationManager);
         R1.start();
 
         //LOOP
 
 
     }
-
-    //this loop runs in the backround
-    public class LoopThread implements Runnable {
-        private Thread t;
-        NavigationManager n;
-
-        LoopThread( NavigationManager setNavigationManager)
-        {
-            n = setNavigationManager;
-        }
-
-        public void run()
-        {
-            //LOOP
-            while(opModeIsActive())
-            {
-                n.Loop();
-            }
-            n.StopMoving();
-        }
-
-        public void start () {
-            System.out.println("Starting " +  "LoopThread" );
-            if (t == null) {
-                t = new Thread (this, "LoopThread");
-                t.start ();
-            }
-        }
-    }
 }
+
+
 
     /*private FieldNavigationBot1 nav;
     //private ExampleAttachment attachment;

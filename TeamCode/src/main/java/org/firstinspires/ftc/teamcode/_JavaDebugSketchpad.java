@@ -10,26 +10,29 @@ public class _JavaDebugSketchpad
     private static double StartAngle = 180;
     private static double absoluteAngle = 0;
 
+
     public static void main(String[] args) 
     {
-        //Calculate angle of movement (no obstacle avoidance)
-        double triY = Math.abs(CurrentY + TargetY); //vertical length
-        double triX = Math.abs(CurrentX + TargetX); //horizontal length
-        absoluteAngle = Math.atan2(triY,triX); //get measurement of joystick angle
-        absoluteAngle = Math.toDegrees(absoluteAngle);
-        absoluteAngle -= StartAngle;
-        if(absoluteAngle < 0)//convert degrees to positive if needed
-        {
-            absoluteAngle = 360 + absoluteAngle;
-        }
-        System.out.println(absoluteAngle);
-    }
+        // //Calculate angle of movement (no obstacle avoidance)
+        // double triY = Math.abs(CurrentY + TargetY); //vertical length
+        // double triX = Math.abs(CurrentX + TargetX); //horizontal length
+        // absoluteAngle = Math.atan2(triY,triX); //get measurement of joystick angle
+        // absoluteAngle = Math.toDegrees(absoluteAngle);
+        // absoluteAngle -= StartAngle;
+        // if(absoluteAngle < 0)//convert degrees to positive if needed
+        // {
+        //     absoluteAngle = 360 + absoluteAngle;
+        // }
+        // System.out.println(absoluteAngle);
 
-    // public static void main(String[] args) 
-    // {
-    //     double out = Math.sqrt(Math.pow(TargetX - CurrentX, 2) + Math.pow(TargetY - CurrentY, 2));
-    //     System.out.println(out);
-    //     boolean b = out < closeEnoughThresholdDist;
-    //     System.out.println(b);
-    // }
+        //LoopThread R1 = new LoopThread( "navigationManager");
+        //R1.start();
+        
+        //Linear Commands
+        System.out.println("Go 1");
+        
+        System.out.println("Go 2");
+    }
 }
+
+
