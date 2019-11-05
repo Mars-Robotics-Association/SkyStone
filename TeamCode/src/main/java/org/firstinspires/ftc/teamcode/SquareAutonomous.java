@@ -11,7 +11,7 @@ import com.vuforia.Vec3F;
 @Autonomous(name = "SquareAutonomous", group = "Autonomous")
 public class SquareAutonomous extends LinearOpMode
 {
-    private WaypointManager waypointManager;
+    private NavigationManager navigationManager;
     private SkyStoneBot bot;
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -21,7 +21,7 @@ public class SquareAutonomous extends LinearOpMode
     {
         //INIT
         bot = new SkyStoneBot(this);
-        waypointManager = new WaypointManager(this, 180, bot);
+        navigationManager = new NavigationManager(this, 180, bot);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
@@ -29,16 +29,43 @@ public class SquareAutonomous extends LinearOpMode
         //START
         runtime.reset();
 
-        //LOOP
-        while (opModeIsActive())
-        {
+        //Start LOOP thread
+        LoopThread R1 = new LoopThread( navigationManager);
+        R1.start();
 
-        }
+        //LOOP
+
 
     }
-    //private ExampleAttachment attachment;
 
+    //this loop runs in the backround
+    public class LoopThread implements Runnable {
+        private Thread t;
+        NavigationManager n;
 
+        LoopThread( NavigationManager setNavigationManager)
+        {
+            n = setNavigationManager;
+        }
+
+        public void run()
+        {
+            //LOOP
+            while(opModeIsActive())
+            {
+                n.Loop();
+            }
+            n.StopMoving();
+        }
+
+        public void start () {
+            System.out.println("Starting " +  "LoopThread" );
+            if (t == null) {
+                t = new Thread (this, "LoopThread");
+                t.start ();
+            }
+        }
+    }
 }
 
     /*private FieldNavigationBot1 nav;

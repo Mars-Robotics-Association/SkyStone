@@ -28,6 +28,7 @@ public class NavigationManager
 
     public void Loop()
     {
+        nav.Loop();
         if(!nav.Navigating && !nav.Rotating)
         {
             isNavigating = false;
