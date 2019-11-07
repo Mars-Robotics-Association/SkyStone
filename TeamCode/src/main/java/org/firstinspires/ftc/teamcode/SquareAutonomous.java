@@ -13,6 +13,7 @@ public class SquareAutonomous extends LinearOpMode {
     private NavigationManager nav;
     private SkyStoneBot bot;
     private ElapsedTime runtime = new ElapsedTime();
+    private ExampleAttachment exampleAttachment;
 
 
     @Override
@@ -20,6 +21,10 @@ public class SquareAutonomous extends LinearOpMode {
         //==========INIT==========
         bot = new SkyStoneBot(this);
         nav = new NavigationManager(this, 180, bot);
+        exampleAttachment = new ExampleAttachment(this);
+
+        //put all your attachments into an array here for looping
+        Attachment[] attachments = {exampleAttachment};
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
@@ -28,7 +33,7 @@ public class SquareAutonomous extends LinearOpMode {
         runtime.reset();
 
         //==========Start LOOP thread==========
-        LoopThread R1 = new LoopThread(nav);
+        LoopThread R1 = new LoopThread(nav, attachments);
         R1.start();
 
         //==========LINEAR MAIN==========
@@ -38,22 +43,25 @@ public class SquareAutonomous extends LinearOpMode {
         while (nav.isNavigating){} //don't change anything while it is moving
         nav.StopMoving();//stop when done
 
-        //***Corner 2**
+        //***Corner 2***
         nav.NavigateToLocation(36, -36, 0);//Go to a location
         while (nav.isNavigating){} //don't change anything while it is moving
         nav.StopMoving();//stop when done
 
-        //***Corner 3**
+        //***Corner 3***
         nav.NavigateToLocation(36, 36, 0);//Go to a location
         while (nav.isNavigating){} //don't change anything while it is moving
         nav.StopMoving();//stop when done
 
-        //***Corner 4**
+        //***Corner 4***
         nav.NavigateToLocation(-36, 36, 0);//Go to a location
         while (nav.isNavigating){} //don't change anything while it is moving
         nav.StopMoving();//stop when done
 
-
+        //***Attachment***
+        exampleAttachment.YourCustomMethod(1);//Run the attachment
+        while (exampleAttachment.isRunning){} //don't change anything while it is moving
+        exampleAttachment.Stop();//stop when done
 
     }
 }

@@ -2,11 +2,13 @@ package org.firstinspires.ftc.teamcode;
 
 public class LoopThread implements Runnable {
     private Thread t;
-    NavigationManager n;
+    NavigationManager nav;
+    Attachment [] attachments;
 
-    LoopThread( NavigationManager setNavigationManager)
+    LoopThread( NavigationManager navigationManagerToLoop, Attachment[] attachmentsToLoop)
     {
-        n = setNavigationManager;
+        nav = navigationManagerToLoop;
+        attachments = attachmentsToLoop;
     }
 
     public void run()
@@ -14,7 +16,15 @@ public class LoopThread implements Runnable {
         //LOOP
         while(true)
         {
-            n.Loop();
+            //loop navigation manager
+            nav.Loop();
+
+            //loop all the attachments
+            for (Attachment a: attachments)
+            {
+                a.Loop();
+            }
+
             System.out.println("Gogogogogogogo");
         }
     }
