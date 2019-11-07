@@ -10,28 +10,49 @@ import com.vuforia.Vec3F;
 //Test Program for using a linear system of navigation with the WaypointManager
 @Autonomous(name = "SquareAutonomous", group = "Autonomous")
 public class SquareAutonomous extends LinearOpMode {
-    private NavigationManager navigationManager;
+    private NavigationManager nav;
     private SkyStoneBot bot;
     private ElapsedTime runtime = new ElapsedTime();
 
 
     @Override
     public void runOpMode() {
-        //INIT
+        //==========INIT==========
         bot = new SkyStoneBot(this);
-        navigationManager = new NavigationManager(this, 180, bot);
+        nav = new NavigationManager(this, 180, bot);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        //START
+        //==========START==========
         runtime.reset();
 
-        //Start LOOP thread
-        LoopThread R1 = new LoopThread(navigationManager);
+        //==========Start LOOP thread==========
+        LoopThread R1 = new LoopThread(nav);
         R1.start();
 
-        //LOOP
+        //==========LINEAR MAIN==========
+
+        //***Corner 1***
+        nav.NavigateToLocation(-36, -36, 0);//Go to a location
+        while (nav.isNavigating){} //don't change anything while it is moving
+        nav.StopMoving();//stop when done
+
+        //***Corner 2**
+        nav.NavigateToLocation(36, -36, 0);//Go to a location
+        while (nav.isNavigating){} //don't change anything while it is moving
+        nav.StopMoving();//stop when done
+
+        //***Corner 3**
+        nav.NavigateToLocation(36, 36, 0);//Go to a location
+        while (nav.isNavigating){} //don't change anything while it is moving
+        nav.StopMoving();//stop when done
+
+        //***Corner 4**
+        nav.NavigateToLocation(-36, 36, 0);//Go to a location
+        while (nav.isNavigating){} //don't change anything while it is moving
+        nav.StopMoving();//stop when done
+
 
 
     }
