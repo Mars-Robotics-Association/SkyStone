@@ -46,77 +46,40 @@ public class SquareAutonomous extends LinearOpMode {
 
         //***Corner 1***
         nav.NavigateToLocation(-36, -36, 0);//Go to a location
-        while (nav.isNavigating)
-        {
-            //loop navigation manager
-            nav.Loop();
-            //loop all the attachments
-            for (Attachment a: attachments)
-            {
-                a.Loop();
-            }
-        }
+        while (exampleAttachment.isRunning){LoopOpjects(attachments);}//Loop the various objects in the OpMode
         nav.StopMoving();//stop when done
 
         //***Corner 2***
         nav.NavigateToLocation(-36, 36, 0);//Go to a location
-        while (nav.isNavigating)
-        {
-            //loop navigation manager
-            nav.Loop();
-            //loop all the attachments
-            for (Attachment a: attachments)
-            {
-                a.Loop();
-            }
-        }
-
+        while (exampleAttachment.isRunning){LoopOpjects(attachments);}//Loop the various objects in the OpMode
         nav.StopMoving();//stop when done
 
         //***Corner 3***
         nav.NavigateToLocation(36, 36, 0);//Go to a location
-        while (nav.isNavigating)
-        {
-            //loop navigation manager
-            nav.Loop();
-            //loop all the attachments
-            for (Attachment a: attachments)
-            {
-                a.Loop();
-            }
-        }
-
+        while (exampleAttachment.isRunning){LoopOpjects(attachments);}//Loop the various objects in the OpMode
         nav.StopMoving();//stop when done
 
         //***Corner 4***
         nav.NavigateToLocation(-36, 36, 0);//Go to a location
-        while (nav.isNavigating)
-        {
-            //loop navigation manager
-            nav.Loop();
-            //loop all the attachments
-            for (Attachment a: attachments)
-            {
-                a.Loop();
-            }
-        }
-
+        while (exampleAttachment.isRunning){LoopOpjects(attachments);}//Loop the various objects in the OpMode
         nav.StopMoving();//stop when done
 
         //***Attachment***
         exampleAttachment.YourCustomMethod(1);//Run the attachment
-        while (exampleAttachment.isRunning)
-        {
-            //loop navigation manager
-            nav.Loop();
-            //loop all the attachments
-            for (Attachment a: attachments)
-            {
-                a.Loop();
-            }
-        }
+        while (exampleAttachment.isRunning){LoopOpjects(attachments);}//Loop the various objects in the OpMode
         exampleAttachment.Stop();//stop when done
 
+    }
+
+    public void LoopOpjects(Attachment[] attachmentsToLoop)
+    {
+        //loop navigation manager
+        nav.Loop();
+        //loop all the attachments
+        for (Attachment a: attachmentsToLoop)
+        {
+            a.Loop();
+        }
     }
 }
 
