@@ -4,6 +4,7 @@ public class LoopThread implements Runnable {
     private Thread t;
     NavigationManager nav;
     Attachment [] attachments;
+    boolean run = true;
 
     LoopThread( NavigationManager navigationManagerToLoop, Attachment[] attachmentsToLoop)
     {
@@ -14,7 +15,7 @@ public class LoopThread implements Runnable {
     public void run()
     {
         //LOOP
-        while(true)
+        while(run)
         {
             //loop navigation manager
             nav.Loop();
@@ -25,7 +26,8 @@ public class LoopThread implements Runnable {
                 a.Loop();
             }
 
-            System.out.println("Gogogogogogogo");
+
+            //System.out.println("Gogogogogogogo");
         }
     }
 
@@ -35,6 +37,11 @@ public class LoopThread implements Runnable {
             t = new Thread (this, "LoopThread");
             t.start ();
         }
+    }
+
+    public void UpdateValues(boolean isRunning)
+    {
+        run = isRunning;
     }
 }
 

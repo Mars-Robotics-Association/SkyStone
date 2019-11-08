@@ -133,7 +133,7 @@ public class FieldNavigationBot1
 
     public void NavigateToLocation(double x, double y, double angle)
     {
-        StopAll();
+        //StopAll();
         //set values
         TargetX = x;
         TargetY = y;
@@ -155,6 +155,7 @@ public class FieldNavigationBot1
 
         Bot.MoveAtAngle(absoluteAngle, 1);
         Navigating = true;
+        Rotating = false;
     }
 
     public void RotateTo(double angle)

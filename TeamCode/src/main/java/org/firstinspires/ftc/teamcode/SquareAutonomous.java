@@ -23,6 +23,11 @@ public class SquareAutonomous extends LinearOpMode {
         nav = new NavigationManager(this, 180, bot);
         exampleAttachment = new ExampleAttachment(this);
 
+        //Init objects
+        nav.Init();
+        bot.Init();
+        exampleAttachment.Init();
+
         //put all your attachments into an array here for looping
         Attachment[] attachments = {exampleAttachment};
 
@@ -31,36 +36,85 @@ public class SquareAutonomous extends LinearOpMode {
 
         //==========START==========
         runtime.reset();
+        nav.Start();
 
         //==========Start LOOP thread==========
-        LoopThread R1 = new LoopThread(nav, attachments);
-        R1.start();
+        //LoopThread R1 = new LoopThread(nav, attachments);
+        //R1.start();
 
         //==========LINEAR MAIN==========
 
         //***Corner 1***
         nav.NavigateToLocation(-36, -36, 0);//Go to a location
-        while (nav.isNavigating){} //don't change anything while it is moving
+        while (nav.isNavigating)
+        {
+            //loop navigation manager
+            nav.Loop();
+            //loop all the attachments
+            for (Attachment a: attachments)
+            {
+                a.Loop();
+            }
+        }
         nav.StopMoving();//stop when done
 
         //***Corner 2***
-        nav.NavigateToLocation(36, -36, 0);//Go to a location
-        while (nav.isNavigating){} //don't change anything while it is moving
+        nav.NavigateToLocation(-36, 36, 0);//Go to a location
+        while (nav.isNavigating)
+        {
+            //loop navigation manager
+            nav.Loop();
+            //loop all the attachments
+            for (Attachment a: attachments)
+            {
+                a.Loop();
+            }
+        }
+
         nav.StopMoving();//stop when done
 
         //***Corner 3***
         nav.NavigateToLocation(36, 36, 0);//Go to a location
-        while (nav.isNavigating){} //don't change anything while it is moving
+        while (nav.isNavigating)
+        {
+            //loop navigation manager
+            nav.Loop();
+            //loop all the attachments
+            for (Attachment a: attachments)
+            {
+                a.Loop();
+            }
+        }
+
         nav.StopMoving();//stop when done
 
         //***Corner 4***
         nav.NavigateToLocation(-36, 36, 0);//Go to a location
-        while (nav.isNavigating){} //don't change anything while it is moving
+        while (nav.isNavigating)
+        {
+            //loop navigation manager
+            nav.Loop();
+            //loop all the attachments
+            for (Attachment a: attachments)
+            {
+                a.Loop();
+            }
+        }
+
         nav.StopMoving();//stop when done
 
         //***Attachment***
         exampleAttachment.YourCustomMethod(1);//Run the attachment
-        while (exampleAttachment.isRunning){} //don't change anything while it is moving
+        while (exampleAttachment.isRunning)
+        {
+            //loop navigation manager
+            nav.Loop();
+            //loop all the attachments
+            for (Attachment a: attachments)
+            {
+                a.Loop();
+            }
+        }
         exampleAttachment.Stop();//stop when done
 
     }

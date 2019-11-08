@@ -24,6 +24,12 @@ public class NavigationManager
     public void Init()
     {
         nav = new FieldNavigationBot1(opMode, startAngleOffset, bot);
+        nav.Init();
+    }
+
+    public void Start()
+    {
+        nav.Start();
     }
 
     public void Loop()
@@ -42,6 +48,7 @@ public class NavigationManager
     public void NavigateToLocation(double x, double y, double rot)
     {
         nav.NavigateToLocation(x, y, rot);
+        isNavigating = true;
     }
     
     public void RotateTo(double angle)

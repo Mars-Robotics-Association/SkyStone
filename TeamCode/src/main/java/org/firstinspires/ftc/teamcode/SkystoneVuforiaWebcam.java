@@ -462,17 +462,11 @@ public class SkystoneVuforiaWebcam
         /** Wait for the game to begin */
         opMode.telemetry.addData(">", "Press Play to start tracking");
         opMode.telemetry.update();
+        targetsSkyStone.activate();
     }
 
     public void Loop() {
         /** Init tracking the data sets we care about. */
-        targetsSkyStone.activate();
-
-        boolean buttonPressed = false;
-        if (opMode.gamepad1.a && !buttonPressed) {
-            captureFrameToFile();
-        }
-        buttonPressed = opMode.gamepad1.a;
 
         for (VuforiaTrackable trackable : allTrackables) {
             /**
