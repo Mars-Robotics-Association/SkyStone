@@ -136,7 +136,7 @@ public class FieldNavigationBot1
         //StopAll();
         //set values
         TargetX = x;
-        TargetY = y;
+        TargetY = -y;
         TargetRot = angle;
         CurrentX = -Vuforia.GetRobotX();
         CurrentY = -Vuforia.GetRobotY();
