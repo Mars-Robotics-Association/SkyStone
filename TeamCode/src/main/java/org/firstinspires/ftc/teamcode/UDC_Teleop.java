@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 @TeleOp(name="UDC_Teleop", group="Iterative Opmode")
 public class UDC_Teleop extends OpMode
 {
@@ -13,10 +15,13 @@ public class UDC_Teleop extends OpMode
     private double BaseTurnSpeedMultiplier = 0.4;
     private double DriveSpeedMultiplier;
     private double TurnSpeedMultiplier;
-    private boolean normalMode = true;
     private double gripperPosition = 0.5;
 
     private double JoystickThreshold = 0.2;
+
+    private int[] PreviousMotorPositions = {0,0,0,0};
+    private int[] TotalMotorClicks = {0,0,0,0};
+    boolean FirstRun = true;
 
     public Gripper gripper;
     public ArmAttachment arm;
@@ -55,31 +60,48 @@ public class UDC_Teleop extends OpMode
         double turnSpeed = Math.abs(Jc.rightStickX);
 
         //Reset Gyro if needed
-        if(Jc.xButton)
+        if(gamepad2.x)
         {
             Bot.OffsetGyro();
         }
 
-        //switch between normal and slow mode
-        if(Jc.yButton)
-        {
-            if(normalMode)
-            {
-                DriveSpeedMultiplier = BaseDriveSpeedMultiplier/2;
-                TurnSpeedMultiplier = BaseTurnSpeedMultiplier/2;
-                normalMode = false;
-            }
 
-        }
-        if(Jc.bButton)
+
+
+
+        //switch between normal and slow modes
+        if(gamepad1.a)
         {
-            if(!normalMode)
-            {
                 DriveSpeedMultiplier = BaseDriveSpeedMultiplier;
                 TurnSpeedMultiplier = BaseTurnSpeedMultiplier;
-                normalMode = true;
-            }
+
+
         }
+        if(gamepad1.b)
+        {
+
+                DriveSpeedMultiplier = BaseDriveSpeedMultiplier/2;
+                TurnSpeedMultiplier = BaseTurnSpeedMultiplier/2;
+
+        }
+        if(gamepad1.x)
+        {
+
+            DriveSpeedMultiplier = BaseDriveSpeedMultiplier/4;
+            TurnSpeedMultiplier = BaseTurnSpeedMultiplier/4;
+
+        }
+        if(gamepad1.y)
+        {
+
+            DriveSpeedMultiplier = BaseDriveSpeedMultiplier/8;
+            TurnSpeedMultiplier = BaseTurnSpeedMultiplier/8;
+
+        }
+
+
+
+
 
         if(Jc.leftStickPower > JoystickThreshold) //Move
         {
@@ -147,9 +169,9 @@ public class UDC_Teleop extends OpMode
             gripper.GripperCloseLeft();
         }
 
-        if(gamepad1.dpad_up) {
+        if(gamepad2.dpad_up) {
             arm.LiftUp();}
-        else if(gamepad1.dpad_down) {
+        else if(gamepad2.dpad_down) {
             arm.LiftDown();}
         else {
             arm.LiftStopVertical();
@@ -167,10 +189,10 @@ public class UDC_Teleop extends OpMode
         if(gripperPosition>1){ gripperPosition = 1;}
         if(gripperPosition<0){gripperPosition=0;}
 
-        if(gamepad1.a){
+        if(gamepad2.a){
             arm.PickUpStone();
         }
-        if(gamepad1.b){
+        if(gamepad2.b){
             arm.PutDownStone();
         }
 
@@ -180,7 +202,7 @@ public class UDC_Teleop extends OpMode
 
 
 
-        if(gamepad1.dpad_left) {
+        if(gamepad2.dpad_left) {
             arm.LiftLeft();}
         else if (gamepad1.dpad_right) {
             arm.LiftRight();}
@@ -188,21 +210,17 @@ public class UDC_Teleop extends OpMode
             arm.LiftStopHorizontal();
     }
 
+        if(FirstRun){
+            for(int i = 0; i<4; i++){
+
+            }
+        }
 
 
 
 
-
-
-        //update telemetry
-        telemetry.addData("Gyro Offset", Bot.GetGyroOffset());
-        telemetry.addData("Gyro Final Rot", Bot.GetFinalGyro());
-        telemetry.addData("Left Baring", Jc.leftStickBaring);
-        telemetry.addData("Left Power", Jc.leftStickPower);
-        telemetry.addData("Right X", Jc.rightStickX);
-        telemetry.addData("Right Y", Jc.rightStickY);
-        telemetry.addData("Controller ", gamepad1.left_stick_x);
+        telemetry.addData("stuff",Bot.GetMotorPositions()[0]);
+        FirstRun=false;
         telemetry.update();
-
     }
 }

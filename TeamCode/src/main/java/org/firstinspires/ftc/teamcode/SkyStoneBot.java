@@ -26,6 +26,7 @@ public class SkyStoneBot implements Robot
     private double RearRightPower = 0;
     private double RearLeftPower = 0;
 
+    int MotorPositions[]={0,0,0,0};
     private IMU imu;
     private OpMode opmode;
 
@@ -170,22 +171,16 @@ public class SkyStoneBot implements Robot
         RearRightPower = -Math.cos(Math.toRadians(degrees - 45)) * speed;
         RearLeftPower = Math.cos(Math.toRadians(degrees + 45)) * speed;
     }
-
-
-    /*public void PickUpStone()
-    {
-
+    public int[] GetMotorPositions(){
+        MotorPositions[0] = FrontRight.getCurrentPosition();
+        MotorPositions[1] = FrontLeft.getCurrentPosition();
+        MotorPositions[2] = RearRight.getCurrentPosition();
+        MotorPositions[3] = RearLeft.getCurrentPosition();
+        return MotorPositions;
     }
 
-    public void PickupSkystone()
-    {
 
-    }
 
-    public void PutDownStone()
-    {
-
-    }*/
 
     //allows for corkscrewing
     public void CalculateWheelSpeedsTurning(double degrees, double speed, boolean turnRight, double turnSpeed)
