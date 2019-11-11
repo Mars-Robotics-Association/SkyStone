@@ -23,6 +23,11 @@ public class SquareAutonomous extends LinearOpMode {
         nav = new NavigationManager(this, 180, bot);
         exampleAttachment = new ExampleAttachment(this);
 
+        //Init objects
+        nav.Init();
+        bot.Init();
+        exampleAttachment.Init();
+
         //put all your attachments into an array here for looping
         Attachment[] attachments = {exampleAttachment};
 
@@ -31,38 +36,50 @@ public class SquareAutonomous extends LinearOpMode {
 
         //==========START==========
         runtime.reset();
+        nav.Start();
 
         //==========Start LOOP thread==========
-        LoopThread R1 = new LoopThread(nav, attachments);
-        R1.start();
+        //LoopThread R1 = new LoopThread(nav, attachments);
+        //R1.start();
 
         //==========LINEAR MAIN==========
 
         //***Corner 1***
         nav.NavigateToLocation(-36, -36, 0);//Go to a location
-        while (nav.isNavigating){} //don't change anything while it is moving
+        while (exampleAttachment.isRunning){LoopOpjects(attachments);}//Loop the various objects in the OpMode
         nav.StopMoving();//stop when done
 
         //***Corner 2***
-        nav.NavigateToLocation(36, -36, 0);//Go to a location
-        while (nav.isNavigating){} //don't change anything while it is moving
+        nav.NavigateToLocation(-36, 36, 0);//Go to a location
+        while (exampleAttachment.isRunning){LoopOpjects(attachments);}//Loop the various objects in the OpMode
         nav.StopMoving();//stop when done
 
         //***Corner 3***
         nav.NavigateToLocation(36, 36, 0);//Go to a location
-        while (nav.isNavigating){} //don't change anything while it is moving
+        while (exampleAttachment.isRunning){LoopOpjects(attachments);}//Loop the various objects in the OpMode
         nav.StopMoving();//stop when done
 
         //***Corner 4***
         nav.NavigateToLocation(-36, 36, 0);//Go to a location
-        while (nav.isNavigating){} //don't change anything while it is moving
+        while (exampleAttachment.isRunning){LoopOpjects(attachments);}//Loop the various objects in the OpMode
         nav.StopMoving();//stop when done
 
         //***Attachment***
         exampleAttachment.YourCustomMethod(1);//Run the attachment
-        while (exampleAttachment.isRunning){} //don't change anything while it is moving
+        while (exampleAttachment.isRunning){LoopOpjects(attachments);}//Loop the various objects in the OpMode
         exampleAttachment.Stop();//stop when done
 
+    }
+
+    public void LoopOpjects(Attachment[] attachmentsToLoop)
+    {
+        //loop navigation manager
+        nav.Loop();
+        //loop all the attachments
+        for (Attachment a: attachmentsToLoop)
+        {
+            a.Loop();
+        }
     }
 }
 
