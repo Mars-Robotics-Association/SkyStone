@@ -58,6 +58,7 @@ public class FieldNavigationBot1
     public void Start()
     {
         Bot.Start();
+        opmode.telemetry.setMsTransmissionInterval(20);//update telemetry faster
     }
 
     public void Loop()
