@@ -136,18 +136,18 @@ public class FieldNavigationBot1
         //StopAll();
         //set values
         TargetX = x;
-        TargetY = -y;
+        TargetY = y;
         TargetRot = angle;
-        CurrentX = -Vuforia.GetRobotX();
-        CurrentY = -Vuforia.GetRobotY();
+        CurrentX = Vuforia.GetRobotX();
+        CurrentY = Vuforia.GetRobotY();
         CurrentRot = Bot.GetRobotAngle();
 
         //Calculate angle of movement (no obstacle avoidance)
-        double triY = -Math.abs(CurrentY - -TargetY); //vertical length
-        double triX = Math.abs(CurrentX - -TargetX); //horizontal length
-        absoluteAngle = Math.atan2(triY,triX); //get measurement of joystick angle
+        double triY = (CurrentY - TargetY); //vertical length
+        double triX = (CurrentX - TargetX); //horizontal length
+        absoluteAngle = Math.atan2(triY,triX); //get measurement of move angle
         absoluteAngle = Math.toDegrees(absoluteAngle);
-        //absoluteAngle -= 180;
+        absoluteAngle -= StartAngle; //offsets by start angle of the robot
         if(absoluteAngle < 0)//convert degrees to positive if needed
         {
             absoluteAngle = 360 + absoluteAngle;

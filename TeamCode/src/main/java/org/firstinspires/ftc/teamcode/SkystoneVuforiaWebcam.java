@@ -213,6 +213,7 @@ public class SkystoneVuforiaWebcam
          * We also indicate which camera on the RC we wish to use.
          */
         parameters.cameraName = webcamName;
+        parameters.useExtendedTracking =true;
 
         /**
          * Instantiate the Vuforia engine
