@@ -18,6 +18,8 @@ public class JoystickCalc
     static boolean yButton;
     static boolean aButton;
     static boolean bButton;
+    static float leftJS = 0;
+    static float rightJS = 0;
 
     public JoystickCalc(OpMode opmode)
     {
@@ -35,6 +37,9 @@ public class JoystickCalc
         yButton = opmode.gamepad1.y;
         bButton = opmode.gamepad1.b;
         aButton = opmode.gamepad1.a;
+        leftJS = opmode.gamepad1.left_trigger;
+        rightJS = opmode.gamepad1.right_trigger;
+
 
         //Calculate angle of joystick
         double Y = leftStickY; //X input

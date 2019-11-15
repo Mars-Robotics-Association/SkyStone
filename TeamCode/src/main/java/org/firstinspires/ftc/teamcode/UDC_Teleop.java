@@ -61,24 +61,27 @@ public class UDC_Teleop extends OpMode
         }
 
         //switch between normal and slow mode
-        if(Jc.yButton)
+        if(Jc.rightJS > 0 || Jc.leftJS > 0)
         {
-            if(normalMode)
+            if(Jc.rightJS > 0)
             {
                 DriveSpeedMultiplier = BaseDriveSpeedMultiplier/2;
                 TurnSpeedMultiplier = BaseTurnSpeedMultiplier/2;
                 normalMode = false;
             }
+            if(Jc.rightJS > 0)
+            {
+                DriveSpeedMultiplier = BaseDriveSpeedMultiplier/4;
+                TurnSpeedMultiplier = BaseTurnSpeedMultiplier/4;
+                normalMode = false;
+            }
 
         }
-        if(Jc.bButton)
+        else
         {
-            if(!normalMode)
-            {
-                DriveSpeedMultiplier = BaseDriveSpeedMultiplier;
-                TurnSpeedMultiplier = BaseTurnSpeedMultiplier;
-                normalMode = true;
-            }
+            DriveSpeedMultiplier = BaseDriveSpeedMultiplier;
+            TurnSpeedMultiplier = BaseTurnSpeedMultiplier;
+            normalMode = true;
         }
 
         if(Jc.leftStickPower > JoystickThreshold) //Move
