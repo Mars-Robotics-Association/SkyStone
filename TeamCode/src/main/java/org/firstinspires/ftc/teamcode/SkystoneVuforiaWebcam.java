@@ -189,11 +189,11 @@ public class SkystoneVuforiaWebcam
          * To start up Vuforia, tell it the view that we wish to use for camera monitor (on the RC phone);
          * If no camera monitor is desired, use the parameterless constructor instead (commented out below).
          */
-        int cameraMonitorViewId = opMode.hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
-        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
+        //int cameraMonitorViewId = opMode.hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
+        //VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
 
         // OR...  Do Not Activate the Camera Monitor View, to save power
-        // VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
+         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
 
         /*
          * IMPORTANT: You need to obtain your own license key to use Vuforia. The string below with which
@@ -213,6 +213,7 @@ public class SkystoneVuforiaWebcam
          * We also indicate which camera on the RC we wish to use.
          */
         parameters.cameraName = webcamName;
+        parameters.useExtendedTracking =true;
 
         /**
          * Instantiate the Vuforia engine
@@ -224,10 +225,10 @@ public class SkystoneVuforiaWebcam
          * that we want to ensure that certain frame formats are available in the {@link Frame}s we
          * see.
          */
-        vuforia.enableConvertFrameToBitmap();
+        //vuforia.enableConvertFrameToBitmap();
 
         /** @see #captureFrameToFile() */
-        AppUtil.getInstance().ensureDirectoryExists(captureDirectory);
+        //AppUtil.getInstance().ensureDirectoryExists(captureDirectory);
 
         /**
          * We use units of mm here because that's the recommended units of measurement for the
@@ -460,8 +461,8 @@ public class SkystoneVuforiaWebcam
          */
 
         /** Wait for the game to begin */
-        opMode.telemetry.addData(">", "Press Play to start tracking");
-        opMode.telemetry.update();
+        //opMode.telemetry.addData(">", "Press Play to start tracking");
+        //opMode.telemetry.update();
         targetsSkyStone.activate();
     }
 
@@ -493,13 +494,15 @@ public class SkystoneVuforiaWebcam
 
 
             //telemetry.addData("Pos", format(lastLocation));
-            opMode.telemetry.addData("X", RobotX);
+            /*opMode.telemetry.addData("X", RobotX);
             opMode.telemetry.addData("Y", RobotY);
-            opMode.telemetry.addData("Rot", RobotAngle);
+            opMode.telemetry.addData("Rot", RobotAngle);*/
         } else {
+/*
             opMode.telemetry.addData("Pos", "Unknown");
+*/
         }
-        opMode.telemetry.update();
+        //opMode.telemetry.update();
     }
 
     /**

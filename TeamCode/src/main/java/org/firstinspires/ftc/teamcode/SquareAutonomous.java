@@ -38,40 +38,36 @@ public class SquareAutonomous extends LinearOpMode {
         runtime.reset();
         nav.Start();
 
-        //==========Start LOOP thread==========
-        //LoopThread R1 = new LoopThread(nav, attachments);
-        //R1.start();
-
         //==========LINEAR MAIN==========
 
         //***Corner 1***
         nav.NavigateToLocation(-36, -36, 0);//Go to a location
-        while (exampleAttachment.isRunning){LoopOpjects(attachments);}//Loop the various objects in the OpMode
+        while (nav.isNavigating){LoopObjects(attachments);}//Loop the various objects in the OpMode
         nav.StopMoving();//stop when done
 
         //***Corner 2***
         nav.NavigateToLocation(-36, 36, 0);//Go to a location
-        while (exampleAttachment.isRunning){LoopOpjects(attachments);}//Loop the various objects in the OpMode
+        while (nav.isNavigating){LoopObjects(attachments);}//Loop the various objects in the OpMode
         nav.StopMoving();//stop when done
 
         //***Corner 3***
         nav.NavigateToLocation(36, 36, 0);//Go to a location
-        while (exampleAttachment.isRunning){LoopOpjects(attachments);}//Loop the various objects in the OpMode
+        while (nav.isNavigating){LoopObjects(attachments);}//Loop the various objects in the OpMode
         nav.StopMoving();//stop when done
 
         //***Corner 4***
         nav.NavigateToLocation(-36, 36, 0);//Go to a location
-        while (exampleAttachment.isRunning){LoopOpjects(attachments);}//Loop the various objects in the OpMode
+        while (nav.isNavigating){LoopObjects(attachments);}//Loop the various objects in the OpMode
         nav.StopMoving();//stop when done
 
         //***Attachment***
         exampleAttachment.YourCustomMethod(1);//Run the attachment
-        while (exampleAttachment.isRunning){LoopOpjects(attachments);}//Loop the various objects in the OpMode
+        while (exampleAttachment.isRunning){LoopObjects(attachments);}//Loop the various objects in the OpMode
         exampleAttachment.Stop();//stop when done
 
     }
 
-    public void LoopOpjects(Attachment[] attachmentsToLoop)
+    public void LoopObjects(Attachment[] attachmentsToLoop)
     {
         //loop navigation manager
         nav.Loop();

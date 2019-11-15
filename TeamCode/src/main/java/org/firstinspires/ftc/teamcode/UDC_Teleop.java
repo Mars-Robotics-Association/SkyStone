@@ -30,6 +30,10 @@ public class UDC_Teleop extends OpMode
     @Override
     public void init()
     {
+        telemetry.addData("start",5 );
+        telemetry.update();
+
+
         gripperPosition = 0.5;
         Jc = new JoystickCalc(this);
         Bot = new SkyStoneBot(this);
@@ -41,6 +45,9 @@ public class UDC_Teleop extends OpMode
         //set speeds:
         DriveSpeedMultiplier = BaseDriveSpeedMultiplier;
         TurnSpeedMultiplier = BaseTurnSpeedMultiplier;
+        telemetry.addData("endstart",5 );
+
+        telemetry.update();
     }
 
     @Override
@@ -126,6 +133,7 @@ public class UDC_Teleop extends OpMode
             Bot.RawTurn(true, turnSpeed*TurnSpeedMultiplier);
         }
 
+
         else if(Jc.rightStickX < -JoystickThreshold) //Turn Left
         {
             Bot.RawTurn(false, turnSpeed*TurnSpeedMultiplier);
@@ -159,13 +167,14 @@ public class UDC_Teleop extends OpMode
         }
         if(gamepad2.right_trigger == 1.0){
             gripper.GripperOpenRight();
-        }else{
+            while(gamepad2.right_trigger == 1.0){
+            }
             gripper.GripperCloseRight();
         }
         if(gamepad2.left_trigger == 1.0){
             gripper.GripperOpenLeft();
-
-        }else{
+            while(gamepad2.left_trigger == 1.0){
+            }
             gripper.GripperCloseLeft();
         }
 
