@@ -19,6 +19,10 @@ public class UDC_Teleop extends OpMode
 
     private double JoystickThreshold = 0.2;
 
+    private boolean GripR = false;
+    private boolean GripL = false;
+
+
     private int[] PreviousMotorPositions = {0,0,0,0};
     private int[] TotalMotorClicks = {0,0,0,0};
     boolean FirstRun = true;
@@ -162,16 +166,20 @@ public class UDC_Teleop extends OpMode
             gripper.GripperOpen();
         }
         if(gamepad2.right_trigger == 1.0){
-            gripper.GripperOpenRight();
-            while(gamepad2.right_trigger == 1.0){
-            }
-            gripper.GripperCloseRight();
+            if(GripR == false){
+                GripR = true;
+                gripper.GripperOpenRight();}
+            else{
+                GripR = false;
+                gripper.GripperCloseRight();}
         }
         if(gamepad2.left_trigger == 1.0){
-            gripper.GripperOpenLeft();
-            while(gamepad2.left_trigger == 1.0){
-            }
-            gripper.GripperCloseLeft();
+            if(GripL == false){
+                GripL = true;
+                gripper.GripperOpenLeft();}
+            else{
+                GripL = false;
+                gripper.GripperCloseLeft();}
         }
 
         if(gamepad2.dpad_up) {
