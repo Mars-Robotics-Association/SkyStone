@@ -19,6 +19,7 @@ public class UDC_Teleop extends OpMode
 
     private double JoystickThreshold = 0.2;
 
+    private int[] MaxMotorPositions = {0,0,0,0};
     private int[] PreviousMotorPositions = {0,0,0,0};
     private int[] TotalMotorClicks = {0,0,0,0};
     boolean FirstRun = true;
@@ -91,14 +92,14 @@ public class UDC_Teleop extends OpMode
                 TurnSpeedMultiplier = BaseTurnSpeedMultiplier/2;
 
         }
-        if(gamepad1.x)
+        if(gamepad1.y)
         {
 
             DriveSpeedMultiplier = BaseDriveSpeedMultiplier/4;
             TurnSpeedMultiplier = BaseTurnSpeedMultiplier/4;
 
         }
-        if(gamepad1.y)
+        if(gamepad1.x)
         {
 
             DriveSpeedMultiplier = BaseDriveSpeedMultiplier/8;
@@ -125,7 +126,6 @@ public class UDC_Teleop extends OpMode
 
             //Make robot move at the angle of the left joystick at the determined speed while applying a turn to the value of the right joystick
             Bot.MoveAtAngleTurning(Jc.leftStickBaring, DriveSpeedMultiplier * Jc.leftStickPower, turnRight, turnSpeed*TurnSpeedMultiplier);
-            telemetry.addData("Moving", true);
         }
 
         else if(Jc.rightStickX > JoystickThreshold) //Turn Right
@@ -224,11 +224,21 @@ public class UDC_Teleop extends OpMode
 
             }
         }
+        for(int i = 0; i<4; i++){
+            if(MaxMotorPositions[i]<Bot.GetMotorPositions()[i]){
+                MaxMotorPositions[i]=Bot.GetMotorPositions()[i];
+            }
+        }
 
 
 
 
-        telemetry.addData("stuff",Bot.GetMotorPositions()[0]);
+        telemetry.addData("FL total clicks",TotalMotorClicks[0]);
+        telemetry.addData("FR total clicks",TotalMotorClicks[1]);
+        telemetry.addData("RL total clicks",TotalMotorClicks[2]);
+        telemetry.addData("RR total clicks",TotalMotorClicks[3]);
+        telemetry.addData("Max encoder clicks",MaxMotorPositions[0]);
+        telemetry.addData("Current Motor Position",Bot.GetMotorPositions()[0]);
         FirstRun=false;
         telemetry.update();
     }
