@@ -20,6 +20,12 @@ public class UDC_Teleop extends OpMode
     private double JoystickThreshold = 0.2;
 
     private int[] MaxMotorPositions = {0,0,0,0};
+
+    private boolean GripR = false;
+    private boolean GripL = false;
+
+
+
     private int[] PreviousMotorPositions = {0,0,0,0};
     private int[] TotalMotorClicks = {0,0,0,0};
     boolean FirstRun = true;
@@ -68,14 +74,10 @@ public class UDC_Teleop extends OpMode
         double turnSpeed = Math.abs(Jc.rightStickX);
 
         //Reset Gyro if needed
-        if(gamepad1.x)
+        if(gamepad2.x)
         {
             Bot.OffsetGyro();
         }
-
-
-
-
 
         //switch between normal and slow modes
         if(gamepad1.a)
@@ -99,6 +101,17 @@ public class UDC_Teleop extends OpMode
             TurnSpeedMultiplier = BaseTurnSpeedMultiplier/4;
 
         }
+        if(gamepad1.x)
+        {
+
+            DriveSpeedMultiplier = BaseDriveSpeedMultiplier/8;
+            TurnSpeedMultiplier = BaseTurnSpeedMultiplier/8;
+
+        }
+
+
+
+
 
         if(Jc.leftStickPower > JoystickThreshold) //Move
         {
@@ -154,26 +167,21 @@ public class UDC_Teleop extends OpMode
         if(gamepad2.right_bumper){
             gripper.GripperOpen();
         }
-
-        if(gamepad2.right_trigger == 1.0)
-        {
-            gripper.GripperOpenRight();
-            do 
-            {
-                gripper.GripperOpenRight();
-            }
-            while(gamepad2.right_trigger == 1.0);
-            gripper.GripperCloseRight();
+        if(gamepad2.right_trigger == 1.0){
+            if(GripR == false){
+                GripR = true;
+                gripper.GripperOpenRight();}
+            else{
+                GripR = false;
+                gripper.GripperCloseRight();}
         }
-        if(gamepad2.left_trigger == 1.0) 
-        {
-            gripper.GripperOpenLeft();
-            do 
-            {
-                gripper.GripperOpenLeft();
-            }
-            while(gamepad2.left_trigger == 1.0);
-            gripper.GripperCloseLeft();
+        if(gamepad2.left_trigger == 1.0){
+            if(GripL == false){
+                GripL = true;
+                gripper.GripperOpenLeft();}
+            else{
+                GripL = false;
+                gripper.GripperCloseLeft();}
         }
 
         if(gamepad2.dpad_up) {
