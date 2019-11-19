@@ -167,6 +167,7 @@ public class UDC_Teleop extends OpMode
         }
         if(gamepad2.right_trigger == 1.0){
             gripper.GripperOpenRight();
+<<<<<<< HEAD
             while(gamepad2.right_trigger == 1.0){
             }
             gripper.GripperCloseRight();
@@ -175,6 +176,18 @@ public class UDC_Teleop extends OpMode
             gripper.GripperOpenLeft();
             while(gamepad2.left_trigger == 1.0){
             }
+=======
+            do {
+                gripper.GripperOpenRight();
+            }while(gamepad2.right_trigger == 1.0);
+            gripper.GripperCloseRight();
+        }
+        if(gamepad2.left_trigger == 1.0) {
+            gripper.GripperOpenLeft();
+            do {
+                gripper.GripperOpenLeft();
+            }while(gamepad2.left_trigger == 1.0);
+>>>>>>> 0c27c064c4c3b8b5e5899ad67ef7b9e1fc6d4958
             gripper.GripperCloseLeft();
         }
 

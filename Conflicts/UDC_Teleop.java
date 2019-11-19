@@ -19,14 +19,13 @@ public class UDC_Teleop extends OpMode
 
     private double JoystickThreshold = 0.2;
 
-<<<<<<< HEAD
     private int[] MaxMotorPositions = {0,0,0,0};
-=======
+
     private boolean GripR = false;
     private boolean GripL = false;
 
 
->>>>>>> 84178df1146725f50e530e78816c0b6158937633
+
     private int[] PreviousMotorPositions = {0,0,0,0};
     private int[] TotalMotorClicks = {0,0,0,0};
     boolean FirstRun = true;
