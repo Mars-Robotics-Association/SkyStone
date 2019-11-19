@@ -71,7 +71,7 @@ public class UDC_Teleop extends OpMode
         double turnSpeed = Math.abs(Jc.rightStickX);
 
         //Reset Gyro if needed
-        if(gamepad2.x)
+        if(gamepad1.x)
         {
             Bot.OffsetGyro();
         }
@@ -91,18 +91,11 @@ public class UDC_Teleop extends OpMode
                 TurnSpeedMultiplier = BaseTurnSpeedMultiplier/2;
 
         }
-        if(gamepad1.x)
+        if(gamepad1.y)
         {
 
             DriveSpeedMultiplier = BaseDriveSpeedMultiplier/4;
             TurnSpeedMultiplier = BaseTurnSpeedMultiplier/4;
-
-        }
-        if(gamepad1.y)
-        {
-
-            DriveSpeedMultiplier = BaseDriveSpeedMultiplier/8;
-            TurnSpeedMultiplier = BaseTurnSpeedMultiplier/8;
 
         }
 

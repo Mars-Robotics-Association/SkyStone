@@ -30,7 +30,7 @@ public class JoystickCalc
     {
 
         leftStickY = (opmode.gamepad1.left_stick_y * -1 );
-        leftStickX = opmode.gamepad1.left_stick_x;
+        leftStickX = -opmode.gamepad1.left_stick_x;
         rightStickX = opmode.gamepad1.right_stick_x;
         rightStickY = (opmode.gamepad1.right_stick_y * -1 );
         xButton = opmode.gamepad1.x;

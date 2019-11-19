@@ -63,6 +63,7 @@ public class SkyStoneBot implements Robot
     public void Start()
     {
         imu.Start();
+        OffsetGyro();
     }
 
     @Override
@@ -70,17 +71,19 @@ public class SkyStoneBot implements Robot
     {
         imu.Loop();
         Angles = imu.angles;
+/*
         opmode.telemetry.addData("Robot Rot before offset: ", Angles.firstAngle);
+*/
         RobotAngle = Angles.firstAngle - RobotAngleOffset;
-        opmode.telemetry.addData("Robot Rot Final: ", RobotAngle);
+        /*opmode.telemetry.addData("Robot Rot Final: ", RobotAngle);
         opmode.telemetry.addData("IMU: ", imu);
-        opmode.telemetry.update();
+        opmode.telemetry.update();*/
     }
 
     public void OffsetGyro()
     {
         Orientation a = imu.angles;
-        RobotAngleOffset = a.firstAngle;
+        RobotAngleOffset = a.firstAngle + 180;
     }
 
     @Override
