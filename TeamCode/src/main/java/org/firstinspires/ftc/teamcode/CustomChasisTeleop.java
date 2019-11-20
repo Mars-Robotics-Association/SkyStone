@@ -40,7 +40,7 @@ public class CustomChasisTeleop extends OpMode
         gripper.Init();
         arm = new ArmAttachment(this);
         arm.Init();
-        Teleop = new UDC_Teleop();
+        Teleop = new UDC_Teleop(this);
 
         //set speeds:
         telemetry.addData("endstart",5 );

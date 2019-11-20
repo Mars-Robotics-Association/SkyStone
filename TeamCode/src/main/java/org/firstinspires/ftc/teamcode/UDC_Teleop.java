@@ -183,7 +183,7 @@ public class UDC_Teleop
         public void stoneDown(){
             arm.PutDownStone();
         }
-        
+
         public void leftLift() {
             arm.LiftLeft();}
         public void rightLift() {

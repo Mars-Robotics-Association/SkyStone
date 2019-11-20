@@ -154,7 +154,7 @@ public class FieldNavigationBot1
             absoluteAngle = 360 + absoluteAngle;
         }
 
-        Bot.MoveAtAngle(absoluteAngle, .5);
+        Bot.MoveAtAngle(-absoluteAngle, .5);
         Navigating = true;
         Rotating = false;
     }
