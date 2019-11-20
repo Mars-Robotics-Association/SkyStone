@@ -74,7 +74,7 @@ public class SkyStoneBot implements Robot
 /*
         opmode.telemetry.addData("Robot Rot before offset: ", Angles.firstAngle);
 */
-        RobotAngle = -(Angles.firstAngle - RobotAngleOffset);
+        RobotAngle = (Angles.firstAngle - RobotAngleOffset);
         /*opmode.telemetry.addData("Robot Rot Final: ", RobotAngle);
         opmode.telemetry.addData("IMU: ", imu);
         opmode.telemetry.update();*/

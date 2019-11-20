@@ -26,10 +26,18 @@ public class UDC_Teleop
     public Gripper gripper;
     public ArmAttachment arm;
 
+    private OpMode opMode;
+
+    public UDC_Teleop(OpMode newOpmode)
+    {
+        opMode = newOpmode;
+    }
 
     public void init()
     {
-
+        Bot = new SkyStoneBot(opMode);
+        Jc = new JoystickCalc(opMode);
+        Bot.Init();
     }
 
     public void start()
@@ -175,13 +183,7 @@ public class UDC_Teleop
         public void stoneDown(){
             arm.PutDownStone();
         }
-
-
-
-
-
-
-
+        
         public void leftLift() {
             arm.LiftLeft();}
         public void rightLift() {
@@ -189,13 +191,4 @@ public class UDC_Teleop
         public void stopLifth(){
             arm.LiftStopHorizontal();
     }
-
-
-
-
-
-        telemetry.addData("Rot", Bot.GetRobotAngleDouble());
-
-        
-
 }
