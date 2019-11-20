@@ -80,8 +80,8 @@ public class FieldNavigationBot1
         CurrentRot = Bot.GetFinalGyro();
         Vuforia.Loop();
         //update values
-        CurrentX = -Vuforia.GetRobotX();
-        CurrentY = -Vuforia.GetRobotY();
+        CurrentX = Vuforia.GetRobotX();
+        CurrentY = Vuforia.GetRobotY();
 
 
         if(Navigating)
@@ -191,7 +191,4 @@ public class FieldNavigationBot1
         }
         else return false;
     }
-
-
-
 }

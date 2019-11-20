@@ -230,6 +230,7 @@ public class UDC_Teleop extends OpMode
 
 
 
+        telemetry.addData("Rot", Bot.GetRobotAngleDouble());
 
         telemetry.addData("FL total clicks",TotalMotorClicks[0]);
         telemetry.addData("FR total clicks",TotalMotorClicks[1]);

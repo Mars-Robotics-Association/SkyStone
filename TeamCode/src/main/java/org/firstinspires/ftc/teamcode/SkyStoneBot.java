@@ -74,7 +74,7 @@ public class SkyStoneBot implements Robot
 /*
         opmode.telemetry.addData("Robot Rot before offset: ", Angles.firstAngle);
 */
-        RobotAngle = Angles.firstAngle - RobotAngleOffset;
+        RobotAngle = -(Angles.firstAngle - RobotAngleOffset);
         /*opmode.telemetry.addData("Robot Rot Final: ", RobotAngle);
         opmode.telemetry.addData("IMU: ", imu);
         opmode.telemetry.update();*/
@@ -90,7 +90,7 @@ public class SkyStoneBot implements Robot
     public void MoveAtAngle(double angle, double speed)
     {
         //get relative angle and calculate wheel speeds
-        double relativeAngle = angle + RobotAngle;
+        double relativeAngle = angle - RobotAngle;
 /*
         double relativeAngle = angle + RobotAngle + 90;
 */
@@ -106,7 +106,7 @@ public class SkyStoneBot implements Robot
     public void MoveAtAngleTurning(double angle, double speed, boolean turnRight, double turnSpeed)
     {
         //get relative angle and calculate wheel speeds
-        double relativeAngle = angle + RobotAngle;
+        double relativeAngle = angle - RobotAngle;
         CalculateWheelSpeedsTurning(relativeAngle, speed, turnRight, turnSpeed);
         //set the powers of the motors
         FrontRight.setPower(FrontRightPower);
@@ -213,6 +213,11 @@ public class SkyStoneBot implements Robot
     public float GetRobotAngle()
     {
         return 0;
+    }
+
+    public double GetRobotAngleDouble()
+    {
+        return RobotAngle;
     }
 
 }
