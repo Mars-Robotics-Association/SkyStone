@@ -5,17 +5,16 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-@TeleOp(name="UDC_Teleop", group="Iterative Opmode")
-public class UDC_Teleop extends OpMode
+public class UDC_Teleop
 {
-    private JoystickCalc Jc = null;
-    private SkyStoneBot Bot = null;
+     JoystickCalc Jc = null;
+     SkyStoneBot Bot = null;
 
-    private double BaseDriveSpeedMultiplier = 1;
-    private double BaseTurnSpeedMultiplier = 0.4;
-    private double DriveSpeedMultiplier;
-    private double TurnSpeedMultiplier;
-    private double gripperPosition = 0.5;
+     double BaseDriveSpeedMultiplier = 1;
+     double BaseTurnSpeedMultiplier = 0.4;
+     double DriveSpeedMultiplier = 0 ;
+     double TurnSpeedMultiplier = 0;
+     double gripperPosition = 0.5;
 
     private double JoystickThreshold = 0.2;
 
@@ -28,47 +27,22 @@ public class UDC_Teleop extends OpMode
     public ArmAttachment arm;
 
 
-    @Override
     public void init()
     {
-        telemetry.addData("start",5 );
-        telemetry.update();
 
-
-        gripperPosition = 0.5;
-        Jc = new JoystickCalc(this);
-        Bot = new SkyStoneBot(this);
-        Bot.Init();
-        gripper = new Gripper(this);
-        gripper.Init();
-        arm = new ArmAttachment(this);
-        arm.Init();
-        //set speeds:
-        DriveSpeedMultiplier = BaseDriveSpeedMultiplier;
-        TurnSpeedMultiplier = BaseTurnSpeedMultiplier;
-        telemetry.addData("endstart",5 );
-
-        telemetry.update();
     }
 
-    @Override
     public void start()
     {
         Bot.Start();
     }
 
-    @Override
-    public void loop()
-    {
-        Bot.Loop();
-        //Update telemetry and get joystick input
-        Jc.calculate();
 
         //calculate the absolute value of the right x for turn speed
         double turnSpeed = Math.abs(Jc.rightStickX);
 
         //Reset Gyro if needed
-        if(gamepad1.x)
+        public void gyroOffset()
         {
             Bot.OffsetGyro();
         }
@@ -78,21 +52,20 @@ public class UDC_Teleop extends OpMode
 
 
         //switch between normal and slow modes
-        if(gamepad1.a)
-        {
-                DriveSpeedMultiplier = BaseDriveSpeedMultiplier;
-                TurnSpeedMultiplier = BaseTurnSpeedMultiplier;
-
+        public void fullSpeed() {
+            DriveSpeedMultiplier = BaseDriveSpeedMultiplier;
+            TurnSpeedMultiplier = BaseTurnSpeedMultiplier;
 
         }
-        if(gamepad1.b)
+
+        public void halfSpeed()
         {
 
                 DriveSpeedMultiplier = BaseDriveSpeedMultiplier/2;
                 TurnSpeedMultiplier = BaseTurnSpeedMultiplier/2;
 
         }
-        if(gamepad1.y)
+        public void forthSpeed()
         {
 
             DriveSpeedMultiplier = BaseDriveSpeedMultiplier/4;
@@ -100,15 +73,15 @@ public class UDC_Teleop extends OpMode
 
         }
 
-        if(Jc.leftStickPower > JoystickThreshold) //Move
+        public void chooseDirection(double rightStickX) //Move
         {
             //if we need to turn while moving, choose direction
             boolean turnRight = false;
-            if (Jc.rightStickX > JoystickThreshold)
+            if (rightStickX > JoystickThreshold)
             {
                 turnRight = true;
             }
-            if (Jc.rightStickX <= JoystickThreshold)
+            if (rightStickX <= JoystickThreshold)
             {
                 turnRight = false;
             }
@@ -117,13 +90,13 @@ public class UDC_Teleop extends OpMode
             Bot.MoveAtAngleTurning(Jc.leftStickBaring, DriveSpeedMultiplier * Jc.leftStickPower, turnRight, turnSpeed*TurnSpeedMultiplier);
         }
 
-        else if(Jc.rightStickX > JoystickThreshold) //Turn Right
+        public void turnRight() //Turn Right
         {
             Bot.RawTurn(true, turnSpeed*TurnSpeedMultiplier);
         }
 
 
-        else if(Jc.rightStickX < -JoystickThreshold) //Turn Left
+        public void leftTurn() //Turn Left
         {
             Bot.RawTurn(false, turnSpeed*TurnSpeedMultiplier);
         }
@@ -144,62 +117,62 @@ public class UDC_Teleop extends OpMode
             Bot.RawTurn(false, turnSpeed*TurnSpeedMultiplier);
         }*/
 
-        else //STOP
+        public void stopWheels() //STOP
         {
             Bot.StopMotors();
         }
-        if(gamepad2.left_bumper){
+        public void closeGripper(){
             gripper.GripperClose();
         }
-        if(gamepad2.right_bumper){
+        public void openGripper(){
             gripper.GripperOpen();
         }
 
-        if(gamepad2.right_trigger == 1.0)
-        {
-            gripper.GripperOpenRight();
-            do 
-            {
-                gripper.GripperOpenRight();
-            }
-            while(gamepad2.right_trigger == 1.0);
-            gripper.GripperCloseRight();
-        }
-        if(gamepad2.left_trigger == 1.0) 
-        {
-            gripper.GripperOpenLeft();
-            do 
-            {
-                gripper.GripperOpenLeft();
-            }
-            while(gamepad2.left_trigger == 1.0);
-            gripper.GripperCloseLeft();
-        }
+//        public void openGripperRight()
+//        {
+//            gripper.GripperOpenRight();
+//            do
+//            {
+//                gripper.GripperOpenRight();
+//            }
+//            while(gamepad2.right_trigger == 1.0);
+//            gripper.GripperCloseRight();
+//        }
+//        public void openGripperLeft()
+//        {
+//            gripper.GripperOpenLeft();
+//            do
+//            {
+//                gripper.GripperOpenLeft();
+//            }
+//            while(gamepad2.left_trigger == 1.0);
+//            gripper.GripperCloseLeft();
+        //}
 
-        if(gamepad2.dpad_up) {
+        public void upLift(){
             arm.LiftUp();}
-        else if(gamepad2.dpad_down) {
+        public void downLift() {
             arm.LiftDown();}
-        else {
+        public void stopLift() {
             arm.LiftStopVertical();
         }
 
-        if(gamepad2.dpad_left) {
+        public void gripperLeft() {
             gripperPosition+=0.005;
             gripper.GripperRotatePosition(gripperPosition);
         }
 
-        if(gamepad2.dpad_right) {
+        public void gripperRight() {
             gripperPosition -= 0.005;
             gripper.GripperRotatePosition(gripperPosition);
         }
-        if(gripperPosition>1){ gripperPosition = 1;}
-        if(gripperPosition<0){gripperPosition=0;}
+        public void gripper1(){ gripperPosition = 1;}
+        public void gripper0(){gripperPosition=0;}
 
-        if(gamepad2.a){
+        public void stoneUp(){
             arm.PickUpStone();
         }
-        if(gamepad2.b){
+        public void stoneDown(){
             arm.PutDownStone();
         }
 
@@ -209,36 +182,20 @@ public class UDC_Teleop extends OpMode
 
 
 
-        if(gamepad2.dpad_left) {
+        public void leftLift() {
             arm.LiftLeft();}
-        else if (gamepad1.dpad_right) {
+        public void rightLift() {
             arm.LiftRight();}
-        else{
+        public void stopLifth(){
             arm.LiftStopHorizontal();
     }
 
-        if(FirstRun){
-            for(int i = 0; i<4; i++){
 
-            }
-        }
-        for(int i = 0; i<4; i++){
-            if(MaxMotorPositions[i]<Bot.GetMotorPositions()[i]){
-                MaxMotorPositions[i]=Bot.GetMotorPositions()[i];
-            }
-        }
 
 
 
         telemetry.addData("Rot", Bot.GetRobotAngleDouble());
 
-        telemetry.addData("FL total clicks",TotalMotorClicks[0]);
-        telemetry.addData("FR total clicks",TotalMotorClicks[1]);
-        telemetry.addData("RL total clicks",TotalMotorClicks[2]);
-        telemetry.addData("RR total clicks",TotalMotorClicks[3]);
-        telemetry.addData("Max encoder clicks",MaxMotorPositions[0]);
-        telemetry.addData("Current Motor Position",Bot.GetMotorPositions()[0]);
-        FirstRun=false;
-        telemetry.update();
-    }
+        
+
 }
