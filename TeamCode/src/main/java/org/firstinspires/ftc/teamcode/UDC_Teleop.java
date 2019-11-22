@@ -54,10 +54,6 @@ public class UDC_Teleop
             Bot.OffsetGyro();
         }
 
-
-
-
-
         //switch between normal and slow modes
         public void fullSpeed() {
             DriveSpeedMultiplier = BaseDriveSpeedMultiplier;

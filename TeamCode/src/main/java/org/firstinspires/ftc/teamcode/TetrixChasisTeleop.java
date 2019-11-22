@@ -68,11 +68,6 @@ public class TetrixChasisTeleop extends OpMode
         {
             Teleop.gyroOffset();
         }
-
-
-
-
-
         //switch between normal and slow modes
 
         if(Jc.leftStickPower > JoystickThreshold) //Move
