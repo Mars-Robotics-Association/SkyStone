@@ -114,7 +114,7 @@ public class ArmAttachment implements Attachment {
             ArmRight.setPower(0.2*Vratio);
             ArmLeft.setPower(0.2*Vratio);
         }
-        else if(chasis==1||chasis==3){
+        else if(chasis==2||chasis==4){
             ArmVertical.setPower(0.2*Vratio);
         }
     }
@@ -123,7 +123,7 @@ public class ArmAttachment implements Attachment {
             ArmRight.setPower(-0.2*Vratio);
             ArmLeft.setPower(-0.2*Vratio);
         }
-        else if(chasis==1||chasis==3){
+        else if(chasis==2||chasis==4){
             ArmVertical.setPower(-0.2*Vratio);
         }
     }
@@ -132,7 +132,7 @@ public class ArmAttachment implements Attachment {
             ArmRight.setPower(0*Vratio);
             ArmLeft.setPower(0*Vratio);
         }
-        else if(chasis==1||chasis==3){
+        else if(chasis==2||chasis==4){
             ArmVertical.setPower(0*Vratio);
         }
     }
@@ -149,13 +149,15 @@ public class ArmAttachment implements Attachment {
     }
 
     public void IntakeOn(){
+        if(chasis==2||chasis==4){
         LeftIntake.setPower(1);
         RightIntake.setPower(-1);
-    }
+    }}
     public void IntakeOff(){
-        LeftIntake.setPower(-1);
-        RightIntake.setPower(1);
-    }
+        if(chasis==2||chasis==4){
+            LeftIntake.setPower(-1);
+            RightIntake.setPower(1);
+        }}
 
 
 
