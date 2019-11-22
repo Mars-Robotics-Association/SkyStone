@@ -9,13 +9,11 @@ public class UDC_Teleop
 {
      JoystickCalc Jc = null;
      SkyStoneBot Bot = null;
-     Gripper gripper;
 
      double BaseDriveSpeedMultiplier = 1;
      double BaseTurnSpeedMultiplier = 0.4;
      double DriveSpeedMultiplier = 0 ;
      double TurnSpeedMultiplier = 0;
-     double gripperPosition = 0.5;
 
     private double JoystickThreshold = 0.2;
     double turnSpeed;
@@ -33,11 +31,7 @@ public class UDC_Teleop
 
     public void Init()
     {
-        Bot = new SkyStoneBot(opmode);
         Bot.Init();
-
-        gripper = new Gripper(opmode);
-        gripper.Init();
     }
 
     public void Start(){Bot.Start();}
@@ -146,12 +140,7 @@ public class UDC_Teleop
         {
             Bot.StopMotors();
         }
-        public void closeGripper(){
-            gripper.GripperClose();
-        }
-        public void openGripper(){
-            gripper.GripperOpen();
-        }
+
 
 //        public void openGripperRight()
 //        {
@@ -173,32 +162,4 @@ public class UDC_Teleop
 //            while(gamepad2.left_trigger == 1.0);
 //            gripper.GripperCloseLeft();
         //}
-
-
-
-        public void gripperLeft() {
-            gripperPosition+=0.005;
-            gripper.GripperRotatePosition(gripperPosition);
-        }
-
-        public void gripperRight() {
-            gripperPosition -= 0.005;
-            gripper.GripperRotatePosition(gripperPosition);
-        }
-        public void gripper1(){ gripperPosition = 1;}
-        public void gripper0(){gripperPosition=0;}
-
-        public void gripperOpenLeft(){
-            gripper.GripperOpenLeft();
-        }
-        public void gripperOpenRight(){
-            gripper.GripperOpenRight();
-        }
-
-
-
-
-
-
-
 }

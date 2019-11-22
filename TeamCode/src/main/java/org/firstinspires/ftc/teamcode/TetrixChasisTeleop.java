@@ -9,7 +9,7 @@ public class TetrixChasisTeleop extends OpMode
     private JoystickCalc Jc = null;
     public UDC_Teleop Teleop = null;
     public ArmAttachmentTetrix arm;
-
+    Gripper gripper;
 
     private double DriveSpeedMultiplier;
     private double TurnSpeedMultiplier;
@@ -42,6 +42,9 @@ public class TetrixChasisTeleop extends OpMode
         telemetry.addData("endstart",5 );
 
         telemetry.update();
+
+        gripper = new Gripper(this);
+        gripper.Init();
     }
 
     @Override
@@ -143,24 +146,50 @@ public class TetrixChasisTeleop extends OpMode
 
 
         if(gamepad2.left_stick_x>JoystickThreshold){
-            Teleop.gripperRight();
+            gripperRight();
         }
         else if(gamepad2.left_stick_x<JoystickThreshold){
-            Teleop.gripperLeft();
+            gripperLeft();
         }
 
         if(gamepad2.left_bumper){
-            Teleop.gripperOpenLeft();
+            gripperOpenLeft();
         }
         if(gamepad2.right_bumper){
-            Teleop.gripperOpenRight();
+            gripperOpenRight();
         }
         if(gamepad2.left_trigger>0.2){
-            Teleop.closeGripper();
+            closeGripper();
         }
         if(gamepad2.right_trigger>0.2){
-            Teleop.openGripper();
+           openGripper();
         }
         telemetry.update();
+    }
+
+    public void closeGripper(){
+        gripper.GripperClose();
+    }
+    public void openGripper(){
+        gripper.GripperOpen();
+    }
+
+    public void gripperLeft() {
+        gripperPosition+=0.005;
+        gripper.GripperRotatePosition(gripperPosition);
+    }
+
+    public void gripperRight() {
+        gripperPosition -= 0.005;
+        gripper.GripperRotatePosition(gripperPosition);
+    }
+    public void gripper1(){ gripperPosition = 1;}
+    public void gripper0(){gripperPosition=0;}
+
+    public void gripperOpenLeft(){
+        gripper.GripperOpenLeft();
+    }
+    public void gripperOpenRight(){
+        gripper.GripperOpenRight();
     }
 }
