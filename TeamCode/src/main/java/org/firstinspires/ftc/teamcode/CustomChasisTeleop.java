@@ -49,7 +49,7 @@ public class CustomChasisTeleop extends OpMode
     @Override
     public void start()
     {
-
+        Teleop.Start();
     }
 
     @Override
