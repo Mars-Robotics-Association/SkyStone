@@ -72,7 +72,6 @@ public class ArmAttachmentTetrix implements Attachment {
     public ArmAttachmentTetrix(OpMode thatopmode) {
         opmode = thatopmode;
     }
-    //chasis = number of current drive chasis
 
     public void Init() {
         ArmLeft = opmode.hardwareMap.dcMotor.get("ArmLeft");

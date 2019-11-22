@@ -36,7 +36,7 @@ public class TetrixChasisTeleop extends OpMode
         Teleop = new UDC_Teleop(this);
         Teleop.Init();
 
-        arm = new ArmAttachmentTetrix(this,1);
+        arm = new ArmAttachmentTetrix(this);
         arm.Init();
         //set speeds:
         telemetry.addData("endstart",5 );

@@ -34,7 +34,7 @@ public class CustomChasisTeleop extends OpMode
         Teleop = new UDC_Teleop(this);
         Teleop.Init();
 
-        arm = new ArmAttachmentCustom(this,2);
+        arm = new ArmAttachmentCustom(this);
         arm.Init();
         //set speeds:
     }
