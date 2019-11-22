@@ -27,13 +27,9 @@ public class CustomChasisTeleop extends OpMode
     @Override
     public void init()
     {
-        telemetry.addData("start",5 );
-        telemetry.update();
         gripperPosition = 0.5;
 
         Jc = new JoystickCalc(this);
-
-
 
         Teleop = new UDC_Teleop(this);
         Teleop.Init();
@@ -41,9 +37,6 @@ public class CustomChasisTeleop extends OpMode
         arm = new ArmAttachment(this,2);
         arm.Init();
         //set speeds:
-        telemetry.addData("endstart",5 );
-
-        telemetry.update();
     }
 
     @Override
@@ -67,10 +60,6 @@ public class CustomChasisTeleop extends OpMode
         {
             Teleop.gyroOffset();
         }
-
-
-
-
 
         //switch between normal and slow modes
 
