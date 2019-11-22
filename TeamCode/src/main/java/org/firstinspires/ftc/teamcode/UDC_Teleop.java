@@ -9,6 +9,7 @@ public class UDC_Teleop
 {
      JoystickCalc Jc = null;
      SkyStoneBot Bot = null;
+     Gripper gripper;
 
      double BaseDriveSpeedMultiplier = 1;
      double BaseTurnSpeedMultiplier = 0.4;
@@ -17,40 +18,47 @@ public class UDC_Teleop
      double gripperPosition = 0.5;
 
     private double JoystickThreshold = 0.2;
+    double turnSpeed;
 
     private int[] MaxMotorPositions = {0,0,0,0};
     private int[] PreviousMotorPositions = {0,0,0,0};
     private int[] TotalMotorClicks = {0,0,0,0};
     boolean FirstRun = true;
 
-    public Gripper gripper;
-    public ArmAttachment arm;
+    OpMode opmode;
 
-    private OpMode opMode;
-
-    public UDC_Teleop(OpMode newOpmode)
-    {
-        opMode = newOpmode;
+    public UDC_Teleop(OpMode thatopmode) {
+        opmode = thatopmode;
     }
 
-    public void init()
+    public void Init()
     {
-        Bot = new SkyStoneBot(opMode);
-        Jc = new JoystickCalc(opMode);
+        Bot = new SkyStoneBot(opmode);
         Bot.Init();
-    }
-
-    public void start()
-    {
         Bot.Start();
+
+        gripper = new Gripper(opmode);
+        gripper.Init();
+
+
+
+
     }
 
+    public void Loop(){
+        Bot.Loop();
+    }
+
+    public void UpdateTurnSpeed(double input){
+    turnSpeed = input;
+}
 
         //calculate the absolute value of the right x for turn speed
-        double turnSpeed = Math.abs(Jc.rightStickX);
 
-        //Reset Gyro if needed
-        public void gyroOffset()
+
+    //Reset Gyro if needed
+
+    public void gyroOffset()
         {
             Bot.OffsetGyro();
         }
@@ -65,6 +73,13 @@ public class UDC_Teleop
             TurnSpeedMultiplier = BaseTurnSpeedMultiplier;
 
         }
+        public void twoThirdsSpeed()
+        {
+
+        DriveSpeedMultiplier = BaseDriveSpeedMultiplier*2/3;
+        TurnSpeedMultiplier = BaseTurnSpeedMultiplier*2/3;
+
+        }
 
         public void halfSpeed()
         {
@@ -73,6 +88,11 @@ public class UDC_Teleop
                 TurnSpeedMultiplier = BaseTurnSpeedMultiplier/2;
 
         }
+
+        public void thirdSpeed(){
+            DriveSpeedMultiplier = BaseDriveSpeedMultiplier/3;
+            TurnSpeedMultiplier = BaseTurnSpeedMultiplier/3; }
+
         public void forthSpeed()
         {
 
@@ -104,7 +124,7 @@ public class UDC_Teleop
         }
 
 
-        public void leftTurn() //Turn Left
+        public void turnLeft() //Turn Left
         {
             Bot.RawTurn(false, turnSpeed*TurnSpeedMultiplier);
         }
@@ -157,13 +177,7 @@ public class UDC_Teleop
 //            gripper.GripperCloseLeft();
         //}
 
-        public void upLift(){
-            arm.LiftUp();}
-        public void downLift() {
-            arm.LiftDown();}
-        public void stopLift() {
-            arm.LiftStopVertical();
-        }
+
 
         public void gripperLeft() {
             gripperPosition+=0.005;
@@ -177,18 +191,17 @@ public class UDC_Teleop
         public void gripper1(){ gripperPosition = 1;}
         public void gripper0(){gripperPosition=0;}
 
-        public void stoneUp(){
-            arm.PickUpStone();
+        public void gripperOpenLeft(){
+            gripper.GripperOpenLeft();
         }
-        public void stoneDown(){
-            arm.PutDownStone();
+        public void gripperOpenRight(){
+            gripper.GripperOpenRight();
         }
 
-        public void leftLift() {
-            arm.LiftLeft();}
-        public void rightLift() {
-            arm.LiftRight();}
-        public void stopLifth(){
-            arm.LiftStopHorizontal();
-    }
+
+
+
+
+
+
 }

@@ -80,8 +80,8 @@ public class FieldNavigationBot1
         CurrentRot = Bot.GetFinalGyro();
         Vuforia.Loop();
         //update values
-        CurrentX = Vuforia.GetRobotX();
-        CurrentY = Vuforia.GetRobotY();
+        CurrentX = -Vuforia.GetRobotX();
+        CurrentY = -Vuforia.GetRobotY();
 
 
         if(Navigating)
@@ -154,7 +154,7 @@ public class FieldNavigationBot1
             absoluteAngle = 360 + absoluteAngle;
         }
 
-        Bot.MoveAtAngle(-absoluteAngle, .5);
+        Bot.MoveAtAngle(absoluteAngle, .5);
         Navigating = true;
         Rotating = false;
     }
@@ -191,4 +191,7 @@ public class FieldNavigationBot1
         }
         else return false;
     }
+
+
+
 }

@@ -60,19 +60,39 @@ public class ArmAttachment implements Attachment {
     private DcMotor ArmBackward = null;
     private DcMotor ArmLeft = null;
     private DcMotor ArmRight = null;
+    private DcMotor LeftIntake = null;
+    private DcMotor RightIntake = null;
+
+    int chasis=0;
+    double Vratio;
+    double Hratio;
     OpMode opmode;
 
     public Gripper gripper;
 
-    public ArmAttachment(OpMode thatopmode) {
+    public ArmAttachment(OpMode thatopmode, int currentChasis) {
         opmode = thatopmode;
+        chasis=currentChasis;
     }
-    public void Init() {
+    //chasis = number of current drive chasis
 
-        ArmForward= opmode.hardwareMap.dcMotor.get("ArmForward");
-        ArmBackward= opmode.hardwareMap.dcMotor.get("ArmBackward");
-        ArmLeft= opmode.hardwareMap.dcMotor.get("ArmLeft");
-        ArmRight= opmode.hardwareMap.dcMotor.get("ArmRight");
+    public void Init() {
+        if(chasis==1||chasis==3) {
+            ArmForward = opmode.hardwareMap.dcMotor.get("ArmForward");
+            ArmBackward = opmode.hardwareMap.dcMotor.get("ArmBackward");
+            ArmLeft = opmode.hardwareMap.dcMotor.get("ArmLeft");
+            ArmRight = opmode.hardwareMap.dcMotor.get("ArmRight");
+            Vratio=1;
+            Hratio=1;
+        }
+        else if(chasis==2||chasis==4) {
+            ArmForward = opmode.hardwareMap.dcMotor.get("ArmVertical");
+            ArmLeft = opmode.hardwareMap.dcMotor.get("ArmHorizontal");
+            LeftIntake = opmode.hardwareMap.dcMotor.get("LeftIntake");
+            RightIntake = opmode.hardwareMap.dcMotor.get("RightIntake");
+            Vratio=1;
+            Hratio=1;
+        }
     }
 
 
@@ -91,46 +111,52 @@ public class ArmAttachment implements Attachment {
 //test
     }
     public void LiftUp () {
-        ArmForward.setPower(0.2);
-        ArmBackward.setPower(0.2);
+        ArmForward.setPower(0.2*Vratio);
+        if(chasis==1||chasis==3) {
+            ArmBackward.setPower(0.2*Vratio);
+        }
     }
     public void LiftDown () {
-        ArmForward.setPower(-0.2);
-        ArmBackward.setPower(-0.2);
+        ArmForward.setPower(-0.2*Vratio);
+        if(chasis==1||chasis==3) {
+            ArmBackward.setPower(-0.2*Vratio);
+        }
     }
     public void LiftStopVertical () {
         ArmForward.setPower(0);
-        ArmBackward.setPower(0);
+        if(chasis==1||chasis==3) {
+            ArmBackward.setPower(0);
+        }
     }
     public void LiftLeft () {
-        ArmLeft.setPower(0.2);
-        ArmRight.setPower(-0.2);
+        ArmLeft.setPower(0.2*Hratio);
+        if(chasis==1||chasis==3) {
+            ArmRight.setPower(-0.2*Hratio);
+        }
     }
 
     public void LiftRight () {
-        ArmLeft.setPower (-0.2);
-        ArmRight.setPower (0.2); }
-
+        ArmLeft.setPower(-0.2*Hratio);
+        if (chasis == 1 || chasis == 3) {
+            ArmRight.setPower(0.2*Hratio);
+        }
+    }
     public void LiftStopHorizontal () {
-        ArmLeft.setPower (0);
-        ArmRight.setPower (0);
-    }
-    public void PickUpStone(){
-        do{
-            LiftDown();
-        }while(ArmLeft.getCurrentPosition() == 0 && ArmRight.getCurrentPosition() == 0);
-        //0 is down for arm motors
-        LiftStopVertical();
-        gripper.GripperClose();
+        ArmLeft.setPower(0);
+        if(chasis==1||chasis==3) {
+            ArmRight.setPower(0);
+        }
     }
 
-    public void PutDownStone(){
-        do{
-            LiftDown();
-        }while(ArmLeft.getCurrentPosition() == 0 && ArmRight.getCurrentPosition() == 0);
-        LiftStopHorizontal();
-        gripper.GripperOpen();
+    public void IntakeOn(){
+        LeftIntake.setPower(1);
+        RightIntake.setPower(-1);
     }
+    public void IntakeOff(){
+        LeftIntake.setPower(-1);
+        RightIntake.setPower(1);
+    }
+
 
 
 

@@ -4,13 +4,13 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name="ServoTest", group="Iterative Opmode")
+@TeleOp(name="ServoTesting", group="Iterative Opmode")
 public class ServoTest extends OpMode
 {
     private JoystickCalc Jc = null;
     private SkyStoneBot Bot = null;
 
-    private Servo GripperR = null;
+    private Servo GripperL = null;
 
 
 
@@ -20,7 +20,7 @@ public class ServoTest extends OpMode
     public void init()
     {
 
-        GripperR= hardwareMap.servo.get("GripperR");
+        GripperL= hardwareMap.servo.get("GripperL");
 
     }
 
@@ -33,11 +33,11 @@ public class ServoTest extends OpMode
     @Override
     public void loop()
     {
-        telemetry.addData("inital position", GripperR.getPosition());
+        telemetry.addData("inital position", GripperL.getPosition());
 
 
         if(gamepad1.a){
-            GripperR.setPosition(0.3);
+            GripperL.setPosition(0.3);
         }
         telemetry.update();
 

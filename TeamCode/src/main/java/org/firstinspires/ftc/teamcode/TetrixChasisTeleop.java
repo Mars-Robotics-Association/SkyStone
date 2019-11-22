@@ -3,8 +3,8 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name="CustomChasisTeleop", group="Iterative Opmode")
-public class CustomChasisTeleop extends OpMode
+@TeleOp(name="TetrixChasisTeleop", group="Iterative Opmode")
+public class TetrixChasisTeleop extends OpMode
 {
     private JoystickCalc Jc = null;
     public UDC_Teleop Teleop = null;
@@ -38,7 +38,7 @@ public class CustomChasisTeleop extends OpMode
         Teleop = new UDC_Teleop(this);
         Teleop.Init();
 
-        arm = new ArmAttachment(this,2);
+        arm = new ArmAttachment(this,1);
         arm.Init();
         //set speeds:
         telemetry.addData("endstart",5 );
@@ -76,7 +76,7 @@ public class CustomChasisTeleop extends OpMode
 
         if(Jc.leftStickPower > JoystickThreshold) //Move
         {
-           Teleop.chooseDirection(Jc.rightStickX);
+            Teleop.chooseDirection(Jc.rightStickX);
         }
 
         else if(Jc.rightStickX > JoystickThreshold) //Turn Right
@@ -117,14 +117,6 @@ public class CustomChasisTeleop extends OpMode
         if(gamepad1.left_trigger>0.2) { Teleop.halfSpeed(); }
         if(gamepad1.right_trigger>0.2) { Teleop.thirdSpeed(); }
 
-
-
-        if(gamepad2.b){
-            arm.IntakeOn();
-        }
-        else{
-            arm.IntakeOff();
-        }
 
         if(gamepad2.x){
             //pick up stone
