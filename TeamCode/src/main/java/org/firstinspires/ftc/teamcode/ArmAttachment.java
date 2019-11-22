@@ -111,20 +111,20 @@ public class ArmAttachment implements Attachment {
     }
     public void LiftUp () {
         if(chasis==1||chasis==3) {
-            ArmRight.setPower(0.2*Vratio);
-            ArmLeft.setPower(0.2*Vratio);
+            ArmRight.setPower(0.9*Vratio);
+            ArmLeft.setPower(-0.9*Vratio);
         }
-        else if(chasis==1||chasis==3){
-            ArmVertical.setPower(0.2*Vratio);
+        else if(chasis==2||chasis==4){
+                ArmVertical.setPower(0.9*Vratio);
         }
     }
     public void LiftDown () {
         if(chasis==1||chasis==3) {
-            ArmRight.setPower(-0.2*Vratio);
-            ArmLeft.setPower(-0.2*Vratio);
+            ArmRight.setPower(-0.9*Vratio);
+            ArmLeft.setPower(0.9*Vratio);
         }
-        else if(chasis==1||chasis==3){
-            ArmVertical.setPower(-0.2*Vratio);
+        else if(chasis==2||chasis==4){
+                ArmVertical.setPower(-0.9*Vratio);
         }
     }
     public void LiftStopVertical () {
@@ -132,16 +132,16 @@ public class ArmAttachment implements Attachment {
             ArmRight.setPower(0*Vratio);
             ArmLeft.setPower(0*Vratio);
         }
-        else if(chasis==1||chasis==3){
+        else if(chasis==2||chasis==4){
             ArmVertical.setPower(0*Vratio);
         }
     }
     public void LiftExtend () {
-        ArmHorizontal.setPower(0.2*Hratio);
+        ArmHorizontal.setPower(0.9*Hratio);
     }
 
     public void LiftRetract () {
-        ArmHorizontal.setPower(-0.2*Hratio);
+        ArmHorizontal.setPower(-0.9*Hratio);
 
     }
     public void LiftStopHorizontal () {
@@ -149,13 +149,15 @@ public class ArmAttachment implements Attachment {
     }
 
     public void IntakeOn(){
+        if(chasis==2||chasis==4){
         LeftIntake.setPower(1);
         RightIntake.setPower(-1);
-    }
+    }}
     public void IntakeOff(){
-        LeftIntake.setPower(-1);
-        RightIntake.setPower(1);
-    }
+        if(chasis==2||chasis==4){
+            LeftIntake.setPower(-1);
+            RightIntake.setPower(1);
+        }}
 
 
 
