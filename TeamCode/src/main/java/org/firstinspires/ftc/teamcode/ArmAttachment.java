@@ -111,20 +111,20 @@ public class ArmAttachment implements Attachment {
     }
     public void LiftUp () {
         if(chasis==1||chasis==3) {
-            ArmRight.setPower(0.2*Vratio);
-            ArmLeft.setPower(0.2*Vratio);
+            ArmRight.setPower(0.9*Vratio);
+            ArmLeft.setPower(-0.9*Vratio);
         }
         else if(chasis==1||chasis==3){
-            ArmVertical.setPower(0.2*Vratio);
+            ArmVertical.setPower(0.9*Vratio);
         }
     }
     public void LiftDown () {
         if(chasis==1||chasis==3) {
-            ArmRight.setPower(-0.2*Vratio);
-            ArmLeft.setPower(-0.2*Vratio);
+            ArmRight.setPower(-0.9*Vratio);
+            ArmLeft.setPower(0.9*Vratio);
         }
         else if(chasis==1||chasis==3){
-            ArmVertical.setPower(-0.2*Vratio);
+            ArmVertical.setPower(-0.9*Vratio);
         }
     }
     public void LiftStopVertical () {
@@ -137,11 +137,11 @@ public class ArmAttachment implements Attachment {
         }
     }
     public void LiftExtend () {
-        ArmHorizontal.setPower(0.2*Hratio);
+        ArmHorizontal.setPower(0.9*Hratio);
     }
 
     public void LiftRetract () {
-        ArmHorizontal.setPower(-0.2*Hratio);
+        ArmHorizontal.setPower(-0.9*Hratio);
 
     }
     public void LiftStopHorizontal () {
