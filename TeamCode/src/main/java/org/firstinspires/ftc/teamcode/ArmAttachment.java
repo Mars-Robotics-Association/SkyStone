@@ -56,8 +56,8 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 public class ArmAttachment implements Attachment {
-    private DcMotor ArmForward = null;
-    private DcMotor ArmBackward = null;
+    private DcMotor ArmHorizontal = null;
+    private DcMotor ArmVertical = null;
     private DcMotor ArmLeft = null;
     private DcMotor ArmRight = null;
     private DcMotor LeftIntake = null;
@@ -78,16 +78,15 @@ public class ArmAttachment implements Attachment {
 
     public void Init() {
         if(chasis==1||chasis==3) {
-            ArmForward = opmode.hardwareMap.dcMotor.get("ArmForward");
-            ArmBackward = opmode.hardwareMap.dcMotor.get("ArmBackward");
             ArmLeft = opmode.hardwareMap.dcMotor.get("ArmLeft");
             ArmRight = opmode.hardwareMap.dcMotor.get("ArmRight");
+            ArmHorizontal = opmode.hardwareMap.dcMotor.get("ArmHorizontal");
             Vratio=1;
             Hratio=1;
         }
         else if(chasis==2||chasis==4) {
-            ArmForward = opmode.hardwareMap.dcMotor.get("ArmVertical");
-            ArmLeft = opmode.hardwareMap.dcMotor.get("ArmHorizontal");
+            ArmHorizontal = opmode.hardwareMap.dcMotor.get("ArmVertical");
+            ArmVertical = opmode.hardwareMap.dcMotor.get("ArmHorizontal");
             LeftIntake = opmode.hardwareMap.dcMotor.get("LeftIntake");
             RightIntake = opmode.hardwareMap.dcMotor.get("RightIntake");
             Vratio=1;
@@ -111,41 +110,42 @@ public class ArmAttachment implements Attachment {
 //test
     }
     public void LiftUp () {
-        ArmForward.setPower(0.2*Vratio);
         if(chasis==1||chasis==3) {
-            ArmBackward.setPower(0.2*Vratio);
+            ArmRight.setPower(0.2*Vratio);
+            ArmLeft.setPower(0.2*Vratio);
+        }
+        else if(chasis==1||chasis==3){
+            ArmVertical.setPower(0.2*Vratio);
         }
     }
     public void LiftDown () {
-        ArmForward.setPower(-0.2*Vratio);
         if(chasis==1||chasis==3) {
-            ArmBackward.setPower(-0.2*Vratio);
+            ArmRight.setPower(-0.2*Vratio);
+            ArmLeft.setPower(-0.2*Vratio);
+        }
+        else if(chasis==1||chasis==3){
+            ArmVertical.setPower(-0.2*Vratio);
         }
     }
     public void LiftStopVertical () {
-        ArmForward.setPower(0);
         if(chasis==1||chasis==3) {
-            ArmBackward.setPower(0);
+            ArmRight.setPower(0*Vratio);
+            ArmLeft.setPower(0*Vratio);
+        }
+        else if(chasis==1||chasis==3){
+            ArmVertical.setPower(0*Vratio);
         }
     }
-    public void LiftLeft () {
-        ArmLeft.setPower(0.2*Hratio);
-        if(chasis==1||chasis==3) {
-            ArmRight.setPower(-0.2*Hratio);
-        }
+    public void LiftExtend () {
+        ArmHorizontal.setPower(0.2*Hratio);
     }
 
-    public void LiftRight () {
-        ArmLeft.setPower(-0.2*Hratio);
-        if (chasis == 1 || chasis == 3) {
-            ArmRight.setPower(0.2*Hratio);
-        }
+    public void LiftRetract () {
+        ArmHorizontal.setPower(-0.2*Hratio);
+
     }
     public void LiftStopHorizontal () {
-        ArmLeft.setPower(0);
-        if(chasis==1||chasis==3) {
-            ArmRight.setPower(0);
-        }
+        ArmHorizontal.setPower(0*Hratio);
     }
 
     public void IntakeOn(){

@@ -131,10 +131,10 @@ public class TetrixChasisTeleop extends OpMode
             arm.LiftStopVertical();
         }
         if(gamepad2.dpad_left)
-        {arm.LiftLeft();}
+        {arm.LiftExtend();}
 
         else if (gamepad1.dpad_right)
-        { arm.LiftRight();}
+        { arm.LiftRetract();}
 
         else{ arm.LiftStopHorizontal(); }
 
