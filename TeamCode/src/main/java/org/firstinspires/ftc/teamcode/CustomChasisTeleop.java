@@ -8,7 +8,7 @@ public class CustomChasisTeleop extends OpMode
 {
     private JoystickCalc Jc = null;
     public UDC_Teleop Teleop = null;
-    public ArmAttachment arm;
+    public ArmAttachmentCustom arm;
 
 
     private double DriveSpeedMultiplier;
@@ -34,7 +34,7 @@ public class CustomChasisTeleop extends OpMode
         Teleop = new UDC_Teleop(this);
         Teleop.Init();
 
-        arm = new ArmAttachment(this,2);
+        arm = new ArmAttachmentCustom(this,2);
         arm.Init();
         //set speeds:
     }

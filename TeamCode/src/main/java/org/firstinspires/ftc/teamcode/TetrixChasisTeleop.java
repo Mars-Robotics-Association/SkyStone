@@ -8,7 +8,7 @@ public class TetrixChasisTeleop extends OpMode
 {
     private JoystickCalc Jc = null;
     public UDC_Teleop Teleop = null;
-    public ArmAttachment arm;
+    public ArmAttachmentTetrix arm;
 
 
     private double DriveSpeedMultiplier;
@@ -36,7 +36,7 @@ public class TetrixChasisTeleop extends OpMode
         Teleop = new UDC_Teleop(this);
         Teleop.Init();
 
-        arm = new ArmAttachment(this,1);
+        arm = new ArmAttachmentTetrix(this,1);
         arm.Init();
         //set speeds:
         telemetry.addData("endstart",5 );
