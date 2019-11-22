@@ -35,15 +35,12 @@ public class UDC_Teleop
     {
         Bot = new SkyStoneBot(opmode);
         Bot.Init();
-        Bot.Start();
 
         gripper = new Gripper(opmode);
         gripper.Init();
-
-
-
-
     }
+
+    public void Start(){Bot.Start();}
 
     public void Loop(){
         Bot.Loop();

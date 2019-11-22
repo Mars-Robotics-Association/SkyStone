@@ -33,8 +33,6 @@ public class TetrixChasisTeleop extends OpMode
 
         Jc = new JoystickCalc(this);
 
-
-
         Teleop = new UDC_Teleop(this);
         Teleop.Init();
 
@@ -49,7 +47,7 @@ public class TetrixChasisTeleop extends OpMode
     @Override
     public void start()
     {
-
+        Teleop.Start();
     }
 
     @Override
