@@ -22,8 +22,6 @@ public class TetrixChasisTeleop extends OpMode
     private int[] TotalMotorClicks = {0,0,0,0};
     boolean FirstRun = true;
 
-
-
     @Override
     public void init()
     {
@@ -135,10 +133,6 @@ public class TetrixChasisTeleop extends OpMode
         { arm.LiftRetract();}
 
         else{ arm.LiftStopHorizontal(); }
-
-
-
-
 
         if(gamepad2.left_stick_x>JoystickThreshold){
             gripperRight();

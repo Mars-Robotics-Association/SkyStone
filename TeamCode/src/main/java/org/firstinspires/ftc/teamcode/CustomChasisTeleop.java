@@ -22,8 +22,6 @@ public class CustomChasisTeleop extends OpMode
     private int[] TotalMotorClicks = {0,0,0,0};
     boolean FirstRun = true;
 
-
-
     @Override
     public void init()
     {
@@ -138,10 +136,6 @@ public class CustomChasisTeleop extends OpMode
         { arm.LiftRetract();}
 
         else{ arm.LiftStopHorizontal(); }
-
-
-
-
 
         if(gamepad2.left_stick_x>JoystickThreshold){
             gripperRight();
