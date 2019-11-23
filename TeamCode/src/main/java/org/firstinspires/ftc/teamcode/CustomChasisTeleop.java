@@ -158,19 +158,19 @@ public class CustomChasisTeleop extends OpMode
         }
         if(gamepad2.left_bumper)//open left gripper
         {
-            gripperOpenLeft();
+            openGripper();
         }
         if(gamepad2.right_bumper)//open right gripper
         {
-            gripperOpenRight();
+            closeGripper();
         }
         if(gamepad2.left_trigger>0.2)//close the gripper
         {
-            closeGripper();
+            gripperOpenLeft();
         }
         if(gamepad2.right_trigger>0.2)//open the gripper
         {
-            openGripper();
+            gripperOpenRight();
         }
     }
 
