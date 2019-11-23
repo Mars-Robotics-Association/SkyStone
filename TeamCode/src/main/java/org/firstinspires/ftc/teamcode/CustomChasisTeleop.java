@@ -32,11 +32,11 @@ public class CustomChasisTeleop extends OpMode
         Teleop = new UDC_Teleop(this);
         Teleop.Init();
 
-        //arm = new ArmAttachmentCustom(this);
-        //arm.Init();
+        arm = new ArmAttachmentCustom(this);
+        arm.Init();
 
-        //gripper = new Gripper(this);
-        //gripper.Init();
+        gripper = new Gripper(this);
+        gripper.Init();
     }
 
     @Override
@@ -88,8 +88,8 @@ public class CustomChasisTeleop extends OpMode
             //put down stone
         }
 
-        //ManageArmMovement();
-        //ManageGripperMovement();
+        ManageArmMovement();
+        ManageGripperMovement();
 
         telemetry.update();
     }
@@ -120,14 +120,14 @@ public class CustomChasisTeleop extends OpMode
 
     public void ManageArmMovement()//Manages the Arm/Lift
     {
-        if(gamepad2.b)//turn the wheel intake on
+        /*if(gamepad2.b)//turn the wheel intake on
         {
             arm.IntakeOn();
         }
         else//turn the intake off
         {
             arm.IntakeOff();
-        }
+        }*/
 
         if(gamepad2.dpad_up)//move lift up
         {

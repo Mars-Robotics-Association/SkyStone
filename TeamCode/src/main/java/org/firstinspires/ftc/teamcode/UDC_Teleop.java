@@ -113,13 +113,13 @@ public class UDC_Teleop
 
     public void turnRight() //Turn Right
     {
-        Bot.RawTurn(true, turnSpeed*TurnSpeedMultiplier);
+        Bot.RawTurn(true, turnSpeed*TurnSpeedMultiplier/2);
     }
 
 
     public void turnLeft() //Turn Left
     {
-        Bot.RawTurn(false, turnSpeed*TurnSpeedMultiplier);
+        Bot.RawTurn(false, turnSpeed*TurnSpeedMultiplier/2);
     }
 
     public void stopWheels() //STOP
