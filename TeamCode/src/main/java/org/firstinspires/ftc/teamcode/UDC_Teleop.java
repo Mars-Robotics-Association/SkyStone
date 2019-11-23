@@ -31,6 +31,9 @@ public class UDC_Teleop
 
     public void Init()
     {
+        Bot = new SkyStoneBot(opmode);
+        Jc = new JoystickCalc(opmode);
+
         Bot.Init();
     }
 
