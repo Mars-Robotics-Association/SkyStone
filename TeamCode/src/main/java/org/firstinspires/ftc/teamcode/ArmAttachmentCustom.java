@@ -21,6 +21,7 @@ public class ArmAttachmentCustom implements Attachment {
         opmode = thatopmode;
     }
 
+    @Override
     public void Init() {
         ArmHorizontal = opmode.hardwareMap.dcMotor.get("ArmVertical");
         ArmVertical = opmode.hardwareMap.dcMotor.get("ArmHorizontal");
@@ -30,7 +31,7 @@ public class ArmAttachmentCustom implements Attachment {
         Hratio=1;
     }
 
-    //@Override
+    @Override
     public void Loop() {
 
     }

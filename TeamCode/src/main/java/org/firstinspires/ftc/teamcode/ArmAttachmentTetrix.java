@@ -81,7 +81,6 @@ public class ArmAttachmentTetrix implements Attachment {
         Hratio=1;
     }
 
-
     //@Override
     public void Loop() {
 

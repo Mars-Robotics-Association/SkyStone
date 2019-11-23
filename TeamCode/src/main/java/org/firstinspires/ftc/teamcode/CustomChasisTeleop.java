@@ -61,11 +61,32 @@ public class CustomChasisTeleop extends OpMode
             Teleop.gyroOffset();
         }
 
-        //switch between normal and slow modes
+        ManageDriveMovement();
 
+        //switch between normal and slow modes
+        if(gamepad1.left_bumper) { Teleop.fullSpeed(); }
+        if(gamepad1.right_bumper) { Teleop.twoThirdsSpeed(); }
+        if(gamepad1.left_trigger>0.2) { Teleop.halfSpeed(); }
+        if(gamepad1.right_trigger>0.2) { Teleop.thirdSpeed(); }
+
+        if(gamepad2.x){
+            //pick up stone
+        }
+        else if (gamepad2.y){
+            //put down stone
+        }
+
+        ManageArmMovement();
+        ManageGripperMovement();
+
+        telemetry.update();
+    }
+
+    public void ManageDriveMovement()//Manages general drive input
+    {
         if(Jc.leftStickPower > JoystickThreshold) //Move
         {
-           Teleop.chooseDirection(Jc.rightStickX);
+            Teleop.chooseDirection(Jc.rightStickX);
         }
 
         else if(Jc.rightStickX > JoystickThreshold) //Turn Right
@@ -79,86 +100,81 @@ public class CustomChasisTeleop extends OpMode
             Teleop.turnLeft();
         }
 
-        /*if(Jc.leftStickPower > JoystickThreshold) //Move
-        {
-            Bot.MoveAtAngle(Jc.leftStickBaring, DriveSpeedMultiplier * Jc.leftStickPower);
-            telemetry.addData("Moving", true);
-        }
-
-        else if(Jc.rightStickX > JoystickThreshold) //Turn Right
-        {
-            Bot.RawTurn(true, turnSpeed*TurnSpeedMultiplier);
-        }
-
-        else if(Jc.rightStickX < -JoystickThreshold) //Turn Left
-        {
-            Bot.RawTurn(false, turnSpeed*TurnSpeedMultiplier);
-        }*/
-
         else //STOP
         {
             Teleop.stopWheels();
         }
+    }
 
-
-        if(gamepad1.left_bumper) { Teleop.fullSpeed(); }
-        if(gamepad1.right_bumper) { Teleop.twoThirdsSpeed(); }
-        if(gamepad1.left_trigger>0.2) { Teleop.halfSpeed(); }
-        if(gamepad1.right_trigger>0.2) { Teleop.thirdSpeed(); }
-
-
-
-        if(gamepad2.b){
+    public void ManageArmMovement()//Manages the Arm
+    {
+        if(gamepad2.b)//turn the wheel intake on
+        {
             arm.IntakeOn();
         }
-        else{
+        else//turn the intake off
+        {
             arm.IntakeOff();
         }
 
-        if(gamepad2.x){
-            //pick up stone
+        if(gamepad2.dpad_up)//move lift up
+        {
+            arm.LiftUp();
         }
-        else if (gamepad2.y){
-            //put down stone
+        else if(gamepad2.dpad_down)//move lift down
+        {
+            arm.LiftDown();
         }
-
-        if(gamepad2.dpad_up) {
-            arm.LiftUp();}
-        else if(gamepad2.dpad_down) {
-            arm.LiftDown();}
-        else {
+        else//stop the arm from moving up or down
+        {
             arm.LiftStopVertical();
         }
-        if(gamepad2.dpad_left)
-        {arm.LiftExtend();}
 
-        else if (gamepad1.dpad_right)
-        { arm.LiftRetract();}
-
-        else{ arm.LiftStopHorizontal(); }
-
-        if(gamepad2.left_stick_x>JoystickThreshold){
-            gripperRight();
-        }
-        else if(gamepad2.left_stick_x<JoystickThreshold){
-            gripperLeft();
+        if(gamepad2.dpad_left)////extend arm
+        {
+            arm.LiftExtend();
         }
 
-        if(gamepad2.left_bumper){
-            gripperOpenLeft();
+        else if (gamepad2.dpad_right)//retract arm
+        {
+            arm.LiftRetract();
         }
-        if(gamepad2.right_bumper){
-            gripperOpenRight();
+
+        else//stop the arm from moving left or right
+        {
+            arm.LiftStopHorizontal();
         }
-        if(gamepad2.left_trigger>0.2){
-            closeGripper();
-        }
-        if(gamepad2.right_trigger>0.2){
-            openGripper();
-        }
-        telemetry.update();
     }
 
+    public void ManageGripperMovement()//Manages the Gripper
+    {
+        if(gamepad2.left_stick_x>JoystickThreshold)//rotate the gripper right
+        {
+            gripperRight();
+        }
+        else if(gamepad2.left_stick_x<JoystickThreshold)//rotate the gripper left
+        {
+            gripperLeft();
+        }
+        if(gamepad2.left_bumper)//open left gripper
+        {
+            gripperOpenLeft();
+        }
+        if(gamepad2.right_bumper)//open right gripper
+        {
+            gripperOpenRight();
+        }
+        if(gamepad2.left_trigger>0.2)//close the gripper
+        {
+            closeGripper();
+        }
+        if(gamepad2.right_trigger>0.2)//open the gripper
+        {
+            openGripper();
+        }
+    }
+
+    //Gripper Management Methods
     public void closeGripper(){
         gripper.GripperClose();
     }
