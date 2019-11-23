@@ -7,8 +7,6 @@ import com.qualcomm.robotcore.hardware.Servo;
 @TeleOp(name="ServoTesting", group="Iterative Opmode")
 public class ServoTest extends OpMode
 {
-    private JoystickCalc Jc = null;
-    private SkyStoneBot Bot = null;
 
     private Servo GripperL = null;
 
@@ -27,7 +25,7 @@ public class ServoTest extends OpMode
     @Override
     public void start()
     {
-        Bot.Start();
+
     }
 
     @Override
@@ -39,6 +37,7 @@ public class ServoTest extends OpMode
         if(gamepad1.a){
             GripperL.setPosition(0.3);
         }
+        if(gamepad1.b){GripperL.setPosition(0.5);}
         telemetry.update();
 
     }
