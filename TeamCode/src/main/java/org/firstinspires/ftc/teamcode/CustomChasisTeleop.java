@@ -61,6 +61,16 @@ public class CustomChasisTeleop extends OpMode
             Teleop.gyroOffset();
         }
 
+        //SwitchModes
+        if(gamepad1.y)
+        {
+            Teleop.headlessMode = true;
+        }
+        if(gamepad1.b)
+        {
+            Teleop.headlessMode = false;
+        }
+
         ManageDriveMovement();
 
         //switch between normal and slow modes
@@ -69,10 +79,12 @@ public class CustomChasisTeleop extends OpMode
         if(gamepad1.left_trigger>0.2) { Teleop.halfSpeed(); }
         if(gamepad1.right_trigger>0.2) { Teleop.thirdSpeed(); }
 
-        if(gamepad2.x){
+        if(gamepad2.x)
+        {
             //pick up stone
         }
-        else if (gamepad2.y){
+        else if (gamepad2.y)
+        {
             //put down stone
         }
 
@@ -148,14 +160,14 @@ public class CustomChasisTeleop extends OpMode
 
     public void ManageGripperMovement()//Manages the Gripper
     {
-        if(gamepad2.left_stick_x>JoystickThreshold)//rotate the gripper right
+        /*if(gamepad2.left_stick_x>JoystickThreshold)//rotate the gripper right
         {
             gripperRight();
         }
         else if(gamepad2.left_stick_x<JoystickThreshold)//rotate the gripper left
         {
             gripperLeft();
-        }
+        }*/
         if(gamepad2.left_bumper)//open the gripper
         {
             openGripper();

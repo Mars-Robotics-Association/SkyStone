@@ -103,10 +103,11 @@ public class SkyStoneBot implements Robot
     }
 
     //allows robot to corkscrew
-    public void MoveAtAngleTurning(double angle, double speed, boolean turnRight, double turnSpeed)
+    public void MoveAtAngleTurning(double angle, double speed, boolean turnRight, double turnSpeed, boolean headlessMode)
     {
         //get relative angle and calculate wheel speeds
-        double relativeAngle = angle + RobotAngle;
+        double relativeAngle = angle;
+        if(headlessMode){relativeAngle += RobotAngle;}
         CalculateWheelSpeedsTurning(relativeAngle, speed, turnRight, turnSpeed);
         //set the powers of the motors
         FrontRight.setPower(FrontRightPower);

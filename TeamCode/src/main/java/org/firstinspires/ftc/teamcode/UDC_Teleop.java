@@ -23,6 +23,7 @@ public class UDC_Teleop
     boolean FirstRun = true;
 
     OpMode opmode;
+    public boolean headlessMode = false;
 
     public UDC_Teleop(OpMode thatopmode) {
         opmode = thatopmode;
@@ -107,7 +108,7 @@ public class UDC_Teleop
         }
 
         //Make robot move at the angle of the left joystick at the determined speed while applying a turn to the value of the right joystick
-        Bot.MoveAtAngleTurning(leftStickBaring, DriveSpeedMultiplier * leftStickPower, turnRight, turnSpeed*TurnSpeedMultiplier);
+        Bot.MoveAtAngleTurning(leftStickBaring, DriveSpeedMultiplier * leftStickPower, turnRight, turnSpeed*TurnSpeedMultiplier, headlessMode);
     }
 
     public void turnRight() //Turn Right

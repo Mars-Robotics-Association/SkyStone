@@ -71,9 +71,9 @@ public class TetrixChasisTeleop extends OpMode
 
         //switch between normal and slow modes
         if(gamepad1.left_bumper) { Teleop.fullSpeed(); }
-        if(gamepad1.right_bumper) { Teleop.twoThirdsSpeed(); }
-        if(gamepad1.left_trigger>0.2) { Teleop.halfSpeed(); }
-        if(gamepad1.right_trigger>0.2) { Teleop.thirdSpeed(); }
+        if(gamepad1.right_bumper) { Teleop.fullSpeed(); }
+        if(gamepad1.left_trigger>0.2) { Teleop.fullSpeed(); }
+        if(gamepad1.right_trigger>0.2) { Teleop.fullSpeed(); }
 
 
         if(gamepad2.x){
