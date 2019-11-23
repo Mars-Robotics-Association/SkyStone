@@ -71,6 +71,7 @@ public class FieldNavigationBot1
         opmode.telemetry.addData("CurrentRot = ", CurrentRot);
         opmode.telemetry.addData("Travel Rot: ", absoluteAngle);
         Bot.Loop();
+
         if(firstRound)
         {
             Bot.OffsetGyro();
@@ -80,8 +81,8 @@ public class FieldNavigationBot1
         CurrentRot = Bot.GetFinalGyro();
         Vuforia.Loop();
         //update values
-        CurrentX = -Vuforia.GetRobotX();
-        CurrentY = -Vuforia.GetRobotY();
+        CurrentX = Vuforia.GetRobotX();
+        CurrentY = Vuforia.GetRobotY();
 
 
         if(Navigating)
@@ -91,7 +92,7 @@ public class FieldNavigationBot1
             double triX = (CurrentX - TargetX); //horizontal length
             absoluteAngle = Math.atan2(triY,triX); //get measurement of move angle
             absoluteAngle = Math.toDegrees(absoluteAngle);
-            absoluteAngle -= StartAngle; //offsets by start angle of the robot
+            absoluteAngle -= StartAngle + 180; //offsets by start angle of the robot
             if(absoluteAngle < 0)//convert degrees to positive if needed
             {
                 absoluteAngle = 360 + absoluteAngle;
@@ -148,13 +149,13 @@ public class FieldNavigationBot1
         double triX = (CurrentX - TargetX); //horizontal length
         absoluteAngle = Math.atan2(triY,triX); //get measurement of move angle
         absoluteAngle = Math.toDegrees(absoluteAngle);
-        absoluteAngle -= StartAngle; //offsets by start angle of the robot
+        absoluteAngle -= StartAngle + 180; //offsets by start angle of the robot
         if(absoluteAngle < 0)//convert degrees to positive if needed
         {
             absoluteAngle = 360 + absoluteAngle;
         }
 
-        Bot.MoveAtAngle(absoluteAngle, .5);
+        Bot.MoveAtAngle(absoluteAngle, 0.5);
         Navigating = true;
         Rotating = false;
     }
