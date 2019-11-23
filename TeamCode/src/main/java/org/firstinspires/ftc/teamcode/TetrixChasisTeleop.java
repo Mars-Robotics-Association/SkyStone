@@ -93,7 +93,7 @@ public class TetrixChasisTeleop extends OpMode
     {
         if(Jc.leftStickPower > JoystickThreshold) //Move
         {
-            Teleop.chooseDirection(Jc.rightStickX);
+            Teleop.chooseDirection(Jc.rightStickX, Jc.leftStickBaring, Jc.leftStickPower);
         }
 
         else if(Jc.rightStickX > JoystickThreshold) //Turn Right
@@ -154,19 +154,19 @@ public class TetrixChasisTeleop extends OpMode
         {
             gripperLeft();
         }
-        if(gamepad2.left_bumper)
+        if(gamepad2.left_bumper)//Open the gripper
         {
             openGripper();
         }
-        if(gamepad2.right_bumper)
+        if(gamepad2.right_bumper)//close the gripper
         {
             closeGripper();
         }
-        if(gamepad2.left_trigger>0.2)
+        if(gamepad2.left_trigger>0.2)//Open the left side of the gripper
         {
             gripperOpenLeft();
         }
-        if(gamepad2.right_trigger>0.2)
+        if(gamepad2.right_trigger>0.2)//Open the right side of the gripper
         {
             gripperOpenRight();
         }

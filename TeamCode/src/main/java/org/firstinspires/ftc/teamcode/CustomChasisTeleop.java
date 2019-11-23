@@ -32,11 +32,11 @@ public class CustomChasisTeleop extends OpMode
         Teleop = new UDC_Teleop(this);
         Teleop.Init();
 
-        arm = new ArmAttachmentCustom(this);
-        arm.Init();
+        //arm = new ArmAttachmentCustom(this);
+        //arm.Init();
 
-        gripper = new Gripper(this);
-        gripper.Init();
+        //gripper = new Gripper(this);
+        //gripper.Init();
     }
 
     @Override
@@ -76,8 +76,8 @@ public class CustomChasisTeleop extends OpMode
             //put down stone
         }
 
-        ManageArmMovement();
-        ManageGripperMovement();
+        //ManageArmMovement();
+        //ManageGripperMovement();
 
         telemetry.update();
     }
@@ -86,7 +86,7 @@ public class CustomChasisTeleop extends OpMode
     {
         if(Jc.leftStickPower > JoystickThreshold) //Move
         {
-            Teleop.chooseDirection(Jc.rightStickX);
+            Teleop.chooseDirection(Jc.rightStickX, Jc.leftStickBaring, Jc.leftStickPower);
         }
 
         else if(Jc.rightStickX > JoystickThreshold) //Turn Right
@@ -106,7 +106,7 @@ public class CustomChasisTeleop extends OpMode
         }
     }
 
-    public void ManageArmMovement()//Manages the Arm
+    public void ManageArmMovement()//Manages the Arm/Lift
     {
         if(gamepad2.b)//turn the wheel intake on
         {
@@ -156,19 +156,19 @@ public class CustomChasisTeleop extends OpMode
         {
             gripperLeft();
         }
-        if(gamepad2.left_bumper)//open left gripper
+        if(gamepad2.left_bumper)//open the gripper
         {
             openGripper();
         }
-        if(gamepad2.right_bumper)//open right gripper
+        if(gamepad2.right_bumper)//close the gripper
         {
             closeGripper();
         }
-        if(gamepad2.left_trigger>0.2)//close the gripper
+        if(gamepad2.left_trigger>0.2)//open the left side of the gripper
         {
             gripperOpenLeft();
         }
-        if(gamepad2.right_trigger>0.2)//open the gripper
+        if(gamepad2.right_trigger>0.2)//open the right side of the gripper
         {
             gripperOpenRight();
         }
