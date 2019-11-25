@@ -63,6 +63,13 @@ public class ArmAttachmentTetrix implements Attachment {
     private DcMotor LeftIntake = null;
     private DcMotor RightIntake = null;
 
+    double ArmLeftResting;
+    double ArmRightResting;
+    double ArmHorizontalResting;
+
+    double ArmLeftPower=0.5;
+    double ArmRightPower=0.5;
+
     double Vratio;
     double Hratio;
     OpMode opmode;
@@ -79,6 +86,21 @@ public class ArmAttachmentTetrix implements Attachment {
         ArmHorizontal = opmode.hardwareMap.dcMotor.get("ArmHorizontal");
         Vratio=1;
         Hratio=1;
+
+
+        ArmLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        ArmRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        ArmHorizontal.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        ArmLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        ArmRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        ArmHorizontal.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        ArmRightResting=ArmRight.getCurrentPosition();
+        ArmLeftResting=ArmLeft.getCurrentPosition();
+
+        ArmRight.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
+        ArmLeft.setDirection(DcMotor.Direction.FORWARD);
     }
 
     //@Override
@@ -96,16 +118,29 @@ public class ArmAttachmentTetrix implements Attachment {
 //test
     }
     public void LiftUp () {
-        ArmRight.setPower(-0.5*Vratio);
-        ArmLeft.setPower(0.5*Vratio);
+
+        ArmRight.setPower(ArmRightPower);
+        ArmLeft.setPower(ArmLeftPower);
+        ArmRightResting=ArmRight.getCurrentPosition();
+        ArmLeftResting=ArmLeft.getCurrentPosition();
     }
     public void LiftDown () {
-        ArmRight.setPower(0.5*Vratio);
-        ArmLeft.setPower(-0.5*Vratio);
+        ArmRight.setPower(-ArmRightPower);
+        ArmLeft.setPower(-ArmLeftPower);
+        ArmRightResting=ArmRight.getCurrentPosition();
+        ArmLeftResting=ArmLeft.getCurrentPosition();
     }
     public void LiftStopVertical () {
         ArmRight.setPower(0*Vratio);
         ArmLeft.setPower(0*Vratio);
+        if(ArmRight.getCurrentPosition()<ArmRightResting){
+            ArmRight.setPower(ArmRightPower);
+            ArmLeft.setPower(ArmLeftPower);
+        }
+        else if(ArmRight.getCurrentPosition()>ArmRightResting){
+            ArmRight.setPower(-ArmRightPower);
+            ArmLeft.setPower(-ArmLeftPower);
+        }
     }
     public void LiftExtend () {
         ArmHorizontal.setPower(0.5*Hratio);
