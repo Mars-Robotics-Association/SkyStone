@@ -177,7 +177,7 @@ public class TetrixChasisTeleop extends OpMode
         gripper.GripperClose(1);
     }
     public void openGripper(){
-        gripper.GripperOpen();
+        gripper.GripperOpen(1);
     }
 
     public void gripperLeft() {

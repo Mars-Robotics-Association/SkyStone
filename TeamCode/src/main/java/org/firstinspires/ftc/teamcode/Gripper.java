@@ -110,10 +110,14 @@ public class Gripper implements Attachment{
 
     }
 
-    public void GripperOpen(){
-
-        GripperR.setPosition(0.6);
-        GripperL.setPosition(0.5);
+    public void GripperOpen(int robot ){
+        if (robot == 2){
+            GripperR.setPosition(0.6);
+            GripperL.setPosition(0.5);}
+        if (robot == 1){
+            GripperR.setPosition(0.6);
+            GripperL.setPosition(0.1);
+        }
 
     }
     public void GripperClose(int robot){
@@ -122,7 +126,7 @@ public class Gripper implements Attachment{
             GripperR.setPosition(0.35);
             GripperL.setPosition(0.85);}
         if (robot == 1){
-            GripperR.setPosition(0);
+            GripperR.setPosition(0.75);
             GripperL.setPosition(0);
         }
     }
@@ -136,7 +140,7 @@ public class Gripper implements Attachment{
 
     public void GripperOpenLeft(int robot){
         if(robot == 1){
-            GripperL.setPosition(0);
+            GripperL.setPosition(0.1);
         }
         if (robot == 2){
             GripperL.setPosition(0.5);
@@ -146,7 +150,7 @@ public class Gripper implements Attachment{
     }
     public void GripperCloseRight(int robot){
         if (robot == 1){
-            GripperR.setPosition(0);
+            GripperR.setPosition(0.75);
         }
         if (robot == 2){
             GripperR.setPosition(0.35);}
@@ -154,7 +158,7 @@ public class Gripper implements Attachment{
 
     public void GripperOpenRight(int robot){
         if (robot == 1){
-            GripperR.setPosition(0);
+            GripperR.setPosition(0.6);
         }
         if (robot == 2){
         GripperR.setPosition(0.6);}
