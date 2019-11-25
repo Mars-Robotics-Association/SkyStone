@@ -27,7 +27,7 @@ public class TetrixChasisTeleop extends OpMode
     {
         telemetry.addData("start",5 );
         telemetry.update();
-        gripperPosition = 0;
+        gripperPosition = 0.25;
 
         Jc = new JoystickCalc(this);
 
@@ -71,9 +71,9 @@ public class TetrixChasisTeleop extends OpMode
 
         //switch between normal and slow modes
         if(gamepad1.left_bumper) { Teleop.fullSpeed(); }
-        if(gamepad1.right_bumper) { Teleop.fullSpeed(); }
-        if(gamepad1.left_trigger>0.2) { Teleop.fullSpeed(); }
-        if(gamepad1.right_trigger>0.2) { Teleop.fullSpeed(); }
+        if(gamepad1.right_bumper) { Teleop.halfSpeed(); }
+        if(gamepad1.left_trigger>0.2) { Teleop.thirdSpeed(); }
+        if(gamepad1.right_trigger>0.2) { Teleop.forthSpeed(); }
 
 
         if(gamepad2.x){
@@ -150,7 +150,7 @@ public class TetrixChasisTeleop extends OpMode
         {
             gripperRight();
         }
-        else if(gamepad2.left_stick_x<JoystickThreshold)//rotate the gripper left
+        else if(gamepad2.left_stick_x<-JoystickThreshold)//rotate the gripper left
         {
             gripperLeft();
         }
@@ -174,7 +174,7 @@ public class TetrixChasisTeleop extends OpMode
 
     //Gripper Management Methods
     public void closeGripper(){
-        gripper.GripperClose();
+        gripper.GripperClose(1);
     }
     public void openGripper(){
         gripper.GripperOpen();
@@ -193,9 +193,9 @@ public class TetrixChasisTeleop extends OpMode
     public void gripper0(){gripperPosition=0;}
 
     public void gripperOpenLeft(){
-        gripper.GripperOpenLeft();
+        gripper.GripperOpenLeft(1);
     }
     public void gripperOpenRight(){
-        gripper.GripperOpenRight();
+        gripper.GripperOpenRight(1);
     }
 }

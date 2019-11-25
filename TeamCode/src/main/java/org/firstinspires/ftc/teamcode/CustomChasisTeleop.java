@@ -188,7 +188,7 @@ public class CustomChasisTeleop extends OpMode
 
     //Gripper Management Methods
     public void closeGripper(){
-        gripper.GripperClose();
+        gripper.GripperClose(2);
     }
     public void openGripper(){
         gripper.GripperOpen();
@@ -207,11 +207,11 @@ public class CustomChasisTeleop extends OpMode
     public void gripper0(){gripperPosition=0;}
 
     public void gripperOpenLeft(){
-        gripper.GripperOpenLeft();
+        gripper.GripperOpenLeft(2);
     }
     public void gripperOpenRight(){
-        gripper.GripperOpenRight();
+        gripper.GripperOpenRight(2);
     }
-    public void gripperCloseLeft(){gripper.GripperCloseLeft();}
-    public void gripperCloseRight(){gripper.GripperCloseRight();}
+    public void gripperCloseLeft(){gripper.GripperCloseLeft(2);}
+    public void gripperCloseRight(){gripper.GripperCloseRight(2);}
 }
