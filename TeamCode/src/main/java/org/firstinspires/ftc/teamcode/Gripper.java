@@ -112,6 +112,37 @@ public class Gripper implements Attachment{
 
     public void GripperOpen(){
 
+        GripperR.setPosition(0.6);
+        GripperL.setPosition(0.5);
+
+    }
+    public void GripperClose(){
+
+        GripperR.setPosition(0.35);//75
+        GripperL.setPosition(0.85);//45
+    }
+    public void GripperCloseLeft(){
+        GripperL.setPosition(0.85);
+    }
+
+    public void GripperOpenLeft(){
+        GripperL.setPosition(0.5);
+    }
+    public void GripperCloseRight(){
+        GripperR.setPosition(0.35);
+    }
+
+    public void GripperOpenRight(){
+        GripperR.setPosition(0.6);
+    }
+
+    public void GripperRotatePosition(double position){
+
+        GripperRotate.setPosition(position);
+    }
+
+    /*public void GripperOpen(){
+
         GripperR.setPosition(0.75);
         GripperL.setPosition(0.055);
 
@@ -120,25 +151,6 @@ public class Gripper implements Attachment{
 
         GripperL.setPosition(0.416);
         GripperR.setPosition(0.483);
-    }
-    public void GripperCloseLeft(){
-        GripperL.setPosition(0.416);
-    }
-
-    public void GripperOpenLeft(){
-        GripperL.setPosition(0.055);
-    }
-    public void GripperCloseRight(){
-        GripperR.setPosition(0.483);
-    }
-
-    public void GripperOpenRight(){
-        GripperR.setPosition(0.75);
-    }
-
-    public void GripperRotatePosition(double position){
-
-        GripperRotate.setPosition(position);
-    }
+    }*/
 
 }

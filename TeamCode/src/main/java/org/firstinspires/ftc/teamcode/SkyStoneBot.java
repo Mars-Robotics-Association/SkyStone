@@ -30,9 +30,9 @@ public class SkyStoneBot implements Robot
     private IMU imu;
     private OpMode opmode;
 
-    public SkyStoneBot(OpMode opmode)
+    public SkyStoneBot(OpMode Opmode)
     {
-        this.opmode = opmode;
+        opmode = Opmode;
     }
 
     public double GetGyroOffset()
@@ -48,8 +48,7 @@ public class SkyStoneBot implements Robot
     public void Init()
     {
         opmode.telemetry.addData("SkyStoneStart", true);
-        opmode.telemetry.update();
-        imu = new IMU(this.opmode);
+        imu = new IMU(opmode);
         imu.Init();
 
         //Get hardware components
@@ -57,6 +56,7 @@ public class SkyStoneBot implements Robot
         FrontLeft = opmode.hardwareMap.get(DcMotor.class, "FrontLeft");
         RearRight = opmode.hardwareMap.get(DcMotor.class, "RearRight");
         RearLeft = opmode.hardwareMap.get(DcMotor.class, "RearLeft");
+        opmode.telemetry.update();
     }
 
     @Override
@@ -103,10 +103,11 @@ public class SkyStoneBot implements Robot
     }
 
     //allows robot to corkscrew
-    public void MoveAtAngleTurning(double angle, double speed, boolean turnRight, double turnSpeed)
+    public void MoveAtAngleTurning(double angle, double speed, boolean turnRight, double turnSpeed, boolean headlessMode)
     {
         //get relative angle and calculate wheel speeds
-        double relativeAngle = angle + RobotAngle;
+        double relativeAngle = angle;
+        if(headlessMode){relativeAngle += RobotAngle;}
         CalculateWheelSpeedsTurning(relativeAngle, speed, turnRight, turnSpeed);
         //set the powers of the motors
         FrontRight.setPower(FrontRightPower);

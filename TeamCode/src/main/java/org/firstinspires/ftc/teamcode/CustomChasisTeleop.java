@@ -61,6 +61,16 @@ public class CustomChasisTeleop extends OpMode
             Teleop.gyroOffset();
         }
 
+        //SwitchModes
+        if(gamepad1.y)
+        {
+            Teleop.headlessMode = true;
+        }
+        if(gamepad1.b)
+        {
+            Teleop.headlessMode = false;
+        }
+
         ManageDriveMovement();
 
         //switch between normal and slow modes
@@ -69,10 +79,12 @@ public class CustomChasisTeleop extends OpMode
         if(gamepad1.left_trigger>0.2) { Teleop.halfSpeed(); }
         if(gamepad1.right_trigger>0.2) { Teleop.thirdSpeed(); }
 
-        if(gamepad2.x){
+        if(gamepad2.x)
+        {
             //pick up stone
         }
-        else if (gamepad2.y){
+        else if (gamepad2.y)
+        {
             //put down stone
         }
 
@@ -86,7 +98,7 @@ public class CustomChasisTeleop extends OpMode
     {
         if(Jc.leftStickPower > JoystickThreshold) //Move
         {
-            Teleop.chooseDirection(Jc.rightStickX);
+            Teleop.chooseDirection(Jc.rightStickX, Jc.leftStickBaring, Jc.leftStickPower);
         }
 
         else if(Jc.rightStickX > JoystickThreshold) //Turn Right
@@ -106,16 +118,16 @@ public class CustomChasisTeleop extends OpMode
         }
     }
 
-    public void ManageArmMovement()//Manages the Arm
+    public void ManageArmMovement()//Manages the Arm/Lift
     {
-        if(gamepad2.b)//turn the wheel intake on
+        /*if(gamepad2.b)//turn the wheel intake on
         {
             arm.IntakeOn();
         }
         else//turn the intake off
         {
             arm.IntakeOff();
-        }
+        }*/
 
         if(gamepad2.dpad_up)//move lift up
         {
@@ -148,27 +160,27 @@ public class CustomChasisTeleop extends OpMode
 
     public void ManageGripperMovement()//Manages the Gripper
     {
-        if(gamepad2.left_stick_x>JoystickThreshold)//rotate the gripper right
+        /*if(gamepad2.left_stick_x>JoystickThreshold)//rotate the gripper right
         {
             gripperRight();
         }
         else if(gamepad2.left_stick_x<JoystickThreshold)//rotate the gripper left
         {
             gripperLeft();
-        }
-        if(gamepad2.left_bumper)//open left gripper
+        }*/
+        if(gamepad2.left_bumper)//open the gripper
         {
             openGripper();
         }
-        if(gamepad2.right_bumper)//open right gripper
+        if(gamepad2.right_bumper)//close the gripper
         {
             closeGripper();
         }
-        if(gamepad2.left_trigger>0.2)//close the gripper
+        if(gamepad2.left_trigger>0.2)//open the left side of the gripper
         {
             gripperOpenLeft();
         }
-        if(gamepad2.right_trigger>0.2)//open the gripper
+        if(gamepad2.right_trigger>0.2)//open the right side of the gripper
         {
             gripperOpenRight();
         }
