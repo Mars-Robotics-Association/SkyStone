@@ -136,7 +136,7 @@ public class ArmAttachmentTetrix implements Attachment {
             ArmRight.setPower(ArmRightPower);
             ArmLeft.setPower(ArmLeftPower);
         }
-        else if(ArmRight.getCurrentPosition()>rmRightResting){
+        else if(ArmRight.getCurrentPosition()>ArmRightResting){
             ArmRight.setPower(-ArmRightPower);
             ArmLeft.setPower(-ArmLeftPower);
         }
