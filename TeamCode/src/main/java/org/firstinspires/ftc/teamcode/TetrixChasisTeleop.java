@@ -27,7 +27,7 @@ public class TetrixChasisTeleop extends OpMode
     {
         telemetry.addData("start",5 );
         telemetry.update();
-        gripperPosition = 0.5;
+        gripperPosition = 0;
 
         Jc = new JoystickCalc(this);
 
