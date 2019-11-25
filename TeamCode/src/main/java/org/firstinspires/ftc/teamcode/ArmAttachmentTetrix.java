@@ -118,13 +118,16 @@ public class ArmAttachmentTetrix implements Attachment {
 //test
     }
     public void LiftUp () {
-
+        ArmLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        ArmRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         ArmRight.setPower(ArmRightPower);
         ArmLeft.setPower(ArmLeftPower);
         ArmRightResting=ArmRight.getCurrentPosition();
         ArmLeftResting=ArmLeft.getCurrentPosition();
     }
     public void LiftDown () {
+        ArmLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        ArmRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         ArmRight.setPower(-ArmRightPower);
         ArmLeft.setPower(-ArmLeftPower);
         ArmRightResting=ArmRight.getCurrentPosition();
@@ -136,12 +139,16 @@ public class ArmAttachmentTetrix implements Attachment {
         if(ArmRight.getCurrentPosition()<ArmRightResting){
             ArmRight.setTargetPosition(ArmRightResting);
             ArmLeft.setTargetPosition(ArmLeftResting);
+            ArmRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            ArmLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             ArmLeft.setPower(0.4);
             ArmRight.setPower(0.4);
         }
         else if(ArmRight.getCurrentPosition()>ArmRightResting){
             ArmRight.setTargetPosition(ArmRightResting);
             ArmLeft.setTargetPosition(ArmLeftResting);
+            ArmRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            ArmLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             ArmLeft.setPower(-0.4);
             ArmRight.setPower(-0.4);
         }
