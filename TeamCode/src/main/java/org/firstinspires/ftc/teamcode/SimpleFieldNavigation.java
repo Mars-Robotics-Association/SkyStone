@@ -104,7 +104,7 @@ public class SimpleFieldNavigation
         Rotating = false;
     }
 
-    public boolean CheckCloseEnoughDistance()
+    /*public boolean CheckCloseEnoughDistance()
     {
         //use distance formula to check if in radius
         if(Math.sqrt(Math.pow(TargetX - CurrentX, 2) + Math.pow(TargetY - CurrentY, 2)) < closeEnoughThresholdDist)
@@ -121,7 +121,7 @@ public class SimpleFieldNavigation
             return true;
         }
         else return false;
-    }
+    }*/
 
     public void GoRight(double distance, boolean infinite)
     {
