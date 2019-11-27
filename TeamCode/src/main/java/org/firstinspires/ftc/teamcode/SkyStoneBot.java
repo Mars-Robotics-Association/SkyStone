@@ -216,4 +216,18 @@ public class SkyStoneBot implements Robot
         return 0;
     }
 
+    public void GoLeft(){}
+
+    public void GoRight(){}
+
+    public void GoForward(){}
+
+    public void GoBackward(){}
+
+    public boolean IsOnTheLine(){
+        return true;
+    }
+
+
+
 }
