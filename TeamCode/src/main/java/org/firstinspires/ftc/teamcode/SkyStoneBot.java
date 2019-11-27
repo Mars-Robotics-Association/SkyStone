@@ -219,7 +219,7 @@ public class SkyStoneBot implements Robot
 
     public void GoRight(double distance, boolean infinite)
     {
-
+        MoveAtAngle(90*(distance/Math.abs(distance)), 1, false);
     }
 
     public void GoForward(double distance, boolean infinite)
