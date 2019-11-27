@@ -11,7 +11,7 @@ public interface Robot
 
     void Loop();
 
-    void MoveAtAngle(double angle, double speed);
+    void MoveAtAngle(double angle, double speed, boolean headlessMode);
 
     void RotateTo(double angle, double speed);
 

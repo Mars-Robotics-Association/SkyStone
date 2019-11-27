@@ -87,10 +87,11 @@ public class SkyStoneBot implements Robot
     }
 
     @Override
-    public void MoveAtAngle(double angle, double speed)
+    public void MoveAtAngle(double angle, double speed, boolean headlessMode)
     {
         //get relative angle and calculate wheel speeds
-        double relativeAngle = angle + RobotAngle;
+        double relativeAngle = angle;
+        if(headlessMode){relativeAngle += RobotAngle;}
 /*
         double relativeAngle = angle + RobotAngle + 90;
 */
@@ -216,13 +217,15 @@ public class SkyStoneBot implements Robot
         return 0;
     }
 
-    public void GoLeft(){}
+    public void GoRight(double distance, boolean infinite)
+    {
 
-    public void GoRight(){}
+    }
 
-    public void GoForward(){}
+    public void GoForward(double distance, boolean infinite)
+    {
 
-    public void GoBackward(){}
+    }
 
     public boolean IsOnTheLine(){
         return true;
