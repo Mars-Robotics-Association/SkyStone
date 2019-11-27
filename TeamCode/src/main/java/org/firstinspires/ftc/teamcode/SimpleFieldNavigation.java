@@ -10,13 +10,18 @@ Class that completes the following goals:
 
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
+import com.qualcomm.robotcore.hardware.NormalizedRGBA;
+import com.qualcomm.robotcore.hardware.SwitchableLight;
 import com.vuforia.Vec3F;
+
 
 public class SimpleFieldNavigation
 {
     private double closeEnoughThresholdDist = 10; //in inches
     private double closeEnoughThresholdRot = 5; //in degrees
 
+    NormalizedColorSensor colorSensorGround;
     private SkyStoneBot Bot;
 
     public boolean Navigating = false;
@@ -37,6 +42,8 @@ public class SimpleFieldNavigation
     {
         Bot = new SkyStoneBot(opmode);
         Bot.Init();
+        colorSensorGround = opmode.hardwareMap.get(NormalizedColorSensor.class, "colorSensorGround");
+
     }
 
     public void Start()
@@ -136,7 +143,25 @@ public class SimpleFieldNavigation
     }
 
     public boolean IsOnTheLine(){
-        return true;
+
+        if (colorSensorGround instanceof SwitchableLight) {
+            ((SwitchableLight)colorSensorGround).enableLight(true);
+        }
+        NormalizedRGBA colors = colorSensorGround.getNormalizedColors();
+        opmode.telemetry.addLine()
+                .addData("a", "%.3f", colors.alpha)
+                .addData("r", "%.3f", colors.red)
+                .addData("g", "%.3f", colors.green)
+                .addData("b", "%.3f", colors.blue);
+        opmode.telemetry.update();
+
+        if(colors.red>170||colors.blue>170){
+            return true;
+        }
+        else{
+            return false;
+        }
+
     }
 
 
