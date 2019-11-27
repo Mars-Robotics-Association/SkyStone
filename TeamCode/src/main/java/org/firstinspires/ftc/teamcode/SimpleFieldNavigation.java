@@ -32,6 +32,10 @@ public class SimpleFieldNavigation
     public boolean firstRound = true;
 
     private double TargetEncoderValue;
+    private double CurrentEncoderValue;
+
+    private double TargetRot;
+    private double CurrentRot;
 
     public SimpleFieldNavigation(OpMode setOpmode, Robot robot)
     {
@@ -66,7 +70,7 @@ public class SimpleFieldNavigation
 
         if(Navigating)
         {
-            if (!CheckCloseEnoughDistance()) //If not close to target
+            if (!CheckCloseEnoughEncoder()) //If not close to target
             {
                 opmode.telemetry.addData("Not close enough: ", true);
             }
@@ -75,7 +79,7 @@ public class SimpleFieldNavigation
                 Bot.StopMotors();
                 //Bot.RotateTo(TargetRot, 0.5);
                 //Rotating = true;
-                //Navigating = false;
+                Navigating = false;
             }
             opmode.telemetry.update();
         }
@@ -84,6 +88,7 @@ public class SimpleFieldNavigation
         {
             if (!CheckCloseEnoughRotation()) //if not at rotation target
             {
+                Bot.RotateTo(TargetRot, 1);
             }
             else //Stop
             {
@@ -164,6 +169,22 @@ public class SimpleFieldNavigation
 
     }
 
+    public boolean CheckCloseEnoughEncoder()
+    {
+        if(Math.sqrt(TargetEncoderValue - CurrentEncoderValue) < closeEnoughThresholdDist)
+        {
+            return true;
+        }
+        else return false;
+    }
 
+    public boolean CheckCloseEnoughRotation()
+    {
+        if(CurrentRot < TargetRot + closeEnoughThresholdRot && CurrentRot > TargetRot - closeEnoughThresholdRot)
+        {
+            return true;
+        }
+        else return false;
+    }
 
 }
