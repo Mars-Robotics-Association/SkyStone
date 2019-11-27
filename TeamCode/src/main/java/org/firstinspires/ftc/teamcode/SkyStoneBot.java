@@ -71,13 +71,8 @@ public class SkyStoneBot implements Robot
     {
         imu.Loop();
         Angles = imu.angles;
-/*
-        opmode.telemetry.addData("Robot Rot before offset: ", Angles.firstAngle);
-*/
+
         RobotAngle = Angles.firstAngle - RobotAngleOffset;
-        /*opmode.telemetry.addData("Robot Rot Final: ", RobotAngle);
-        opmode.telemetry.addData("IMU: ", imu);
-        opmode.telemetry.update();*/
     }
 
     public void OffsetGyro()
@@ -184,9 +179,6 @@ public class SkyStoneBot implements Robot
         return MotorPositions;
     }
 
-
-
-
     //allows for corkscrewing
     public void CalculateWheelSpeedsTurning(double degrees, double speed, boolean turnRight, double turnSpeed)
     {
@@ -216,21 +208,4 @@ public class SkyStoneBot implements Robot
     {
         return 0;
     }
-
-    public void GoRight(double distance, boolean infinite)
-    {
-        MoveAtAngle(90*(distance/Math.abs(distance)), 1, false);
-    }
-
-    public void GoForward(double distance, boolean infinite)
-    {
-
-    }
-
-    public boolean IsOnTheLine(){
-        return true;
-    }
-
-
-
 }
