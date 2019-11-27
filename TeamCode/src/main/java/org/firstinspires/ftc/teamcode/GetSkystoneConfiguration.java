@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.vuforia.Vec2F;
-import com.vuforia.Vuforia;
 
 public class GetSkystoneConfiguration
 {
@@ -13,11 +12,15 @@ public class GetSkystoneConfiguration
     private OpMode opMode;
     private boolean redTeam;
     private double closeEnoughThresholdDist = 2;
+    private double StartX;
+    private double StartY;
 
-    public GetSkystoneConfiguration(OpMode newOpMode, boolean redSide)
+    public GetSkystoneConfiguration(OpMode newOpMode, boolean redSide, double startX, double startY)
     {
         opMode = newOpMode;
         redTeam = redSide;
+        StartX = startX;
+        StartY = startY;
     }
 
     public void Init()
@@ -33,34 +36,39 @@ public class GetSkystoneConfiguration
 
     public Vec2F[] GetSkystonePos()
     {
-        Vec2F samplePos = vuforia.GetSkystonePos();
-        Vec2F otherPos = new Vec2F();
+        Vec2F relativePos = vuforia.GetRelativeRobotPos();
+        Vec2F firstSkystonePos = new Vec2F();
+        Vec2F secondSkystonePos = new Vec2F();
 
-        if(CheckCloseEnoughDistance(samplePos, RedUpper[0]))
+        double firstX = StartX - relativePos.getData()[0];
+        double firstY = StartY - relativePos.getData()[1];
+        firstSkystonePos = new Vec2F((float)firstX, (float)firstY);
+
+        if(CheckCloseEnoughDistance(firstSkystonePos, RedUpper[0]))
         {
-            otherPos = RedLower[0];
+            secondSkystonePos = RedLower[0];
         }
-        if(CheckCloseEnoughDistance(samplePos, RedUpper[1]))
+        if(CheckCloseEnoughDistance(firstSkystonePos, RedUpper[1]))
         {
-            otherPos = RedLower[1];
+            secondSkystonePos = RedLower[1];
         }
-        if(CheckCloseEnoughDistance(samplePos, RedUpper[2]))
+        if(CheckCloseEnoughDistance(firstSkystonePos, RedUpper[2]))
         {
-            otherPos = RedLower[2];
+            secondSkystonePos = RedLower[2];
         }
-        if(CheckCloseEnoughDistance(samplePos, RedUpper[0]))
+        if(CheckCloseEnoughDistance(firstSkystonePos, RedUpper[0]))
         {
-            otherPos = RedUpper[0];
+            secondSkystonePos = RedUpper[0];
         }
-        if(CheckCloseEnoughDistance(samplePos, RedUpper[1]))
+        if(CheckCloseEnoughDistance(firstSkystonePos, RedUpper[1]))
         {
-            otherPos = RedUpper[1];
+            secondSkystonePos = RedUpper[1];
         }
-        if(CheckCloseEnoughDistance(samplePos, RedUpper[2]))
+        if(CheckCloseEnoughDistance(firstSkystonePos, RedUpper[2]))
         {
-            otherPos = RedUpper[2];
+            secondSkystonePos = RedUpper[2];
         }
-        Vec2F[] finalLocs = {samplePos, otherPos};
+        Vec2F[] finalLocs = {firstSkystonePos, secondSkystonePos};
 
         return finalLocs;
     }

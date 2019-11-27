@@ -380,17 +380,32 @@ public class VuforiaLookForSkystones
         targetsSkyStone.activate();
     }
 
-    public Vec2F GetSkystonePos()
+    public Vec2F GetRelativeRobotPos()
     {
         Vec2F pos = new Vec2F();
         boolean first = true;
+        double RobotX;
+        double RobotY;
 
         for (VuforiaTrackable trackable : allTrackables)
         {
+            OpenGLMatrix robotLocationTransform = ((VuforiaTrackableDefaultListener)trackable.getListener()).getUpdatedRobotLocation();
+            if (robotLocationTransform != null) {
+                lastLocation = robotLocationTransform;
+            }
+
+            if (lastLocation != null && first) {
+                //  RobotLog.vv(TAG, "robot=%s", format(lastLocation));
+                float[] coordinates = lastLocation.getTranslation().getData();
+                RobotX = coordinates[0]/mmPerInch;
+                RobotY = coordinates[1]/mmPerInch;
+                pos = new Vec2F((float)RobotX, (float)RobotY);
+                first = false;
+            }
+
             if(first)
             {
                 float[] coords = trackable.getLocation().getData();
-                pos = new Vec2F(coords[0], coords[1]);
                 first = false;
             }
         }
