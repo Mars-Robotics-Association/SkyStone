@@ -192,7 +192,4 @@ public class FieldNavigationBot1
         }
         else return false;
     }
-
-
-
 }
