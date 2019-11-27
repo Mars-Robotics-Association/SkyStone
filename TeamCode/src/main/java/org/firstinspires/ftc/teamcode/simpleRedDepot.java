@@ -10,8 +10,8 @@ import com.vuforia.Vec3F;
 
 
 
-@Autonomous(name = "depotSingleBackup", group = "Autonomous")
-public class depotSingleBackup extends LinearOpMode {
+@Autonomous(name = "simpleRedDepot", group = "Autonomous")
+public class simpleRedDepot extends LinearOpMode {
 
     private DcMotor FrontRight;
     private DcMotor FrontLeft;
