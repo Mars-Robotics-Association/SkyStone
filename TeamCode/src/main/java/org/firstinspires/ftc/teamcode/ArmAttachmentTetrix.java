@@ -105,8 +105,13 @@ public class ArmAttachmentTetrix implements Attachment {
     }
 
     //@Override
-    public void Loop() {
-
+    public void Loop()
+    {
+        opmode.telemetry.addData("Left Current: ", ArmLeft.getCurrentPosition());
+        opmode.telemetry.addData("Left Resting: ", ArmLeftResting);
+        opmode.telemetry.addData("Right Current: ", ArmRight.getCurrentPosition());
+        opmode.telemetry.addData("Right Resting: ", ArmRightResting);
+        opmode.telemetry.update();
     }
 
     @Override

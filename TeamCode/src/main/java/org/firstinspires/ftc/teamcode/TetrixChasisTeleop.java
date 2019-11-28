@@ -83,6 +83,7 @@ public class TetrixChasisTeleop extends OpMode
             //put down stone
         }
 
+        arm.Loop();
         ManageArmMovement();
         ManageGripperMovement();
 

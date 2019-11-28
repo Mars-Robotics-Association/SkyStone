@@ -125,7 +125,7 @@ public class IMU
             }
             });
 
-            opmode.telemetry.addLine()
+            /*opmode.telemetry.addLine()
                     .addData("status", new Func<String>() {
                         @Override public String value() {
                             return imu.getSystemStatus().toShortString();
@@ -167,7 +167,7 @@ public class IMU
                                             + gravity.yAccel*gravity.yAccel
                                             + gravity.zAccel*gravity.zAccel));
                         }
-                    });
+                    });*/
         }
 
         //----------------------------------------------------------------------------------------------
