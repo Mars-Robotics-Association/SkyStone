@@ -31,9 +31,6 @@ public class SimpleFieldNavigation
 
     public boolean firstRound = true;
 
-    private double TargetEncoderValue;
-    private double CurrentEncoderValue;
-
     private double TargetRot;
     private double CurrentRot;
 
@@ -66,17 +63,17 @@ public class SimpleFieldNavigation
             firstRound = false;
         }
 
-        //Update encoder values
 
         if(Navigating)
         {
-            if (!CheckCloseEnoughEncoder()) //If not close to target
+            if (!Bot.CheckIfEncodersCloseEnough()) //If not close to target
             {
                 opmode.telemetry.addData("Not close enough: ", true);
             }
-            else { //Stop and rotate to target
+            else //Stop
+            {
                 opmode.telemetry.addData("Not close enough: ", false);
-                Bot.StopMotors();
+                Bot.StopEncoders();
                 //Bot.RotateTo(TargetRot, 0.5);
                 //Rotating = true;
                 Navigating = false;
@@ -137,14 +134,16 @@ public class SimpleFieldNavigation
 
     public void GoRight(double distance, boolean infinite)
     {
-        Bot.MoveAtAngle(90*(distance/Math.abs(distance)), 1, false);
+        /*Bot.MoveAtAngle(90*(distance/Math.abs(distance)), 1, false);
         Navigating = true;
-        Rotating = false;
+        Rotating = false;*/
     }
 
     public void GoForward(double distance, boolean infinite)
     {
-
+        Bot.GoForwardWithEncoder(1, distance);
+        Navigating = true;
+        Rotating = false;
     }
 
     public boolean IsOnTheLine(){
@@ -167,15 +166,6 @@ public class SimpleFieldNavigation
             return false;
         }
 
-    }
-
-    public boolean CheckCloseEnoughEncoder()
-    {
-        if(Math.sqrt(TargetEncoderValue - CurrentEncoderValue) < closeEnoughThresholdDist)
-        {
-            return true;
-        }
-        else return false;
     }
 
     public boolean CheckCloseEnoughRotation()

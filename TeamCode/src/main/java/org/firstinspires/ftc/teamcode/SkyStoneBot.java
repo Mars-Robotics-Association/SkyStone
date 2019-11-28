@@ -26,6 +26,10 @@ public class SkyStoneBot implements Robot
     private double RearRightPower = 0;
     private double RearLeftPower = 0;
 
+    private double EncoderTicks = 1120;//ticks for one rotation
+    private double WheelDiameter = 2;//diameter of wheel in inches
+    private int encodedDistance = 0;
+
     int MotorPositions[]={0,0,0,0};
     private IMU imu;
     private OpMode opmode;
@@ -71,7 +75,7 @@ public class SkyStoneBot implements Robot
     {
         imu.Loop();
         Angles = imu.angles;
-
+        MotorPositions = new int[]{FrontRight.getCurrentPosition(), FrontLeft.getCurrentPosition(), RearRight.getCurrentPosition(), RearLeft.getCurrentPosition()};
         RobotAngle = Angles.firstAngle - RobotAngleOffset;
     }
 
@@ -97,6 +101,49 @@ public class SkyStoneBot implements Robot
         RearRight.setPower(RearRightPower);
         RearLeft.setPower(RearLeftPower);
     }
+
+    //ENCODER METHODS FOR SIMPLE AUTONOMOUS
+
+    public void GoForwardWithEncoder(double speed, double distance)
+    {
+        StopEncoders();
+
+        encodedDistance = (int)((EncoderTicks/WheelDiameter)/distance);//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
+
+        FrontRight.setTargetPosition(encodedDistance);
+        FrontLeft.setTargetPosition(-encodedDistance);
+        RearRight.setTargetPosition(encodedDistance);
+        RearLeft.setTargetPosition(-encodedDistance);
+
+        FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+    }
+
+    public boolean CheckIfEncodersCloseEnough()
+    {
+        int currentPos = FrontRight.getCurrentPosition();
+        if(Math.abs(currentPos - encodedDistance) < 4)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void StopEncoders()
+    {
+        FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        RearRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
+
+    //END ENCODER METHODS FOR SIMPLE AUTONOMOUS
 
     //allows robot to corkscrew
     public void MoveAtAngleTurning(double angle, double speed, boolean turnRight, double turnSpeed, boolean headlessMode)
