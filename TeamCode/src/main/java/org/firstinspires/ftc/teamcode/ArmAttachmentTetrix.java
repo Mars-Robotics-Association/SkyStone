@@ -140,21 +140,30 @@ public class ArmAttachmentTetrix implements Attachment {
         if(ArmRight.getCurrentPosition()<ArmRightResting)
         {
             ArmRight.setTargetPosition(ArmRightResting);
-            ArmLeft.setTargetPosition(ArmLeftResting);
             ArmRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            ArmLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            ArmLeft.setPower(0.8);
-            ArmRight.setPower(0.8);
+            //ArmRight.setPower(-0.8);
 
         }
-        else if(ArmRight.getCurrentPosition()>ArmRightResting)
+        if(ArmRight.getCurrentPosition()>ArmRightResting)
         {
             ArmRight.setTargetPosition(ArmRightResting);
-            ArmLeft.setTargetPosition(ArmLeftResting);
             ArmRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            //ArmRight.setPower(0.8);
+
+        }
+
+        if(ArmLeft.getCurrentPosition()<ArmRightResting)
+        {
+            ArmLeft.setTargetPosition(ArmLeftResting);
             ArmLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            ArmLeft.setPower(-0.8);
-            ArmRight.setPower(-0.8);
+            //ArmLeft.setPower(0.8);
+
+        }
+        if(ArmLeft.getCurrentPosition()>ArmRightResting)
+        {
+            ArmLeft.setTargetPosition(ArmLeftResting);
+            ArmLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            //ArmLeft.setPower(-0.8);
 
         }
     }
