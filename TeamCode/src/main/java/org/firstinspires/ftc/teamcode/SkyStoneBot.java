@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -20,6 +21,9 @@ public class SkyStoneBot implements Robot
     private DcMotor FrontLeft;
     private DcMotor RearRight;
     private DcMotor RearLeft;
+
+    private Servo FoundationL;
+    private Servo FoundationR;
 
     private double FrontRightPower = 0;
     private double FrontLeftPower = 0;
@@ -56,6 +60,11 @@ public class SkyStoneBot implements Robot
         FrontLeft = opmode.hardwareMap.get(DcMotor.class, "FrontLeft");
         RearRight = opmode.hardwareMap.get(DcMotor.class, "RearRight");
         RearLeft = opmode.hardwareMap.get(DcMotor.class, "RearLeft");
+
+        FoundationL = opmode.hardwareMap.get(Servo.class, "FoundationL");
+        FoundationR = opmode.hardwareMap.get(Servo.class, "FoundationR");
+
+
         opmode.telemetry.update();
     }
 
@@ -208,4 +217,17 @@ public class SkyStoneBot implements Robot
     {
         return 0;
     }
+
+    public void FoundationGrab(double desiredAngle){
+        if(desiredAngle>0){
+            FoundationL.setPosition(0.75);
+            FoundationR.setPosition(0.25);
+        }
+        else{
+            FoundationL.setPosition(0.25);
+            FoundationR.setPosition(0.75);
+        }
+
+    }
+
 }

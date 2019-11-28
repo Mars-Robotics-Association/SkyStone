@@ -126,4 +126,7 @@ public class UDC_Teleop
     {
         Bot.StopMotors();
     }
+    public void FoundationGrab(double desiredAngle){
+        Bot.FoundationGrab(desiredAngle);
+    }
 }
