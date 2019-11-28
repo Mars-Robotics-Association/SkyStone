@@ -13,25 +13,23 @@ import com.vuforia.Vec3F;
 @Autonomous(name = "simpleRedDepot", group = "Autonomous")
 public class simpleRedDepot extends LinearOpMode {
 
-    private DcMotor FrontRight;
-    private DcMotor FrontLeft;
-    private DcMotor RearRight;
-    private DcMotor RearLeft;
+    private SimpleFieldNavigation bot;
+    private SkyStoneBot SSB;
 
-
-
-    private SkyStoneBot skystonebot;
-
-
+    public void Init() {
+        bot.Init();
+        SSB = new SkyStoneBot(this);
+        bot = new SimpleFieldNavigation(this,SSB );
+    }
 
     @Override
     public void runOpMode() {
 
-
-
-
-        skystonebot.MoveAtAngle(0,1,false);
-
-
+        bot.GoForward(25,false);
+        bot.GoRight(-1,true);
+        while(bot.IsOnTheLine()){
+            telemetry.addData("searching",0);
+        }
+        bot.StopAll();
     }
 }
