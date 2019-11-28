@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -100,7 +101,7 @@ public class ArmAttachmentTetrix implements Attachment {
         ArmLeftResting=ArmLeft.getCurrentPosition();
 
         ArmRight.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
-        ArmLeft.setDirection(DcMotor.Direction.FORWARD);
+        ArmLeft.setDirection(DcMotor.Direction.REVERSE);
     }
 
     //@Override
