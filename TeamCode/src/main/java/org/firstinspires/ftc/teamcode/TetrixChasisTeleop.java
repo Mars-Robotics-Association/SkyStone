@@ -119,11 +119,11 @@ public class TetrixChasisTeleop extends OpMode
         {
             arm.LiftUp();
         }
-        else if(gamepad2.dpad_down)//move lift down
+        if(gamepad2.dpad_down)//move lift down
         {
             arm.LiftDown();
         }
-        else//stop the arm from moving up or down
+        if(!gamepad2.dpad_down && !gamepad2.dpad_up)//stop the arm from moving up or down
         {
             arm.LiftStopVertical();
         }
