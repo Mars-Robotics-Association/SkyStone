@@ -4,8 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 
-@Autonomous(name = "simpleBlueZone", group = "Autonomous")
-public class simpleBlueZone extends LinearOpMode {
+@Autonomous(name = "simpleBlueDepot", group = "Autonomous")
+public class simpleBlueDepot extends LinearOpMode {
 
     private SimpleFieldNavigation bot;
     private SkyStoneBot SSB;
@@ -20,7 +20,7 @@ public class simpleBlueZone extends LinearOpMode {
     public void runOpMode() {
 
         bot.GoForward(25,false);
-        bot.GoRight(-1,true);
+        bot.GoRight(1,true);
         while(bot.IsOnTheLine()){
             telemetry.addData("searching",0);
         }
