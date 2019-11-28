@@ -134,23 +134,25 @@ public class ArmAttachmentTetrix implements Attachment {
         ArmLeftResting=ArmLeft.getCurrentPosition();
     }
     public void LiftStopVertical () {
-        ArmRight.setPower(0*Vratio);
-        ArmLeft.setPower(0*Vratio);
-        if(ArmRight.getCurrentPosition()<ArmRightResting){
+        //ArmRight.setPower(0*Vratio);
+        //ArmLeft.setPower(0*Vratio);
+        if(ArmRight.getCurrentPosition()<ArmRightResting)
+        {
             ArmRight.setTargetPosition(ArmRightResting);
             ArmLeft.setTargetPosition(ArmLeftResting);
             ArmRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             ArmLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            ArmLeft.setPower(0.4);
-            ArmRight.setPower(0.4);
+            ArmLeft.setPower(0.8);
+            ArmRight.setPower(0.8);
         }
-        else if(ArmRight.getCurrentPosition()>ArmRightResting){
+        else if(ArmRight.getCurrentPosition()>ArmRightResting)
+        {
             ArmRight.setTargetPosition(ArmRightResting);
             ArmLeft.setTargetPosition(ArmLeftResting);
             ArmRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             ArmLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            ArmLeft.setPower(-0.4);
-            ArmRight.setPower(-0.4);
+            ArmLeft.setPower(-0.8);
+            ArmRight.setPower(-0.8);
         }
     }
     public void LiftExtend () {
