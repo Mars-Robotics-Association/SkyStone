@@ -67,8 +67,8 @@ public class ArmAttachmentTetrix implements Attachment {
     int ArmRightResting;
     int ArmHorizontalResting;
 
-    double ArmLeftPower=0.4;
-    double ArmRightPower=0.4;
+    double ArmLeftPower=0.8;
+    double ArmRightPower=0.8;
 
     double Vratio;
     double Hratio;
@@ -141,16 +141,16 @@ public class ArmAttachmentTetrix implements Attachment {
             ArmLeft.setTargetPosition(ArmLeftResting);
             ArmRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             ArmLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            ArmLeft.setPower(0.4);
-            ArmRight.setPower(0.4);
+            ArmLeft.setPower(0.6);
+            ArmRight.setPower(0.6);
         }
         else if(ArmRight.getCurrentPosition()>ArmRightResting){
             ArmRight.setTargetPosition(ArmRightResting);
             ArmLeft.setTargetPosition(ArmLeftResting);
             ArmRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             ArmLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            ArmLeft.setPower(-0.4);
-            ArmRight.setPower(-0.4);
+            ArmLeft.setPower(-0.6);
+            ArmRight.setPower(-0.6);
         }
     }
     public void LiftExtend () {
