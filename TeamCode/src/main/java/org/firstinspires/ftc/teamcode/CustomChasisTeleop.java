@@ -91,7 +91,7 @@ public class CustomChasisTeleop extends OpMode
         if(gamepad2.left_stick_y>JoystickThreshold){
             Teleop.FoundationGrab(gamepad2.left_stick_y);
         }
-        else if(gamepad2.left_stick_y<-JoystickThreshold){
+        if(gamepad2.left_stick_y<-JoystickThreshold){
             Teleop.FoundationGrab(gamepad2.left_stick_y);
         }
 
