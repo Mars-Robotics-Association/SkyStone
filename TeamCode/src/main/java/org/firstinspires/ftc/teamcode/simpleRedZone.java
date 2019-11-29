@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 
-@Autonomous(name = "simpleBlueDepot", group = "Autonomous")
+@Autonomous(name = "simpleRedZone", group = "Autonomous")
 public class simpleRedZone extends LinearOpMode {
 
     private SimpleFieldNavigation bot;
