@@ -25,14 +25,15 @@ public class ArmAttachmentCustom implements Attachment {
 
     @Override
     public void Init() {
-        ArmHorizontal = opmode.hardwareMap.dcMotor.get("ArmVertical");
-        ArmVertical = opmode.hardwareMap.dcMotor.get("ArmHorizontal");
+        /*ArmHorizontal = opmode.hardwareMap.dcMotor.get("ArmHorizontal");
+        ArmVertical = opmode.hardwareMap.dcMotor.get("ArmVertical");*/
 
-        ArmVertical.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        ArmVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        LeftIntake = opmode.hardwareMap.dcMotor.get("LeftIntake");
+        RightIntake = opmode.hardwareMap.dcMotor.get("RightIntake");
 
-/*      LeftIntake = opmode.hardwareMap.dcMotor.get("LeftIntake");
-        RightIntake = opmode.hardwareMap.dcMotor.get("RightIntake");*/
+        //ArmVertical.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //ArmVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         Vratio=1;
         Hratio=1;
     }
@@ -96,7 +97,7 @@ public class ArmAttachmentCustom implements Attachment {
 
     public void IntakeOff()
     {
-        LeftIntake.setPower(-1);
-        RightIntake.setPower(1);
+        LeftIntake.setPower(0);
+        RightIntake.setPower(0);
     }
 }
