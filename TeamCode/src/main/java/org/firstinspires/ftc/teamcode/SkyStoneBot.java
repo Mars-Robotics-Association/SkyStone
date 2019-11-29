@@ -131,6 +131,24 @@ public class SkyStoneBot implements Robot
 
     }
 
+    public void GoRightWithEncoder(double speed, double distance)
+    {
+        StopEncoders();
+
+        encodedDistance = (int)((EncoderTicks/WheelDiameter)/distance * Math.sqrt(2));//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
+
+        FrontRight.setTargetPosition(encodedDistance);
+        FrontLeft.setTargetPosition(encodedDistance);
+        RearRight.setTargetPosition(encodedDistance);
+        RearLeft.setTargetPosition(encodedDistance);
+
+        FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+    }
+
     public boolean CheckIfEncodersCloseEnough()
     {
         int currentPos = FrontRight.getCurrentPosition();
