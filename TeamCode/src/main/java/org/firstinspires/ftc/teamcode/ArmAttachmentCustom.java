@@ -15,8 +15,7 @@ public class ArmAttachmentCustom implements Attachment {
     double Hratio;
     OpMode opmode;
 
-    int verticalTargetPos;
-    boolean isMoving = false;
+    int VerticalsRestingPos;
 
     public Gripper gripper;
 
@@ -53,27 +52,27 @@ public class ArmAttachmentCustom implements Attachment {
     {
 //test
     }
-    public void LiftUp ()
-    {
-        ArmVertical.setPower(0.9*Vratio);
-        isMoving = true;
-    }
-    public void LiftDown ()
-    {
-        ArmVertical.setPower(-0.9*Vratio);
-        isMoving = true;
-    }
-    public void LiftStopVertical ()
-    {
-        if(isMoving)
-        {
-            verticalTargetPos = ArmVertical.getCurrentPosition();
-            isMoving = false;
-        }
 
-        ArmVertical.setPower(0*Vratio);
-        ArmVertical.setTargetPosition(verticalTargetPos);
+    public void LiftUp () //Moves the lift up and resets the resting target for LiftStopVertical
+    {
+        ArmLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        ArmVertical.setPower(0.9*Vratio);
+        VerticalsRestingPos = ArmVertical.getCurrentPosition();
     }
+
+    public void LiftDown () //Moves the lift down and resets the resting target for LiftStopVertical
+    {
+        ArmLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        ArmVertical.setPower(-0.9*Vratio);
+        VerticalsRestingPos = ArmVertical.getCurrentPosition();
+    }
+
+    public void LiftStopVertical () //Sets the motors target position and tries to hold it
+    {
+        ArmVertical.setTargetPosition(VerticalsRestingPos);
+        ArmVertical.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+
     public void LiftExtend () {
         ArmHorizontal.setPower(0.9*Hratio);
     }
@@ -83,7 +82,9 @@ public class ArmAttachmentCustom implements Attachment {
         ArmHorizontal.setPower(-0.9*Hratio);
 
     }
-    public void LiftStopHorizontal () {
+
+    public void LiftStopHorizontal ()
+    {
         ArmHorizontal.setPower(0*Hratio);
     }
 
@@ -92,6 +93,7 @@ public class ArmAttachmentCustom implements Attachment {
         LeftIntake.setPower(1);
         RightIntake.setPower(-1);
     }
+
     public void IntakeOff()
     {
         LeftIntake.setPower(-1);
