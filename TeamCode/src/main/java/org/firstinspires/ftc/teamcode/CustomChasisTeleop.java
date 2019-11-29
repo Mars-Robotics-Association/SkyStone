@@ -88,6 +88,13 @@ public class CustomChasisTeleop extends OpMode
             //put down stone
         }
 
+        if(gamepad2.left_stick_y>JoystickThreshold){
+            Teleop.FoundationGrab(gamepad2.left_stick_y);
+        }
+        if(gamepad2.left_stick_y<-JoystickThreshold){
+            Teleop.FoundationGrab(gamepad2.left_stick_y);
+        }
+
         ManageArmMovement();
         //ManageGripperMovement();
 
@@ -214,4 +221,6 @@ public class CustomChasisTeleop extends OpMode
     }
     public void gripperCloseLeft(){gripper.GripperCloseLeft(2);}
     public void gripperCloseRight(){gripper.GripperCloseRight(2);}
+
+
 }

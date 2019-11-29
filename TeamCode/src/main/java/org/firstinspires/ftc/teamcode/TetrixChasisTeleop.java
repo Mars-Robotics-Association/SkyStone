@@ -82,6 +82,12 @@ public class TetrixChasisTeleop extends OpMode
         else if (gamepad2.y){
             //put down stone
         }
+        if(gamepad2.left_stick_y>JoystickThreshold){
+            Teleop.FoundationGrab(gamepad2.left_stick_y);
+        }
+        else if(gamepad2.left_stick_y<-JoystickThreshold){
+            Teleop.FoundationGrab(gamepad2.left_stick_y);
+        }
 
         arm.Loop();
         ManageArmMovement();
