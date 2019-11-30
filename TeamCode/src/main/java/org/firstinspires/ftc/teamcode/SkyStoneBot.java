@@ -269,6 +269,12 @@ public class SkyStoneBot implements Robot
         FrontLeft.setPower(0);
         RearRight.setPower(0);
         RearLeft.setPower(0);
+
+        //Update the values for breaking
+        FrontRightBrakePos = FrontRight.getCurrentPosition();
+        FrontLeftBrakePos = FrontLeft.getCurrentPosition();
+        RearRightBrakePos = RearRight.getCurrentPosition();
+        RearLeftBrakePos = RearLeft.getCurrentPosition();
     }
 
     @Override
