@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -67,8 +68,8 @@ public class ArmAttachmentTetrix implements Attachment {
     int ArmRightResting;
     int ArmHorizontalResting;
 
-    double ArmLeftPower=0.4;
-    double ArmRightPower=0.4;
+    double ArmLeftPower=0.8;
+    double ArmRightPower=0.8;
 
     double Vratio;
     double Hratio;
@@ -100,12 +101,17 @@ public class ArmAttachmentTetrix implements Attachment {
         ArmLeftResting=ArmLeft.getCurrentPosition();
 
         ArmRight.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
-        ArmLeft.setDirection(DcMotor.Direction.FORWARD);
+        ArmLeft.setDirection(DcMotor.Direction.REVERSE);
     }
 
     //@Override
-    public void Loop() {
-
+    public void Loop()
+    {
+        opmode.telemetry.addData("Left Current: ", ArmLeft.getCurrentPosition());
+        opmode.telemetry.addData("Left Resting: ", ArmLeftResting);
+        opmode.telemetry.addData("Right Current: ", ArmRight.getCurrentPosition());
+        opmode.telemetry.addData("Right Resting: ", ArmRightResting);
+        opmode.telemetry.update();
     }
 
     @Override
@@ -117,7 +123,9 @@ public class ArmAttachmentTetrix implements Attachment {
     public void Stop() {
 //test
     }
-    public void LiftUp () {
+
+    public void LiftUp () //Moves the lift up and resets the resting target for LiftStopVertical
+    {
         ArmLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         ArmRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         ArmRight.setPower(ArmRightPower);
@@ -125,7 +133,9 @@ public class ArmAttachmentTetrix implements Attachment {
         ArmRightResting=ArmRight.getCurrentPosition();
         ArmLeftResting=ArmLeft.getCurrentPosition();
     }
-    public void LiftDown () {
+
+    public void LiftDown () //Moves the lift down and resets the resting target for LiftStopVertical
+    {
         ArmLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         ArmRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         ArmRight.setPower(-ArmRightPower);
@@ -133,35 +143,29 @@ public class ArmAttachmentTetrix implements Attachment {
         ArmRightResting=ArmRight.getCurrentPosition();
         ArmLeftResting=ArmLeft.getCurrentPosition();
     }
-    public void LiftStopVertical () {
-        ArmRight.setPower(0*Vratio);
-        ArmLeft.setPower(0*Vratio);
-        if(ArmRight.getCurrentPosition()<ArmRightResting){
-            ArmRight.setTargetPosition(ArmRightResting);
-            ArmLeft.setTargetPosition(ArmLeftResting);
-            ArmRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            ArmLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            ArmLeft.setPower(0.6);
-            ArmRight.setPower(0.6);
-        }
-        else if(ArmRight.getCurrentPosition()>ArmRightResting){
-            ArmRight.setTargetPosition(ArmRightResting);
-            ArmLeft.setTargetPosition(ArmLeftResting);
-            ArmRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            ArmLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            ArmLeft.setPower(-0.4);
-            ArmRight.setPower(-0.4);
-        }
+
+    public void LiftStopVertical ()//Sets the motors target position and tries to hold it
+    {
+        ArmRight.setTargetPosition(ArmRightResting);
+        ArmRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        ArmLeft.setTargetPosition(ArmLeftResting);
+        ArmLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
-    public void LiftExtend () {
+
+    public void LiftExtend ()
+    {
         ArmHorizontal.setPower(0.5*Hratio);
     }
 
-    public void LiftRetract () {
+    public void LiftRetract ()
+    {
         ArmHorizontal.setPower(-0.2*Hratio);
 
     }
-    public void LiftStopHorizontal () {
+
+    public void LiftStopHorizontal ()
+    {
         ArmHorizontal.setPower(0*Hratio);
     }
 }

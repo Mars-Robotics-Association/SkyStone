@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -21,10 +22,17 @@ public class SkyStoneBot implements Robot
     private DcMotor RearRight;
     private DcMotor RearLeft;
 
+    private Servo FoundationL;
+    private Servo FoundationR;
+
     private double FrontRightPower = 0;
     private double FrontLeftPower = 0;
     private double RearRightPower = 0;
     private double RearLeftPower = 0;
+
+    private double EncoderTicks = 1120;//ticks for one rotation
+    private double WheelDiameter = 2;//diameter of wheel in inches
+    private int encodedDistance = 0;
 
     int MotorPositions[]={0,0,0,0};
     private IMU imu;
@@ -56,6 +64,11 @@ public class SkyStoneBot implements Robot
         FrontLeft = opmode.hardwareMap.get(DcMotor.class, "FrontLeft");
         RearRight = opmode.hardwareMap.get(DcMotor.class, "RearRight");
         RearLeft = opmode.hardwareMap.get(DcMotor.class, "RearLeft");
+
+        FoundationL = opmode.hardwareMap.get(Servo.class, "FoundationL");
+        FoundationR = opmode.hardwareMap.get(Servo.class, "FoundationR");
+
+
         opmode.telemetry.update();
     }
 
@@ -71,13 +84,8 @@ public class SkyStoneBot implements Robot
     {
         imu.Loop();
         Angles = imu.angles;
-/*
-        opmode.telemetry.addData("Robot Rot before offset: ", Angles.firstAngle);
-*/
+        MotorPositions = new int[]{FrontRight.getCurrentPosition(), FrontLeft.getCurrentPosition(), RearRight.getCurrentPosition(), RearLeft.getCurrentPosition()};
         RobotAngle = Angles.firstAngle - RobotAngleOffset;
-        /*opmode.telemetry.addData("Robot Rot Final: ", RobotAngle);
-        opmode.telemetry.addData("IMU: ", imu);
-        opmode.telemetry.update();*/
     }
 
     public void OffsetGyro()
@@ -87,10 +95,11 @@ public class SkyStoneBot implements Robot
     }
 
     @Override
-    public void MoveAtAngle(double angle, double speed)
+    public void MoveAtAngle(double angle, double speed, boolean headlessMode)
     {
         //get relative angle and calculate wheel speeds
-        double relativeAngle = angle + RobotAngle;
+        double relativeAngle = angle;
+        if(headlessMode){relativeAngle += RobotAngle;}
 /*
         double relativeAngle = angle + RobotAngle + 90;
 */
@@ -101,6 +110,67 @@ public class SkyStoneBot implements Robot
         RearRight.setPower(RearRightPower);
         RearLeft.setPower(RearLeftPower);
     }
+
+    //ENCODER METHODS FOR SIMPLE AUTONOMOUS
+
+    public void GoForwardWithEncoder(double speed, double distance)
+    {
+        StopEncoders();
+
+        encodedDistance = (int)((EncoderTicks/WheelDiameter)/distance);//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
+
+        FrontRight.setTargetPosition(encodedDistance);
+        FrontLeft.setTargetPosition(-encodedDistance);
+        RearRight.setTargetPosition(encodedDistance);
+        RearLeft.setTargetPosition(-encodedDistance);
+
+        FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+    }
+
+    public void GoRightWithEncoder(double speed, double distance)
+    {
+        StopEncoders();
+
+        encodedDistance = (int)((EncoderTicks/WheelDiameter)/distance * Math.sqrt(2));//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
+
+        FrontRight.setTargetPosition(encodedDistance);
+        FrontLeft.setTargetPosition(encodedDistance);
+        RearRight.setTargetPosition(encodedDistance);
+        RearLeft.setTargetPosition(encodedDistance);
+
+        FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+    }
+
+    public boolean CheckIfEncodersCloseEnough()
+    {
+        int currentPos = FrontRight.getCurrentPosition();
+        if(Math.abs(currentPos - encodedDistance) < 4)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void StopEncoders()
+    {
+        FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        RearRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
+
+    //END ENCODER METHODS FOR SIMPLE AUTONOMOUS
 
     //allows robot to corkscrew
     public void MoveAtAngleTurning(double angle, double speed, boolean turnRight, double turnSpeed, boolean headlessMode)
@@ -183,9 +253,6 @@ public class SkyStoneBot implements Robot
         return MotorPositions;
     }
 
-
-
-
     //allows for corkscrewing
     public void CalculateWheelSpeedsTurning(double degrees, double speed, boolean turnRight, double turnSpeed)
     {
@@ -214,6 +281,18 @@ public class SkyStoneBot implements Robot
     public float GetRobotAngle()
     {
         return 0;
+    }
+
+    public void FoundationGrab(double desiredAngle){
+        if(desiredAngle>0){
+            FoundationL.setPosition(0.75);
+            FoundationR.setPosition(0.25);
+        }
+        else{
+            FoundationL.setPosition(0.25);
+            FoundationR.setPosition(0.75);
+        }
+
     }
 
 }

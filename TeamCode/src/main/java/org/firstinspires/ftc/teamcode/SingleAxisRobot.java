@@ -64,7 +64,7 @@ public class SingleAxisRobot implements Robot
     }
 
     @Override
-    public void MoveAtAngle(double angle, double speed)
+    public void MoveAtAngle(double angle, double speed, boolean headlessMode)
     {
         TargetRot = angle;
         isRotating = true;
