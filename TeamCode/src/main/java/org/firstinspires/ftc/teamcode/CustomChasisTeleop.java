@@ -96,7 +96,7 @@ public class CustomChasisTeleop extends OpMode
         }
 
         ManageArmMovement();
-        //ManageGripperMovement();
+        ManageGripperMovement();
 
         telemetry.update();
     }

@@ -203,30 +203,11 @@ public class SkyStoneBot implements Robot
         RearRight.setPower(RearRightPower);
         RearLeft.setPower(RearLeftPower);
 
+        //Update the values for breaking
         FrontRightBrakePos = FrontRight.getCurrentPosition();
-        FrontRightBrakePos = FrontRight.getCurrentPosition();
-        FrontRightBrakePos = FrontRight.getCurrentPosition();
-        FrontRightBrakePos = FrontRight.getCurrentPosition();
-
-    }
-
-    @Override
-    public void RotateTo(double angle, double speed)
-    {
-        if (angle > RobotAngle) //turn left
-        {
-            RearLeft.setPower(speed);
-            FrontLeft.setPower(speed);
-            FrontRight.setPower(speed);
-            RearRight.setPower(speed);
-        }
-        else //turn right
-        {
-            RearLeft.setPower(-speed);
-            FrontLeft.setPower(-speed);
-            FrontRight.setPower(-speed);
-            RearRight.setPower(-speed);
-        }
+        FrontLeftBrakePos = FrontLeft.getCurrentPosition();
+        RearRightBrakePos = RearRight.getCurrentPosition();
+        RearLeftBrakePos = RearLeft.getCurrentPosition();
     }
 
     @Override
@@ -241,6 +222,38 @@ public class SkyStoneBot implements Robot
             RearRight.setPower(speed);
         }
         if (right) //turn right
+        {
+            RearLeft.setPower(-speed);
+            FrontLeft.setPower(-speed);
+            FrontRight.setPower(-speed);
+            RearRight.setPower(-speed);
+        }
+    }
+
+    public void Brake()
+    {
+        //Set the encoders to run to the breaking position
+        FrontRight.setTargetPosition(FrontRightBrakePos);
+        FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        FrontLeft.setTargetPosition(FrontLeftBrakePos);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        RearRight.setTargetPosition(RearRightBrakePos);
+        RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        RearLeft.setTargetPosition(RearLeftBrakePos);
+        RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+
+    @Override
+    public void RotateTo(double angle, double speed)
+    {
+        if (angle > RobotAngle) //turn left
+        {
+            RearLeft.setPower(speed);
+            FrontLeft.setPower(speed);
+            FrontRight.setPower(speed);
+            RearRight.setPower(speed);
+        }
+        else //turn right
         {
             RearLeft.setPower(-speed);
             FrontLeft.setPower(-speed);

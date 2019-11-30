@@ -1,9 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class UDC_Teleop
 {
@@ -62,36 +59,28 @@ public class UDC_Teleop
     {
         DriveSpeedMultiplier = BaseDriveSpeedMultiplier;
         TurnSpeedMultiplier = BaseTurnSpeedMultiplier;
-
     }
     public void threeFourthsSpeed()
     {
-
         DriveSpeedMultiplier = BaseDriveSpeedMultiplier*3/4;
         TurnSpeedMultiplier = BaseTurnSpeedMultiplier*3/4;
-
     }
 
     public void halfSpeed()
     {
-
         DriveSpeedMultiplier = BaseDriveSpeedMultiplier/2;
         TurnSpeedMultiplier = BaseTurnSpeedMultiplier/2;
-
     }
 
     public void brake()
     {
-        DriveSpeedMultiplier = BaseDriveSpeedMultiplier/3;
-        TurnSpeedMultiplier = BaseTurnSpeedMultiplier/3;
+        Bot.Brake();
     }
 
     public void forthSpeed()
     {
-
         DriveSpeedMultiplier = BaseDriveSpeedMultiplier/4;
         TurnSpeedMultiplier = BaseTurnSpeedMultiplier/4;
-
     }
 
     public void chooseDirection(double rightStickX, double leftStickBaring, double leftStickPower) //Move
