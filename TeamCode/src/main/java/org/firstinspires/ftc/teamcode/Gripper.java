@@ -64,6 +64,7 @@ public class Gripper implements Attachment{
     private Servo GripperL = null;
     private Servo GripperR = null;
     private Servo GripperRotate = null;
+    private Servo GripperUpDownRotate = null;
 
 
     OpMode opmode;
@@ -79,6 +80,7 @@ public class Gripper implements Attachment{
         GripperL= opmode.hardwareMap.servo.get("GripperL");
         GripperR= opmode.hardwareMap.servo.get("GripperR");
         GripperRotate= opmode.hardwareMap.servo.get("GripperRotate");
+        GripperUpDownRotate= opmode.hardwareMap.servo.get("GripperUpDownRotate");
 
 
     }
@@ -120,6 +122,7 @@ public class Gripper implements Attachment{
         }
 
     }
+
     public void GripperClose(int robot){
         if(robot == 2){
 
@@ -130,6 +133,7 @@ public class Gripper implements Attachment{
             GripperL.setPosition(0);
         }
     }
+
     public void GripperCloseLeft(int robot){
         if (robot == 2){
             GripperL.setPosition(0.85);}
@@ -145,9 +149,8 @@ public class Gripper implements Attachment{
         if (robot == 2){
             GripperL.setPosition(0.5);
         }
-
-
     }
+
     public void GripperCloseRight(int robot){
         if (robot == 1){
             GripperR.setPosition(0.75);
@@ -165,9 +168,15 @@ public class Gripper implements Attachment{
 
     }
 
-    public void GripperRotatePosition(double position){
+    public void GripperRotatePosition(double position)
+    {
 
         GripperRotate.setPosition(position);
+    }
+
+    public void GripperRotateUpDown(double position)
+    {
+        GripperUpDownRotate.setPosition(position);
     }
 
     /*public void GripperOpen(){

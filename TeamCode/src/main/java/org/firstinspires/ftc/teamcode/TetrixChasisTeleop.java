@@ -17,6 +17,7 @@ public class TetrixChasisTeleop extends OpMode
     private double DriveSpeedMultiplier;
     private double TurnSpeedMultiplier;
     private double gripperPosition = 0.5;
+    private double gripperUpDownPosition = 0.5;
 
     private double JoystickThreshold = 0.2;
 
@@ -31,6 +32,7 @@ public class TetrixChasisTeleop extends OpMode
         telemetry.addData("start",5 );
         telemetry.update();
         gripperPosition = 0.25;
+        gripperUpDownPosition = 0.25;
 
         Jc = new JoystickCalc(this);
 
@@ -159,11 +161,19 @@ public class TetrixChasisTeleop extends OpMode
 
     public void ManageGripperMovement()//Manages the Gripper
     {
-        if(gamepad2.left_stick_x>JoystickThreshold)//rotate the gripper right
+        if(gamepad2.right_stick_x>JoystickThreshold)//rotate the gripper right
         {
             gripperRight();
         }
-        else if(gamepad2.left_stick_x<-JoystickThreshold)//rotate the gripper left
+        else if(gamepad2.right_stick_x<-JoystickThreshold)//rotate the gripper left
+        {
+            gripperLeft();
+        }
+        if(gamepad2.right_stick_x>JoystickThreshold)//rotate the gripper right
+        {
+            gripperRight();
+        }
+        else if(gamepad2.right_stick_x<-JoystickThreshold)//rotate the gripper left
         {
             gripperLeft();
         }
@@ -202,6 +212,17 @@ public class TetrixChasisTeleop extends OpMode
         gripperPosition -= 0.005;
         gripper.GripperRotatePosition(gripperPosition);
     }
+
+    public void gripperUp() {
+        gripperUpDownPosition+=0.005;
+        gripper.GripperRotateUpDown(gripperUpDownPosition);
+    }
+
+    public void gripperDown() {
+        gripperUpDownPosition -= 0.005;
+        gripper.GripperRotateUpDown(gripperUpDownPosition);
+    }
+
     public void gripper1(){ gripperPosition = 1;}
     public void gripper0(){gripperPosition=0;}
 
