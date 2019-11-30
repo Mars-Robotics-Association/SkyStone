@@ -38,6 +38,11 @@ public class SkyStoneBot implements Robot
     private IMU imu;
     private OpMode opmode;
 
+    int FrontRightBrakePos = 0;
+    int FrontLeftBrakePos = 0;
+    int RearRightBrakePos = 0;
+    int RearLeftBrakePos = 0;
+
     public SkyStoneBot(OpMode Opmode)
     {
         opmode = Opmode;
@@ -65,9 +70,17 @@ public class SkyStoneBot implements Robot
         RearRight = opmode.hardwareMap.get(DcMotor.class, "RearRight");
         RearLeft = opmode.hardwareMap.get(DcMotor.class, "RearLeft");
 
+        FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        RearRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         FoundationL = opmode.hardwareMap.get(Servo.class, "FoundationL");
         FoundationR = opmode.hardwareMap.get(Servo.class, "FoundationR");
-
 
         opmode.telemetry.update();
     }
@@ -175,6 +188,11 @@ public class SkyStoneBot implements Robot
     //allows robot to corkscrew
     public void MoveAtAngleTurning(double angle, double speed, boolean turnRight, double turnSpeed, boolean headlessMode)
     {
+        FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         //get relative angle and calculate wheel speeds
         double relativeAngle = angle;
         if(headlessMode){relativeAngle += RobotAngle;}
@@ -184,6 +202,12 @@ public class SkyStoneBot implements Robot
         FrontLeft.setPower(FrontLeftPower);
         RearRight.setPower(RearRightPower);
         RearLeft.setPower(RearLeftPower);
+
+        FrontRightBrakePos = FrontRight.getCurrentPosition();
+        FrontRightBrakePos = FrontRight.getCurrentPosition();
+        FrontRightBrakePos = FrontRight.getCurrentPosition();
+        FrontRightBrakePos = FrontRight.getCurrentPosition();
+
     }
 
     @Override

@@ -68,7 +68,7 @@ public class ArmAttachmentTetrix implements Attachment {
     int ArmRightResting;
     int ArmHorizontalResting;
 
-    double ArmLeftPower=0.8;
+    double ArmLeftPower=-0.8;//reverse????
     double ArmRightPower=0.8;
 
     double Vratio;

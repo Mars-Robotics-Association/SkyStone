@@ -64,11 +64,11 @@ public class UDC_Teleop
         TurnSpeedMultiplier = BaseTurnSpeedMultiplier;
 
     }
-    public void twoThirdsSpeed()
+    public void threeFourthsSpeed()
     {
 
-        DriveSpeedMultiplier = BaseDriveSpeedMultiplier*2/3;
-        TurnSpeedMultiplier = BaseTurnSpeedMultiplier*2/3;
+        DriveSpeedMultiplier = BaseDriveSpeedMultiplier*3/4;
+        TurnSpeedMultiplier = BaseTurnSpeedMultiplier*3/4;
 
     }
 
@@ -80,7 +80,7 @@ public class UDC_Teleop
 
     }
 
-    public void thirdSpeed()
+    public void brake()
     {
         DriveSpeedMultiplier = BaseDriveSpeedMultiplier/3;
         TurnSpeedMultiplier = BaseTurnSpeedMultiplier/3;

@@ -48,36 +48,36 @@ public class CustomChasisTeleop extends OpMode
     @Override
     public void loop()
     {
-        //Teleop.Loop();
+        Teleop.Loop();
         //Update telemetry and get joystick input
         Jc.calculate();
-        //Teleop.UpdateTurnSpeed(Math.abs(Jc.rightStickX));
+        Teleop.UpdateTurnSpeed(Math.abs(Jc.rightStickX));
         //calculate the absolute value of the right x for turn speed
         double turnSpeed = Math.abs(Jc.rightStickX);
 
         //Reset Gyro if needed
         if(gamepad1.x)
         {
-            //Teleop.gyroOffset();
+            Teleop.gyroOffset();
         }
 
         //SwitchModes
         if(gamepad1.y)
         {
-            //Teleop.headlessMode = true;
+            Teleop.headlessMode = true;
         }
         if(gamepad1.b)
         {
-            //Teleop.headlessMode = false;
+            Teleop.headlessMode = false;
         }
 
-        //ManageDriveMovement();
+        ManageDriveMovement();
 
         //switch between normal and slow modes
-        //if(gamepad1.left_bumper) { Teleop.fullSpeed(); }
-        //if(gamepad1.right_bumper) { Teleop.twoThirdsSpeed(); }
-        //if(gamepad1.left_trigger>0.2) { Teleop.halfSpeed(); }
-        //if(gamepad1.right_trigger>0.2) { Teleop.thirdSpeed(); }
+        if(gamepad1.left_bumper) { Teleop.fullSpeed(); }
+        if(gamepad1.right_bumper) { Teleop.threeFourthsSpeed(); }
+        if(gamepad1.left_trigger>0.2) { Teleop.halfSpeed(); }
+        if(gamepad1.right_trigger>0.2) { Teleop.brake(); }
 
         if(gamepad2.x)
         {
@@ -127,20 +127,24 @@ public class CustomChasisTeleop extends OpMode
 
     public void ManageArmMovement()//Manages the Arm/Lift
     {
-        if(gamepad2.b)//turn the wheel intake on
+        if(gamepad2.right_trigger > 0.2)//turn the wheel intake on
         {
             arm.IntakeOn();
+        }
+        if(gamepad2.left_trigger > 0.2)//turn the wheel intake on
+        {
+            arm.IntakeReverse();
         }
         else//turn the intake off
         {
             arm.IntakeOff();
         }
 
-        /*if(gamepad2.dpad_up)//move lift up
+        if(gamepad2.right_stick_y > 0.1)//move lift up
         {
             arm.LiftUp();
         }
-        else if(gamepad2.dpad_down)//move lift down
+        else if(gamepad2.right_stick_y < -0.1)//move lift down
         {
             arm.LiftDown();
         }
@@ -149,12 +153,12 @@ public class CustomChasisTeleop extends OpMode
             arm.LiftStopVertical();
         }
 
-        if(gamepad2.dpad_left)////extend arm
+        if(gamepad2.right_stick_x > 0.1)////extend arm
         {
             arm.LiftExtend();
         }
 
-        else if (gamepad2.dpad_right)//retract arm
+        else if (gamepad2.right_stick_x < -0.1)//retract arm
         {
             arm.LiftRetract();
         }
@@ -162,19 +166,19 @@ public class CustomChasisTeleop extends OpMode
         else//stop the arm from moving left or right
         {
             arm.LiftStopHorizontal();
-        }*/
+        }
     }
 
     public void ManageGripperMovement()//Manages the Gripper
     {
-        /*if(gamepad2.left_stick_x>JoystickThreshold)//rotate the gripper right
+        if(gamepad2.left_stick_x>JoystickThreshold)//rotate the gripper right
         {
             gripperRight();
         }
         else if(gamepad2.left_stick_x<JoystickThreshold)//rotate the gripper left
         {
             gripperLeft();
-        }*/
+        }
         if(gamepad2.left_bumper)//open the gripper
         {
             openGripper();
@@ -182,14 +186,6 @@ public class CustomChasisTeleop extends OpMode
         if(gamepad2.right_bumper)//close the gripper
         {
             closeGripper();
-        }
-        if(gamepad2.left_trigger>0.2)//open the left side of the gripper
-        {
-            gripperOpenLeft();
-        }
-        if(gamepad2.right_trigger>0.2)//open the right side of the gripper
-        {
-            gripperOpenRight();
         }
     }
 
