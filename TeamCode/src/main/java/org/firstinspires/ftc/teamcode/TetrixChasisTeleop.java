@@ -130,9 +130,10 @@ public class TetrixChasisTeleop extends OpMode
 
     public void ManageArmMovement()//Manages the Arm
     {
-        if(gamepad2.dpad_up&&motorGate.isPressed())//move lift up
+        if(gamepad2.dpad_up&&!motorGate.isPressed())//move lift up
         {
             arm.LiftUp();
+
         }
         if(gamepad2.dpad_down)//move lift down
         {
