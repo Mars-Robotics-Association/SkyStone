@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 @TeleOp(name="TetrixChasisTeleop", group="Iterative Opmode")
 public class TetrixChasisTeleop extends OpMode
@@ -12,7 +13,7 @@ public class TetrixChasisTeleop extends OpMode
     public ArmAttachmentTetrix arm;
     Gripper gripper;
 
-    public DigitalChannel motorGate = null;
+    TouchSensor motorGate;
 
     private double DriveSpeedMultiplier;
     private double TurnSpeedMultiplier;
@@ -49,8 +50,7 @@ public class TetrixChasisTeleop extends OpMode
         gripper = new Gripper(this);
         gripper.Init();
 
-        motorGate = hardwareMap.get(DigitalChannel.class, "motorGate");
-        motorGate.setMode(DigitalChannel.Mode.INPUT);
+        motorGate = hardwareMap.touchSensor.get("motorGate");
     }
         // test
     @Override
@@ -130,7 +130,7 @@ public class TetrixChasisTeleop extends OpMode
 
     public void ManageArmMovement()//Manages the Arm
     {
-        if(gamepad2.dpad_up&&motorGate.getState())//move lift up
+        if(gamepad2.dpad_up&&motorGate.isPressed())//move lift up
         {
             arm.LiftUp();
         }
