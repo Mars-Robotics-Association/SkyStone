@@ -21,6 +21,7 @@ public class CustomChasisTeleop extends OpMode
     private int[] PreviousMotorPositions = {0,0,0,0};
     private int[] TotalMotorClicks = {0,0,0,0};
     boolean FirstRun = true;
+    boolean stopping = false;
 
     @Override
     public void init()
@@ -77,7 +78,6 @@ public class CustomChasisTeleop extends OpMode
         if(gamepad1.left_bumper) { Teleop.fullSpeed(); }
         if(gamepad1.right_bumper) { Teleop.threeFourthsSpeed(); }
         if(gamepad1.left_trigger>0.2) { Teleop.halfSpeed(); }
-        if(gamepad1.right_trigger>0.2) { Teleop.brake(); }
 
         if(gamepad2.x)
         {
@@ -106,23 +106,44 @@ public class CustomChasisTeleop extends OpMode
         if(Jc.leftStickPower > JoystickThreshold) //Move
         {
             Teleop.chooseDirection(Jc.rightStickX, Jc.leftStickBaring, Jc.leftStickPower);
+            stopping = false;
         }
 
         else if(Jc.rightStickX > JoystickThreshold) //Turn Right
         {
             Teleop.turnRight();
+            stopping = false;
         }
 
 
         else if(Jc.rightStickX < -JoystickThreshold) //Turn Left
         {
             Teleop.turnLeft();
+            stopping = false;
         }
 
-        else //STOP
+        /*else if(gamepad1.right_trigger>0.2 && !stopping)
+        {
+            Teleop.brake();
+            telemetry.addData("Brake: ", true);
+            stopping = true;
+        }*/
+        else if(!stopping) //STOP
         {
             Teleop.stopWheels();
         }
+        /*else //STOP
+        {
+            if(!stopping)
+            {
+                Teleop.brake();
+                stopping = true;
+            }
+            else
+            {
+
+            }
+        }*/
     }
 
     public void ManageArmMovement()//Manages the Arm/Lift

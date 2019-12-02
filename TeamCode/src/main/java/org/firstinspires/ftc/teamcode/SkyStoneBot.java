@@ -99,6 +99,19 @@ public class SkyStoneBot implements Robot
         Angles = imu.angles;
         MotorPositions = new int[]{FrontRight.getCurrentPosition(), FrontLeft.getCurrentPosition(), RearRight.getCurrentPosition(), RearLeft.getCurrentPosition()};
         RobotAngle = Angles.firstAngle - RobotAngleOffset;
+
+        opmode.telemetry.addData("Front Right: ", FrontRight.getCurrentPosition());
+        opmode.telemetry.addData("Front Left: ", FrontLeft.getCurrentPosition());
+        opmode.telemetry.addData("Rear Right: ", RearRight.getCurrentPosition());
+        opmode.telemetry.addData("Rear Left: ", RearLeft.getCurrentPosition());
+
+        opmode.telemetry.addData("Front Right Brake: ", FrontRightBrakePos);
+        opmode.telemetry.addData("Front Left Brake: ", FrontLeftBrakePos);
+        opmode.telemetry.addData("Rear Right Brake: ", RearRightBrakePos);
+        opmode.telemetry.addData("Rear Left Brake: ", RearLeftBrakePos);
+
+        opmode.telemetry.update();
+
     }
 
     public void OffsetGyro()
@@ -234,12 +247,12 @@ public class SkyStoneBot implements Robot
     {
         //Set the encoders to run to the breaking position
         FrontRight.setTargetPosition(FrontRightBrakePos);
-        FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         FrontLeft.setTargetPosition(FrontLeftBrakePos);
-        FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         RearRight.setTargetPosition(RearRightBrakePos);
-        RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         RearLeft.setTargetPosition(RearLeftBrakePos);
+        FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
@@ -270,11 +283,11 @@ public class SkyStoneBot implements Robot
         RearRight.setPower(0);
         RearLeft.setPower(0);
 
-        //Update the values for breaking
+        /*//Update the values for breaking
         FrontRightBrakePos = FrontRight.getCurrentPosition();
         FrontLeftBrakePos = FrontLeft.getCurrentPosition();
         RearRightBrakePos = RearRight.getCurrentPosition();
-        RearLeftBrakePos = RearLeft.getCurrentPosition();
+        RearLeftBrakePos = RearLeft.getCurrentPosition();*/
     }
 
     @Override
