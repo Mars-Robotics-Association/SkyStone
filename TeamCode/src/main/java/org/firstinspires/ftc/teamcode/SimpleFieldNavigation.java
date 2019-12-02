@@ -39,6 +39,18 @@ public class SimpleFieldNavigation
         this.opmode = setOpmode;
     }
 
+    public boolean isNavigating()
+    {
+        if(!Navigating && !Rotating)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     public void Init()
     {
         Bot = new SkyStoneBot(opmode);
@@ -131,14 +143,14 @@ public class SimpleFieldNavigation
         else return false;
     }*/
 
-    public void GoRight(double distance, boolean infinite)
+    public void GoRight(double distance)
     {
         Bot.MoveAtAngle(90*(distance/Math.abs(distance)), 1, false);
         Navigating = true;
         Rotating = false;
     }
 
-    public void GoForward(double distance, boolean infinite)
+    public void GoForward(double distance)
     {
         Bot.GoForwardWithEncoder(1, distance);
         Navigating = true;

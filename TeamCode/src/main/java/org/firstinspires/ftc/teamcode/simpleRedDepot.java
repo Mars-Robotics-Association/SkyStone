@@ -9,21 +9,29 @@ public class simpleRedDepot extends LinearOpMode {
 
     private SimpleFieldNavigation nav;
     private SkyStoneBot SSB;
+    private ExampleAttachment exampleAttachment;
 
-    public void Init() {
+    @Override
+    public void runOpMode()
+    {
         nav.Init();
         SSB = new SkyStoneBot(this);
         nav = new SimpleFieldNavigation(this,SSB );
-    }
+        exampleAttachment = new ExampleAttachment(this);
+        exampleAttachment.Init();
 
-    @Override
-    public void runOpMode() {
+        Attachment[] attachments = {exampleAttachment};
 
-        nav.GoForward(25,false);
-        nav.GoRight(-1,true);
+        waitForStart();
+
+        nav.GoForward(25);
+        while (nav.isNavigating()){LoopOpjects(attachments);}
+
+        nav.GoRight(-1000);
         while(nav.IsOnTheLine()){
             telemetry.addData("searching",0);
         }
+
         nav.StopAll();
     }
 
