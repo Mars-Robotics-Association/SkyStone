@@ -25,7 +25,7 @@ public class ArmAttachmentCustom implements Attachment {
 
     @Override
     public void Init() {
-        ArmHorizontal = opmode.hardwareMap.dcMotor.get("ArmHorizontal");
+        //ArmHorizontal = opmode.hardwareMap.dcMotor.get("ArmHorizontal");
         ArmVertical = opmode.hardwareMap.dcMotor.get("ArmVertical");
 
         /*LeftIntake = opmode.hardwareMap.dcMotor.get("LeftIntake");

@@ -75,6 +75,16 @@ public class TetrixChasisTeleop extends OpMode
             Teleop.gyroOffset();
         }
 
+        //SwitchModes
+        if(gamepad1.y)
+        {
+            Teleop.headlessMode = true;
+        }
+        if(gamepad1.b)
+        {
+            Teleop.headlessMode = false;
+        }
+
         ManageDriveMovement();
 
         //switch between normal and slow modes

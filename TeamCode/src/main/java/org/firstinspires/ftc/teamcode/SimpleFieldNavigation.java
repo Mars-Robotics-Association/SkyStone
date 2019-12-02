@@ -63,7 +63,6 @@ public class SimpleFieldNavigation
             firstRound = false;
         }
 
-
         if(Navigating)
         {
             if (!Bot.CheckIfEncodersCloseEnough()) //If not close to target
