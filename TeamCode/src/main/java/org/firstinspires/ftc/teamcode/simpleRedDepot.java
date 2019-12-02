@@ -24,10 +24,10 @@ public class simpleRedDepot extends LinearOpMode {
 
         waitForStart();
 
-        nav.GoForward(25);
+        nav.GoForward(25, false);
         while (nav.isNavigating()){LoopOpjects(attachments);}
 
-        nav.GoRight(-1000);
+        nav.GoRight(-1000, false);
         while(nav.IsOnTheLine()){
             telemetry.addData("searching",0);
         }

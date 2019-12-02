@@ -143,14 +143,14 @@ public class SimpleFieldNavigation
         else return false;
     }*/
 
-    public void GoRight(double distance)
+    public void GoRight(double distance, boolean infinite)
     {
         Bot.MoveAtAngle(90*(distance/Math.abs(distance)), 1, false);
         Navigating = true;
         Rotating = false;
     }
 
-    public void GoForward(double distance)
+    public void GoForward(double distance, boolean infinite)
     {
         Bot.GoForwardWithEncoder(1, distance);
         Navigating = true;
