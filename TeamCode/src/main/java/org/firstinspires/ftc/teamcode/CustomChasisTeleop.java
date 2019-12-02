@@ -29,8 +29,8 @@ public class CustomChasisTeleop extends OpMode
 
         Jc = new JoystickCalc(this);
 
-        //Teleop = new UDC_Teleop(this);
-        //Teleop.Init();
+        Teleop = new UDC_Teleop(this);
+        Teleop.Init();
 
         arm = new ArmAttachmentCustom(this);
         arm.Init();
@@ -42,7 +42,7 @@ public class CustomChasisTeleop extends OpMode
     @Override
     public void start()
     {
-        //Teleop.Start();
+        Teleop.Start();
     }
 
     @Override
@@ -96,7 +96,7 @@ public class CustomChasisTeleop extends OpMode
         }
 
         ManageArmMovement();
-        ManageGripperMovement();
+        //ManageGripperMovement();
 
         telemetry.update();
     }
@@ -127,7 +127,7 @@ public class CustomChasisTeleop extends OpMode
 
     public void ManageArmMovement()//Manages the Arm/Lift
     {
-        if(gamepad2.right_trigger > 0.2)//turn the wheel intake on
+        /*if(gamepad2.right_trigger > 0.2)//turn the wheel intake on
         {
             arm.IntakeOn();
         }
@@ -138,7 +138,7 @@ public class CustomChasisTeleop extends OpMode
         else//turn the intake off
         {
             arm.IntakeOff();
-        }
+        }*/
 
         if(gamepad2.right_stick_y > 0.1)//move lift up
         {

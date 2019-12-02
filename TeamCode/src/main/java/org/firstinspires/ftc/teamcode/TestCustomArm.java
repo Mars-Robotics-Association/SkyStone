@@ -40,16 +40,13 @@ public class TestCustomArm extends OpMode
     @Override
     public void start()
     {
-        //Teleop.Start();
     }
 
     @Override
     public void loop()
     {
-        //Teleop.Loop();
         //Update telemetry and get joystick input
         Jc.calculate();
-        //Teleop.UpdateTurnSpeed(Math.abs(Jc.rightStickX));
         //calculate the absolute value of the right x for turn speed
         double turnSpeed = Math.abs(Jc.rightStickX);
 
@@ -91,7 +88,6 @@ public class TestCustomArm extends OpMode
         {
             arm.LiftStopVertical();
         }
-/*
         if(gamepad2.dpad_left)////extend arm
         {
             arm.LiftExtend();
@@ -105,6 +101,6 @@ public class TestCustomArm extends OpMode
         else//stop the arm from moving left or right
         {
             arm.LiftStopHorizontal();
-        }*/
+        }
     }
 }
