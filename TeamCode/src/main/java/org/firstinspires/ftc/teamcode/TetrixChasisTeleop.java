@@ -35,7 +35,7 @@ public class TetrixChasisTeleop extends OpMode
         gripperPosition = 0.25;
         gripperUpDownPosition = 0.25;
 
-        Jc = new JoystickCalc(this);
+        Jc = new JoystickCalc(this, 0);
 
         Teleop = new UDC_Teleop(this, false);
         Teleop.Init();
@@ -140,7 +140,7 @@ public class TetrixChasisTeleop extends OpMode
 
     public void ManageArmMovement()//Manages the Arm
     {
-        if(gamepad2.dpad_up&&!motorGate.isPressed())//move lift up
+        if(gamepad2.dpad_up)//move lift up //&&!motorGate.isPressed()
         {
             arm.LiftUp();
 

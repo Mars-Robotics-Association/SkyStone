@@ -28,7 +28,7 @@ public class TestCustomArm extends OpMode
     {
         gripperPosition = 0.5;
 
-        Jc = new JoystickCalc(this);
+        Jc = new JoystickCalc(this, 180);
 
         arm = new ArmAttachmentCustom(this);
         arm.Init();
