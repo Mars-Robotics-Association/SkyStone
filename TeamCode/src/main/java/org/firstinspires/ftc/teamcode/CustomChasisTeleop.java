@@ -52,7 +52,7 @@ public class CustomChasisTeleop extends OpMode
         Teleop.Loop();
         //Update telemetry and get joystick input
         Jc.calculate();
-        Teleop.UpdateTurnSpeed(Math.abs(Jc.rightStickX)*(2/3));
+        Teleop.UpdateTurnSpeed(Math.abs(Jc.rightStickX));
         //calculate the absolute value of the right x for turn speed
         double turnSpeed = Math.abs(Jc.rightStickX);
 

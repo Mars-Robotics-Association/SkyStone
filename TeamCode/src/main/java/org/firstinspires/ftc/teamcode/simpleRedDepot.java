@@ -13,7 +13,9 @@ public class simpleRedDepot extends LinearOpMode {
     @Override
     public void runOpMode()
     {
+        nav= new SimpleFieldNavigation(this);
         nav.Init();
+
         exampleAttachment = new ExampleAttachment(this);
         exampleAttachment.Init();
 
