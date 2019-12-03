@@ -8,15 +8,12 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 public class simpleRedDepot extends LinearOpMode {
 
     private SimpleFieldNavigation nav;
-    private SkyStoneBot SSB;
     private ExampleAttachment exampleAttachment;
 
     @Override
     public void runOpMode()
     {
         nav.Init();
-        SSB = new SkyStoneBot(this);
-        nav = new SimpleFieldNavigation(this,SSB );
         exampleAttachment = new ExampleAttachment(this);
         exampleAttachment.Init();
 

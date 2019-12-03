@@ -8,12 +8,10 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 public class simpleRedZone extends LinearOpMode {
 
     private SimpleFieldNavigation bot;
-    private SkyStoneBot SSB;
 
     public void Init() {
         bot.Init();
-        SSB = new SkyStoneBot(this);
-        bot = new SimpleFieldNavigation(this,SSB );
+        bot = new SimpleFieldNavigation(this);
     }
 
     @Override

@@ -19,7 +19,7 @@ public class buildingZoneSingleMirror extends LinearOpMode {
     @Override
     public void runOpMode() {
         //==========INIT==========
-        bot = new SkyStoneBot(this);
+        bot = new SkyStoneBot(this, false);
         nav = new NavigationManager(this, 180, bot);
         exampleAttachment = new ExampleAttachment(this);
 

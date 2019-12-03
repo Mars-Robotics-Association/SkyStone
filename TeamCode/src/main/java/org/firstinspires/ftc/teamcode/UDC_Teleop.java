@@ -22,13 +22,17 @@ public class UDC_Teleop
     OpMode opmode;
     public boolean headlessMode = false;
 
-    public UDC_Teleop(OpMode thatopmode) {
+    boolean rotatedREVHub = false;
+
+    public UDC_Teleop(OpMode thatopmode, boolean rotateREVHub)
+    {
         opmode = thatopmode;
+        rotatedREVHub = rotateREVHub;
     }
 
     public void Init()
     {
-        Bot = new SkyStoneBot(opmode);
+        Bot = new SkyStoneBot(opmode, rotatedREVHub);
         Bot.Init();
     }
 

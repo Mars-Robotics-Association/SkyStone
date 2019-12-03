@@ -37,7 +37,7 @@ public class TetrixChasisTeleop extends OpMode
 
         Jc = new JoystickCalc(this);
 
-        Teleop = new UDC_Teleop(this);
+        Teleop = new UDC_Teleop(this, false);
         Teleop.Init();
 
         arm = new ArmAttachmentTetrix(this);

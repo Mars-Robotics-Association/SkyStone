@@ -34,7 +34,7 @@ public class SimpleFieldNavigation
     private double TargetRot;
     private double CurrentRot;
 
-    public SimpleFieldNavigation(OpMode setOpmode, Robot robot)
+    public SimpleFieldNavigation(OpMode setOpmode)
     {
         this.opmode = setOpmode;
     }
@@ -53,10 +53,9 @@ public class SimpleFieldNavigation
 
     public void Init()
     {
-        Bot = new SkyStoneBot(opmode);
+        Bot = new SkyStoneBot(opmode, false);
         Bot.Init();
         colorSensorGround = opmode.hardwareMap.get(NormalizedColorSensor.class, "colorSensorGround");
-
     }
 
     public void Start()
@@ -152,7 +151,7 @@ public class SimpleFieldNavigation
 
     public void GoForward(double distance, boolean infinite)
     {
-        Bot.GoForwardWithEncoder(1, distance);
+        Bot.GoForwardWithEncoder(0.5, distance);
         Navigating = true;
         Rotating = false;
     }

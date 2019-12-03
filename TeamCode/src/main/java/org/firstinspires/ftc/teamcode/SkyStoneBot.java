@@ -43,9 +43,12 @@ public class SkyStoneBot implements Robot
     int RearRightBrakePos = 0;
     int RearLeftBrakePos = 0;
 
-    public SkyStoneBot(OpMode Opmode)
+    boolean rotatedREVHub = false;
+
+    public SkyStoneBot(OpMode Opmode, boolean rotateREVHub)
     {
         opmode = Opmode;
+        rotatedREVHub = rotateREVHub;
     }
 
     public double GetGyroOffset()
@@ -98,7 +101,15 @@ public class SkyStoneBot implements Robot
         imu.Loop();
         Angles = imu.angles;
         MotorPositions = new int[]{FrontRight.getCurrentPosition(), FrontLeft.getCurrentPosition(), RearRight.getCurrentPosition(), RearLeft.getCurrentPosition()};
-        RobotAngle = Angles.firstAngle - RobotAngleOffset;
+
+        if(!rotatedREVHub)//use normal gyro heading
+        {
+            RobotAngle = Angles.firstAngle - RobotAngleOffset;
+        }
+        else //use other gyro orientation (for custom bot)
+        {
+            RobotAngle = Angles.secondAngle - RobotAngleOffset;
+        }
 
         opmode.telemetry.addData("Front Right: ", FrontRight.getCurrentPosition());
         opmode.telemetry.addData("Front Left: ", FrontLeft.getCurrentPosition());

@@ -30,14 +30,14 @@ public class CustomChasisTeleop extends OpMode
 
         Jc = new JoystickCalc(this);
 
-        Teleop = new UDC_Teleop(this);
+        Teleop = new UDC_Teleop(this, false);
         Teleop.Init();
 
         arm = new ArmAttachmentCustom(this);
         arm.Init();
 
-        //gripper = new Gripper(this);
-        //gripper.Init();
+        gripper = new Gripper(this);
+        gripper.Init();
     }
 
     @Override
@@ -96,7 +96,7 @@ public class CustomChasisTeleop extends OpMode
         }
 
         ManageArmMovement();
-        //ManageGripperMovement();
+        ManageGripperMovement();
 
         telemetry.update();
     }
@@ -128,6 +128,7 @@ public class CustomChasisTeleop extends OpMode
             telemetry.addData("Brake: ", true);
             stopping = true;
         }*/
+
         else if(!stopping) //STOP
         {
             Teleop.stopWheels();

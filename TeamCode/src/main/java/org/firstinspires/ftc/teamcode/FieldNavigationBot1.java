@@ -49,7 +49,7 @@ public class FieldNavigationBot1
 
     public void Init()
     {
-        Bot = new SkyStoneBot(opmode);
+        Bot = new SkyStoneBot(opmode, false);
         Vuforia = new SkystoneVuforiaWebcam(opmode, "Webcam 1");
         Bot.Init();
         Vuforia.Init();
