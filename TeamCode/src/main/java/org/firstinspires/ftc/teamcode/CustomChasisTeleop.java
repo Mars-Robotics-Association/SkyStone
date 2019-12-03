@@ -220,12 +220,12 @@ public class CustomChasisTeleop extends OpMode
     }
 
     public void gripperLeft() {
-        gripperPosition+=0.005;
+        gripperPosition+=0.5;
         gripper.GripperRotatePosition(gripperPosition);
     }
 
     public void gripperRight() {
-        gripperPosition -= 0.005;
+        gripperPosition -= 0.5;
         gripper.GripperRotatePosition(gripperPosition);
     }
     public void gripper1(){ gripperPosition = 1;}

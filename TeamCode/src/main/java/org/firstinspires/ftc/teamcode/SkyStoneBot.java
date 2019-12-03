@@ -189,7 +189,7 @@ public class SkyStoneBot implements Robot
     public boolean CheckIfEncodersCloseEnough()
     {
         int currentPos = FrontRight.getCurrentPosition();
-        if(Math.abs(currentPos - encodedDistance) < 4)
+        if(Math.abs(currentPos - FrontRight.getTargetPosition()) < 4)
         {
             return true;
         }

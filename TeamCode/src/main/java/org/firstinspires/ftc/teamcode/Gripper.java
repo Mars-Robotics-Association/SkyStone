@@ -96,7 +96,6 @@ public class Gripper implements Attachment{
 
     }
 
-
     @Override
     public void Loop() {
 

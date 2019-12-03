@@ -30,7 +30,6 @@ public class simpleRedDepot extends LinearOpMode {
         while(nav.IsOnTheLine()){
             telemetry.addData("searching",0);
         }
-
         nav.StopAll();
     }
 
