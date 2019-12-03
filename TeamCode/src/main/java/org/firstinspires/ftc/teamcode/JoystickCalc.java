@@ -21,9 +21,12 @@ public class JoystickCalc
     static float leftJS = 0;
     static float rightJS = 0;
 
-    public JoystickCalc(OpMode opmode)
+    private double rotationOffset = 0;
+
+    public JoystickCalc(OpMode opmode, double robotRotationOffset)
     {
         this.opmode = opmode;
+        rotationOffset = robotRotationOffset;
     }
 
     public void calculate ()
@@ -46,7 +49,7 @@ public class JoystickCalc
         double X = leftStickX; //Y input
         leftStickBaring = Math.atan2(Y,-X); //get measurement of joystick angle
         leftStickBaring = Math.toDegrees(leftStickBaring);
-        leftStickBaring -= 90;
+        leftStickBaring -= 90 - rotationOffset;
         if(leftStickBaring < 0)//convert degrees to positive if needed
         {
             leftStickBaring = 360 + leftStickBaring;

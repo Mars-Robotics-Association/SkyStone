@@ -28,7 +28,7 @@ public class CustomChasisTeleop extends OpMode
     {
         gripperPosition = 0.5;
 
-        Jc = new JoystickCalc(this);
+        Jc = new JoystickCalc(this, 180);
 
         Teleop = new UDC_Teleop(this, false);
         Teleop.Init();
@@ -52,7 +52,7 @@ public class CustomChasisTeleop extends OpMode
         Teleop.Loop();
         //Update telemetry and get joystick input
         Jc.calculate();
-        Teleop.UpdateTurnSpeed(Math.abs(Jc.rightStickX));
+        Teleop.UpdateTurnSpeed(Math.abs(Jc.rightStickX)*(2/3));
         //calculate the absolute value of the right x for turn speed
         double turnSpeed = Math.abs(Jc.rightStickX);
 
