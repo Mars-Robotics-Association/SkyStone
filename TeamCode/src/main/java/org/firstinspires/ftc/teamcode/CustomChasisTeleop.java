@@ -9,7 +9,7 @@ public class CustomChasisTeleop extends OpMode
     private JoystickCalc Jc = null;
     public UDC_Teleop Teleop = null;
     public ArmAttachmentCustom arm;
-    Gripper gripper;
+    GripperCustom gripper;
 
     private double DriveSpeedMultiplier;
     private double TurnSpeedMultiplier;
@@ -36,7 +36,7 @@ public class CustomChasisTeleop extends OpMode
         arm = new ArmAttachmentCustom(this);
         arm.Init();
 
-        gripper = new Gripper(this);
+        gripper = new GripperCustom(this);
         gripper.Init();
     }
 
