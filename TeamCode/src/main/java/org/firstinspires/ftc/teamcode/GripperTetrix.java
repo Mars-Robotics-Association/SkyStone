@@ -54,7 +54,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 
-public class Gripper implements Attachment{
+public class GripperTetrix implements Attachment{
 
 
     static double GripperLAngle = 0;
@@ -64,12 +64,13 @@ public class Gripper implements Attachment{
     private Servo GripperL = null;
     private Servo GripperR = null;
     private Servo GripperRotate = null;
-    private Servo GripperUpDownRotate = null;
+    private Servo GripperUpDownRotateLeft = null;
+    private Servo GripperUpDownRotateRight = null;
 
 
     OpMode opmode;
 
-    public Gripper(OpMode thatopmode){
+    public GripperTetrix(OpMode thatopmode){
     opmode = thatopmode;
 
 
@@ -80,8 +81,8 @@ public class Gripper implements Attachment{
         GripperL= opmode.hardwareMap.servo.get("GripperL");
         GripperR= opmode.hardwareMap.servo.get("GripperR");
         GripperRotate= opmode.hardwareMap.servo.get("GripperRotate");
-        GripperUpDownRotate= opmode.hardwareMap.servo.get("GripperUpDownRotate");
-
+        GripperUpDownRotateLeft= opmode.hardwareMap.servo.get("GripperUpDownRotateLeft");
+        GripperUpDownRotateRight= opmode.hardwareMap.servo.get("GripperUpDownRotateRight");
 
     }
 
@@ -173,9 +174,10 @@ public class Gripper implements Attachment{
         GripperRotate.setPosition(position);
     }
 
-    public void GripperRotateUpDown(double position)
+    public void GripperRotateUpDown(double positionleft, double positionright)
     {
-        GripperUpDownRotate.setPosition(position);
+        GripperUpDownRotateLeft.setPosition(positionleft);
+        GripperUpDownRotateRight.setPosition(positionright);
     }
 
     /*public void GripperOpen(){

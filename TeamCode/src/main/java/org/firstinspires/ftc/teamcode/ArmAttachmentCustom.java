@@ -17,7 +17,7 @@ public class ArmAttachmentCustom implements Attachment {
 
     int VerticalsRestingPos;
 
-    public Gripper gripper;
+    public GripperTetrix gripper;
 
     public ArmAttachmentCustom(OpMode thatopmode) {
         opmode = thatopmode;

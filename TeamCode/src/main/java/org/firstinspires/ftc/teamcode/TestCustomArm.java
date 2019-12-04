@@ -10,7 +10,7 @@ public class TestCustomArm extends OpMode
 
     private JoystickCalc Jc = null;
     public ArmAttachmentCustom arm;
-    Gripper gripper;
+    GripperTetrix gripper;
 
     private double DriveSpeedMultiplier;
     private double TurnSpeedMultiplier;
@@ -33,7 +33,7 @@ public class TestCustomArm extends OpMode
         arm = new ArmAttachmentCustom(this);
         arm.Init();
 
-        //gripper = new Gripper(this);
+        //gripper = new GripperTetrix(this);
         //gripper.Init();
     }
 
