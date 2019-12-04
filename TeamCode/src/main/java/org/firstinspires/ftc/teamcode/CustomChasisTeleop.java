@@ -189,7 +189,7 @@ public class CustomChasisTeleop extends OpMode
         }
     }
 
-    public void ManageGripperMovement()//Manages the Gripper
+    public void ManageGripperMovement()//Manages the GripperTetrix
     {
         if(gamepad2.left_stick_x>JoystickThreshold)//rotate the gripper right
         {
@@ -209,7 +209,7 @@ public class CustomChasisTeleop extends OpMode
         }
     }
 
-    //Gripper Management Methods
+    //GripperTetrix Management Methods
     public void closeGripper(){
         gripper.GripperClose();
     }
