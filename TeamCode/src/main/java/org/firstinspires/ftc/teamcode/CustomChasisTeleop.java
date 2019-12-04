@@ -13,7 +13,6 @@ public class CustomChasisTeleop extends OpMode
 
     private double DriveSpeedMultiplier;
     private double TurnSpeedMultiplier;
-    private double gripperPosition = 0.5;
 
     private double JoystickThreshold = 0.2;
 
@@ -26,8 +25,6 @@ public class CustomChasisTeleop extends OpMode
     @Override
     public void init()
     {
-        gripperPosition = 0.5;
-
         Jc = new JoystickCalc(this, 180);
 
         Teleop = new UDC_Teleop(this, false);
@@ -50,6 +47,7 @@ public class CustomChasisTeleop extends OpMode
     public void loop()
     {
         Teleop.Loop();
+        gripper.Loop();
         //Update telemetry and get joystick input
         Jc.calculate();
         Teleop.UpdateTurnSpeed(Math.abs(Jc.rightStickX));
@@ -197,7 +195,7 @@ public class CustomChasisTeleop extends OpMode
         {
             gripperRight();
         }
-        else if(gamepad2.left_stick_x<JoystickThreshold)//rotate the gripper left
+        else if(gamepad2.left_stick_x<-JoystickThreshold)//rotate the gripper left
         {
             gripperLeft();
         }
@@ -213,32 +211,30 @@ public class CustomChasisTeleop extends OpMode
 
     //Gripper Management Methods
     public void closeGripper(){
-        gripper.GripperClose(2);
+        gripper.GripperClose();
     }
     public void openGripper(){
-        gripper.GripperOpen(2);
+        gripper.GripperOpen();
     }
 
     public void gripperLeft() {
-        gripperPosition+=0.5;
-        gripper.GripperRotatePosition(gripperPosition);
+        gripper.GripperRotatePosition(0.05);
     }
 
     public void gripperRight() {
-        gripperPosition -= 0.5;
-        gripper.GripperRotatePosition(gripperPosition);
+        gripper.GripperRotatePosition(-0.05);
     }
-    public void gripper1(){ gripperPosition = 1;}
-    public void gripper0(){gripperPosition=0;}
+    public void gripper1(){ /*gripperPosition = 1;*/}
+    public void gripper0(){/*gripperPosition=0;*/}
 
     public void gripperOpenLeft(){
-        gripper.GripperOpenLeft(2);
+        gripper.GripperOpenLeft();
     }
     public void gripperOpenRight(){
-        gripper.GripperOpenRight(2);
+        gripper.GripperOpenRight();
     }
-    public void gripperCloseLeft(){gripper.GripperCloseLeft(2);}
-    public void gripperCloseRight(){gripper.GripperCloseRight(2);}
+    public void gripperCloseLeft(){gripper.GripperCloseLeft();}
+    public void gripperCloseRight(){gripper.GripperCloseRight();}
 
 
 }
