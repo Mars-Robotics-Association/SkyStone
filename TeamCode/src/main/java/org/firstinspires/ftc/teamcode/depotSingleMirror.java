@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.vuforia.Vec3F;
 
-@Disabled
+@Disabled 
 //Test Program for using a linear system of navigation with the WaypointManager
 @Autonomous(name = "depotSingleMirror", group = "Autonomous")
 public class depotSingleMirror extends LinearOpMode {
