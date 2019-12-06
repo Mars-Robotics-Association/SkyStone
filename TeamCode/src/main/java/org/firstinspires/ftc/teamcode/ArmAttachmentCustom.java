@@ -89,13 +89,14 @@ public class ArmAttachmentCustom implements Attachment {
         ArmHorizontal.setPower(0*Hratio);
     }
 
-    public void IntakeOn()
+
+    public void IntakeReverse()
     {
         LeftIntake.setPower(-1);
         RightIntake.setPower(1);
     }
 
-    public void IntakeReverse()
+    public void IntakeOn()
     {
         LeftIntake.setPower(1);
         RightIntake.setPower(-1);
