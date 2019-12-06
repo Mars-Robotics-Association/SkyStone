@@ -147,7 +147,7 @@ public class CustomChasisTeleop extends OpMode
 
     public void ManageArmMovement()//Manages the Arm/Lift
     {
-        /*if(gamepad2.right_trigger > 0.2)//turn the wheel intake on
+        if(gamepad2.right_trigger > 0.2)//turn the wheel intake on
         {
             arm.IntakeOn();
         }
@@ -158,7 +158,7 @@ public class CustomChasisTeleop extends OpMode
         else//turn the intake off
         {
             arm.IntakeOff();
-        }*/
+        }
 
         if(gamepad2.right_stick_y > 0.1)//move lift up
         {
