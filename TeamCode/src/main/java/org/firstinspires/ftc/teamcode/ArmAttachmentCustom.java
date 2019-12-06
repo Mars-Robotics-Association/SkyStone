@@ -91,14 +91,14 @@ public class ArmAttachmentCustom implements Attachment {
 
     public void IntakeOn()
     {
-        LeftIntake.setPower(1);
-        RightIntake.setPower(-1);
+        LeftIntake.setPower(-1);
+        RightIntake.setPower(1);
     }
 
     public void IntakeReverse()
     {
-        LeftIntake.setPower(-1);
-        RightIntake.setPower(1);
+        LeftIntake.setPower(1);
+        RightIntake.setPower(-1);
     }
 
     public void IntakeOff()
