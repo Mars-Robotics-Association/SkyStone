@@ -58,6 +58,11 @@ public class simpleRedDepot extends LinearOpMode {
         RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+        FrontRight.setPower(1);
+        FrontLeft.setPower(1);
+        RearRight.setPower(1);
+        RearLeft.setPower(1);
+
 
         while(FrontRight.isBusy()){
             telemetry.addData("running",0);
@@ -71,9 +76,18 @@ public class simpleRedDepot extends LinearOpMode {
         RearLeft.setPower(0);
 
         encodedDistance = (int)((EncoderTicks/WheelDiameter)/50 * Math.sqrt(2));//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
-
-        FrontRight.setTargetPosition(encodedDistance);
-        FrontLeft.setTargetPosition(encodedDistance);
+        
+        FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        RearRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        
+        FrontRight.setTargetPosition(-encodedDistance);
+        FrontLeft.setTargetPosition(-encodedDistance);
         RearRight.setTargetPosition(encodedDistance);
         RearLeft.setTargetPosition(encodedDistance);
 
@@ -81,6 +95,11 @@ public class simpleRedDepot extends LinearOpMode {
         FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        
+        FrontRight.setPower(1);
+        FrontLeft.setPower(1);
+        RearRight.setPower(1);
+        RearLeft.setPower(1);
 
         if (colorSensorGround instanceof SwitchableLight) {
             ((SwitchableLight)colorSensorGround).enableLight(true);
@@ -95,9 +114,5 @@ public class simpleRedDepot extends LinearOpMode {
         FrontLeft.setPower(0);
         RearRight.setPower(0);
         RearLeft.setPower(0);
-
-
-
-
     }
 }
