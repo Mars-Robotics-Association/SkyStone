@@ -107,7 +107,8 @@ public class simpleRedZone extends LinearOpMode {
         NormalizedRGBA colors = colorSensorGround.getNormalizedColors();
 
         while(colors.red>170||colors.blue>170){
-            telemetry.addData("searching",0);
+        	colors = colorSensorGround.getNormalizedColors();
+        	telemetry.addData("searching",0);
             telemetry.update();
         }
         FrontRight.setPower(0);
