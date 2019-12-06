@@ -9,14 +9,13 @@ public class simpleBlueDepot extends LinearOpMode {
 
     private SimpleFieldNavigation bot;
 
-    public void Init() {
-        bot.Init();
-        bot = new SimpleFieldNavigation(this);
-    }
+
 
     @Override
     public void runOpMode() {
-
+        bot.Init();
+        bot = new SimpleFieldNavigation(this);
+        waitForStart();
         bot.GoForward(25,false);
         bot.GoRight(1,true);
         while(bot.IsOnTheLine()){
