@@ -98,13 +98,13 @@ public class TetrixChasisTeleop extends OpMode
         if(gamepad2.x){
             //pick up stone
         }
-        else if (gamepad2.y){
+        if (gamepad2.y){
             //put down stone
         }
-        if(gamepad2.left_stick_y>JoystickThreshold){
+        if(gamepad2.left_stick_y>0.5){
             Teleop.FoundationGrab(gamepad2.left_stick_y);
         }
-        else if(gamepad2.left_stick_y<-JoystickThreshold){
+        if(gamepad2.left_stick_y<-0.5){
             Teleop.FoundationGrab(gamepad2.left_stick_y);
         }
 
@@ -205,6 +205,12 @@ public class TetrixChasisTeleop extends OpMode
         {
             gripperOpenRight();
         }
+        if(gamepad2.left_stick_y>JoystickThreshold){
+            gripperUp();
+        }
+        if(gamepad2.left_stick_y<-JoystickThreshold){
+            gripperDown();
+        }
     }
 
     //GripperTetrix Management Methods
@@ -216,12 +222,12 @@ public class TetrixChasisTeleop extends OpMode
     }
 
     public void gripperLeft() {
-        gripperPosition+=0.005;
+        gripperPosition+=0.01;
         gripper.GripperRotatePosition(gripperPosition);
     }
 
     public void gripperRight() {
-        gripperPosition -= 0.005;
+        gripperPosition -= 0.01;
         gripper.GripperRotatePosition(gripperPosition);
     }
 
