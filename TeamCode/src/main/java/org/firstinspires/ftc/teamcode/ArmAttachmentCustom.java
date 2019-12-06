@@ -57,14 +57,14 @@ public class ArmAttachmentCustom implements Attachment {
     public void LiftUp () //Moves the lift up and resets the resting target for LiftStopVertical
     {
         ArmVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        ArmVertical.setPower(0.9*Vratio);
+        ArmVertical.setPower(0.45*Vratio);
         VerticalsRestingPos = ArmVertical.getCurrentPosition();
     }
 
     public void LiftDown () //Moves the lift down and resets the resting target for LiftStopVertical
     {
         ArmVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        ArmVertical.setPower(-0.9*Vratio);
+        ArmVertical.setPower(-0.45*Vratio);
         VerticalsRestingPos = ArmVertical.getCurrentPosition();
     }
 
