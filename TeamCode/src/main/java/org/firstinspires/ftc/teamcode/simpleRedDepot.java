@@ -2,45 +2,102 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
+import com.qualcomm.robotcore.hardware.NormalizedRGBA;
+import com.qualcomm.robotcore.hardware.SwitchableLight;
 
 
 @Autonomous(name = "simpleRedDepot", group = "Autonomous")
 public class simpleRedDepot extends LinearOpMode {
 
-    private SimpleFieldNavigation nav;
-    private ExampleAttachment exampleAttachment;
+    NormalizedColorSensor colorSensorGround;
+
+    private DcMotor FrontRight;
+    private DcMotor FrontLeft;
+    private DcMotor RearRight;
+    private DcMotor RearLeft;
+
+    private double EncoderTicks = 1120;//ticks for one rotation
+    private double WheelDiameter = 2;//diameter of wheel in inches
+    private int encodedDistance = 0;
+
+
+
 
     @Override
-    public void runOpMode()
-    {
-        nav= new SimpleFieldNavigation(this);
-        nav.Init();
+    public void runOpMode() {
+        FrontRight = hardwareMap.get(DcMotor.class, "FrontRight");
+        FrontLeft = hardwareMap.get(DcMotor.class, "FrontLeft");
+        RearRight = hardwareMap.get(DcMotor.class, "RearRight");
+        RearLeft = hardwareMap.get(DcMotor.class, "RearLeft");
 
-        exampleAttachment = new ExampleAttachment(this);
-        exampleAttachment.Init();
+        FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        RearRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        colorSensorGround = hardwareMap.get(NormalizedColorSensor.class, "colorSensorGround");
 
-        Attachment[] attachments = {exampleAttachment};
 
         waitForStart();
 
-        nav.GoForward(25, false);
-        while (nav.isNavigating()){LoopOpjects(attachments);}
 
-        nav.GoRight(-1000, false);
-        while(nav.IsOnTheLine()){
+        int encodedDistance = (int)((EncoderTicks/WheelDiameter)/25);//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
+
+        FrontRight.setTargetPosition(encodedDistance);
+        FrontLeft.setTargetPosition(-encodedDistance);
+        RearRight.setTargetPosition(encodedDistance);
+        RearLeft.setTargetPosition(-encodedDistance);
+
+        FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+
+        while(FrontRight.isBusy()){
+            telemetry.addData("running",0);
+            telemetry.update();
+        }
+
+
+        FrontRight.setPower(0);
+        FrontLeft.setPower(0);
+        RearRight.setPower(0);
+        RearLeft.setPower(0);
+
+        encodedDistance = (int)((EncoderTicks/WheelDiameter)/50 * Math.sqrt(2));//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
+
+        FrontRight.setTargetPosition(encodedDistance);
+        FrontLeft.setTargetPosition(encodedDistance);
+        RearRight.setTargetPosition(encodedDistance);
+        RearLeft.setTargetPosition(encodedDistance);
+
+        FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        if (colorSensorGround instanceof SwitchableLight) {
+            ((SwitchableLight)colorSensorGround).enableLight(true);
+        }
+        NormalizedRGBA colors = colorSensorGround.getNormalizedColors();
+
+        while(colors.red>170||colors.blue>170){
             telemetry.addData("searching",0);
+            telemetry.update();
         }
-        nav.StopAll();
-    }
+        FrontRight.setPower(0);
+        FrontLeft.setPower(0);
+        RearRight.setPower(0);
+        RearLeft.setPower(0);
 
-    public void LoopOpjects(Attachment[] attachmentsToLoop)
-    {
-        //loop navigation manager
-        nav.Loop();
-        //loop all the attachments
-        for (Attachment a: attachmentsToLoop)
-        {
-            a.Loop();
-        }
+
+
+
     }
 }

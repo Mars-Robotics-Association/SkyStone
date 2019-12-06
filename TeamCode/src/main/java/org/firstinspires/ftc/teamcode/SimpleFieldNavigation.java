@@ -88,7 +88,6 @@ public class SimpleFieldNavigation
                 //Rotating = true;
                 Navigating = false;
             }
-            opmode.telemetry.update();
         }
 
         if(Rotating)
