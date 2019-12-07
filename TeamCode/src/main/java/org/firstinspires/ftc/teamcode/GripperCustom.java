@@ -107,8 +107,8 @@ public class GripperCustom implements Attachment{
     }
 
     public void GripperOpen(){
-        GripperR.setPosition(0.8);//.6
-        GripperL.setPosition(0.3);//.5
+        GripperR.setPosition(0.6);//.6 //.8
+        GripperL.setPosition(0.5);//.5 //.3
 
     }
 
