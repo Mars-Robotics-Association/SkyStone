@@ -75,12 +75,12 @@ public class ArmAttachmentCustom implements Attachment {
     }
 
     public void LiftExtend () {
-        ArmHorizontal.setPower(0.45*Hratio);
+        ArmHorizontal.setPower(0.2*Hratio);
     }
 
     public void LiftRetract ()
     {
-        ArmHorizontal.setPower(-0.45*Hratio);
+        ArmHorizontal.setPower(-0.2*Hratio);
 
     }
 
