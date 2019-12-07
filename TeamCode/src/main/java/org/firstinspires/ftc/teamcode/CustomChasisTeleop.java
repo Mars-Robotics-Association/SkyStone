@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -22,6 +23,8 @@ public class CustomChasisTeleop extends OpMode
     boolean FirstRun = true;
     boolean stopping = false;
 
+    private RevTouchSensor armRetractStop;
+
     @Override
     public void init()
     {
@@ -35,6 +38,9 @@ public class CustomChasisTeleop extends OpMode
 
         gripper = new GripperCustom(this);
         gripper.Init();
+
+        //armRetractStop = hardwareMap.touchSensor.get("ArmRetractStop");
+        armRetractStop = hardwareMap.get(RevTouchSensor.class, "ArmRetractStop");
     }
 
     @Override
@@ -147,11 +153,11 @@ public class CustomChasisTeleop extends OpMode
 
     public void ManageArmMovement()//Manages the Arm/Lift
     {
-        if(gamepad2.right_trigger > 0.1)//turn the wheel intake on
+        if(gamepad2.right_trigger > 0.2)//turn the wheel intake on
         {
             arm.IntakeOn();
         }
-        if(gamepad2.left_trigger > 0.1)//turn the wheel intake on
+        else if(gamepad2.left_trigger > 0.2)//turn the wheel intake on
         {
             arm.IntakeReverse();
         }
@@ -160,11 +166,11 @@ public class CustomChasisTeleop extends OpMode
             arm.IntakeOff();
         }
 
-        if(gamepad2.right_stick_y > 0.1)//move lift up
+        if(gamepad2.right_stick_y > 0.4)//move lift up
         {
             arm.LiftUp();
         }
-        else if(gamepad2.right_stick_y < -0.1)//move lift down
+        else if(gamepad2.right_stick_y < -0.4)//move lift down
         {
             arm.LiftDown();
         }
@@ -173,12 +179,12 @@ public class CustomChasisTeleop extends OpMode
             arm.LiftStopVertical();
         }
 
-        if(gamepad2.right_stick_x > 0.1)////extend arm
+        if(gamepad2.right_stick_x > 0.4 && !armRetractStop.isPressed())////extend arm
         {
             arm.LiftExtend();
         }
 
-        else if (gamepad2.right_stick_x < -0.1)//retract arm
+        else if (gamepad2.right_stick_x < -0.4 )//retract arm
         {
             arm.LiftRetract();
         }
