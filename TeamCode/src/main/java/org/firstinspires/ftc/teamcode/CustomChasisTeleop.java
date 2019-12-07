@@ -133,7 +133,7 @@ public class CustomChasisTeleop extends OpMode
             stopping = true;
         }*/
 
-        else if(!stopping) //STOP
+        else //STOP
         {
             Teleop.stopWheels();
         }

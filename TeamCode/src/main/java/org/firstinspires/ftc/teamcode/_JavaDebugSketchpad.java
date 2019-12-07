@@ -17,7 +17,7 @@ public class _JavaDebugSketchpad
 
     public static void main(String[] args) 
     {
-        encodedDistance = (int)((EncoderTicks/WheelDiameter)/25);
+        encodedDistance = (int)((EncoderTicks/WheelDiameter)*25);
         System.out.println(encodedDistance);
     }
 
