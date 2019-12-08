@@ -28,7 +28,7 @@ public class CustomChasisTeleop extends OpMode
     @Override
     public void init()
     {
-        Jc = new JoystickCalc(this, 180);
+        Jc = new JoystickCalc(this, 180);//was 180
 
         Teleop = new UDC_Teleop(this, false);
         Teleop.Init();
@@ -82,6 +82,7 @@ public class CustomChasisTeleop extends OpMode
         if(gamepad1.left_bumper) { Teleop.fullSpeed(); }
         if(gamepad1.right_bumper) { Teleop.threeFourthsSpeed(); }
         if(gamepad1.left_trigger>0.2) { Teleop.halfSpeed(); }
+        if(gamepad1.right_trigger>0.2) { Teleop.forthSpeed(); }
 
         if(gamepad2.x)
         {
@@ -179,14 +180,14 @@ public class CustomChasisTeleop extends OpMode
             arm.LiftStopVertical();
         }
 
-        if(gamepad2.right_stick_x > 0.4 && !armRetractStop.isPressed())////extend arm
-        {
-            arm.LiftExtend();
-        }
-
-        else if (gamepad2.right_stick_x < -0.4 )//retract arm
+        if(gamepad2.left_stick_y > 0.4 && !armRetractStop.isPressed())////extend arm
         {
             arm.LiftRetract();
+        }
+
+        else if (gamepad2.left_stick_y < -0.4 )//retract arm
+        {
+            arm.LiftExtend();
         }
 
         else//stop the arm from moving left or right
@@ -197,21 +198,21 @@ public class CustomChasisTeleop extends OpMode
 
     public void ManageGripperMovement()//Manages the GripperTetrix
     {
-        if(gamepad2.left_stick_x>JoystickThreshold)//rotate the gripper right
+        if(gamepad2.dpad_right)//rotate the gripper right
         {
             gripperRight();
         }
-        else if(gamepad2.left_stick_x<-JoystickThreshold)//rotate the gripper left
+        else if(gamepad2.dpad_left)//rotate the gripper left
         {
             gripperLeft();
         }
         if(gamepad2.left_bumper)//open the gripper
         {
-            openGripper();
+            closeGripper();
         }
         if(gamepad2.right_bumper)//close the gripper
         {
-            closeGripper();
+            openGripper();
         }
     }
 

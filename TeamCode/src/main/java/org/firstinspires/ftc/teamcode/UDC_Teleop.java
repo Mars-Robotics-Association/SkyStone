@@ -8,8 +8,8 @@ public class UDC_Teleop
 
      double BaseDriveSpeedMultiplier = 1;
      double BaseTurnSpeedMultiplier = 1;
-     double DriveSpeedMultiplier = 1 ;
-     double TurnSpeedMultiplier = 1;
+     private double DriveSpeedMultiplier = 1 ;
+     private double TurnSpeedMultiplier = 1;
 
     private double JoystickThreshold = 0.2;
     double turnSpeed;
@@ -83,8 +83,8 @@ public class UDC_Teleop
 
     public void forthSpeed()
     {
-        DriveSpeedMultiplier = BaseDriveSpeedMultiplier/4;
-        TurnSpeedMultiplier = BaseTurnSpeedMultiplier/4;
+        DriveSpeedMultiplier = BaseDriveSpeedMultiplier/8;
+        TurnSpeedMultiplier = BaseTurnSpeedMultiplier/8;
     }
 
     public void chooseDirection(double rightStickX, double leftStickBaring, double leftStickPower) //Move

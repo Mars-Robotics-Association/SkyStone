@@ -220,7 +220,11 @@ public class SkyStoneBot implements Robot
         //get relative angle and calculate wheel speeds
         double relativeAngle = angle;
         if(headlessMode){relativeAngle += RobotAngle;}
-        CalculateWheelSpeedsTurning(relativeAngle, speed, turnRight, turnSpeed);
+        opmode.telemetry.addData("relative angle: ", relativeAngle);
+        opmode.telemetry.addData("given angle: ", angle);
+        //CalculateWheelSpeedsTurning(relativeAngle, speed, turnRight, turnSpeed);
+        CalculateWheelSpeeds(relativeAngle, speed);
+
         //set the powers of the motors
         FrontRight.setPower(FrontRightPower);
         FrontLeft.setPower(FrontLeftPower);
@@ -338,7 +342,7 @@ public class SkyStoneBot implements Robot
         * the wheels need to go) with a positive 45 or negative 45 shift, depending on the wheel. This works
         * so that no matter the degrees, it will always come out with the right value. A turn offset is added
         * to the end for corkscrewing, or turning while driving*/
-        FrontRightPower = (-Math.cos(Math.toRadians(degrees + 45)) * speed) + turnOffset;
+        FrontRightPower = (-Math.cos(Math.toRadians(degrees + 45)) * speed) + turnOffset; //+ turnOffset
         FrontLeftPower = (Math.cos(Math.toRadians(degrees - 45)) * speed) + turnOffset;
         RearRightPower = (-Math.cos(Math.toRadians(degrees - 45)) * speed) + turnOffset;
         RearLeftPower = (Math.cos(Math.toRadians(degrees + 45)) * speed) + turnOffset;

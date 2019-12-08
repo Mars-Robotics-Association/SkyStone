@@ -15,7 +15,7 @@ public class ArmAttachmentCustom implements Attachment {
     double Hratio;
     OpMode opmode;
 
-    int VerticalsRestingPos;
+    int VerticalsRestingPos;//hi
 
     public GripperTetrix gripper;
 
@@ -75,12 +75,12 @@ public class ArmAttachmentCustom implements Attachment {
     }
 
     public void LiftExtend () {
-        ArmHorizontal.setPower(0.4*Hratio);
+        ArmHorizontal.setPower(1*Hratio);
     }
 
     public void LiftRetract ()
     {
-        ArmHorizontal.setPower(-0.8*Hratio);
+        ArmHorizontal.setPower(-1*Hratio);
 
     }
 
