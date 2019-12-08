@@ -33,30 +33,30 @@ public class simpleRedDepot extends LinearOpMode {
         RearRight = hardwareMap.get(DcMotor.class, "RearRight");
         RearLeft = hardwareMap.get(DcMotor.class, "RearLeft");
 
-        FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+/*        FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         RearRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         RearRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         RearLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);*/
 
 
         waitForStart();
         runtime.reset();
 
-        /*encodedDistance = (int)((EncoderTicks/WheelDiameter)*5);//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
+        encodedDistance = (int)((EncoderTicks/WheelDiameter)*5);//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
 
-        FrontRight.setTargetPosition(encodedDistance);
+/*        FrontRight.setTargetPosition(encodedDistance);
         FrontLeft.setTargetPosition(-encodedDistance);
         RearRight.setTargetPosition(encodedDistance);
         RearLeft.setTargetPosition(-encodedDistance);*/
 
-        FrontRight.setPower(-1);
-        FrontLeft.setPower(1);
-        RearRight.setPower(-1);
-        RearLeft.setPower(1);
+        FrontRight.setPower(-0.5);
+        FrontLeft.setPower(0.5);
+        RearRight.setPower(-0.5);
+        RearLeft.setPower(0.5);
 
         /*FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -65,9 +65,9 @@ public class simpleRedDepot extends LinearOpMode {
 
         boolean runnn = true;
         double startTime = runtime.time();
-        double targetTime = 4;
+        double targetTime = 0.4;
 
-        while(startTime + targetTime > runtime.time())
+        while(startTime + targetTime > runtime.time())//startTime + targetTime > runtime.time()
         {
             telemetry.addData("Encoded Distance: ", encodedDistance);
             telemetry.addData("FrontRight Target Pos: ", FrontRight.getTargetPosition());

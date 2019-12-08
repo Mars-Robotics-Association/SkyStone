@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
@@ -9,6 +10,7 @@ import com.qualcomm.robotcore.hardware.SwitchableLight;
 
 
 @Autonomous(name = "simpleBlueDepot", group = "Autonomous")
+@Disabled
 public class simpleBlueDepot extends LinearOpMode {
 
     NormalizedColorSensor colorSensorGround;
