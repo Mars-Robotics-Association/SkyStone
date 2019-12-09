@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.TouchSensor;
@@ -12,7 +13,8 @@ public class TetrixChasisTeleop extends OpMode
     public ArmAttachmentTetrix arm;
     GripperTetrix gripper;
 
-    TouchSensor motorGate;
+    private RevTouchSensor armUpStop;
+
 
     private double DriveSpeedMultiplier;
     private double TurnSpeedMultiplier;
@@ -51,7 +53,7 @@ public class TetrixChasisTeleop extends OpMode
         gripper = new GripperTetrix(this);
         gripper.Init();
 
-        motorGate = hardwareMap.touchSensor.get("motorGate");
+        armUpStop = hardwareMap.get(RevTouchSensor.class, "ArmRetractStop");
     }
         // test
     @Override
@@ -141,7 +143,7 @@ public class TetrixChasisTeleop extends OpMode
 
     public void ManageArmMovement()//Manages the Arm
     {
-        if(gamepad2.dpad_up)//move lift up //&&!motorGate.isPressed()
+        if(gamepad2.dpad_up&& !armUpStop.isPressed())//move lift up //&&!motorGate.isPressed()
         {
             arm.LiftUp();
 
@@ -155,7 +157,7 @@ public class TetrixChasisTeleop extends OpMode
             arm.LiftStopVertical();
         }
 
-        if(gamepad2.dpad_left)////extend arm
+        if(gamepad2.dpad_left )////extend arm
         {
             arm.LiftExtend();
         }
