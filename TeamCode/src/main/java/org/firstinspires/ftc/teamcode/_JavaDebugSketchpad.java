@@ -1,6 +1,7 @@
+/*
 package org.firstinspires.ftc.teamcode;
 
-import org.graalvm.compiler.core.common.FieldsScanner.CalcOffset;
+//import org.graalvm.compiler.core.common.FieldsScanner.CalcOffset;
 
 public class _JavaDebugSketchpad
 {
@@ -104,3 +105,4 @@ public class _JavaDebugSketchpad
 }
 
 
+*/

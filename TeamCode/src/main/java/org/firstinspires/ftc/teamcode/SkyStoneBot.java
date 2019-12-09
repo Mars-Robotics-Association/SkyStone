@@ -238,6 +238,24 @@ public class SkyStoneBot implements Robot
         RearLeftBrakePos = RearLeft.getCurrentPosition();
     }
 
+    //Raw movement methods:
+
+    public void RawForwards(double speed)
+    {
+        FrontRight.setPower(speed);
+        FrontLeft.setPower(-speed);
+        RearRight.setPower(speed);
+        RearLeft.setPower(-speed);
+    }
+
+    public void RawRight(double speed)
+    {
+        FrontRight.setPower(speed);
+        FrontLeft.setPower(speed);
+        RearRight.setPower(speed);
+        RearLeft.setPower(speed);
+    }
+
     @Override
     public void RawTurn(boolean right, double speed)
     {

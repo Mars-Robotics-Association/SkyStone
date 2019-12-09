@@ -104,6 +104,16 @@ public class UDC_Teleop
         Bot.MoveAtAngleTurning(leftStickBaring, DriveSpeedMultiplier * leftStickPower, turnRight, turnSpeed*TurnSpeedMultiplier, headlessMode);
     }
 
+    public void RawForwards(double speed)
+    {
+        Bot.RawForwards(speed);
+    }
+
+    public void RawRight(double speed)
+    {
+        Bot.RawRight(speed);
+    }
+
     public void turnRight() //Turn Right
     {
         Bot.RawTurn(true, turnSpeed*TurnSpeedMultiplier/2);
