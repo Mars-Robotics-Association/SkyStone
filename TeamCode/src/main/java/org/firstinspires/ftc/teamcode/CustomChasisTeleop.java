@@ -99,6 +99,19 @@ public class CustomChasisTeleop extends OpMode
         if(gamepad2.left_stick_y<-JoystickThreshold){
             Teleop.FoundationGrab(gamepad2.left_stick_y);
         }
+        if(gamepad1.dpad_up){
+            int fleft = Teleop.getfleftudc();
+            int fright = Teleop.getfrightudc();
+            int rleft = Teleop.getrleftudc();
+            int rright = Teleop.getrrightudc();
+            int armval = arm.getarmval();
+            telemetry.addData("front left wheel: ",fleft);
+            telemetry.addData("front right wheel: ",fright);
+            telemetry.addData("rear left wheel: ",rleft);
+            telemetry.addData("rear right wheel: ",rright);
+            telemetry.addData("arm vertical: ",armval);
+            telemetry.update();
+        }
 
         ManageArmMovement();
         ManageGripperMovement();

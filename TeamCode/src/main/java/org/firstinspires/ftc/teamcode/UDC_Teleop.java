@@ -132,4 +132,21 @@ public class UDC_Teleop
     public void FoundationGrab(double desiredAngle){
         Bot.FoundationGrab(desiredAngle);
     }
+    public int getfleftudc(){
+        int fleft = Bot.getfleft();
+        return fleft;
+    }
+    public int getfrightudc(){
+        int fright = Bot.getfright();
+        return fright;
+    }
+    public int getrleftudc(){
+        int rleft = Bot.getrleft();
+        return rleft;
+    }
+    public int getrrightudc(){
+        int rright = Bot.getrright();
+        return rright;
+    }
+
 }

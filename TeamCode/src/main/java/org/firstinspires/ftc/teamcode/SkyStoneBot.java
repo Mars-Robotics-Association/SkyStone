@@ -341,6 +341,22 @@ public class SkyStoneBot implements Robot
         MotorPositions[3] = RearLeft.getCurrentPosition();
         return MotorPositions;
     }
+    public int getfleft(){
+        int fleft = FrontLeft.getCurrentPosition();
+        return fleft;
+    }
+    public int getfright(){
+        int fright = FrontLeft.getCurrentPosition();
+        return fright;
+    }
+    public int getrleft(){
+        int rleft = FrontLeft.getCurrentPosition();
+        return rleft;
+    }
+    public int getrright(){
+        int rright = FrontLeft.getCurrentPosition();
+        return rright;
+    }
 
     //allows for corkscrewing
     public void CalculateWheelSpeedsTurning(double degrees, double speed, boolean turnRight, double turnSpeed)
