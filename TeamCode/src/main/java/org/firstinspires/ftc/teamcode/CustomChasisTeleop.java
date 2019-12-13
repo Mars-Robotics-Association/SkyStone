@@ -82,7 +82,9 @@ public class CustomChasisTeleop extends OpMode
         if(gamepad1.left_bumper) { Teleop.fullSpeed(); }
         if(gamepad1.right_bumper) { Teleop.threeFourthsSpeed(); }
         if(gamepad1.left_trigger>0.2) { Teleop.halfSpeed(); }
+/*
         if(gamepad1.right_trigger>0.2) { Teleop.forthSpeed(); }
+*/
 
         if(gamepad2.x)
         {
@@ -146,12 +148,12 @@ public class CustomChasisTeleop extends OpMode
             stopping = false;
         }
 
-        /*else if(gamepad1.right_trigger>0.2 && !stopping)
+        else if(gamepad1.right_trigger>0.2 && !stopping)
         {
             Teleop.brake();
             telemetry.addData("Brake: ", true);
             stopping = true;
-        }*/
+        }
 
         else //STOP
         {
