@@ -107,4 +107,9 @@ public class ArmAttachmentCustom implements Attachment {
         LeftIntake.setPower(0);
         RightIntake.setPower(0);
     }
+
+    public int getarmval(){
+        int armval = ArmVertical.getCurrentPosition();
+        return armval;
+    }
 }

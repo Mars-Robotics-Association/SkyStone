@@ -117,4 +117,9 @@ public class ArmAttachmentTetrix implements Attachment {
     {
         ArmHorizontal.setPower(0*Hratio);
     }
+
+    public int getarmval(){
+        int armval = ArmVertical.getCurrentPosition();
+        return armval;
+    }
 }
