@@ -120,9 +120,6 @@ public class SkyStoneBot implements Robot
         opmode.telemetry.addData("Front Left Brake: ", FrontLeftBrakePos);
         opmode.telemetry.addData("Rear Right Brake: ", RearRightBrakePos);
         opmode.telemetry.addData("Rear Left Brake: ", RearLeftBrakePos);
-
-        opmode.telemetry.update();
-
     }
 
     public void OffsetGyro()

@@ -23,7 +23,10 @@ public class simpleRedDepot extends LinearOpMode {
     private double WheelDiameter = 2;//diameter of wheel in inches
     private int encodedDistance = 0;
 
-
+    private ColorSensor colorSensor;
+    private double HueThreshold = 20;
+    private double RedHue = 0;
+    private double BlueHue = 207;
 
 
     @Override
@@ -32,6 +35,9 @@ public class simpleRedDepot extends LinearOpMode {
         FrontLeft = hardwareMap.get(DcMotor.class, "FrontLeft");
         RearRight = hardwareMap.get(DcMotor.class, "RearRight");
         RearLeft = hardwareMap.get(DcMotor.class, "RearLeft");
+
+        colorSensor = new ColorSensor(this);
+        colorSensor.Init();
 
 /*        FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -63,8 +69,7 @@ public class simpleRedDepot extends LinearOpMode {
         RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);*/
 
-        boolean runnn = true;
-        double startTime = runtime.time();
+        /*double startTime = runtime.time();
         double targetTime = 0.4;
 
         while(startTime + targetTime > runtime.time())//startTime + targetTime > runtime.time()
@@ -74,18 +79,21 @@ public class simpleRedDepot extends LinearOpMode {
             telemetry.addData("FrontRight Current Pos: ", FrontRight.getCurrentPosition());
             telemetry.addData("running",0);
             telemetry.update();
-        }
+        }*/
 
+        telemetry.addData("Before line: ", true);
+
+        while (Math.abs(RedHue - colorSensor.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensor.returnHue()) > HueThreshold)
+        {
+            telemetry.addData("Hue: ", colorSensor.returnHue());
+            telemetry.update();
+        }
+        telemetry.addData("Before line: ", false);
 
         FrontRight.setPower(0);
         FrontLeft.setPower(0);
         RearRight.setPower(0);
         RearLeft.setPower(0);
-
-/*        FrontRight.setPower(0);
-        FrontLeft.setPower(0);
-        RearRight.setPower(0);
-        RearLeft.setPower(0);*/
     }
 }
 
