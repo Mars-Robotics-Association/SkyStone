@@ -31,10 +31,10 @@ public class simpleRedDepot extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        FrontRight = hardwareMap.get(DcMotor.class, "FrontRight");
-        FrontLeft = hardwareMap.get(DcMotor.class, "FrontLeft");
-        RearRight = hardwareMap.get(DcMotor.class, "RearRight");
-        RearLeft = hardwareMap.get(DcMotor.class, "RearLeft");
+        FrontRight = hardwareMap.dcMotor.get("FrontRight");
+        FrontLeft = hardwareMap.dcMotor.get("FrontLeft");
+        RearRight = hardwareMap.dcMotor.get("RearRight");
+        RearLeft = hardwareMap.dcMotor.get("RearLeft");
 
         colorSensor = new ColorSensor(this);
         colorSensor.Init();

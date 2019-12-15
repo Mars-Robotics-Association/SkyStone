@@ -17,10 +17,10 @@ public class SkyStoneBot implements Robot
     private double RobotAngleOffset = 0;
     private Orientation Angles;
 
-    private DcMotor FrontRight;
-    private DcMotor FrontLeft;
-    private DcMotor RearRight;
-    private DcMotor RearLeft;
+    private DcMotor FrontRight = null;
+    private DcMotor FrontLeft = null;
+    private DcMotor RearRight = null;
+    private DcMotor RearLeft = null;
 
     private Servo FoundationL;
     private Servo FoundationR;
@@ -68,10 +68,10 @@ public class SkyStoneBot implements Robot
         imu.Init();
 
         //Get hardware components
-        FrontRight = opmode.hardwareMap.get(DcMotor.class, "FrontRight");
-        FrontLeft = opmode.hardwareMap.get(DcMotor.class, "FrontLeft");
-        RearRight = opmode.hardwareMap.get(DcMotor.class, "RearRight");
-        RearLeft = opmode.hardwareMap.get(DcMotor.class, "RearLeft");
+        FrontRight = opmode.hardwareMap.dcMotor.get("FrontRight");
+        FrontLeft = opmode.hardwareMap.dcMotor.get("FrontLeft");
+        RearRight = opmode.hardwareMap.dcMotor.get("RearRight");
+        RearLeft = opmode.hardwareMap.dcMotor.get("RearLeft");
 
         FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -281,15 +281,15 @@ public class SkyStoneBot implements Robot
         RearRight.setTargetPosition(RearRightBrakePos);
         RearLeft.setTargetPosition(RearLeftBrakePos);
 
-        FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
         FrontRight.setPower(1);
         FrontLeft.setPower(-1);
         RearRight.setPower(1);
         RearLeft.setPower(-1);
+
+        FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
     @Override

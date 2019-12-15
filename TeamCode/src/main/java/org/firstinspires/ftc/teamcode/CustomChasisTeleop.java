@@ -123,7 +123,6 @@ public class CustomChasisTeleop extends OpMode
 
     public void ManageDriveMovement()//Manages general drive input
     {
-
         //Raw D-pad stuff
         if(gamepad1.dpad_up)
         {
