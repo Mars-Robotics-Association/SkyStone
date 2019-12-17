@@ -256,6 +256,11 @@ public class SkyStoneBot implements Robot
     @Override
     public void RawTurn(boolean right, double speed)
     {
+        FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         //RobotAngle = GetRobotAngle();
         if (!right) //turn left
         {
@@ -271,6 +276,12 @@ public class SkyStoneBot implements Robot
             FrontRight.setPower(-speed);
             RearRight.setPower(-speed);
         }
+
+        //Update the values for breaking
+        FrontRightBrakePos = FrontRight.getCurrentPosition();
+        FrontLeftBrakePos = FrontLeft.getCurrentPosition();
+        RearRightBrakePos = RearRight.getCurrentPosition();
+        RearLeftBrakePos = RearLeft.getCurrentPosition();
     }
 
     public void Brake()
@@ -281,10 +292,10 @@ public class SkyStoneBot implements Robot
         RearRight.setTargetPosition(RearRightBrakePos);
         RearLeft.setTargetPosition(RearLeftBrakePos);
 
-        FrontRight.setPower(1);
-        FrontLeft.setPower(-1);
-        RearRight.setPower(1);
-        RearLeft.setPower(-1);
+        FrontRight.setPower(0.5);
+        FrontLeft.setPower(-0.5);
+        RearRight.setPower(0.5);
+        RearLeft.setPower(-0.5);
 
         FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -319,11 +330,11 @@ public class SkyStoneBot implements Robot
         RearRight.setPower(0);
         RearLeft.setPower(0);
 
-        /*//Update the values for breaking
+        //Update the values for breaking
         FrontRightBrakePos = FrontRight.getCurrentPosition();
         FrontLeftBrakePos = FrontLeft.getCurrentPosition();
         RearRightBrakePos = RearRight.getCurrentPosition();
-        RearLeftBrakePos = RearLeft.getCurrentPosition();*/
+        RearLeftBrakePos = RearLeft.getCurrentPosition();
     }
 
     @Override

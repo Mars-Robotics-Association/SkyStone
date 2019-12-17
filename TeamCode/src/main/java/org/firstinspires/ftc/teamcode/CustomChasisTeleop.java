@@ -124,7 +124,7 @@ public class CustomChasisTeleop extends OpMode
     public void ManageDriveMovement()//Manages general drive input
     {
         //Raw D-pad stuff
-        if(gamepad1.dpad_up)
+        /*if(gamepad1.dpad_up)
         {
             Teleop.RawForwards(1);
         }
@@ -139,7 +139,7 @@ public class CustomChasisTeleop extends OpMode
         if(gamepad1.dpad_left)
         {
             Teleop.RawRight(-1);
-        }
+        }*/
 
         if(Jc.leftStickPower > JoystickThreshold) //Move
         {
