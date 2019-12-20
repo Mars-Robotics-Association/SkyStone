@@ -44,7 +44,7 @@ public class simpleRedZone extends LinearOpMode {
         RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         colorSensorGround = hardwareMap.get(NormalizedColorSensor.class, "colorSensorGround");
 
-
+                // this is code that does something
         waitForStart();
 
 
