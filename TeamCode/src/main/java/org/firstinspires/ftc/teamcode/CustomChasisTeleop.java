@@ -166,7 +166,18 @@ public class CustomChasisTeleop extends OpMode
             telemetry.addData("Brake: ", true);
             stopping = true;
         }
-
+        else if(gamepad1.dpad_up){
+            Teleop.RawForwards(1);
+        }
+        else if(gamepad1.dpad_down){
+            Teleop.RawForwards(-1);
+        }
+        else if(gamepad1.dpad_right){
+            Teleop.RawRight(1);
+        }
+        else if(gamepad1.dpad_left){
+            Teleop.RawRight(-1);
+        }
         else //STOP
         {
             Teleop.stopWheels();
