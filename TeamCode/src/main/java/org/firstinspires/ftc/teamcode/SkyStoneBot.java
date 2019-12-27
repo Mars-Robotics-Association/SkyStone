@@ -247,8 +247,8 @@ public class SkyStoneBot implements Robot
 
     public void RawRight(double speed)
     {
-        FrontRight.setPower(speed);
-        FrontLeft.setPower(speed);
+        FrontRight.setPower(-speed);
+        FrontLeft.setPower(-speed);
         RearRight.setPower(speed);
         RearLeft.setPower(speed);
     }
