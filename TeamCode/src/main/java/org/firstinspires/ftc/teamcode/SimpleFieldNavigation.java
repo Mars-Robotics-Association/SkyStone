@@ -155,6 +155,10 @@ public class SimpleFieldNavigation
         Rotating = false;
     }
 
+    public void FoundationGrab(double desiredAngle){
+        Bot.FoundationGrab(desiredAngle);
+    }
+
     public boolean IsOnTheLine(){
 
         if (colorSensorGround instanceof SwitchableLight) {

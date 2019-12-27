@@ -10,7 +10,6 @@ import com.qualcomm.robotcore.hardware.SwitchableLight;
 
 
 @Autonomous(name = "simpleRedZone", group = "Autonomous")
-@Disabled
 public class simpleRedZone extends LinearOpMode {
 
     NormalizedColorSensor colorSensorGround;

@@ -10,7 +10,6 @@ import com.qualcomm.robotcore.hardware.SwitchableLight;
 
 
 @Autonomous(name = "simpleBlueDepot", group = "Autonomous")
-@Disabled
 public class simpleBlueDepot extends LinearOpMode {
 
     NormalizedColorSensor colorSensorGround;
