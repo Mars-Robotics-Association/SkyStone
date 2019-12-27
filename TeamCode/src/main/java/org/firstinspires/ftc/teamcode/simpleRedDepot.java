@@ -12,7 +12,20 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous(name = "simpleRedDepot", group = "Autonomous")
 public class simpleRedDepot extends LinearOpMode {
 
-    private ElapsedTime runtime = new ElapsedTime();
+    public SimpleFieldNavigation nav = null;
+    @Override
+    public void runOpMode() {
+        nav = new SimpleFieldNavigation(this);
+        nav.Init();
+        nav.Start();
+        nav.Loop();
+        telemetry.addData("Status", "Initialized");
+        telemetry.update();
+        waitForStart();
+        nav.StopAll();
+    }
+
+    /*private ElapsedTime runtime = new ElapsedTime();
 
     private DcMotor FrontRight;
     private DcMotor FrontLeft;
@@ -49,7 +62,7 @@ public class simpleRedDepot extends LinearOpMode {
         RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);*/
 
 
-        waitForStart();
+        /*waitForStart();
         runtime.reset();
 
         encodedDistance = (int)((EncoderTicks/WheelDiameter)*5);//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
@@ -58,7 +71,7 @@ public class simpleRedDepot extends LinearOpMode {
         FrontLeft.setTargetPosition(-encodedDistance);
         RearRight.setTargetPosition(encodedDistance);
         RearLeft.setTargetPosition(-encodedDistance);*/
-
+/*
         FrontRight.setPower(-0.5);
         FrontLeft.setPower(0.5);
         RearRight.setPower(-0.5);
@@ -81,7 +94,7 @@ public class simpleRedDepot extends LinearOpMode {
             telemetry.update();
         }*/
 
-        telemetry.addData("Before line: ", true);
+  /*      telemetry.addData("Before line: ", true);
 
         while (Math.abs(RedHue - colorSensor.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensor.returnHue()) > HueThreshold)
         {
@@ -133,3 +146,4 @@ public class simpleRedDepot extends LinearOpMode {
         telemetry.addData("searching",0);
         telemetry.update();
         }*/
+        }
