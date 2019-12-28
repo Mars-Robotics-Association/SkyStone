@@ -22,8 +22,8 @@ public class SkyStoneBot implements Robot
     private DcMotor RearRight = null;
     private DcMotor RearLeft = null;
 
-    private Servo FoundationL;
-    private Servo FoundationR;
+    //private Servo FoundationL;
+    //private Servo FoundationR;
 
     private double FrontRightPower = 0;
     private double FrontLeftPower = 0;
@@ -82,8 +82,8 @@ public class SkyStoneBot implements Robot
         RearLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        FoundationL = opmode.hardwareMap.get(Servo.class, "FoundationL");
-        FoundationR = opmode.hardwareMap.get(Servo.class, "FoundationR");
+        //FoundationL = opmode.hardwareMap.get(Servo.class, "FoundationL");
+        //FoundationR = opmode.hardwareMap.get(Servo.class, "FoundationR");
 
         opmode.telemetry.update();
     }
@@ -403,14 +403,14 @@ public class SkyStoneBot implements Robot
     }
 
     public void FoundationGrab(double desiredAngle){
-        if(desiredAngle>0){
+        /*if(desiredAngle>0){
             FoundationL.setPosition(0.75);
             FoundationR.setPosition(0.25);
         }
         else{
             FoundationL.setPosition(0.25);
             FoundationR.setPosition(0.75);
-        }
+        }*/
 
     }
 
