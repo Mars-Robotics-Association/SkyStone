@@ -2,11 +2,6 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
-import com.qualcomm.robotcore.hardware.NormalizedRGBA;
-import com.qualcomm.robotcore.hardware.SwitchableLight;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 
 @Autonomous(name = "simpleRedDepot", group = "Autonomous")
@@ -17,11 +12,34 @@ public class simpleRedDepot extends LinearOpMode {
     public void runOpMode() {
         nav = new SimpleFieldNavigation(this);
         nav.Init();
-        nav.Start();
-        nav.Loop();
-        telemetry.addData("Status", "Initialized");
-        telemetry.update();
         waitForStart();
+        nav.Start();
+        telemetry.addData("Status", "Initialized");
+
+        nav.Loop();
+        telemetry.update();
+
+        //Block: Go forwards 5 inches
+        nav.GoForward(5, 1);
+        while (!nav.CheckIfAtTargetDestination())
+        {
+            telemetry.addData("looping: ", true);
+        }
+
+        //Block: Go left 10 inches
+        nav.GoForward(-10, 1);
+        while (!nav.CheckIfAtTargetDestination())
+        {
+            telemetry.addData("looping: ", true);
+        }
+
+        //Block: Rotate to 90 degrees
+        nav.RotateTo(90, 1);
+        while (!nav.CheckCloseEnoughRotation())
+        {
+            telemetry.addData("looping: ", true);
+        }
+
         nav.StopAll();
     }
 

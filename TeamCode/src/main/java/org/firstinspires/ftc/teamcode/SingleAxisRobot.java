@@ -72,7 +72,7 @@ public class SingleAxisRobot implements Robot
     }
 
     @Override
-    public void RotateTo(double angle, double speed)
+    public void RotateTowardsAngle(double angle, double speed)
     {
         Speed = speed;
         if (angle > RobotAngle) //turn left
@@ -169,7 +169,7 @@ public class SingleAxisRobot implements Robot
     }
 
     @Override
-    public float GetRobotAngle()
+    public double GetRobotAngle()
     {
         return 0;
     }

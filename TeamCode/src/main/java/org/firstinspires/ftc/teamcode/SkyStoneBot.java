@@ -171,8 +171,8 @@ public class SkyStoneBot implements Robot
 
         encodedDistance = (int)((EncoderTicks/WheelDiameter)/distance * Math.sqrt(2));//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
 
-        FrontRight.setTargetPosition(encodedDistance);
-        FrontLeft.setTargetPosition(encodedDistance);
+        FrontRight.setTargetPosition(-encodedDistance);
+        FrontLeft.setTargetPosition(-encodedDistance);
         RearRight.setTargetPosition(encodedDistance);
         RearLeft.setTargetPosition(encodedDistance);
 
@@ -185,14 +185,37 @@ public class SkyStoneBot implements Robot
 
     public boolean CheckIfEncodersCloseEnough()
     {
-        int currentPos = FrontRight.getCurrentPosition();
-        if(Math.abs(currentPos - FrontRight.getTargetPosition()) < 4)
+        //check if the motors are close enough to their target to move on
+        boolean closeEnoughFR = Math.abs(FrontRight.getCurrentPosition() - FrontRight.getTargetPosition()) < 4;
+        boolean closeEnoughFL = Math.abs(FrontLeft.getCurrentPosition() - FrontLeft.getTargetPosition()) < 4;
+        boolean closeEnoughRR = Math.abs(RearRight.getCurrentPosition() - RearRight.getTargetPosition()) < 4;
+        boolean closeEnoughRL = Math.abs(RearLeft.getCurrentPosition() - RearLeft.getTargetPosition()) < 4;
+        if(closeEnoughFR && closeEnoughFL && closeEnoughRR && closeEnoughRL)//if all are, return true
         {
             return true;
         }
         else
         {
             return false;
+        }
+    }
+
+    @Override
+    public void RotateTowardsAngle(double angle, double speed)
+    {
+        if (angle > RobotAngle) //turn left
+        {
+            RearLeft.setPower(speed);
+            FrontLeft.setPower(speed);
+            FrontRight.setPower(speed);
+            RearRight.setPower(speed);
+        }
+        else //turn right
+        {
+            RearLeft.setPower(-speed);
+            FrontLeft.setPower(-speed);
+            FrontRight.setPower(-speed);
+            RearRight.setPower(-speed);
         }
     }
 
@@ -304,25 +327,6 @@ public class SkyStoneBot implements Robot
     }
 
     @Override
-    public void RotateTo(double angle, double speed)
-    {
-        if (angle > RobotAngle) //turn left
-        {
-            RearLeft.setPower(speed);
-            FrontLeft.setPower(speed);
-            FrontRight.setPower(speed);
-            RearRight.setPower(speed);
-        }
-        else //turn right
-        {
-            RearLeft.setPower(-speed);
-            FrontLeft.setPower(-speed);
-            FrontRight.setPower(-speed);
-            RearRight.setPower(-speed);
-        }
-    }
-
-    @Override
     public void StopMotors()
     {
         FrontRight.setPower(0);
@@ -397,9 +401,9 @@ public class SkyStoneBot implements Robot
     }
 
     @Override
-    public float GetRobotAngle()
+    public double GetRobotAngle()
     {
-        return 0;
+        return RobotAngle;
     }
 
     public void FoundationGrab(double desiredAngle){
