@@ -23,6 +23,7 @@ public class simpleRedDepot extends LinearOpMode {
         nav.GoForward(5, 1);
         while (!nav.CheckIfAtTargetDestination())
         {
+            nav.Loop();
             telemetry.addData("looping: ", true);
         }
 
@@ -30,6 +31,7 @@ public class simpleRedDepot extends LinearOpMode {
         nav.GoForward(-10, 1);
         while (!nav.CheckIfAtTargetDestination())
         {
+            nav.Loop();
             telemetry.addData("looping: ", true);
         }
 
@@ -37,6 +39,7 @@ public class simpleRedDepot extends LinearOpMode {
         nav.RotateTo(90, 1);
         while (!nav.CheckCloseEnoughRotation())
         {
+            nav.Loop();
             telemetry.addData("looping: ", true);
         }
 
