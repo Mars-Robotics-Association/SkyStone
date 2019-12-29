@@ -12,6 +12,8 @@ public class TetrixChasisTeleop extends OpMode
     public UDC_Teleop Teleop = null;
     public ArmAttachmentTetrix arm;
     GripperTetrix gripper;
+    public FoundationGrabber grab = null;
+
 
     private RevTouchSensor armUpStop;
 
@@ -42,6 +44,9 @@ public class TetrixChasisTeleop extends OpMode
 
         Teleop = new UDC_Teleop(this, false);
         Teleop.Init();
+
+        grab = new FoundationGrabber(this);
+        grab.Init();
 
         arm = new ArmAttachmentTetrix(this);
         arm.Init();
@@ -104,10 +109,10 @@ public class TetrixChasisTeleop extends OpMode
             //put down stone
         }
         if(gamepad2.left_stick_y>0.5){
-            Teleop.FoundationGrab(gamepad2.left_stick_y);
+            grab.FoundationGrab(gamepad2.left_stick_y);
         }
         if(gamepad2.left_stick_y<-0.5){
-            Teleop.FoundationGrab(gamepad2.left_stick_y);
+            grab.FoundationGrab(gamepad2.left_stick_y);
         }
         if(gamepad1.dpad_up){
             int fleft = Teleop.getfleftudc();

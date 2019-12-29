@@ -9,8 +9,9 @@ public class CustomChasisTeleop extends OpMode
 {
     private JoystickCalc Jc = null;
     public UDC_Teleop Teleop = null;
-    public ArmAttachmentCustom arm;
-    GripperCustom gripper;
+    public ArmAttachmentCustom arm = null;
+    public FoundationGrabber grab = null;
+    public GripperCustom gripper = null;
 
     private double DriveSpeedMultiplier;
     private double TurnSpeedMultiplier;
@@ -38,6 +39,9 @@ public class CustomChasisTeleop extends OpMode
 
         gripper = new GripperCustom(this);
         gripper.Init();
+
+        grab = new FoundationGrabber(this);
+        grab.Init();
 
         //armRetractStop = hardwareMap.touchSensor.get("ArmRetractStop");
         armRetractStop = hardwareMap.get(RevTouchSensor.class, "ArmRetractStop");
@@ -96,10 +100,10 @@ public class CustomChasisTeleop extends OpMode
         }
 
         if(gamepad2.left_stick_y>JoystickThreshold){
-            Teleop.FoundationGrab(gamepad2.left_stick_y);
+            grab.FoundationGrab(gamepad2.left_stick_y);
         }
         if(gamepad2.left_stick_y<-JoystickThreshold){
-            Teleop.FoundationGrab(gamepad2.left_stick_y);
+            grab.FoundationGrab(gamepad2.left_stick_y);
         }
         if(gamepad1.dpad_up){
             int fleft = Teleop.getfleftudc();

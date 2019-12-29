@@ -22,9 +22,9 @@ public class simpleBlueZone extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
         waitForStart();
-        nav.FoundationGrab(1);
+       // nav.FoundationGrab(1);
         sleep(5000);
-        nav.FoundationGrab(-1);
+        //nav.FoundationGrab(-1);
         nav.StopAll();
     }
 }
