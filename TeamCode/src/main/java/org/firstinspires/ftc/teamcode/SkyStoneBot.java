@@ -422,8 +422,8 @@ public class SkyStoneBot implements Robot
         return RobotAngle;
     }
 
-    public void FoundationGrab(double desiredAngle){
-        /*if(desiredAngle>0){
+    /*public void FoundationGrab(double desiredAngle){
+        if(desiredAngle>0){
             FoundationL.setPosition(0.75);
             FoundationR.setPosition(0.25);
         }
