@@ -90,7 +90,7 @@ public class SimpleFieldNavigation
             else //Stop
             {
                 opmode.telemetry.addData("Not close enough: ", false);
-                Bot.StopEncoders();
+                //Bot.StopEncoders();
                 //Bot.RotateTowardsAngle(TargetRot, 0.5);
                 //Rotating = true;
                 Navigating = false;
@@ -112,7 +112,7 @@ public class SimpleFieldNavigation
 
         if(!Navigating && !Rotating)//stop if shouldn't do anything
         {
-            Bot.StopMotors();
+            //Bot.StopMotors();
         }
     }
 
@@ -120,6 +120,7 @@ public class SimpleFieldNavigation
     {
         StopAll();
         TurnSpeed = speed;
+        TargetRot = angle;
         Rotating = true;
     }
 

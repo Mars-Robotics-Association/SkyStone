@@ -24,7 +24,8 @@ public class simpleRedDepot extends LinearOpMode {
         while (!nav.CheckIfAtTargetDestination())
         {
             nav.Loop();
-            telemetry.addData("looping: ", true);
+            telemetry.addData("looping1: ", true);
+            telemetry.update();
         }
 
         //Block: Go left 10 inches
@@ -32,7 +33,8 @@ public class simpleRedDepot extends LinearOpMode {
         while (!nav.CheckIfAtTargetDestination())
         {
             nav.Loop();
-            telemetry.addData("looping: ", true);
+            telemetry.addData("looping2: ", true);
+            telemetry.update();
         }
 
         //Block: Rotate to 90 degrees
@@ -40,7 +42,8 @@ public class simpleRedDepot extends LinearOpMode {
         while (!nav.CheckCloseEnoughRotation())
         {
             nav.Loop();
-            telemetry.addData("looping: ", true);
+            telemetry.addData("looping3: ", true);
+            telemetry.update();
         }
 
         nav.StopAll();
