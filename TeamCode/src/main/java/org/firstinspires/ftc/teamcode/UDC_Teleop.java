@@ -1,9 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class UDC_Teleop
 {
@@ -11,8 +8,8 @@ public class UDC_Teleop
 
      double BaseDriveSpeedMultiplier = 1;
      double BaseTurnSpeedMultiplier = 1;
-     double DriveSpeedMultiplier = 1 ;
-     double TurnSpeedMultiplier = 1;
+     private double DriveSpeedMultiplier = 1 ;
+     private double TurnSpeedMultiplier = 1;
 
     private double JoystickThreshold = 0.2;
     double turnSpeed;
@@ -25,13 +22,17 @@ public class UDC_Teleop
     OpMode opmode;
     public boolean headlessMode = false;
 
-    public UDC_Teleop(OpMode thatopmode) {
+    boolean rotatedREVHub = false;
+
+    public UDC_Teleop(OpMode thatopmode, boolean rotateREVHub)
+    {
         opmode = thatopmode;
+        rotatedREVHub = rotateREVHub;
     }
 
     public void Init()
     {
-        Bot = new SkyStoneBot(opmode);
+        Bot = new SkyStoneBot(opmode, rotatedREVHub);
         Bot.Init();
     }
 
@@ -62,36 +63,28 @@ public class UDC_Teleop
     {
         DriveSpeedMultiplier = BaseDriveSpeedMultiplier;
         TurnSpeedMultiplier = BaseTurnSpeedMultiplier;
-
     }
-    public void twoThirdsSpeed()
+    public void threeFourthsSpeed()
     {
-
-        DriveSpeedMultiplier = BaseDriveSpeedMultiplier*2/3;
-        TurnSpeedMultiplier = BaseTurnSpeedMultiplier*2/3;
-
+        DriveSpeedMultiplier = BaseDriveSpeedMultiplier*3/4;
+        TurnSpeedMultiplier = BaseTurnSpeedMultiplier*3/4;
     }
 
     public void halfSpeed()
     {
-
         DriveSpeedMultiplier = BaseDriveSpeedMultiplier/2;
         TurnSpeedMultiplier = BaseTurnSpeedMultiplier/2;
-
     }
 
-    public void thirdSpeed()
+    public void brake()
     {
-        DriveSpeedMultiplier = BaseDriveSpeedMultiplier/3;
-        TurnSpeedMultiplier = BaseTurnSpeedMultiplier/3;
+        Bot.Brake();
     }
 
     public void forthSpeed()
     {
-
-        DriveSpeedMultiplier = BaseDriveSpeedMultiplier/4;
-        TurnSpeedMultiplier = BaseTurnSpeedMultiplier/4;
-
+        DriveSpeedMultiplier = BaseDriveSpeedMultiplier/8;
+        TurnSpeedMultiplier = BaseTurnSpeedMultiplier/8;
     }
 
     public void chooseDirection(double rightStickX, double leftStickBaring, double leftStickPower) //Move
@@ -109,6 +102,16 @@ public class UDC_Teleop
 
         //Make robot move at the angle of the left joystick at the determined speed while applying a turn to the value of the right joystick
         Bot.MoveAtAngleTurning(leftStickBaring, DriveSpeedMultiplier * leftStickPower, turnRight, turnSpeed*TurnSpeedMultiplier, headlessMode);
+    }
+
+    public void RawForwards(double speed)
+    {
+        Bot.RawForwards(speed);
+    }
+
+    public void RawRight(double speed)
+    {
+        Bot.RawRight(speed);
     }
 
     public void turnRight() //Turn Right
@@ -129,4 +132,22 @@ public class UDC_Teleop
     public void FoundationGrab(double desiredAngle){
         Bot.FoundationGrab(desiredAngle);
     }
+    public int getfleftudc(){
+        int fleft = Bot.getfleft();
+        return fleft;
+    }
+    public int getfrightudc(){
+        int fright = Bot.getfright();
+        return fright;
+    }
+    public int getrleftudc(){
+        int rleft = Bot.getrleft();
+        return rleft;
+    }
+    public int getrrightudc(){
+        int rright = Bot.getrright();
+        return rright;
+    }
+
+
 }

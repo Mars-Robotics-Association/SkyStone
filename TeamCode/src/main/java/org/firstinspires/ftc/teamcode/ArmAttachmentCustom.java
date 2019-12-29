@@ -15,9 +15,9 @@ public class ArmAttachmentCustom implements Attachment {
     double Hratio;
     OpMode opmode;
 
-    int VerticalsRestingPos;
+    int VerticalsRestingPos;//hi
 
-    public Gripper gripper;
+    public GripperTetrix gripper;
 
     public ArmAttachmentCustom(OpMode thatopmode) {
         opmode = thatopmode;
@@ -25,14 +25,14 @@ public class ArmAttachmentCustom implements Attachment {
 
     @Override
     public void Init() {
-        //ArmHorizontal = opmode.hardwareMap.dcMotor.get("ArmHorizontal");
+        ArmHorizontal = opmode.hardwareMap.dcMotor.get("ArmHorizontal");
         ArmVertical = opmode.hardwareMap.dcMotor.get("ArmVertical");
 
-        /*LeftIntake = opmode.hardwareMap.dcMotor.get("LeftIntake");
-        RightIntake = opmode.hardwareMap.dcMotor.get("RightIntake");*/
+        LeftIntake = opmode.hardwareMap.dcMotor.get("LeftIntake");
+        RightIntake = opmode.hardwareMap.dcMotor.get("RightIntake");
 
-        //ArmVertical.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        //ArmVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        ArmVertical.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        ArmVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         Vratio=1;
         Hratio=1;
@@ -57,14 +57,14 @@ public class ArmAttachmentCustom implements Attachment {
     public void LiftUp () //Moves the lift up and resets the resting target for LiftStopVertical
     {
         ArmVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        ArmVertical.setPower(0.9*Vratio);
+        ArmVertical.setPower(0.45*Vratio);
         VerticalsRestingPos = ArmVertical.getCurrentPosition();
     }
 
     public void LiftDown () //Moves the lift down and resets the resting target for LiftStopVertical
     {
         ArmVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        ArmVertical.setPower(-0.9*Vratio);
+        ArmVertical.setPower(-0.45*Vratio);
         VerticalsRestingPos = ArmVertical.getCurrentPosition();
     }
 
@@ -75,18 +75,25 @@ public class ArmAttachmentCustom implements Attachment {
     }
 
     public void LiftExtend () {
-        ArmHorizontal.setPower(0.9*Hratio);
+        ArmHorizontal.setPower(1*Hratio);
     }
 
     public void LiftRetract ()
     {
-        ArmHorizontal.setPower(-0.9*Hratio);
+        ArmHorizontal.setPower(-1*Hratio);
 
     }
 
     public void LiftStopHorizontal ()
     {
         ArmHorizontal.setPower(0*Hratio);
+    }
+
+
+    public void IntakeReverse()
+    {
+        LeftIntake.setPower(-1);
+        RightIntake.setPower(1);
     }
 
     public void IntakeOn()
@@ -99,5 +106,10 @@ public class ArmAttachmentCustom implements Attachment {
     {
         LeftIntake.setPower(0);
         RightIntake.setPower(0);
+    }
+
+    public int getarmval(){
+        int armval = ArmVertical.getCurrentPosition();
+        return armval;
     }
 }

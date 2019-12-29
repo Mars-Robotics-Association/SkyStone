@@ -17,13 +17,13 @@ public class SkyStoneBot implements Robot
     private double RobotAngleOffset = 0;
     private Orientation Angles;
 
-    private DcMotor FrontRight;
-    private DcMotor FrontLeft;
-    private DcMotor RearRight;
-    private DcMotor RearLeft;
+    private DcMotor FrontRight = null;
+    private DcMotor FrontLeft = null;
+    private DcMotor RearRight = null;
+    private DcMotor RearLeft = null;
 
-    private Servo FoundationL;
-    private Servo FoundationR;
+    //private Servo FoundationL;
+    //private Servo FoundationR;
 
     private double FrontRightPower = 0;
     private double FrontLeftPower = 0;
@@ -38,9 +38,17 @@ public class SkyStoneBot implements Robot
     private IMU imu;
     private OpMode opmode;
 
-    public SkyStoneBot(OpMode Opmode)
+    int FrontRightBrakePos = 0;
+    int FrontLeftBrakePos = 0;
+    int RearRightBrakePos = 0;
+    int RearLeftBrakePos = 0;
+
+    boolean rotatedREVHub = false;
+
+    public SkyStoneBot(OpMode Opmode, boolean rotateREVHub)
     {
         opmode = Opmode;
+        rotatedREVHub = rotateREVHub;
     }
 
     public double GetGyroOffset()
@@ -60,14 +68,22 @@ public class SkyStoneBot implements Robot
         imu.Init();
 
         //Get hardware components
-        FrontRight = opmode.hardwareMap.get(DcMotor.class, "FrontRight");
-        FrontLeft = opmode.hardwareMap.get(DcMotor.class, "FrontLeft");
-        RearRight = opmode.hardwareMap.get(DcMotor.class, "RearRight");
-        RearLeft = opmode.hardwareMap.get(DcMotor.class, "RearLeft");
+        FrontRight = opmode.hardwareMap.dcMotor.get("FrontRight");
+        FrontLeft = opmode.hardwareMap.dcMotor.get("FrontLeft");
+        RearRight = opmode.hardwareMap.dcMotor.get("RearRight");
+        RearLeft = opmode.hardwareMap.dcMotor.get("RearLeft");
 
-        FoundationL = opmode.hardwareMap.get(Servo.class, "FoundationL");
-        FoundationR = opmode.hardwareMap.get(Servo.class, "FoundationR");
+        FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        RearRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+        //FoundationL = opmode.hardwareMap.get(Servo.class, "FoundationL");
+        //FoundationR = opmode.hardwareMap.get(Servo.class, "FoundationR");
 
         opmode.telemetry.update();
     }
@@ -85,7 +101,25 @@ public class SkyStoneBot implements Robot
         imu.Loop();
         Angles = imu.angles;
         MotorPositions = new int[]{FrontRight.getCurrentPosition(), FrontLeft.getCurrentPosition(), RearRight.getCurrentPosition(), RearLeft.getCurrentPosition()};
-        RobotAngle = Angles.firstAngle - RobotAngleOffset;
+
+        if(!rotatedREVHub)//use normal gyro heading
+        {
+            RobotAngle = Angles.firstAngle - RobotAngleOffset;
+        }
+        else //use other gyro orientation (for custom bot)
+        {
+            RobotAngle = Angles.secondAngle - RobotAngleOffset;
+        }
+
+        opmode.telemetry.addData("Front Right: ", FrontRight.getCurrentPosition());
+        opmode.telemetry.addData("Front Left: ", FrontLeft.getCurrentPosition());
+        opmode.telemetry.addData("Rear Right: ", RearRight.getCurrentPosition());
+        opmode.telemetry.addData("Rear Left: ", RearLeft.getCurrentPosition());
+
+        opmode.telemetry.addData("Front Right Brake: ", FrontRightBrakePos);
+        opmode.telemetry.addData("Front Left Brake: ", FrontLeftBrakePos);
+        opmode.telemetry.addData("Rear Right Brake: ", RearRightBrakePos);
+        opmode.telemetry.addData("Rear Left Brake: ", RearLeftBrakePos);
     }
 
     public void OffsetGyro()
@@ -137,8 +171,8 @@ public class SkyStoneBot implements Robot
 
         encodedDistance = (int)((EncoderTicks/WheelDiameter)/distance * Math.sqrt(2));//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
 
-        FrontRight.setTargetPosition(encodedDistance);
-        FrontLeft.setTargetPosition(encodedDistance);
+        FrontRight.setTargetPosition(-encodedDistance);
+        FrontLeft.setTargetPosition(-encodedDistance);
         RearRight.setTargetPosition(encodedDistance);
         RearLeft.setTargetPosition(encodedDistance);
 
@@ -151,8 +185,12 @@ public class SkyStoneBot implements Robot
 
     public boolean CheckIfEncodersCloseEnough()
     {
-        int currentPos = FrontRight.getCurrentPosition();
-        if(Math.abs(currentPos - encodedDistance) < 4)
+        //check if the motors are close enough to their target to move on
+        boolean closeEnoughFR = Math.abs(FrontRight.getCurrentPosition() - FrontRight.getTargetPosition()) < 4;
+        boolean closeEnoughFL = Math.abs(FrontLeft.getCurrentPosition() - FrontLeft.getTargetPosition()) < 4;
+        boolean closeEnoughRR = Math.abs(RearRight.getCurrentPosition() - RearRight.getTargetPosition()) < 4;
+        boolean closeEnoughRL = Math.abs(RearLeft.getCurrentPosition() - RearLeft.getTargetPosition()) < 4;
+        if(closeEnoughFR && closeEnoughFL && closeEnoughRR && closeEnoughRL)//if all are, return true
         {
             return true;
         }
@@ -162,32 +200,8 @@ public class SkyStoneBot implements Robot
         }
     }
 
-    public void StopEncoders()
-    {
-        FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        RearRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        RearLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-    }
-
-    //END ENCODER METHODS FOR SIMPLE AUTONOMOUS
-
-    //allows robot to corkscrew
-    public void MoveAtAngleTurning(double angle, double speed, boolean turnRight, double turnSpeed, boolean headlessMode)
-    {
-        //get relative angle and calculate wheel speeds
-        double relativeAngle = angle;
-        if(headlessMode){relativeAngle += RobotAngle;}
-        CalculateWheelSpeedsTurning(relativeAngle, speed, turnRight, turnSpeed);
-        //set the powers of the motors
-        FrontRight.setPower(FrontRightPower);
-        FrontLeft.setPower(FrontLeftPower);
-        RearRight.setPower(RearRightPower);
-        RearLeft.setPower(RearLeftPower);
-    }
-
     @Override
-    public void RotateTo(double angle, double speed)
+    public void RotateTowardsAngle(double angle, double speed)
     {
         if (angle > RobotAngle) //turn left
         {
@@ -205,9 +219,71 @@ public class SkyStoneBot implements Robot
         }
     }
 
+    public void StopEncoders()
+    {
+        FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        RearRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
+
+    //END ENCODER METHODS FOR SIMPLE AUTONOMOUS
+
+    //allows robot to corkscrew
+    public void MoveAtAngleTurning(double angle, double speed, boolean turnRight, double turnSpeed, boolean headlessMode)
+    {
+        FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        //get relative angle and calculate wheel speeds
+        double relativeAngle = angle;
+        if(headlessMode){relativeAngle += RobotAngle;}
+        opmode.telemetry.addData("relative angle: ", relativeAngle);
+        opmode.telemetry.addData("given angle: ", angle);
+        //CalculateWheelSpeedsTurning(relativeAngle, speed, turnRight, turnSpeed);
+        CalculateWheelSpeeds(relativeAngle, speed);
+
+        //set the powers of the motors
+        FrontRight.setPower(FrontRightPower);
+        FrontLeft.setPower(FrontLeftPower);
+        RearRight.setPower(RearRightPower);
+        RearLeft.setPower(RearLeftPower);
+
+        //Update the values for breaking
+        FrontRightBrakePos = FrontRight.getCurrentPosition();
+        FrontLeftBrakePos = FrontLeft.getCurrentPosition();
+        RearRightBrakePos = RearRight.getCurrentPosition();
+        RearLeftBrakePos = RearLeft.getCurrentPosition();
+    }
+
+    //Raw movement methods:
+
+    public void RawForwards(double speed)
+    {
+        FrontRight.setPower(speed);
+        FrontLeft.setPower(-speed);
+        RearRight.setPower(speed);
+        RearLeft.setPower(-speed);
+    }
+
+    public void RawRight(double speed)
+    {
+        FrontRight.setPower(-speed);
+        FrontLeft.setPower(-speed);
+        RearRight.setPower(speed);
+        RearLeft.setPower(speed);
+    }
+
     @Override
     public void RawTurn(boolean right, double speed)
     {
+        FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         //RobotAngle = GetRobotAngle();
         if (!right) //turn left
         {
@@ -223,6 +299,31 @@ public class SkyStoneBot implements Robot
             FrontRight.setPower(-speed);
             RearRight.setPower(-speed);
         }
+
+        //Update the values for breaking
+        FrontRightBrakePos = FrontRight.getCurrentPosition();
+        FrontLeftBrakePos = FrontLeft.getCurrentPosition();
+        RearRightBrakePos = RearRight.getCurrentPosition();
+        RearLeftBrakePos = RearLeft.getCurrentPosition();
+    }
+
+    public void Brake()
+    {
+        //Set the encoders to run to the breaking position
+        FrontRight.setTargetPosition(FrontRightBrakePos);
+        FrontLeft.setTargetPosition(FrontLeftBrakePos);
+        RearRight.setTargetPosition(RearRightBrakePos);
+        RearLeft.setTargetPosition(RearLeftBrakePos);
+
+        FrontRight.setPower(0.5);
+        FrontLeft.setPower(-0.5);
+        RearRight.setPower(0.5);
+        RearLeft.setPower(-0.5);
+
+        FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
     @Override
@@ -232,6 +333,12 @@ public class SkyStoneBot implements Robot
         FrontLeft.setPower(0);
         RearRight.setPower(0);
         RearLeft.setPower(0);
+
+        //Update the values for breaking
+        FrontRightBrakePos = FrontRight.getCurrentPosition();
+        FrontLeftBrakePos = FrontLeft.getCurrentPosition();
+        RearRightBrakePos = RearRight.getCurrentPosition();
+        RearLeftBrakePos = RearLeft.getCurrentPosition();
     }
 
     @Override
@@ -252,6 +359,22 @@ public class SkyStoneBot implements Robot
         MotorPositions[3] = RearLeft.getCurrentPosition();
         return MotorPositions;
     }
+    public int getfleft(){
+        int fleft = FrontLeft.getCurrentPosition();
+        return fleft;
+    }
+    public int getfright(){
+        int fright = FrontLeft.getCurrentPosition();
+        return fright;
+    }
+    public int getrleft(){
+        int rleft = FrontLeft.getCurrentPosition();
+        return rleft;
+    }
+    public int getrright(){
+        int rright = FrontLeft.getCurrentPosition();
+        return rright;
+    }
 
     //allows for corkscrewing
     public void CalculateWheelSpeedsTurning(double degrees, double speed, boolean turnRight, double turnSpeed)
@@ -271,27 +394,27 @@ public class SkyStoneBot implements Robot
         * the wheels need to go) with a positive 45 or negative 45 shift, depending on the wheel. This works
         * so that no matter the degrees, it will always come out with the right value. A turn offset is added
         * to the end for corkscrewing, or turning while driving*/
-        FrontRightPower = (-Math.cos(Math.toRadians(degrees + 45)) * speed) + turnOffset;
+        FrontRightPower = (-Math.cos(Math.toRadians(degrees + 45)) * speed) + turnOffset; //+ turnOffset
         FrontLeftPower = (Math.cos(Math.toRadians(degrees - 45)) * speed) + turnOffset;
         RearRightPower = (-Math.cos(Math.toRadians(degrees - 45)) * speed) + turnOffset;
         RearLeftPower = (Math.cos(Math.toRadians(degrees + 45)) * speed) + turnOffset;
     }
 
     @Override
-    public float GetRobotAngle()
+    public double GetRobotAngle()
     {
-        return 0;
+        return RobotAngle;
     }
 
     public void FoundationGrab(double desiredAngle){
-        if(desiredAngle>0){
+        /*if(desiredAngle>0){
             FoundationL.setPosition(0.75);
             FoundationR.setPosition(0.25);
         }
         else{
             FoundationL.setPosition(0.25);
             FoundationR.setPosition(0.75);
-        }
+        }*/
 
     }
 

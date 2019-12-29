@@ -10,10 +10,6 @@ Class that completes the following goals:
 
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
-import com.qualcomm.robotcore.hardware.NormalizedRGBA;
-import com.qualcomm.robotcore.hardware.SwitchableLight;
-import com.vuforia.Vec3F;
 
 
 public class SimpleFieldNavigation
@@ -21,7 +17,10 @@ public class SimpleFieldNavigation
     private double closeEnoughThresholdDist = 10; //in inches
     private double closeEnoughThresholdRot = 5; //in degrees
 
-    NormalizedColorSensor colorSensorGround;
+    ColorSensor colorSensor;
+    private double HueThreshold = 20;
+    private double RedHue = 0;
+    private double BlueHue = 207;
     private SkyStoneBot Bot;
 
     public boolean Navigating = false;
@@ -34,17 +33,36 @@ public class SimpleFieldNavigation
     private double TargetRot;
     private double CurrentRot;
 
-    public SimpleFieldNavigation(OpMode setOpmode, Robot robot)
+    private double TurnSpeed = 0;
+
+    public SimpleFieldNavigation(OpMode setOpmode)
     {
         this.opmode = setOpmode;
     }
 
+    public boolean isNavigating()
+    {
+        if(!Navigating && !Rotating)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public boolean CheckIfAtTargetDestination()
+    {
+        return Bot.CheckIfEncodersCloseEnough();
+    }
+
     public void Init()
     {
-        Bot = new SkyStoneBot(opmode);
+        Bot = new SkyStoneBot(opmode, false);
         Bot.Init();
-        colorSensorGround = opmode.hardwareMap.get(NormalizedColorSensor.class, "colorSensorGround");
-
+        colorSensor = new ColorSensor(opmode);
+        colorSensor.Init();
     }
 
     public void Start()
@@ -63,7 +81,6 @@ public class SimpleFieldNavigation
             firstRound = false;
         }
 
-
         if(Navigating)
         {
             if (!Bot.CheckIfEncodersCloseEnough()) //If not close to target
@@ -74,18 +91,17 @@ public class SimpleFieldNavigation
             {
                 opmode.telemetry.addData("Not close enough: ", false);
                 Bot.StopEncoders();
-                //Bot.RotateTo(TargetRot, 0.5);
+                //Bot.RotateTowardsAngle(TargetRot, 0.5);
                 //Rotating = true;
                 Navigating = false;
             }
-            opmode.telemetry.update();
         }
 
         if(Rotating)
         {
             if (!CheckCloseEnoughRotation()) //if not at rotation target
             {
-                Bot.RotateTo(TargetRot, 1);
+                Bot.RotateTowardsAngle(TargetRot, TurnSpeed);
             }
             else //Stop
             {
@@ -100,9 +116,10 @@ public class SimpleFieldNavigation
         }
     }
 
-    public void RotateTo(double angle)
+    public void RotateTo(double angle, double speed)
     {
         StopAll();
+        TurnSpeed = speed;
         Rotating = true;
     }
 
@@ -132,38 +149,31 @@ public class SimpleFieldNavigation
         else return false;
     }*/
 
-    public void GoRight(double distance, boolean infinite)
+    public void GoRight(double distance, double speed)
     {
-        Bot.MoveAtAngle(90*(distance/Math.abs(distance)), 1, false);
+        Bot.GoRightWithEncoder(speed, distance);
         Navigating = true;
         Rotating = false;
     }
 
-    public void GoForward(double distance, boolean infinite)
+    public void GoForward(double distance, double speed)
     {
-        Bot.GoForwardWithEncoder(1, distance);
+        Bot.GoForwardWithEncoder(speed, distance);
         Navigating = true;
         Rotating = false;
+    }
+
+    public void FoundationGrab(double desiredAngle){
+        Bot.FoundationGrab(desiredAngle);
     }
 
     public boolean IsOnTheLine(){
-
-        if (colorSensorGround instanceof SwitchableLight) {
-            ((SwitchableLight)colorSensorGround).enableLight(true);
-        }
-        NormalizedRGBA colors = colorSensorGround.getNormalizedColors();
-        opmode.telemetry.addLine()
-                .addData("a", "%.3f", colors.alpha)
-                .addData("r", "%.3f", colors.red)
-                .addData("g", "%.3f", colors.green)
-                .addData("b", "%.3f", colors.blue);
-        opmode.telemetry.update();
-
-        if(colors.red>170||colors.blue>170){
-            return true;
+        if(Math.abs(RedHue - colorSensor.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensor.returnHue()) > HueThreshold)
+        {
+            return false;
         }
         else{
-            return false;
+            return true;
         }
 
     }

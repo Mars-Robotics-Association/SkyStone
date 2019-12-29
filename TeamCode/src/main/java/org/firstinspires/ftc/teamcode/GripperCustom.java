@@ -54,7 +54,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 
-public class Gripper implements Attachment{
+public class GripperCustom implements Attachment{
 
 
     static double GripperLAngle = 0;
@@ -64,15 +64,12 @@ public class Gripper implements Attachment{
     private Servo GripperL = null;
     private Servo GripperR = null;
     private Servo GripperRotate = null;
-    private Servo GripperUpDownRotate = null;
-
+    private double gripperPosition = 0.5;
 
     OpMode opmode;
 
-    public Gripper(OpMode thatopmode){
-    opmode = thatopmode;
-
-
+    public GripperCustom(OpMode thatopmode){
+        opmode = thatopmode;
     }
 
     public void Init() {
@@ -80,17 +77,14 @@ public class Gripper implements Attachment{
         GripperL= opmode.hardwareMap.servo.get("GripperL");
         GripperR= opmode.hardwareMap.servo.get("GripperR");
         GripperRotate= opmode.hardwareMap.servo.get("GripperRotate");
-        GripperUpDownRotate= opmode.hardwareMap.servo.get("GripperUpDownRotate");
-
-
     }
 
     public void updateGrippers(){
-      //  GripperLAngle = (GripperAngle * 1);
-      //  GripperRAngle = (GripperAngle * -1);
+        //  GripperLAngle = (GripperAngle * 1);
+        //  GripperRAngle = (GripperAngle * -1);
 
-    //    GripperL.setPosition(GripperLAngle);
-     //   GripperR.setPosition(GripperRAngle);
+        //    GripperL.setPosition(GripperLAngle);
+        //   GripperR.setPosition(GripperRAngle);
 
 
 
@@ -99,7 +93,7 @@ public class Gripper implements Attachment{
 
     @Override
     public void Loop() {
-
+        opmode.telemetry.addData("Rotate Gripper Pos: ", gripperPosition);
     }
 
     @Override
@@ -112,72 +106,49 @@ public class Gripper implements Attachment{
 
     }
 
-    public void GripperOpen(int robot ){
-        if (robot == 2){
-            GripperR.setPosition(0.6);
-            GripperL.setPosition(0.5);}
-        if (robot == 1){
-            GripperR.setPosition(0.6);
-            GripperL.setPosition(0.1);
-        }
+    public void GripperOpen(){
+        GripperR.setPosition(0.6);//.6 //.8
+        GripperL.setPosition(0.5);//.5 //.3
 
     }
 
-    public void GripperClose(int robot){
-        if(robot == 2){
-
-            GripperR.setPosition(0.35);
-            GripperL.setPosition(0.85);}
-        if (robot == 1){
-            GripperR.setPosition(0.75);
-            GripperL.setPosition(0);
-        }
+    public void GripperClose(){
+        GripperR.setPosition(.45);//.35
+        GripperL.setPosition(.65);//.85
     }
 
-    public void GripperCloseLeft(int robot){
-        if (robot == 2){
-            GripperL.setPosition(0.85);}
-        if (robot == 1){
-            GripperL.setPosition(0);
-        }
+    public void GripperCloseLeft(){
+        GripperL.setPosition(0.85);
     }
 
-    public void GripperOpenLeft(int robot){
-        if(robot == 1){
-            GripperL.setPosition(0.1);
-        }
-        if (robot == 2){
-            GripperL.setPosition(0.5);
-        }
+    public void GripperOpenLeft(){
+        GripperL.setPosition(0.1);
     }
 
-    public void GripperCloseRight(int robot){
-        if (robot == 1){
-            GripperR.setPosition(0.75);
-        }
-        if (robot == 2){
-            GripperR.setPosition(0.35);}
-    }
-
-    public void GripperOpenRight(int robot){
-        if (robot == 1){
-            GripperR.setPosition(0.6);
-        }
-        if (robot == 2){
-        GripperR.setPosition(0.6);}
+    public void GripperCloseRight(){
+        GripperR.setPosition(0.35);
 
     }
 
-    public void GripperRotatePosition(double position)
+    public void GripperOpenRight(){
+        GripperR.setPosition(0.6);
+    }
+
+    public void GripperRotatePosition(double percentToAdd)
     {
+        gripperPosition += percentToAdd;
+        if(gripperPosition > 1)
+        {
+            gripperPosition = 1;
+        }
+        if(gripperPosition < 0)
+        {
+            gripperPosition = 0;
+        }
 
-        GripperRotate.setPosition(position);
+        GripperRotate.setPosition(gripperPosition);
     }
 
-    public void GripperRotateUpDown(double position)
-    {
-        GripperUpDownRotate.setPosition(position);
-    }
 
     /*public void GripperOpen(){
 

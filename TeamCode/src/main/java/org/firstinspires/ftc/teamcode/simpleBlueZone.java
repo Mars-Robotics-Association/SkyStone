@@ -1,29 +1,30 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
+import com.qualcomm.robotcore.hardware.NormalizedRGBA;
+import com.qualcomm.robotcore.hardware.SwitchableLight;
 
 
 @Autonomous(name = "simpleBlueZone", group = "Autonomous")
 public class simpleBlueZone extends LinearOpMode {
 
-    private SimpleFieldNavigation bot;
-    private SkyStoneBot SSB;
-
-    public void Init() {
-        bot.Init();
-        SSB = new SkyStoneBot(this);
-        bot = new SimpleFieldNavigation(this,SSB );
-    }
-
+    public SimpleFieldNavigation nav = null;
     @Override
     public void runOpMode() {
-
-        bot.GoForward(25,false);
-        bot.GoRight(-1,true);
-        while(bot.IsOnTheLine()){
-            telemetry.addData("searching",0);
-        }
-        bot.StopAll();
+        nav = new SimpleFieldNavigation(this);
+        nav.Init();
+        nav.Start();
+        nav.Loop();
+        telemetry.addData("Status", "Initialized");
+        telemetry.update();
+        waitForStart();
+        nav.FoundationGrab(1);
+        sleep(5000);
+        nav.FoundationGrab(-1);
+        nav.StopAll();
     }
 }

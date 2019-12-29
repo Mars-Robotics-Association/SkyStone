@@ -1,8 +1,9 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 @TeleOp(name="TetrixChasisTeleop", group="Iterative Opmode")
 public class TetrixChasisTeleop extends OpMode
@@ -10,14 +11,16 @@ public class TetrixChasisTeleop extends OpMode
     private JoystickCalc Jc = null;
     public UDC_Teleop Teleop = null;
     public ArmAttachmentTetrix arm;
-    Gripper gripper;
+    GripperTetrix gripper;
 
-    public DigitalChannel motorGate = null;
+    private RevTouchSensor armUpStop;
+
 
     private double DriveSpeedMultiplier;
     private double TurnSpeedMultiplier;
     private double gripperPosition = 0.5;
-    private double gripperUpDownPosition = 0.5;
+    private double gripperUpDownPositionLeft = 0.5;
+    private double gripperUpDownPositionRight = 0.5;
 
     private double JoystickThreshold = 0.2;
 
@@ -32,11 +35,12 @@ public class TetrixChasisTeleop extends OpMode
         telemetry.addData("start",5 );
         telemetry.update();
         gripperPosition = 0.25;
-        gripperUpDownPosition = 0.25;
+        gripperUpDownPositionLeft = 0.25;
+        gripperUpDownPositionRight = 0.75;
 
-        Jc = new JoystickCalc(this);
+        Jc = new JoystickCalc(this, 0);
 
-        Teleop = new UDC_Teleop(this);
+        Teleop = new UDC_Teleop(this, false);
         Teleop.Init();
 
         arm = new ArmAttachmentTetrix(this);
@@ -46,11 +50,10 @@ public class TetrixChasisTeleop extends OpMode
 
         telemetry.update();
 
-        gripper = new Gripper(this);
+        gripper = new GripperTetrix(this);
         gripper.Init();
 
-        motorGate = hardwareMap.get(DigitalChannel.class, "motorGate");
-        motorGate.setMode(DigitalChannel.Mode.INPUT);
+        armUpStop = hardwareMap.get(RevTouchSensor.class, "ArmRetractStop");
     }
         // test
     @Override
@@ -75,27 +78,51 @@ public class TetrixChasisTeleop extends OpMode
             Teleop.gyroOffset();
         }
 
+        //SwitchModes
+        if(gamepad1.y)
+        {
+            Teleop.headlessMode = true;
+        }
+        if(gamepad1.b)
+        {
+            Teleop.headlessMode = false;
+        }
+
         ManageDriveMovement();
 
         //switch between normal and slow modes
         if(gamepad1.left_bumper) { Teleop.fullSpeed(); }
         if(gamepad1.right_bumper) { Teleop.halfSpeed(); }
-        if(gamepad1.left_trigger>0.2) { Teleop.thirdSpeed(); }
+        if(gamepad1.left_trigger>0.2) { Teleop.brake(); }
         if(gamepad1.right_trigger>0.2) { Teleop.forthSpeed(); }
 
 
         if(gamepad2.x){
             //pick up stone
         }
-        else if (gamepad2.y){
+        if (gamepad2.y){
             //put down stone
         }
-        if(gamepad2.left_stick_y>JoystickThreshold){
+        if(gamepad2.left_stick_y>0.5){
             Teleop.FoundationGrab(gamepad2.left_stick_y);
         }
-        else if(gamepad2.left_stick_y<-JoystickThreshold){
+        if(gamepad2.left_stick_y<-0.5){
             Teleop.FoundationGrab(gamepad2.left_stick_y);
         }
+        if(gamepad1.dpad_up){
+            int fleft = Teleop.getfleftudc();
+            int fright = Teleop.getfrightudc();
+            int rleft = Teleop.getrleftudc();
+            int rright = Teleop.getrrightudc();
+            int armval = arm.getarmval();
+            telemetry.addData("front left wheel: ",fleft);
+            telemetry.addData("front right wheel: ",fright);
+            telemetry.addData("rear left wheel: ",rleft);
+            telemetry.addData("rear right wheel: ",rright);
+            telemetry.addData("arm vertical: ",armval);
+            telemetry.update();
+        }
+
 
         arm.Loop();
         ManageArmMovement();
@@ -130,9 +157,10 @@ public class TetrixChasisTeleop extends OpMode
 
     public void ManageArmMovement()//Manages the Arm
     {
-        if(gamepad2.dpad_up&&motorGate.getState())//move lift up
+        if(gamepad2.dpad_up&& !armUpStop.isPressed())//move lift up //&&!motorGate.isPressed()
         {
             arm.LiftUp();
+
         }
         if(gamepad2.dpad_down)//move lift down
         {
@@ -143,7 +171,7 @@ public class TetrixChasisTeleop extends OpMode
             arm.LiftStopVertical();
         }
 
-        if(gamepad2.dpad_left)////extend arm
+        if(gamepad2.dpad_left )////extend arm
         {
             arm.LiftExtend();
         }
@@ -159,7 +187,7 @@ public class TetrixChasisTeleop extends OpMode
         }
     }
 
-    public void ManageGripperMovement()//Manages the Gripper
+    public void ManageGripperMovement()//Manages the GripperTetrix
     {
         if(gamepad2.right_stick_x>JoystickThreshold)//rotate the gripper right
         {
@@ -193,9 +221,15 @@ public class TetrixChasisTeleop extends OpMode
         {
             gripperOpenRight();
         }
+        if(gamepad2.left_stick_y>JoystickThreshold){
+            gripperUp();
+        }
+        if(gamepad2.left_stick_y<-JoystickThreshold){
+            gripperDown();
+        }
     }
 
-    //Gripper Management Methods
+    //GripperTetrix Management Methods
     public void closeGripper(){
         gripper.GripperClose(1);
     }
@@ -204,23 +238,25 @@ public class TetrixChasisTeleop extends OpMode
     }
 
     public void gripperLeft() {
-        gripperPosition+=0.005;
+        gripperPosition+=0.01;
         gripper.GripperRotatePosition(gripperPosition);
     }
 
     public void gripperRight() {
-        gripperPosition -= 0.005;
+        gripperPosition -= 0.01;
         gripper.GripperRotatePosition(gripperPosition);
     }
 
     public void gripperUp() {
-        gripperUpDownPosition+=0.005;
-        gripper.GripperRotateUpDown(gripperUpDownPosition);
+        gripperUpDownPositionLeft+=0.005;
+        gripperUpDownPositionRight-=0.005;
+        gripper.GripperRotateUpDown(gripperUpDownPositionLeft,gripperUpDownPositionRight);
     }
 
     public void gripperDown() {
-        gripperUpDownPosition -= 0.005;
-        gripper.GripperRotateUpDown(gripperUpDownPosition);
+        gripperUpDownPositionLeft -= 0.005;
+        gripperUpDownPositionRight += 0.005;
+        gripper.GripperRotateUpDown(gripperUpDownPositionLeft,gripperUpDownPositionRight);
     }
 
     public void gripper1(){ gripperPosition = 1;}

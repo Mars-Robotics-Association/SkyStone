@@ -4,13 +4,11 @@ import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name="CustomChasisTeleop", group="Iterative Opmode")
-public class CustomChasisTeleop extends OpMode
+@TeleOp(name="TEST-CustomChasisTeleop", group="Iterative Opmode")
+public class TestCustomChassis extends OpMode
 {
     private JoystickCalc Jc = null;
     public UDC_Teleop Teleop = null;
-    public ArmAttachmentCustom arm;
-    GripperCustom gripper;
 
     private double DriveSpeedMultiplier;
     private double TurnSpeedMultiplier;
@@ -32,15 +30,6 @@ public class CustomChasisTeleop extends OpMode
 
         Teleop = new UDC_Teleop(this, false);
         Teleop.Init();
-
-        arm = new ArmAttachmentCustom(this);
-        arm.Init();
-
-        gripper = new GripperCustom(this);
-        gripper.Init();
-
-        //armRetractStop = hardwareMap.touchSensor.get("ArmRetractStop");
-        armRetractStop = hardwareMap.get(RevTouchSensor.class, "ArmRetractStop");
     }
 
     @Override
@@ -53,7 +42,6 @@ public class CustomChasisTeleop extends OpMode
     public void loop()
     {
         Teleop.Loop();
-        gripper.Loop();
         //Update telemetry and get joystick input
         Jc.calculate();
         Teleop.UpdateTurnSpeed(Math.abs(Jc.rightStickX));
@@ -95,29 +83,23 @@ public class CustomChasisTeleop extends OpMode
             //put down stone
         }
 
-        if(gamepad2.left_stick_y>JoystickThreshold){
+        /*if(gamepad2.left_stick_y>JoystickThreshold){
             Teleop.FoundationGrab(gamepad2.left_stick_y);
         }
         if(gamepad2.left_stick_y<-JoystickThreshold){
             Teleop.FoundationGrab(gamepad2.left_stick_y);
-        }
+        }*/
         if(gamepad1.dpad_up){
             int fleft = Teleop.getfleftudc();
             int fright = Teleop.getfrightudc();
             int rleft = Teleop.getrleftudc();
             int rright = Teleop.getrrightudc();
-            int armval = arm.getarmval();
             telemetry.addData("front left wheel: ",fleft);
             telemetry.addData("front right wheel: ",fright);
             telemetry.addData("rear left wheel: ",rleft);
             telemetry.addData("rear right wheel: ",rright);
-            telemetry.addData("arm vertical: ",armval);
             telemetry.update();
         }
-
-        ManageArmMovement();
-        ManageGripperMovement();
-
         telemetry.update();
     }
 
@@ -195,97 +177,4 @@ public class CustomChasisTeleop extends OpMode
             }
         }*/
     }
-
-    public void ManageArmMovement()//Manages the Arm/Lift
-    {
-        if(gamepad2.right_trigger > 0.2)//turn the wheel intake on
-        {
-            arm.IntakeOn();
-        }
-        else if(gamepad2.left_trigger > 0.2)//turn the wheel intake on
-        {
-            arm.IntakeReverse();
-        }
-        else//turn the intake off
-        {
-            arm.IntakeOff();
-        }
-
-        if(gamepad2.right_stick_y > 0.4)//move lift up
-        {
-            arm.LiftUp();
-        }
-        else if(gamepad2.right_stick_y < -0.4)//move lift down
-        {
-            arm.LiftDown();
-        }
-        else//stop the arm from moving up or down
-        {
-            arm.LiftStopVertical();
-        }
-
-        if(gamepad2.left_stick_y > 0.4 && !armRetractStop.isPressed())////extend arm
-        {
-            arm.LiftRetract();
-        }
-
-        else if (gamepad2.left_stick_y < -0.4 )//retract arm
-        {
-            arm.LiftExtend();
-        }
-
-        else//stop the arm from moving left or right
-        {
-            arm.LiftStopHorizontal();
-        }
-    }
-
-    public void ManageGripperMovement()//Manages the GripperTetrix
-    {
-        if(gamepad2.dpad_right)//rotate the gripper right
-        {
-            gripperRight();
-        }
-        else if(gamepad2.dpad_left)//rotate the gripper left
-        {
-            gripperLeft();
-        }
-        if(gamepad2.left_bumper)//open the gripper
-        {
-            closeGripper();
-        }
-        if(gamepad2.right_bumper)//close the gripper
-        {
-            openGripper();
-        }
-    }
-
-    //GripperTetrix Management Methods
-    public void closeGripper(){
-        gripper.GripperClose();
-    }
-    public void openGripper(){
-        gripper.GripperOpen();
-    }
-
-    public void gripperLeft() {
-        gripper.GripperRotatePosition(0.05);
-    }
-
-    public void gripperRight() {
-        gripper.GripperRotatePosition(-0.05);
-    }
-    public void gripper1(){ /*gripperPosition = 1;*/}
-    public void gripper0(){/*gripperPosition=0;*/}
-
-    public void gripperOpenLeft(){
-        gripper.GripperOpenLeft();
-    }
-    public void gripperOpenRight(){
-        gripper.GripperOpenRight();
-    }
-    public void gripperCloseLeft(){gripper.GripperCloseLeft();}
-    public void gripperCloseRight(){gripper.GripperCloseRight();}
-
-
 }
