@@ -183,6 +183,11 @@ public class SkyStoneBot implements Robot
         RearRight.setTargetPosition(encodedDistance);
         RearLeft.setTargetPosition(encodedDistance);
 
+        FrontRight.setPower(speed);
+        FrontLeft.setPower(speed);
+        RearRight.setPower(speed);
+        RearLeft.setPower(speed);
+
         FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -210,6 +215,10 @@ public class SkyStoneBot implements Robot
     @Override
     public void RotateTowardsAngle(double angle, double speed)
     {
+        FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         if (angle > RobotAngle) //turn left
         {
             RearLeft.setPower(speed);
