@@ -13,7 +13,7 @@ public interface Robot
 
     void MoveAtAngle(double angle, double speed, boolean headlessMode);
 
-    void RotateTo(double angle, double speed);
+    void RotateTowardsAngle(double angle, double speed);
 
     void RawTurn(boolean right, double speed);
 
@@ -21,6 +21,6 @@ public interface Robot
 
     void CalculateWheelSpeeds(double degrees, double speed);
 
-    float GetRobotAngle();
+    double GetRobotAngle();
 
 }

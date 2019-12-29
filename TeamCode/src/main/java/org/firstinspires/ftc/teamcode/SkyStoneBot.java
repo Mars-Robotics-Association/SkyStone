@@ -22,6 +22,8 @@ public class SkyStoneBot implements Robot
     private DcMotor RearRight = null;
     private DcMotor RearLeft = null;
 
+    //private Servo FoundationL;
+    //private Servo FoundationR;
 
 
     private double FrontRightPower = 0;
@@ -29,7 +31,7 @@ public class SkyStoneBot implements Robot
     private double RearRightPower = 0;
     private double RearLeftPower = 0;
 
-    private double EncoderTicks = 1120;//ticks for one rotation
+    private double EncoderTicks = 1120;//ticks for one rotation was 1120
     private double WheelDiameter = 2;//diameter of wheel in inches
     private int encodedDistance = 0;
 
@@ -81,6 +83,8 @@ public class SkyStoneBot implements Robot
         RearLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+        //FoundationL = opmode.hardwareMap.get(Servo.class, "FoundationL");
+        //FoundationR = opmode.hardwareMap.get(Servo.class, "FoundationR");
         opmode.telemetry.update();
     }
 
@@ -106,6 +110,8 @@ public class SkyStoneBot implements Robot
         {
             RobotAngle = Angles.secondAngle - RobotAngleOffset;
         }
+
+        opmode.telemetry.addData("Target Encoder Distance ", encodedDistance);
 
         opmode.telemetry.addData("Front Right: ", FrontRight.getCurrentPosition());
         opmode.telemetry.addData("Front Left: ", FrontLeft.getCurrentPosition());
@@ -147,12 +153,17 @@ public class SkyStoneBot implements Robot
     {
         StopEncoders();
 
-        encodedDistance = (int)((EncoderTicks/WheelDiameter)/distance);//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
+        encodedDistance = (int)((EncoderTicks/WheelDiameter)*distance);//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
 
         FrontRight.setTargetPosition(encodedDistance);
         FrontLeft.setTargetPosition(-encodedDistance);
         RearRight.setTargetPosition(encodedDistance);
         RearLeft.setTargetPosition(-encodedDistance);
+
+        FrontRight.setPower(speed);
+        FrontLeft.setPower(speed);
+        RearRight.setPower(speed);
+        RearLeft.setPower(speed);
 
         FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -165,12 +176,17 @@ public class SkyStoneBot implements Robot
     {
         StopEncoders();
 
-        encodedDistance = (int)((EncoderTicks/WheelDiameter)/distance * Math.sqrt(2));//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
+        encodedDistance = (int)((EncoderTicks/WheelDiameter)*distance * Math.sqrt(2));//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
 
-        FrontRight.setTargetPosition(encodedDistance);
-        FrontLeft.setTargetPosition(encodedDistance);
+        FrontRight.setTargetPosition(-encodedDistance);
+        FrontLeft.setTargetPosition(-encodedDistance);
         RearRight.setTargetPosition(encodedDistance);
         RearLeft.setTargetPosition(encodedDistance);
+
+        FrontRight.setPower(speed);
+        FrontLeft.setPower(speed);
+        RearRight.setPower(speed);
+        RearLeft.setPower(speed);
 
         FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -181,14 +197,41 @@ public class SkyStoneBot implements Robot
 
     public boolean CheckIfEncodersCloseEnough()
     {
-        int currentPos = FrontRight.getCurrentPosition();
-        if(Math.abs(currentPos - FrontRight.getTargetPosition()) < 4)
+        //check if the motors are close enough to their target to move on
+        boolean closeEnoughFR = Math.abs(FrontRight.getCurrentPosition() - FrontRight.getTargetPosition()) < 20;
+        boolean closeEnoughFL = Math.abs(FrontLeft.getCurrentPosition() - FrontLeft.getTargetPosition()) < 20;
+        boolean closeEnoughRR = Math.abs(RearRight.getCurrentPosition() - RearRight.getTargetPosition()) < 20;
+        boolean closeEnoughRL = Math.abs(RearLeft.getCurrentPosition() - RearLeft.getTargetPosition()) < 20;
+        if(closeEnoughFR && closeEnoughFL && closeEnoughRR && closeEnoughRL)//if all are, return true
         {
             return true;
         }
         else
         {
             return false;
+        }
+    }
+
+    @Override
+    public void RotateTowardsAngle(double angle, double speed)
+    {
+        FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        if (angle > RobotAngle) //turn left
+        {
+            RearLeft.setPower(speed);
+            FrontLeft.setPower(speed);
+            FrontRight.setPower(speed);
+            RearRight.setPower(speed);
+        }
+        else //turn right
+        {
+            RearLeft.setPower(-speed);
+            FrontLeft.setPower(-speed);
+            FrontRight.setPower(-speed);
+            RearRight.setPower(-speed);
         }
     }
 
@@ -300,25 +343,6 @@ public class SkyStoneBot implements Robot
     }
 
     @Override
-    public void RotateTo(double angle, double speed)
-    {
-        if (angle > RobotAngle) //turn left
-        {
-            RearLeft.setPower(speed);
-            FrontLeft.setPower(speed);
-            FrontRight.setPower(speed);
-            RearRight.setPower(speed);
-        }
-        else //turn right
-        {
-            RearLeft.setPower(-speed);
-            FrontLeft.setPower(-speed);
-            FrontRight.setPower(-speed);
-            RearRight.setPower(-speed);
-        }
-    }
-
-    @Override
     public void StopMotors()
     {
         FrontRight.setPower(0);
@@ -393,11 +417,20 @@ public class SkyStoneBot implements Robot
     }
 
     @Override
-    public float GetRobotAngle()
+    public double GetRobotAngle()
     {
-        return 0;
+        return RobotAngle;
     }
 
+    public void FoundationGrab(double desiredAngle){
+        /*if(desiredAngle>0){
+            FoundationL.setPosition(0.75);
+            FoundationR.setPosition(0.25);
+        }
+        else{
+            FoundationL.setPosition(0.25);
+            FoundationR.setPosition(0.75);
+        }*/
 
 
 }
