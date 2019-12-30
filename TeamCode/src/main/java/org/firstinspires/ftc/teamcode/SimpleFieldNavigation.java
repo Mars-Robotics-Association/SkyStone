@@ -164,9 +164,9 @@ public class SimpleFieldNavigation
         Rotating = false;
     }
 
-    public void FoundationGrab(double desiredAngle){
+    /*public void FoundationGrab(double desiredAngle){
         Bot.FoundationGrab(desiredAngle);
-    }
+    }*/
 
     public boolean IsOnTheLine(){
         if(Math.abs(RedHue - colorSensor.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensor.returnHue()) > HueThreshold)
