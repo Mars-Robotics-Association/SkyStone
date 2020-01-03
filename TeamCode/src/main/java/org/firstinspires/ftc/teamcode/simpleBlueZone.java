@@ -16,15 +16,16 @@ public class simpleBlueZone extends LinearOpMode {
     @Override
     public void runOpMode() {
         nav = new SimpleFieldNavigation(this);
+        FoundationGrabber Grab = null;
         nav.Init();
         nav.Start();
         nav.Loop();
         telemetry.addData("Status", "Initialized");
         telemetry.update();
         waitForStart();
-       // nav.FoundationGrab(1);
+        Grab.FoundationGrab(1);
         sleep(5000);
-        //nav.FoundationGrab(-1);
+        Grab.FoundationGrab(-1);
         nav.StopAll();
     }
 }
