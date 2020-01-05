@@ -58,6 +58,7 @@ public class CustomChasisTeleop extends OpMode
     {
         Teleop.Loop();
         gripper.Loop();
+        grab.Loop();
         //Update telemetry and get joystick input
         Jc.calculate();
         Teleop.UpdateTurnSpeed(Math.abs(Jc.rightStickX));
@@ -244,52 +245,31 @@ public class CustomChasisTeleop extends OpMode
         }
     }
 
-    public void ManageGripperMovement()//Manages the GripperTetrix
+    public void ManageGripperMovement()//Manages the Gripper
     {
         if(gamepad2.dpad_right)//rotate the gripper right
         {
-            gripperRight();
+            gripper.GripperRotatePosition(-0.05);
         }
         else if(gamepad2.dpad_left)//rotate the gripper left
         {
-            gripperLeft();
+            gripper.GripperRotatePosition(0.05);
         }
         if(gamepad2.left_bumper)//open the gripper
         {
-            closeGripper();
+            gripper.GripperClose();
         }
         if(gamepad2.right_bumper)//close the gripper
         {
-            openGripper();
+            gripper.GripperOpen();
+        }
+        if(gamepad2.dpad_up)
+        {
+            grab.FoundationGrabUp();
+        }
+        if(gamepad2.dpad_down)
+        {
+            grab.FoundationGrabUp();
         }
     }
-
-    //GripperTetrix Management Methods
-    public void closeGripper(){
-        gripper.GripperClose();
-    }
-    public void openGripper(){
-        gripper.GripperOpen();
-    }
-
-    public void gripperLeft() {
-        gripper.GripperRotatePosition(0.05);
-    }
-
-    public void gripperRight() {
-        gripper.GripperRotatePosition(-0.05);
-    }
-    public void gripper1(){ /*gripperPosition = 1;*/}
-    public void gripper0(){/*gripperPosition=0;*/}
-
-    public void gripperOpenLeft(){
-        gripper.GripperOpenLeft();
-    }
-    public void gripperOpenRight(){
-        gripper.GripperOpenRight();
-    }
-    public void gripperCloseLeft(){gripper.GripperCloseLeft();}
-    public void gripperCloseRight(){gripper.GripperCloseRight();}
-
-
 }
