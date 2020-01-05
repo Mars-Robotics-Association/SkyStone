@@ -4,6 +4,18 @@ import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+
 @TeleOp(name="MechWheelTest", group="Iterative Opmode")
 public class MechWheelTest extends OpMode
 {
@@ -81,6 +93,12 @@ public class MechWheelTest extends OpMode
             FrontLeft.setPower(speed);
             FrontRight.setPower(-speed);
             RearRight.setPower(speed);
+        }
+        else{
+            RearLeft.setPower(0);
+            FrontLeft.setPower(0);
+            FrontRight.setPower(0);
+            RearRight.setPower(0);
         }
        telemetry.update();
 
