@@ -83,6 +83,18 @@ public class TetrixChasisTeleop extends OpMode
             Teleop.gyroOffset();
         }
 
+        //lift test
+        if(gamepad1.a)
+        {
+
+        }
+
+        //lift test
+        if(gamepad1.b)
+        {
+
+        }
+
         //SwitchModes
         if(gamepad1.y)
         {

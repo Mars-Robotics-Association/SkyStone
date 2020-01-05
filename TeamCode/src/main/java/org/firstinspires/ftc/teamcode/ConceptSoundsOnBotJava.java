@@ -59,14 +59,14 @@ import java.io.File;
  *      https://github.com/ftctechnh/ftc_app/tree/master/FtcRobotController/src/main/res/raw/silver.wav
  */
 
-@TeleOp(name="Concept: Sound Files", group="Concept")
+@TeleOp(name="bro this is so much cringe", group="Concept")
 
 public class ConceptSoundsOnBotJava extends LinearOpMode {
 
     // Point to sound files on the phone's drive
     private String soundPath = "/FIRST/blocks/sounds";
     private File goldFile   = new File("/sdcard" + soundPath + "/gold.wav");
-    private File silverFile = new File("/sdcard" + soundPath + "/silver.wav");
+    private File silverFile = new File(   "/sdcard" + soundPath + "/silver.wav");
 
     // Declare OpMode members.
     private boolean isX = false;    // Gamepad button state variables
