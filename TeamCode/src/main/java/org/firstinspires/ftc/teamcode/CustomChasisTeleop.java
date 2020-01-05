@@ -100,12 +100,12 @@ public class CustomChasisTeleop extends OpMode
             //put down stone
         }
 
-        if(gamepad2.left_stick_y>JoystickThreshold){
+        /*if(gamepad2.left_stick_y>JoystickThreshold){
             grab.FoundationGrab(gamepad2.left_stick_y);
         }
         if(gamepad2.left_stick_y<-JoystickThreshold){
             grab.FoundationGrab(gamepad2.left_stick_y);
-        }
+        }*/
         if(gamepad1.dpad_up){
             int fleft = Teleop.getfleftudc();
             int fright = Teleop.getfrightudc();
