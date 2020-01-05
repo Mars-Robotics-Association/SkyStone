@@ -16,35 +16,51 @@ public class simpleBlueZone extends LinearOpMode {
     @Override
     public void runOpMode() {
         nav = new SimpleFieldNavigation(this);
-        public FoundationGrabber grab = null;
-        UDC_Teleop UDC = null
-        ColorSensor colorsensor = null;
-        FoundationGrabber Grab = null;
+        UDC_Teleop UDC = null;
+        ColorSensor color = null;
+        SimpleFieldNavigation navi = null;
         nav.Init();
-        nav.Start();
-        nav.Loop();
-        telemetry.addData("Status", "Initialized");
-          telemetry.update();
         waitForStart();
-        Grab.FoundationGrab(1);
-        sleep(5000);
-        Grab.FoundationGrab(-1);
+        nav.Start();
+        telemetry.addData("Status", "Initialized");
+
+        nav.Loop();
+        telemetry.update();
+
+
+        while(color.returnHue()!=207||color.returnHue()!=0){
+            navi.GoForward(1,1);
+        }
+
+
+        //Block: Go forwards 5 inches
+        nav.GoForward(5, 1);
+        while (!nav.CheckIfAtTargetDestination())
+        {
+            nav.Loop();
+            telemetry.addData("looping1: ", true);
+            telemetry.update();
+        }
+
+        //Block: Go left 10 inches
+        nav.GoForward(-10, 1);
+        while (!nav.CheckIfAtTargetDestination())
+        {
+            nav.Loop();
+            telemetry.addData("looping2: ", true);
+            telemetry.update();
+        }
+
+        //Block: Rotate to 90 degrees
+        nav.RotateTo(90, 1);
+        while (!nav.CheckCloseEnoughRotation())
+        {
+            nav.Loop();
+            telemetry.addData("looping3: ", true);
+            telemetry.update();
+        }
+
         nav.StopAll();
     }
-    //Makes the Bot MOve to the Red or Blue Line/Skybridge
-    while(colorsensor.returnHue()!=207||colorsensor.returnHue()!=0){
-        UDC.RawForwards (1);
-    }
-    UDC.RawForwards (0);
-    grab.FoundationGrab(-1)
 
-
-
-    nav.GoForward(5, 1);
-        while (!nav.CheckIfAtTargetDestination())
-    {
-        nav.Loop();
-        telemetry.addData("looping1: ", true);
-        telemetry.update();
-    }
 }
