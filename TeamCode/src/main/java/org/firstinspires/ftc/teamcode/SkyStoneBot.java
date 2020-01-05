@@ -22,6 +22,8 @@ public class SkyStoneBot implements Robot
     private DcMotor RearRight = null;
     private DcMotor RearLeft = null;
 
+    private Servo LiftExtendLeft = null;
+
     //private Servo FoundationL;
     //private Servo FoundationR;
 
