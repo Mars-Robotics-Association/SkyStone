@@ -38,7 +38,7 @@ public class ColorSensor
         relativeLayout = ((Activity) opMode.hardwareMap.appContext).findViewById(relativeLayoutId);
 
         // Get a reference to our sensor object.
-        colorSensor = opMode.hardwareMap.get(NormalizedColorSensor.class, "sensor_color");
+        colorSensor = opMode.hardwareMap.get(NormalizedColorSensor.class, "colorSensorGround");
 
         // If possible, turn the light on in the beginning (it might already be on anyway,
         // we just make sure it is if we can).
