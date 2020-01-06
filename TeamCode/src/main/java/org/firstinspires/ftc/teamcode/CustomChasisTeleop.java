@@ -13,6 +13,8 @@ public class CustomChasisTeleop extends OpMode
     public FoundationGrabber grab = null;
     public GripperCustom gripper = null;
 
+
+
     private double DriveSpeedMultiplier;
     private double TurnSpeedMultiplier;
 
@@ -97,13 +99,14 @@ public class CustomChasisTeleop extends OpMode
         }
         else if (gamepad2.y)
         {
-            //put down stone
+            //put down stone.
         }
-
-        if(gamepad2.left_stick_y>0.4){
+        if(gamepad2.a)
+        {
             grab.FoundationGrabUp();
         }
-        if(gamepad2.left_stick_y<-0.4){
+        if (gamepad2.b)
+        {
             grab.FoundationGrabDown();
         }
 

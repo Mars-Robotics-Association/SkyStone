@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 public class ArmAttachmentCustom implements Attachment {
     private DcMotor ArmHorizontal = null;
@@ -10,6 +11,7 @@ public class ArmAttachmentCustom implements Attachment {
     private DcMotor ArmRight = null;
     private DcMotor LeftIntake = null;
     private DcMotor RightIntake = null;
+    
 
     double Vratio;
     double Hratio;
@@ -25,7 +27,7 @@ public class ArmAttachmentCustom implements Attachment {
 
     @Override
     public void Init() {
-        ArmHorizontal = opmode.hardwareMap.dcMotor.get("ArmHorizontal");
+        LiftExtendLeft = opmode.hardwareMap.dcMotor.get("LiftExtendLeft")
         ArmVertical = opmode.hardwareMap.dcMotor.get("ArmVertical");
 
         LeftIntake = opmode.hardwareMap.dcMotor.get("LeftIntake");
