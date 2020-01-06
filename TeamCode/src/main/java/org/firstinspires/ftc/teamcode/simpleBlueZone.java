@@ -13,23 +13,23 @@ import com.qualcomm.robotcore.hardware.SwitchableLight;
 public class simpleBlueZone extends LinearOpMode {
 
     public SimpleFieldNavigation nav = null;
+    public ColorSensor color = null;
     @Override
     public void runOpMode() {
         nav = new SimpleFieldNavigation(this);
-        UDC_Teleop UDC = null;
-        ColorSensor color = null;
-        SimpleFieldNavigation navi = null;
+        color = new ColorSensor(this);
         nav.Init();
+        color.Init();
         waitForStart();
         nav.Start();
         telemetry.addData("Status", "Initialized");
 
         nav.Loop();
-        telemetry.update();
+        telemetry.update();  
 
 
         while(color.returnHue()!=207||color.returnHue()!=0){
-            navi.GoForward(1,1);
+            nav.GoForward(1,1);
         }
 
 
