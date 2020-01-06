@@ -11,13 +11,15 @@ public class ArmAttachmentCustom implements Attachment {
     private DcMotor ArmRight = null;
     private DcMotor LeftIntake = null;
     private DcMotor RightIntake = null;
-    
+    private Servo LiftExtendLeft = null;
+    private Servo LiftExtendRight = null;
+
 
     double Vratio;
     double Hratio;
     OpMode opmode;
 
-    int VerticalsRestingPos;//hi
+    int VerticalsRestingPos;
 
     public GripperTetrix gripper;
 
@@ -27,7 +29,8 @@ public class ArmAttachmentCustom implements Attachment {
 
     @Override
     public void Init() {
-        LiftExtendLeft = opmode.hardwareMap.dcMotor.get("LiftExtendLeft")
+        LiftExtendLeft = opmode.hardwareMap.servo.get("LiftExtendLeft");
+        LiftExtendRight = opmode.hardwareMap.servo.get("LiftExtendRight");
         ArmVertical = opmode.hardwareMap.dcMotor.get("ArmVertical");
 
         LeftIntake = opmode.hardwareMap.dcMotor.get("LeftIntake");
