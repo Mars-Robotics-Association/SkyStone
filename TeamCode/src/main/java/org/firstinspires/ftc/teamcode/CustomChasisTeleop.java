@@ -100,12 +100,13 @@ public class CustomChasisTeleop extends OpMode
             //put down stone
         }
 
-        /*if(gamepad2.left_stick_y>JoystickThreshold){
-            grab.FoundationGrab(gamepad2.left_stick_y);
+        if(gamepad2.left_stick_y>0.4){
+            grab.FoundationGrabUp();
         }
-        if(gamepad2.left_stick_y<-JoystickThreshold){
-            grab.FoundationGrab(gamepad2.left_stick_y);
-        }*/
+        if(gamepad2.left_stick_y<-0.4){
+            grab.FoundationGrabDown();
+        }
+
         if(gamepad1.dpad_up){
             int fleft = Teleop.getfleftudc();
             int fright = Teleop.getfrightudc();
@@ -265,11 +266,19 @@ public class CustomChasisTeleop extends OpMode
         }
         if(gamepad2.dpad_up)
         {
+            gripper.GripperUpDownRotate(-0.05);
+        }
+        if(gamepad2.dpad_down)
+        {
+            gripper.GripperUpDownRotate(0.05);
+        }
+        /*if(gamepad2.dpad_up)
+        {
             grab.FoundationGrabUp();
         }
         if(gamepad2.dpad_down)
         {
-            grab.FoundationGrabUp();
-        }
+            grab.FoundationGrabDown();
+        }*/
     }
 }
