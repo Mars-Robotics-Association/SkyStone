@@ -5,7 +5,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class ArmAttachmentCustom implements Attachment {
-    private DcMotor ArmHorizontal = null;
     private DcMotor ArmVertical = null;
     private DcMotor ArmLeft = null;
     private DcMotor ArmRight = null;
@@ -14,9 +13,12 @@ public class ArmAttachmentCustom implements Attachment {
     private Servo LiftExtendLeft = null;
     private Servo LiftExtendRight = null;
 
-
     double Vratio;
     double Hratio;
+    boolean GoIn;
+    boolean GoOut;
+
+
     OpMode opmode;
 
     int VerticalsRestingPos;
@@ -32,6 +34,7 @@ public class ArmAttachmentCustom implements Attachment {
         LiftExtendLeft = opmode.hardwareMap.servo.get("LiftExtendLeft");
         LiftExtendRight = opmode.hardwareMap.servo.get("LiftExtendRight");
         ArmVertical = opmode.hardwareMap.dcMotor.get("ArmVertical");
+
 
         LeftIntake = opmode.hardwareMap.dcMotor.get("LeftIntake");
         RightIntake = opmode.hardwareMap.dcMotor.get("RightIntake");
@@ -79,20 +82,41 @@ public class ArmAttachmentCustom implements Attachment {
         ArmVertical.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
+
+
+
+
+
     public void LiftExtend () {
-        ArmHorizontal.setPower(1*Hratio);
+
+
+        LiftExtendLeft.setPosition(1*Hratio);
+
+
     }
 
     public void LiftRetract ()
     {
-        ArmHorizontal.setPower(-1*Hratio);
-
+        LiftExtendLeft.setPosition(-1*Hratio);
     }
 
     public void LiftStopHorizontal ()
     {
-        ArmHorizontal.setPower(0*Hratio);
+        LiftExtendLeft.setPosition(0*Hratio);
     }
+    public void LiftStopIn(){
+        GoIn=false;
+    }
+    public void LiftStopOut(){
+        GoOut=false;
+    }
+
+
+
+
+
+
+
 
 
     public void IntakeReverse()

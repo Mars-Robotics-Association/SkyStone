@@ -12,7 +12,7 @@ public class CustomChasisTeleop extends OpMode
     public ArmAttachmentCustom arm = null;
     public FoundationGrabber grab = null;
     public GripperCustom gripper = null;
-    public SkyStoneBot bot = null;
+    //public SkyStoneBot bot = null;
 
 
     private double DriveSpeedMultiplier;
@@ -112,16 +112,19 @@ public class CustomChasisTeleop extends OpMode
 
         if(gamepad2.right_stick_x > 0){
 
-    bot.extendLift();
+    arm.LiftExtend();
 
 
         }
 
-        if(gamepad2.right_stick_x < 0){
+        else if(gamepad2.right_stick_x < 0){
 
-    bot.retractLift();
+            arm.LiftRetract();
 
 
+        }
+        else{
+            arm.LiftStopHorizontal();
         }
 
 
