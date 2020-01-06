@@ -24,6 +24,7 @@ public class SkyStoneBot implements Robot
 
     private Servo LiftExtendLeft = null;
 
+
     //private Servo FoundationL;
     //private Servo FoundationR;
 
@@ -150,7 +151,23 @@ public class SkyStoneBot implements Robot
     }
 
     //ENCODER METHODS FOR SIMPLE AUTONOMOUS
+    public void extendLift(){
+        LiftExtendLeft.setPosition(0.75);
 
+
+
+
+
+    }
+
+    public void retractLift(){
+        LiftExtendLeft.setPosition(0.25);
+
+
+
+
+
+    }
     public void GoForwardWithEncoder(double speed, double distance)
     {
         StopEncoders();
@@ -173,6 +190,9 @@ public class SkyStoneBot implements Robot
         RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
     }
+
+
+
 
     public void GoRightWithEncoder(double speed, double distance)
     {
