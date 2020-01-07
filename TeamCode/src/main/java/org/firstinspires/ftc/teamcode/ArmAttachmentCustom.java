@@ -91,6 +91,7 @@ public class ArmAttachmentCustom implements Attachment {
     public void LiftExtend () {
         if(GoOut) {
             LiftExtendLeft.setPower(1 * Hratio);
+            LiftExtendRight.setPower(-1 * Hratio);
             GoIn=true;
         }
         else{
@@ -101,6 +102,7 @@ public class ArmAttachmentCustom implements Attachment {
     public void LiftRetract () {
         if(GoIn) {
             LiftExtendLeft.setPower(-1*Hratio);
+            LiftExtendRight.setPower(1 * Hratio);
             GoOut=true;
         }
         else{
@@ -111,6 +113,7 @@ public class ArmAttachmentCustom implements Attachment {
     public void LiftStopHorizontal ()
     {
         LiftExtendLeft.setPower(0*Hratio);
+        LiftExtendRight.setPower(0 * Hratio);
     }
 
     public void LiftStopIn(){
