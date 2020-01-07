@@ -48,6 +48,8 @@ public class CustomChasisTeleop extends OpMode
 
         //armRetractStop = hardwareMap.touchSensor.get("ArmRetractStop");
         ArmRetractStop = hardwareMap.get(RevTouchSensor.class, "ArmRetractStop");
+        ArmUpStop = hardwareMap.get(RevTouchSensor.class, "ArmUpStop");
+
     }
 
     @Override
@@ -111,22 +113,7 @@ public class CustomChasisTeleop extends OpMode
             grab.FoundationGrabDown();
         }
 
-        if(gamepad2.right_stick_x > 0){
 
-    arm.LiftExtend();
-
-
-        }
-
-        else if(gamepad2.right_stick_x < 0){
-
-            arm.LiftRetract();
-
-
-        }
-        else{
-            arm.LiftStopHorizontal();
-        }
 
 
         if(gamepad1.dpad_up){
@@ -145,6 +132,8 @@ public class CustomChasisTeleop extends OpMode
 
         ManageArmMovement();
         ManageGripperMovement();
+        telemetry.addData("Retract", ArmRetractStop.isPressed());
+        telemetry.addData("Extend", ArmUpStop.isPressed());
 
         telemetry.update();
     }
@@ -252,29 +241,36 @@ public class CustomChasisTeleop extends OpMode
             arm.LiftStopVertical();
         }
 
-        if(gamepad2.left_stick_y > 0.4 && !ArmRetractStop.isPressed())////extend arm
+        if(gamepad2.left_stick_y<-0.4  && !ArmRetractStop.isPressed())////extend arm
         {
             arm.LiftRetract();
+            telemetry.addData("should","move  retract");
         }
 
-        else if (gamepad2.left_stick_y < -0.4 && !ArmUpStop.isPressed())//retract arm
+        else if (gamepad2.left_stick_x>0.4 && !ArmUpStop.isPressed())//retract arm
         {
             arm.LiftExtend();
-        }
+            telemetry.addData("should","move  extend");
 
+        }
         else//stop the arm from moving left or right
         {
             arm.LiftStopHorizontal();
-        }
+            telemetry.addData("should","not move");
 
-        if(!ArmRetractStop.isPressed()){
+        }
+        telemetry.addData("arm telmetry test",true);
+
+/*                  telemetry.addData("should","move  extend");
+
+        if(ArmRetractStop.isPressed()){
             arm.LiftStopIn();
         }
 
-        if(!ArmUpStop.isPressed()){
+        if(ArmUpStop.isPressed()){
             arm.LiftStopOut();
         }
-
+*/
     }
 
     public void ManageGripperMovement()//Manages the Gripper

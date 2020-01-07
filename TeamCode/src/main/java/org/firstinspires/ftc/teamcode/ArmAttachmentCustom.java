@@ -11,8 +11,8 @@ public class ArmAttachmentCustom implements Attachment {
     private DcMotor ArmRight = null;
     private DcMotor LeftIntake = null;
     private DcMotor RightIntake = null;
-    private CRServo LiftExtendLeft = null;
-    private CRServo LiftExtendRight = null;
+    private Servo LiftExtendLeft = null;
+    private Servo LiftExtendRight = null;
 
     double Vratio;
     double Hratio;
@@ -32,8 +32,8 @@ public class ArmAttachmentCustom implements Attachment {
 
     @Override
     public void Init() {
-        LiftExtendLeft = opmode.hardwareMap.crservo.get("LiftExtendLeft");
-        LiftExtendRight = opmode.hardwareMap.crservo.get("LiftExtendRight");
+        LiftExtendLeft = opmode.hardwareMap.servo.get("LiftExtendLeft");
+        LiftExtendRight = opmode.hardwareMap.servo.get("LiftExtendRight");
         ArmVertical = opmode.hardwareMap.dcMotor.get("ArmVertical");
 
 
@@ -90,8 +90,8 @@ public class ArmAttachmentCustom implements Attachment {
 
     public void LiftExtend () {
         if(GoOut) {
-            LiftExtendLeft.setPower(1 * Hratio);
-            LiftExtendRight.setPower(-1 * Hratio);
+            LiftExtendLeft.setPosition(0.9);
+            LiftExtendRight.setPosition(0.1);
             GoIn=true;
         }
         else{
@@ -101,8 +101,8 @@ public class ArmAttachmentCustom implements Attachment {
 
     public void LiftRetract () {
         if(GoIn) {
-            LiftExtendLeft.setPower(-1*Hratio);
-            LiftExtendRight.setPower(1 * Hratio);
+            LiftExtendLeft.setPosition(0.1);
+            LiftExtendRight.setPosition(0.9);
             GoOut=true;
         }
         else{
@@ -112,8 +112,8 @@ public class ArmAttachmentCustom implements Attachment {
 
     public void LiftStopHorizontal ()
     {
-        LiftExtendLeft.setPower(0*Hratio);
-        LiftExtendRight.setPower(0 * Hratio);
+        LiftExtendLeft.setPosition(0.5);
+        LiftExtendRight.setPosition(0.5);
     }
 
     public void LiftStopIn(){
