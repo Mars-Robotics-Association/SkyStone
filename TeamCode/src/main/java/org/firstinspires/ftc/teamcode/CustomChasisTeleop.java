@@ -26,7 +26,8 @@ public class CustomChasisTeleop extends OpMode
     boolean FirstRun = true;
     boolean stopping = false;
 
-    private RevTouchSensor armRetractStop;
+    private RevTouchSensor ArmRetractStop;
+    private RevTouchSensor ArmUpStop;
 
     @Override
     public void init()
@@ -46,7 +47,7 @@ public class CustomChasisTeleop extends OpMode
         grab.Init();
 
         //armRetractStop = hardwareMap.touchSensor.get("ArmRetractStop");
-        armRetractStop = hardwareMap.get(RevTouchSensor.class, "ArmRetractStop");
+        ArmRetractStop = hardwareMap.get(RevTouchSensor.class, "ArmRetractStop");
     }
 
     @Override
@@ -251,12 +252,12 @@ public class CustomChasisTeleop extends OpMode
             arm.LiftStopVertical();
         }
 
-        if(gamepad2.left_stick_y > 0.4 && !armRetractStop.isPressed())////extend arm
+        if(gamepad2.left_stick_y > 0.4 && !ArmRetractStop.isPressed())////extend arm
         {
             arm.LiftRetract();
         }
 
-        else if (gamepad2.left_stick_y < -0.4 )//retract arm
+        else if (gamepad2.left_stick_y < -0.4 && !ArmUpStop.isPressed())//retract arm
         {
             arm.LiftExtend();
         }
@@ -265,6 +266,15 @@ public class CustomChasisTeleop extends OpMode
         {
             arm.LiftStopHorizontal();
         }
+
+        if(!ArmRetractStop.isPressed()){
+            arm.LiftStopIn();
+        }
+
+        if(!ArmUpStop.isPressed()){
+            arm.LiftStopOut();
+        }
+
     }
 
     public void ManageGripperMovement()//Manages the Gripper
