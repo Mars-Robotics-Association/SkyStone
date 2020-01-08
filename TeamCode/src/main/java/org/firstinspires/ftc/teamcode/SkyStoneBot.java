@@ -347,7 +347,13 @@ public class SkyStoneBot implements Robot
         RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
-    public void BrakePos (){
+
+    public void SetBrakePos(){
+        FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         FrontRightBrakePos = FrontRight.getCurrentPosition();
         FrontLeftBrakePos = FrontLeft.getCurrentPosition();
         RearRightBrakePos = RearRight.getCurrentPosition();

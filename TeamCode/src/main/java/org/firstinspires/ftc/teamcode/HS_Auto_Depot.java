@@ -41,9 +41,15 @@ public class HS_Auto_Depot extends LinearOpMode {
         {
             nav.Loop();
             telemetry.addData("looping1: ", true);
+            telemetry.addData("Hue: ", colorSensor.returnHue());
             telemetry.update();
         }
+
+        //Stops all
         nav.StopAll();
-        
+
+        //Brakes
+        nav.SetBrakePos();
+        nav.Brake(1);
     }
 }

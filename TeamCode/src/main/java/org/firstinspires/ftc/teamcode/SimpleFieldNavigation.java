@@ -167,8 +167,8 @@ public class SimpleFieldNavigation
     public void Brake(double power){
         Bot.Brake(power);
     }
-    public void BrakePos(){
-        Bot.BrakePos();
+    public void SetBrakePos(){
+        Bot.SetBrakePos();
     }
 
     /*public void FoundationGrab(double desiredAngle){
