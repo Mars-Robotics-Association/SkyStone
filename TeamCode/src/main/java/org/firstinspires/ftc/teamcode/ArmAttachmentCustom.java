@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.CRServo;
 
 public class ArmAttachmentCustom implements Attachment {
     private DcMotor ArmVertical = null;
@@ -15,8 +16,8 @@ public class ArmAttachmentCustom implements Attachment {
 
     double Vratio;
     double Hratio;
-    boolean GoIn;
-    boolean GoOut;
+    boolean GoIn = true;
+    boolean GoOut = true;
 
 
     OpMode opmode;
@@ -88,25 +89,37 @@ public class ArmAttachmentCustom implements Attachment {
 
 
     public void LiftExtend () {
-
-
-        LiftExtendLeft.setPosition(1*Hratio);
-
-
+        if(GoOut) {
+            LiftExtendLeft.setPosition(0.9);
+            LiftExtendRight.setPosition(0.1);
+            GoIn=true;
+        }
+        else{
+            LiftStopHorizontal();
+        }
     }
 
-    public void LiftRetract ()
-    {
-        LiftExtendLeft.setPosition(-1*Hratio);
+    public void LiftRetract () {
+        if(GoIn) {
+            LiftExtendLeft.setPosition(0.1);
+            LiftExtendRight.setPosition(0.9);
+            GoOut=true;
+        }
+        else{
+            LiftStopHorizontal();
+        }
     }
 
     public void LiftStopHorizontal ()
     {
-        LiftExtendLeft.setPosition(0*Hratio);
+        LiftExtendLeft.setPosition(0.5);
+        LiftExtendRight.setPosition(0.5);
     }
+
     public void LiftStopIn(){
         GoIn=false;
     }
+
     public void LiftStopOut(){
         GoOut=false;
     }
