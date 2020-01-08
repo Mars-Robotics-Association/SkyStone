@@ -329,7 +329,7 @@ public class SkyStoneBot implements Robot
         RearLeftBrakePos = RearLeft.getCurrentPosition();
     }
 
-    public void Brake()
+    public void Brake(double power)
     {
         //Set the encoders to run to the breaking position
         FrontRight.setTargetPosition(FrontRightBrakePos);
@@ -337,15 +337,21 @@ public class SkyStoneBot implements Robot
         RearRight.setTargetPosition(RearRightBrakePos);
         RearLeft.setTargetPosition(RearLeftBrakePos);
 
-        FrontRight.setPower(0.5);
-        FrontLeft.setPower(-0.5);
-        RearRight.setPower(0.5);
-        RearLeft.setPower(-0.5);
+        FrontRight.setPower(power);
+        FrontLeft.setPower(-power);
+        RearRight.setPower(power);
+        RearLeft.setPower(-power);
 
         FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+    public void BrakePos (){
+        FrontRightBrakePos = FrontRight.getCurrentPosition();
+        FrontLeftBrakePos = FrontLeft.getCurrentPosition();
+        RearRightBrakePos = RearRight.getCurrentPosition();
+        RearLeftBrakePos = RearLeft.getCurrentPosition();
     }
 
     @Override

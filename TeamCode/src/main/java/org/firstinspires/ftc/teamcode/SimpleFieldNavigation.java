@@ -164,6 +164,13 @@ public class SimpleFieldNavigation
         Rotating = false;
     }
 
+    public void Brake(double power){
+        Bot.Brake(power);
+    }
+    public void BrakePos(){
+        Bot.BrakePos();
+    }
+
     /*public void FoundationGrab(double desiredAngle){
         Bot.FoundationGrab(desiredAngle);
     }*/

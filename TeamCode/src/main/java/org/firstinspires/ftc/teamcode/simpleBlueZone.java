@@ -25,16 +25,38 @@ public class simpleBlueZone extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
 
         nav.Loop();
-        telemetry.update();  
+        telemetry.update();
 
 
-        while(color.returnHue()!=207||color.returnHue()!=0){
-            nav.GoForward(1,1);
+
+        nav.GoForward(1,0.1);
+        double sensorValue=0;
+        while(!(color.returnHue()>180)){
+            nav.Loop();
+            if(color.returnHue()>sensorValue){
+                sensorValue=color.returnHue();
+            }
+
+            telemetry.addData("colorSensor", color.returnHue());
+            telemetry.addData("max detection", sensorValue  );
+            telemetry.update();
         }
+        telemetry.addData("detechted", sensorValue  );
+       // telemetry.update();
+        nav.BrakePos();
 
+
+        nav.StopAll();
+
+
+        nav.Brake(0.1);
+
+
+
+        nav.StopAll();
 
         //Block: Go forwards 5 inches
-        nav.GoForward(5, 1);
+        /*nav.GoForward(5, 0.25);
         while (!nav.CheckIfAtTargetDestination())
         {
             nav.Loop();
@@ -43,7 +65,7 @@ public class simpleBlueZone extends LinearOpMode {
         }
 
         //Block: Go left 10 inches
-        nav.GoForward(-10, 1);
+        nav.GoForward(-10, 0.25);
         while (!nav.CheckIfAtTargetDestination())
         {
             nav.Loop();
@@ -52,15 +74,14 @@ public class simpleBlueZone extends LinearOpMode {
         }
 
         //Block: Rotate to 90 degrees
-        nav.RotateTo(90, 1);
+        nav.RotateTo(90, 0.25);
         while (!nav.CheckCloseEnoughRotation())
         {
             nav.Loop();
             telemetry.addData("looping3: ", true);
             telemetry.update();
         }
-
-        nav.StopAll();
+*/
     }
 
 }

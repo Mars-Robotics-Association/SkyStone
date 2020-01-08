@@ -76,9 +76,9 @@ public class UDC_Teleop
         TurnSpeedMultiplier = BaseTurnSpeedMultiplier/2;
     }
 
-    public void brake()
+    public void brake(double power)
     {
-        Bot.Brake();
+        Bot.Brake(power);
     }
 
     public void forthSpeed()

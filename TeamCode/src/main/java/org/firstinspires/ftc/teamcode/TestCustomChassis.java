@@ -144,7 +144,7 @@ public class TestCustomChassis extends OpMode
 
         else if(gamepad1.right_trigger>0.2)
         {
-            Teleop.brake();
+            Teleop.brake(0.5);
             telemetry.addData("Brake: ", true);
             stopping = true;
         }
