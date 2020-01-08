@@ -4,10 +4,11 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 
-@Autonomous(name = "simpleRedDepot", group = "Autonomous")
-public class simpleRedDepot extends LinearOpMode {
+@Autonomous(name = "HS_Auto_RedZone", group = "Autonomous")
+public class HS_Auto_RedZone extends LinearOpMode {
 
     public SimpleFieldNavigation nav = null;
+
     @Override
     public void runOpMode() {
         nav = new SimpleFieldNavigation(this);

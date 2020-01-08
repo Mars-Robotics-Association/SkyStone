@@ -9,19 +9,19 @@ import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 import com.qualcomm.robotcore.hardware.SwitchableLight;
 
 
-@Autonomous(name = "simpleRedZone", group = "Autonomous")
-public class simpleRedZone extends LinearOpMode {
+@Autonomous(name = "HS_Auto_BlueZone", group = "Autonomous")
+public class HS_Auto_BlueZone extends LinearOpMode {
 
     public SimpleFieldNavigation nav = null;
+
     @Override
     public void runOpMode() {
         nav = new SimpleFieldNavigation(this);
         nav.Init();
-        nav.Start();
-        nav.Loop();
-        telemetry.addData("Status", "Initialized");
-        telemetry.update();
         waitForStart();
-        nav.StopAll();
+        nav.Start();
+        telemetry.addData("Status", "Initialized");
+
+
     }
 }
