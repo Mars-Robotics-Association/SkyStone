@@ -28,7 +28,7 @@ public class SkyStoneBot implements Robot
     private double RearRightPower = 0;
     private double RearLeftPower = 0;
 
-    private double EncoderTicks = 1120/2;//ticks for one rotation 40:1, divided by 2 for 20:1
+    private double EncoderTicks = 112/2;//ticks for one rotation 40:1, divided by 2 for 20:1
     private double WheelDiameter = 2;//diameter of wheel in inches
     private int encodedDistance = 0;
 
