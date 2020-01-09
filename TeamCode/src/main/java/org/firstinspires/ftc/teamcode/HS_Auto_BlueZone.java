@@ -37,13 +37,19 @@ public class HS_Auto_BlueZone extends LinearOpMode {
 
         grab.FoundationGrabUp();
         //Go forwards 39.5 inches
+        telemetry.addData("about to drive ","");
+        telemetry.update();
         GoForward(-39.5, 1);
+        telemetry.addData("done with 1st movement","");
+        telemetry.update();
         grab.FoundationGrabDown();
         sleep(2000);
 
         //Block: Go back 40 inches
         GoForward(40, 1);
         grab.FoundationGrabUp();
+        telemetry.addData("done with 2nd movement","");
+        telemetry.update();
         sleep(2000);
 
         //Block: Go left 28 inches
@@ -58,7 +64,7 @@ public class HS_Auto_BlueZone extends LinearOpMode {
 
         GoForward(-3,1);
 
-        nav.GoRight(-42, 0.5);
+        nav.GoRight(-42, 0.15);
         double sensorValue = 0;
         while(!(color.returnHue()>180)){
             nav.Loop();
@@ -72,27 +78,29 @@ public class HS_Auto_BlueZone extends LinearOpMode {
         }
         nav.StopAll();
         nav.SetBrakePos();
-        nav.Brake(0.5);
+        nav.Brake(0.15);
 
 
 
     }
     public void GoForward(double distance, double speed){
-        nav.GoForward(distance, speed);
+        nav.GoForward(distance, 0.3);
         while (!nav.CheckIfAtTargetDestination())
         {
             nav.Loop();
             telemetry.addData("looping1: ", true);
             telemetry.update();
         }
+        nav.StopAll();
     }
     public void GoRight(double distance, double speed){
-        nav.GoRight(distance, speed);
+        nav.GoRight(distance, 0.3);
         while (!nav.CheckIfAtTargetDestination())
         {
             nav.Loop();
             telemetry.addData("looping1: ", true);
             telemetry.update();
         }
+        nav.StopAll();
     }
 }
