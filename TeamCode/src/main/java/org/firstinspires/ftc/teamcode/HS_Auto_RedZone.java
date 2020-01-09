@@ -34,12 +34,13 @@ public class HS_Auto_RedZone extends LinearOpMode {
         //Go forwards 39.5 inches
         GoForward(-39.5, 1);
         grab.FoundationGrabDown();
-        sleep(2000);
+        sleep(500);
 
         //Block: Go back 40 inches
         GoForward(40, 1);
         grab.FoundationGrabUp();
-        sleep(2000);
+        sleep(500);
+        GoForward(-2,1);
 
         //Block: Go left 28 inches
         GoRight(28, 1);
@@ -73,7 +74,7 @@ public class HS_Auto_RedZone extends LinearOpMode {
 
     }
     public void GoForward(double distance, double speed){
-        nav.GoForward(distance, speed);
+        nav.GoForward(distance, 0.3);
         while (!nav.CheckIfAtTargetDestination())
         {
             nav.Loop();
@@ -83,7 +84,7 @@ public class HS_Auto_RedZone extends LinearOpMode {
         nav.StopAll();
     }
     public void GoRight(double distance, double speed){
-        nav.GoRight(distance, speed);
+        nav.GoRight(distance, 0.3);
         while (!nav.CheckIfAtTargetDestination())
         {
             nav.Loop();
