@@ -8,46 +8,87 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 public class HS_Auto_RedZone extends LinearOpMode {
 
     public SimpleFieldNavigation nav = null;
+    public ColorSensor color = null;
+    public FoundationGrabber grab = null;
 
     @Override
     public void runOpMode() {
         nav = new SimpleFieldNavigation(this);
         nav.Init();
+        color = new ColorSensor(this);
+        color.Init();
+        grab = new FoundationGrabber(this);
+        grab.Init();
+
         waitForStart();
         nav.Start();
         telemetry.addData("Status", "Initialized");
-
+        grab.Loop();
         nav.Loop();
         telemetry.update();
 
-        //Block: Go forwards 5 inches
-        nav.GoForward(5, 1);
+
+
+
+        grab.FoundationGrabUp();
+        //Go forwards 39.5 inches
+        GoForward(39.5, 1);
+        grab.FoundationGrabDown();
+        sleep(2000);
+
+        //Block: Go back 40 inches
+        GoForward(-40, 1);
+        grab.FoundationGrabUp();
+        sleep(2000);
+        
+        //Block: Go left 28 inches
+        GoRight(-28, 1);
+
+        //Block: Go forward 38.5 inches
+        GoForward(38.5, 1);
+
+        GoRight(28,1);
+
+        GoForward(-18,1);
+
+        GoForward(3,1);
+
+        nav.GoRight(42, 0.5);
+        double sensorValue = 0;
+        while(!(color.returnHue()>180)){
+            nav.Loop();
+            if(color.returnHue()>sensorValue){
+                sensorValue=color.returnHue();
+            }
+
+            telemetry.addData("colorSensor", color.returnHue());
+            telemetry.addData("max detection", sensorValue  );
+            telemetry.update();
+        }
+        nav.StopAll();
+        nav.BrakePos();
+        nav.Brake(0.5);
+
+
+
+    }
+    public void GoForward(double distance, double speed){
+        nav.GoForward(distance, speed);
         while (!nav.CheckIfAtTargetDestination())
         {
             nav.Loop();
             telemetry.addData("looping1: ", true);
             telemetry.update();
         }
-
-        //Block: Go left 10 inches
-        nav.GoForward(-10, 1);
+    }
+    public void GoRight(double distance, double speed){
+        nav.GoRight(distance, speed);
         while (!nav.CheckIfAtTargetDestination())
         {
             nav.Loop();
-            telemetry.addData("looping2: ", true);
+            telemetry.addData("looping1: ", true);
             telemetry.update();
         }
-
-        //Block: Rotate to 90 degrees
-        nav.RotateTo(90, 1);
-        while (!nav.CheckCloseEnoughRotation())
-        {
-            nav.Loop();
-            telemetry.addData("looping3: ", true);
-            telemetry.update();
-        }
-
-        nav.StopAll();
     }
 
     /*private ElapsedTime runtime = new ElapsedTime();
