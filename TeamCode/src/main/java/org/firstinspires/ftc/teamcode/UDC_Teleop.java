@@ -128,6 +128,7 @@ public class UDC_Teleop
     public void stopWheels() //STOP
     {
         Bot.StopMotors();
+        Bot.SetBrakePos();
     }
    // public void FoundationGrab(double desiredAngle){ Bot.FoundationGrab(desiredAngle); }
     public int getfleftudc(){

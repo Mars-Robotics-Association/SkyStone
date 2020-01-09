@@ -1,14 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 public class SkyStoneBot implements Robot
@@ -154,7 +148,7 @@ public class SkyStoneBot implements Robot
 
     public void GoForwardWithEncoder(double speed, double distance)
     {
-        StopEncoders();
+        StopAndResetEncoders();
 
         encodedDistance = (int)((EncoderTicks/WheelDiameter)*distance);//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
 
@@ -180,7 +174,7 @@ public class SkyStoneBot implements Robot
 
     public void GoRightWithEncoder(double speed, double distance)
     {
-        StopEncoders();
+        StopAndResetEncoders();
 
         encodedDistance = (int)((EncoderTicks/WheelDiameter)*distance * Math.sqrt(2));//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
 
@@ -241,7 +235,7 @@ public class SkyStoneBot implements Robot
         }
     }
 
-    public void StopEncoders()
+    public void StopAndResetEncoders()
     {
         FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -347,7 +341,13 @@ public class SkyStoneBot implements Robot
         RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
-    public void BrakePos (){
+
+    public void SetBrakePos(){
+        FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         FrontRightBrakePos = FrontRight.getCurrentPosition();
         FrontLeftBrakePos = FrontLeft.getCurrentPosition();
         RearRightBrakePos = RearRight.getCurrentPosition();
@@ -361,12 +361,6 @@ public class SkyStoneBot implements Robot
         FrontLeft.setPower(0);
         RearRight.setPower(0);
         RearLeft.setPower(0);
-
-        //Update the values for breaking
-        FrontRightBrakePos = FrontRight.getCurrentPosition();
-        FrontLeftBrakePos = FrontLeft.getCurrentPosition();
-        RearRightBrakePos = RearRight.getCurrentPosition();
-        RearLeftBrakePos = RearLeft.getCurrentPosition();
     }
 
     @Override

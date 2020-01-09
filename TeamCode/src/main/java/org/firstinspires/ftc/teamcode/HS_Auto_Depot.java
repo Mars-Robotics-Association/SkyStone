@@ -18,9 +18,9 @@ public class HS_Auto_Depot extends LinearOpMode {
     public SimpleFieldNavigation nav = null;
 
     private ColorSensor colorSensor;
-    private double HueThreshold = 20;
+    private double HueThreshold = 40;
     private double RedHue = 0;
-    private double BlueHue = 207;
+    private double BlueHue = 180;
 
     @Override
     public void runOpMode() {
@@ -36,14 +36,20 @@ public class HS_Auto_Depot extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
 
         //Block: Go forwards to the line
-        nav.GoForward(10, 1);
+        nav.GoForward(10, 0.2);
         while (Math.abs(RedHue - colorSensor.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensor.returnHue()) > HueThreshold)
         {
             nav.Loop();
             telemetry.addData("looping1: ", true);
+            telemetry.addData("Hue: ", colorSensor.returnHue());
             telemetry.update();
         }
+
+        //Stops all
         nav.StopAll();
-        
+
+        //Brakes
+        nav.SetBrakePos();
+        nav.Brake(1);
     }
 }

@@ -90,7 +90,7 @@ public class SimpleFieldNavigation
             else //Stop
             {
                 opmode.telemetry.addData("Not close enough: ", false);
-                //Bot.StopEncoders();
+                //Bot.StopAndResetEncoders();
                 //Bot.RotateTowardsAngle(TargetRot, 0.5);
                 //Rotating = true;
                 Navigating = false;
@@ -167,8 +167,8 @@ public class SimpleFieldNavigation
     public void Brake(double power){
         Bot.Brake(power);
     }
-    public void BrakePos(){
-        Bot.BrakePos();
+    public void SetBrakePos(){
+        Bot.SetBrakePos();
     }
 
     /*public void FoundationGrab(double desiredAngle){
