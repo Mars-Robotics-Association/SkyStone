@@ -37,10 +37,10 @@ public class HS_Auto_RedZone extends LinearOpMode {
         sleep(500);
 
         //Block: Go back 40 inches
-        GoForward(40, 1);
+        GoForward(45, 1);
         grab.FoundationGrabUp();
         sleep(500);
-        GoForward(-2,1);
+        GoForward(-4,1);
 
         //Block: Go left 28 inches
         GoRight(28, 1);
