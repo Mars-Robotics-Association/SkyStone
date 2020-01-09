@@ -81,8 +81,8 @@ public class GripperCustom implements Attachment{
         GripperL= opmode.hardwareMap.servo.get("GripperL");
         GripperR= opmode.hardwareMap.servo.get("GripperR");
         GripperRotate= opmode.hardwareMap.servo.get("GripperRotate");
-        GripperUpDownR= opmode.hardwareMap.servo.get("GripperUpDownR");
-        GripperUpDownL= opmode.hardwareMap.servo.get("GripperUpDownL");
+        GripperUpDownR= opmode.hardwareMap.servo.get("GripperUpDownRotateR");
+        GripperUpDownL= opmode.hardwareMap.servo.get("GripperUpDownRotateL");
     }
 
     public void updateGrippers(){

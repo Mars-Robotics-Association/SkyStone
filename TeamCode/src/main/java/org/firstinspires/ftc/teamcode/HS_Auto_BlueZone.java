@@ -43,15 +43,16 @@ public class HS_Auto_BlueZone extends LinearOpMode {
         telemetry.addData("done with 1st movement","");
         telemetry.update();
         grab.FoundationGrabDown();
-        sleep(2000);
+        sleep(500);
 
         //Block: Go back 40 inches
         GoForward(40, 1);
         grab.FoundationGrabUp();
         telemetry.addData("done with 2nd movement","");
         telemetry.update();
-        sleep(2000);
+        sleep(500);
 
+        GoForward(-2,1);
         //Block: Go left 28 inches
         GoRight(-28, 1);
 
