@@ -13,15 +13,86 @@ import com.qualcomm.robotcore.hardware.SwitchableLight;
 public class HS_Auto_BlueZone extends LinearOpMode {
 
     public SimpleFieldNavigation nav = null;
+    public ColorSensor color = null;
+    public FoundationGrabber grab = null;
 
     @Override
     public void runOpMode() {
         nav = new SimpleFieldNavigation(this);
         nav.Init();
+        color = new ColorSensor(this);
+        color.Init();
+        grab = new FoundationGrabber(this);
+        grab.Init();
+
         waitForStart();
         nav.Start();
         telemetry.addData("Status", "Initialized");
+        grab.Loop();
+        nav.Loop();
+        telemetry.update();
 
 
+
+
+        grab.FoundationGrabUp();
+        //Go forwards 39.5 inches
+        GoForward(-39.5, 1);
+        grab.FoundationGrabDown();
+        sleep(2000);
+
+        //Block: Go back 40 inches
+        GoForward(40, 1);
+        grab.FoundationGrabUp();
+        sleep(2000);
+
+        //Block: Go left 28 inches
+        GoRight(-28, 1);
+
+        //Block: Go forward 38.5 inches
+        GoForward(-38.5, 1);
+
+        GoRight(28,1);
+
+        GoForward(18,1);
+
+        GoForward(-3,1);
+
+        nav.GoRight(-42, 0.5);
+        double sensorValue = 0;
+        while(!(color.returnHue()>180)){
+            nav.Loop();
+            if(color.returnHue()>sensorValue){
+                sensorValue=color.returnHue();
+            }
+
+            telemetry.addData("colorSensor", color.returnHue());
+            telemetry.addData("max detection", sensorValue  );
+            telemetry.update();
+        }
+        nav.StopAll();
+        nav.SetBrakePos();
+        nav.Brake(0.5);
+
+
+
+    }
+    public void GoForward(double distance, double speed){
+        nav.GoForward(distance, speed);
+        while (!nav.CheckIfAtTargetDestination())
+        {
+            nav.Loop();
+            telemetry.addData("looping1: ", true);
+            telemetry.update();
+        }
+    }
+    public void GoRight(double distance, double speed){
+        nav.GoRight(distance, speed);
+        while (!nav.CheckIfAtTargetDestination())
+        {
+            nav.Loop();
+            telemetry.addData("looping1: ", true);
+            telemetry.update();
+        }
     }
 }
