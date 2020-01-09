@@ -40,7 +40,7 @@ public class HS_Auto_RedZone extends LinearOpMode {
         GoForward(-40, 1);
         grab.FoundationGrabUp();
         sleep(2000);
-        
+
         //Block: Go left 28 inches
         GoRight(-28, 1);
 
@@ -66,7 +66,7 @@ public class HS_Auto_RedZone extends LinearOpMode {
             telemetry.update();
         }
         nav.StopAll();
-        nav.BrakePos();
+        nav.SetBrakePos();
         nav.Brake(0.5);
 
 
