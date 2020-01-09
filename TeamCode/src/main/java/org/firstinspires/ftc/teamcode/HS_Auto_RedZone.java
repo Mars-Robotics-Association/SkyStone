@@ -32,26 +32,26 @@ public class HS_Auto_RedZone extends LinearOpMode {
 
         grab.FoundationGrabUp();
         //Go forwards 39.5 inches
-        GoForward(39.5, 1);
+        GoForward(-39.5, 1);
         grab.FoundationGrabDown();
         sleep(2000);
 
         //Block: Go back 40 inches
-        GoForward(-40, 1);
+        GoForward(40, 1);
         grab.FoundationGrabUp();
         sleep(2000);
 
         //Block: Go left 28 inches
-        GoRight(-28, 1);
+        GoRight(28, 1);
 
         //Block: Go forward 38.5 inches
-        GoForward(38.5, 1);
+        GoForward(-38.5, 1);
 
-        GoRight(28,1);
+        GoRight(-28,1);
 
-        GoForward(-18,1);
+        GoForward(18,1);
 
-        GoForward(3,1);
+        GoForward(-3,1);
 
         nav.GoRight(42, 0.5);
         double sensorValue = 0;
