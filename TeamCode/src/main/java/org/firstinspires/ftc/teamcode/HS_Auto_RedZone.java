@@ -80,6 +80,7 @@ public class HS_Auto_RedZone extends LinearOpMode {
             telemetry.addData("looping1: ", true);
             telemetry.update();
         }
+        nav.StopAll();
     }
     public void GoRight(double distance, double speed){
         nav.GoRight(distance, speed);
@@ -89,6 +90,7 @@ public class HS_Auto_RedZone extends LinearOpMode {
             telemetry.addData("looping1: ", true);
             telemetry.update();
         }
+        nav.StopAll();
     }
 
     /*private ElapsedTime runtime = new ElapsedTime();
