@@ -166,6 +166,7 @@ public class SkyStoneBot implements Robot
         encodedDistance = (int)((EncoderTicks/WheelDiameter)*distance);//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
 
         TargetAngle = 0;
+        TargetSpeed = speed;
 
         FrontRight.setTargetPosition(encodedDistance);
         FrontLeft.setTargetPosition(-encodedDistance);
@@ -191,6 +192,7 @@ public class SkyStoneBot implements Robot
         encodedDistance = (int)((EncoderTicks/WheelDiameter)*distance * Math.sqrt(2));//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
 
         TargetAngle = 0;
+        TargetSpeed = speed;
 
         FrontRight.setTargetPosition(-encodedDistance);
         FrontLeft.setTargetPosition(-encodedDistance);
@@ -212,9 +214,19 @@ public class SkyStoneBot implements Robot
     public void ApplyTurnOffset(double offset)
     {
         FrontRight.setPower(FrontRight.getPower() - offset);
-        FrontLeft.setPower(FrontLeft.getPower() - offset);
+        FrontLeft.setPower(FrontLeft.getPower()  - offset);
         RearRight.setPower(RearRight.getPower() - offset);
         RearLeft.setPower(RearLeft.getPower() - offset);
+
+        opmode.telemetry.addData("FR offset", FrontRight.getPower());
+        opmode.telemetry.addData("FL offset", FrontLeft.getPower());
+        opmode.telemetry.addData("RR offset", RearRight.getPower());
+        opmode.telemetry.addData("RL offset", RearLeft.getPower());
+
+        /*opmode.telemetry.addData("FR offset", (TargetSpeed * (FrontRight.getPower() * Math.abs(FrontRight.getPower())) - offset));
+        opmode.telemetry.addData("FL offset", (TargetSpeed * (FrontLeft.getPower() * Math.abs(FrontLeft.getPower())) - offset));
+        opmode.telemetry.addData("RR offset", (TargetSpeed * (RearRight.getPower() * Math.abs(RearRight.getPower())) - offset));
+        opmode.telemetry.addData("RL offset", (TargetSpeed * (RearLeft.getPower() * Math.abs(RearLeft.getPower())) - offset));*/
     }
 
    /* public void MoveAtAngleTurningForEncoders(double angle, double speed, double turnSpeed)

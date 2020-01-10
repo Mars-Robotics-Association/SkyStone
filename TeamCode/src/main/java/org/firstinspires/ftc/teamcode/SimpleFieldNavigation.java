@@ -17,7 +17,6 @@ public class SimpleFieldNavigation
     private double closeEnoughThresholdDist = 10; //in inches
     private double closeEnoughThresholdRot = 5; //in degrees
 
-    ColorSensor colorSensor;
     private double HueThreshold = 20;
     private double RedHue = 0;
     private double BlueHue = 207;
@@ -63,8 +62,6 @@ public class SimpleFieldNavigation
     {
         Bot = new SkyStoneBot(opmode, false);
         Bot.Init();
-        colorSensor = new ColorSensor(opmode);
-        colorSensor.Init();
         angleFollower = new PIDAngleFollower();
     }
 
@@ -91,8 +88,12 @@ public class SimpleFieldNavigation
                 opmode.telemetry.addData("Not close enough: ", true);
 
                 //CODE FOR PID DRIVE CORRECTION
-                double offset = angleFollower.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), 0.3, 0, 0);
+                double offset = angleFollower.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), 0.03, 0, 0); //good
                 Bot.ApplyTurnOffset(offset);
+
+                opmode.telemetry.addData("Robot Angle ", Bot.GetRobotAngle());
+                opmode.telemetry.addData("Target Angle ", Bot.TargetAngle);
+                opmode.telemetry.addData("Offset ", offset);
             }
             else //Stop
             {
@@ -181,17 +182,6 @@ public class SimpleFieldNavigation
     /*public void FoundationGrab(double desiredAngle){
         Bot.FoundationGrab(desiredAngle);
     }*/
-
-    public boolean IsOnTheLine(){
-        if(Math.abs(RedHue - colorSensor.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensor.returnHue()) > HueThreshold)
-        {
-            return false;
-        }
-        else{
-            return true;
-        }
-
-    }
 
     public boolean CheckCloseEnoughRotation()
     {
