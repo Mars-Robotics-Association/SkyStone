@@ -10,9 +10,9 @@ public class MiddleSchoolAutonomous extends LinearOpMode {
     public SimpleFieldNavigation nav = null;
 
     private ColorSensor colorSensor;
-    private double HueThreshold = 20;
-    private double RedHue = 0;
-    private double BlueHue = 207;
+    private double HueThreshold = 40;
+    private double RedHue = 180;
+    private double BlueHue = (RedHue);
 
     @Override
     public void runOpMode() {
@@ -28,7 +28,7 @@ public class MiddleSchoolAutonomous extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
 
         //Block: Go forwards to the line
-        nav.GoForward(10, 1);
+        nav.GoForward(10, 0.05);
         while (Math.abs(RedHue - colorSensor.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensor.returnHue()) > HueThreshold)
         {
             nav.Loop();
