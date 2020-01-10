@@ -427,6 +427,7 @@ public class SkyStoneBot implements Robot
         FrontLeftBrakePos = FrontLeft.getCurrentPosition();
         RearRightBrakePos = RearRight.getCurrentPosition();
         RearLeftBrakePos = RearLeft.getCurrentPosition();
+
     }
 
     @Override
