@@ -277,11 +277,11 @@ public class CustomChasisTeleop extends OpMode
     {
         if(gamepad2.dpad_right)//rotate the gripper right
         {
-            gripper.GripperRotatePosition(-0.05);
+            gripper.GripperRotatePosition(-0.1);
         }
         else if(gamepad2.dpad_left)//rotate the gripper left
         {
-            gripper.GripperRotatePosition(0.05);
+            gripper.GripperRotatePosition(0.1);
         }
         if(gamepad2.left_bumper)//open the gripper
         {

@@ -50,9 +50,14 @@ public class MiddleSchoolAutonomous extends LinearOpMode {
         sleep(5000);
 
 
-        nav.Brake(0.05);
-
-        sleep(10000);
+        nav.Brake(-0.05);
+        while (!nav.CheckIfAtTargetDestination())
+        {
+            nav.Loop();
+            telemetry.addData("looping1: ", true);
+            telemetry.update();
+        }
+        nav.StopAll();
 
     }
 }

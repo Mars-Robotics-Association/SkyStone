@@ -8,12 +8,9 @@ import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
 import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 import com.qualcomm.robotcore.hardware.SwitchableLight;
 
-/*
-Goes forwards to a blue or red line and then brakes
- */
 
-@Autonomous(name = "HS_Auto_Depot", group = "Autonomous")
-public class HS_Auto_Depot extends LinearOpMode {
+@Autonomous(name = "HS_Auto_Depot_Blue", group = "Autonomous")
+public class HS_Auto_Depot_Blue extends LinearOpMode {
 
     public SimpleFieldNavigation nav = null;
 
@@ -35,6 +32,8 @@ public class HS_Auto_Depot extends LinearOpMode {
         nav.Start();
         telemetry.addData("Status", "Initialized");
 
+        GoRight(20,1);
+
         //Block: Go forwards to the line
         nav.GoForward(10, 0.2);
         while (Math.abs(RedHue - colorSensor.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensor.returnHue()) > HueThreshold)
@@ -51,5 +50,28 @@ public class HS_Auto_Depot extends LinearOpMode {
         //Brakes
         nav.SetBrakePos();
         nav.Brake(1);
+
+
+
+    }
+    public void GoForward(double distance, double speed){
+        nav.GoForward(distance, 0.3);
+        while (!nav.CheckIfAtTargetDestination())
+        {
+            nav.Loop();
+            telemetry.addData("looping1: ", true);
+            telemetry.update();
+        }
+        nav.StopAll();
+    }
+    public void GoRight(double distance, double speed){
+        nav.GoRight(distance, 0.3);
+        while (!nav.CheckIfAtTargetDestination())
+        {
+            nav.Loop();
+            telemetry.addData("looping1: ", true);
+            telemetry.update();
+        }
+        nav.StopAll();
     }
 }

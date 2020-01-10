@@ -4,32 +4,54 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 
-@Autonomous(name = "HS_Auto_RedZone", group = "Autonomous")
-public class HS_Auto_RedZone extends LinearOpMode {
+@Autonomous(name = "HS_Auto_Depot_Red", group = "Autonomous")
+public class HS_Auto_Depot_Red extends LinearOpMode {
 
     public SimpleFieldNavigation nav = null;
-    public ColorSensor color = null;
-    public FoundationGrabber grab = null;
+
+    private ColorSensor colorSensor;
+    private double HueThreshold = 40;
+    private double RedHue = 0;
+    private double BlueHue = 180;
 
     @Override
     public void runOpMode() {
         nav = new SimpleFieldNavigation(this);
         nav.Init();
-        color = new ColorSensor(this);
-        color.Init();
-        grab = new FoundationGrabber(this);
-        grab.Init();
+
+        colorSensor = new ColorSensor(this);
+        colorSensor.Init();
 
         waitForStart();
+
         nav.Start();
         telemetry.addData("Status", "Initialized");
-        grab.Loop();
-        nav.Loop();
-        telemetry.update();
+
+        GoRight(-20,1);
+
+        //Block: Go forwards to the line
+        nav.GoForward(10, 0.2);
+        while (Math.abs(RedHue - colorSensor.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensor.returnHue()) > HueThreshold)
+        {
+            nav.Loop();
+            telemetry.addData("looping1: ", true);
+            telemetry.addData("Hue: ", colorSensor.returnHue());
+            telemetry.update();
+        }
+
+        //Stops all
+        nav.StopAll();
+
+        //Brakes
+        nav.SetBrakePos();
+        nav.Brake(1);
 
 
 
+    }
 
+
+/*
         grab.FoundationGrabUp();
         //Go forwards 39.5 inches
         GoForward(-39.5, 1);
@@ -71,8 +93,8 @@ public class HS_Auto_RedZone extends LinearOpMode {
         nav.Brake(0.5);
 
 
+*/
 
-    }
     public void GoForward(double distance, double speed){
         nav.GoForward(distance, 0.3);
         while (!nav.CheckIfAtTargetDestination())
