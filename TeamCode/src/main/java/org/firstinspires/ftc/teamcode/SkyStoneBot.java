@@ -28,6 +28,17 @@ public class SkyStoneBot implements Robot
     private double RearRightPower = 0;
     private double RearLeftPower = 0;
 
+    //ENCODER MOVEMENT
+    private double FrontRightTargetPos = 0;
+    private double FrontLeftTargetPos = 0;
+    private double RearRightTargetPos = 0;
+    private double RearLeftTargetPos = 0;
+
+    public double TargetSpeed = 0;
+    public double TargetAngle = 0;
+
+    //END ENCODER MOVEMENT
+
     private double EncoderTicks = 112/2;//ticks for one rotation 40:1, divided by 2 for 20:1
     private double WheelDiameter = 2;//diameter of wheel in inches
     private int encodedDistance = 0;
@@ -62,6 +73,7 @@ public class SkyStoneBot implements Robot
     public void Init()
     {
         opmode.telemetry.addData("SkyStoneStart", true);
+
         imu = new IMU(opmode);
         imu.Init();
 
@@ -108,6 +120,7 @@ public class SkyStoneBot implements Robot
             RobotAngle = Angles.secondAngle - RobotAngleOffset;
         }
 
+
         opmode.telemetry.addData("Target Encoder Distance ", encodedDistance);
 
         opmode.telemetry.addData("Front Right: ", FrontRight.getCurrentPosition());
@@ -152,6 +165,8 @@ public class SkyStoneBot implements Robot
 
         encodedDistance = (int)((EncoderTicks/WheelDiameter)*distance);//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
 
+        TargetAngle = 0;
+
         FrontRight.setTargetPosition(encodedDistance);
         FrontLeft.setTargetPosition(-encodedDistance);
         RearRight.setTargetPosition(encodedDistance);
@@ -169,14 +184,13 @@ public class SkyStoneBot implements Robot
 
     }
 
-
-
-
     public void GoRightWithEncoder(double speed, double distance)
     {
         StopAndResetEncoders();
 
         encodedDistance = (int)((EncoderTicks/WheelDiameter)*distance * Math.sqrt(2));//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
+
+        TargetAngle = 0;
 
         FrontRight.setTargetPosition(-encodedDistance);
         FrontLeft.setTargetPosition(-encodedDistance);
@@ -194,6 +208,55 @@ public class SkyStoneBot implements Robot
         RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
     }
+
+    public void ApplyTurnOffset(double offset)
+    {
+        FrontRight.setPower(FrontRight.getPower() - offset);
+        FrontLeft.setPower(FrontLeft.getPower() - offset);
+        RearRight.setPower(RearRight.getPower() - offset);
+        RearLeft.setPower(RearLeft.getPower() - offset);
+    }
+
+   /* public void MoveAtAngleTurningForEncoders(double angle, double speed, double turnSpeed)
+    {
+        FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        //get relative angle and calculate wheel speeds
+        double relativeAngle = angle;
+        relativeAngle += RobotAngle;
+        opmode.telemetry.addData("relative angle: ", relativeAngle);
+        opmode.telemetry.addData("given angle: ", angle);
+
+        boolean turnRight = false;
+
+        if(relativeAngle > RobotAngle)
+        {
+            turnRight = true;
+        }
+        if(relativeAngle <= RobotAngle)
+        {
+            turnRight = false;
+        }
+
+        CalculateWheelSpeedsTurning(relativeAngle, speed, turnRight, turnSpeed);
+
+        //set the powers of the motors
+        FrontRight.setPower(FrontRightPower);
+        FrontLeft.setPower(FrontLeftPower);
+        RearRight.setPower(RearRightPower);
+        RearLeft.setPower(RearLeftPower);
+
+        //Update the values for breaking
+        FrontRightBrakePos = FrontRight.getCurrentPosition();
+        FrontLeftBrakePos = FrontLeft.getCurrentPosition();
+        RearRightBrakePos = RearRight.getCurrentPosition();
+        RearLeftBrakePos = RearLeft.getCurrentPosition();
+    }*/
+
+
 
     public boolean CheckIfEncodersCloseEnough()
     {
@@ -416,10 +479,10 @@ public class SkyStoneBot implements Robot
         * the wheels need to go) with a positive 45 or negative 45 shift, depending on the wheel. This works
         * so that no matter the degrees, it will always come out with the right value. A turn offset is added
         * to the end for corkscrewing, or turning while driving*/
-        FrontRightPower = (-Math.cos(Math.toRadians(degrees + 45)) * speed) + turnOffset; //+ turnOffset
-        FrontLeftPower = (Math.cos(Math.toRadians(degrees - 45)) * speed) + turnOffset;
-        RearRightPower = (-Math.cos(Math.toRadians(degrees - 45)) * speed) + turnOffset;
-        RearLeftPower = (Math.cos(Math.toRadians(degrees + 45)) * speed) + turnOffset;
+        FrontRightPower = -Math.cos(Math.toRadians(degrees + 45)) * speed + turnOffset;
+        FrontLeftPower = Math.cos(Math.toRadians(degrees - 45)) * speed + turnOffset;
+        RearRightPower = -Math.cos(Math.toRadians(degrees - 45)) * speed + turnOffset;
+        RearLeftPower = Math.cos(Math.toRadians(degrees + 45)) * speed + turnOffset;
     }
 
     @Override
