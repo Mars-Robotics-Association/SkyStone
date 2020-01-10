@@ -165,13 +165,18 @@ public class SkyStoneBot implements Robot
 
         encodedDistance = (int)((EncoderTicks/WheelDiameter)*distance);//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
 
-        TargetAngle = 0;
+        TargetAngle = RobotAngle;
         TargetSpeed = speed;
 
         FrontRight.setTargetPosition(encodedDistance);
         FrontLeft.setTargetPosition(-encodedDistance);
         RearRight.setTargetPosition(encodedDistance);
         RearLeft.setTargetPosition(-encodedDistance);
+
+        FrontRightPower = speed;
+        FrontLeftPower = speed;
+        RearRightPower = speed;
+        RearLeftPower = speed;
 
         FrontRight.setPower(speed);
         FrontLeft.setPower(speed);
@@ -191,13 +196,18 @@ public class SkyStoneBot implements Robot
 
         encodedDistance = (int)((EncoderTicks/WheelDiameter)*distance * Math.sqrt(2));//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
 
-        TargetAngle = 0;
+        TargetAngle = RobotAngle;
         TargetSpeed = speed;
 
         FrontRight.setTargetPosition(-encodedDistance);
         FrontLeft.setTargetPosition(-encodedDistance);
         RearRight.setTargetPosition(encodedDistance);
         RearLeft.setTargetPosition(encodedDistance);
+
+        FrontRightPower = speed;
+        FrontLeftPower = speed;
+        RearRightPower = speed;
+        RearLeftPower = speed;
 
         FrontRight.setPower(speed);
         FrontLeft.setPower(speed);
@@ -213,15 +223,50 @@ public class SkyStoneBot implements Robot
 
     public void ApplyTurnOffset(double offset)
     {
-        FrontRight.setPower(FrontRight.getPower() - offset);
-        FrontLeft.setPower(FrontLeft.getPower()  - offset);
-        RearRight.setPower(RearRight.getPower() - offset);
-        RearLeft.setPower(RearLeft.getPower() - offset);
+        //FRONTRIGHT
+        if(FrontRight.getCurrentPosition() < FrontRight.getTargetPosition())//going positive
+        {
+            FrontRight.setPower(FrontRightPower + offset);
+        }
+        else //going negative
+        {
+            FrontRight.setPower(FrontRightPower - offset);
+        }
 
-        opmode.telemetry.addData("FR offset", FrontRight.getPower());
-        opmode.telemetry.addData("FL offset", FrontLeft.getPower());
-        opmode.telemetry.addData("RR offset", RearRight.getPower());
-        opmode.telemetry.addData("RL offset", RearLeft.getPower());
+        //FRONTLEFT
+        if(FrontLeft.getCurrentPosition() < FrontLeft.getTargetPosition())//going positive
+        {
+            FrontLeft.setPower(FrontLeftPower - offset);
+        }
+        else //going negative
+        {
+            FrontLeft.setPower(FrontLeftPower + offset);
+        }
+
+        //REARRIGHT
+        if(RearRight.getCurrentPosition() < RearRight.getTargetPosition())//going positive
+        {
+            RearRight.setPower(RearRightPower + offset);
+        }
+        else //going negative
+        {
+            RearRight.setPower(RearRightPower - offset);
+        }
+
+        //REARLEFT
+        if(RearLeft.getCurrentPosition() < RearLeft.getTargetPosition())//going positive
+        {
+            RearLeft.setPower(RearLeftPower - offset);
+        }
+        else //going negative
+        {
+            RearLeft.setPower(RearLeftPower + offset);
+        }
+
+        opmode.telemetry.addData("FR power", FrontRight.getPower());
+        opmode.telemetry.addData("FL power", FrontLeft.getPower());
+        opmode.telemetry.addData("RR power", RearRight.getPower());
+        opmode.telemetry.addData("RL power", RearLeft.getPower());
 
         /*opmode.telemetry.addData("FR offset", (TargetSpeed * (FrontRight.getPower() * Math.abs(FrontRight.getPower())) - offset));
         opmode.telemetry.addData("FL offset", (TargetSpeed * (FrontLeft.getPower() * Math.abs(FrontLeft.getPower())) - offset));

@@ -88,7 +88,7 @@ public class SimpleFieldNavigation
                 opmode.telemetry.addData("Not close enough: ", true);
 
                 //CODE FOR PID DRIVE CORRECTION
-                double offset = angleFollower.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), 0.03, 0, 0); //good
+                double offset = angleFollower.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), 0.006, 0, 0); //good
                 Bot.ApplyTurnOffset(offset);
 
                 opmode.telemetry.addData("Robot Angle ", Bot.GetRobotAngle());
