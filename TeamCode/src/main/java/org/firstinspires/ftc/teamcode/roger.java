@@ -14,11 +14,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 public class roger  {
 
 
-
-    @Override
-    public void runOpMode() {
-
-                }
+    
             }
 
 
