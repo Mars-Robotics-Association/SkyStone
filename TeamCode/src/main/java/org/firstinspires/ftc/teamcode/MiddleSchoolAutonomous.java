@@ -11,7 +11,7 @@ public class MiddleSchoolAutonomous extends LinearOpMode {
 
     private ColorSensor colorSensor;
     private double HueThreshold = 40;
-    private double RedHue = 180;
+    private double RedHue = 170;
     private double BlueHue = (RedHue);
 
     @Override
@@ -29,7 +29,9 @@ public class MiddleSchoolAutonomous extends LinearOpMode {
 
         //Block: Go forwards to the line
         nav.GoForward(10, 0.05);
-        while (Math.abs(RedHue - colorSensor.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensor.returnHue()) > HueThreshold)
+
+        while(colorSensor.returnHue()<RedHue)
+        //while (Math.abs(RedHue - colorSensor.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensor.returnHue()) > HueThreshold)
         {
             nav.Loop();
             telemetry.addData("looping1: ", true);
@@ -42,7 +44,16 @@ public class MiddleSchoolAutonomous extends LinearOpMode {
 
         //Brakes
         nav.SetBrakePos();
-        nav.Brake(0.1);
+
+        telemetry.addData("about to brake","");
+        telemetry.update();
+        sleep(5000);
+
+
+        nav.Brake(0.05);
+
+        sleep(10000);
+
     }
 }
 
