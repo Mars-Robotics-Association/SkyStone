@@ -4,7 +4,6 @@ import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-@Disabled
 @TeleOp(name="TEST-CustomChasisTeleop", group="Iterative Opmode")
 public class TestCustomChassis extends OpMode
 {
@@ -23,8 +22,6 @@ public class TestCustomChassis extends OpMode
     boolean FirstRun = true;
     boolean stopping = false;
 
-    private RevTouchSensor ArmRetractStop;
-    private RevTouchSensor ArmUpStop;
 
     @Override
     public void init()
@@ -104,8 +101,6 @@ public class TestCustomChassis extends OpMode
             telemetry.update();
         }
 
-        telemetry.addData("Retract", ArmRetractStop.isPressed());
-        telemetry.addData("Extend", ArmUpStop.isPressed());
 
         telemetry.update();
     }
