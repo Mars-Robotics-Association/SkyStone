@@ -39,7 +39,7 @@ public void roger {
             params.loopControl = 0;
             params.waitForNonLoopingSoundsToFinish = true;
 
-            SoundPlayer.getInstance().startPlaying(myApp, ss_roger_roger, params, null,
+           // SoundPlayer.getInstance().startPlaying(myApp, ss_roger_roger, params, null,
         }
 
     }
