@@ -90,7 +90,7 @@ public class SimpleFieldNavigation
 
                 //CODE FOR PID DRIVE CORRECTION
                 double offset = angleFollower.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), pCoefficient, 0, 0); //good
-                Bot.ApplyTurnOffset(offset);
+                Bot.ApplyTurnOffsetUsingEncoders(offset);
 
                 opmode.telemetry.addData("Robot Angle ", Bot.GetRobotAngle());
                 opmode.telemetry.addData("Target Angle ", Bot.TargetAngle);

@@ -40,7 +40,7 @@ public class SkyStoneBot implements Robot
     //END ENCODER MOVEMENT
 
     private double EncoderTicks = 112/2;//ticks for one rotation 40:1, divided by 2 for 20:1
-    private double WheelDiameter = 2;//diameter of wheel in inches
+    private double WheelCircumference = 2 * 3.14;//circumference of wheel in inches
     private int encodedDistance = 0;
 
     int MotorPositions[]={0,0,0,0};
@@ -163,7 +163,7 @@ public class SkyStoneBot implements Robot
     {
         StopAndResetEncoders();
 
-        encodedDistance = (int)((EncoderTicks/WheelDiameter)*distance);//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
+        encodedDistance = (int)((EncoderTicks/ WheelCircumference)*distance);//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
 
         TargetAngle = RobotAngle;
         TargetSpeed = speed;
@@ -194,7 +194,7 @@ public class SkyStoneBot implements Robot
     {
         StopAndResetEncoders();
 
-        encodedDistance = (int)((EncoderTicks/WheelDiameter)*distance * Math.sqrt(2));//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
+        encodedDistance = (int)((EncoderTicks/ WheelCircumference)*distance * Math.sqrt(2));//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
 
         TargetAngle = RobotAngle;
         TargetSpeed = speed;
@@ -221,7 +221,7 @@ public class SkyStoneBot implements Robot
 
     }
 
-    public void ApplyTurnOffset(double offset)
+    public void ApplyTurnOffsetUsingEncoders(double offset)
     {
         //FRONTRIGHT
         if(FrontRight.getCurrentPosition() < FrontRight.getTargetPosition())//going positive
@@ -366,7 +366,7 @@ public class SkyStoneBot implements Robot
     //END ENCODER METHODS FOR SIMPLE AUTONOMOUS
 
     //allows robot to corkscrew
-    public void MoveAtAngleTurning(double angle, double speed, boolean turnRight, double turnSpeed, boolean headlessMode)
+    public void MoveAtAngleTurning(double angle, double speed, boolean turnRight, double turnSpeed, boolean headlessMode, double PIDOffset)
     {
         FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -378,8 +378,9 @@ public class SkyStoneBot implements Robot
         if(headlessMode){relativeAngle += RobotAngle;}
         opmode.telemetry.addData("relative angle: ", relativeAngle);
         opmode.telemetry.addData("given angle: ", angle);
-        //CalculateWheelSpeedsTurning(relativeAngle, speed, turnRight, turnSpeed);
-        CalculateWheelSpeeds(relativeAngle, speed);
+        CalculateWheelSpeedsTurning(relativeAngle, speed, turnRight, turnSpeed);
+        ApplyTurnOffsetNonEncoder(PIDOffset);
+        //CalculateWheelSpeeds(relativeAngle, speed);
 
         //set the powers of the motors
         FrontRight.setPower(FrontRightPower);
@@ -392,6 +393,49 @@ public class SkyStoneBot implements Robot
         FrontLeftBrakePos = FrontLeft.getCurrentPosition();
         RearRightBrakePos = RearRight.getCurrentPosition();
         RearLeftBrakePos = RearLeft.getCurrentPosition();
+    }
+
+    public void ApplyTurnOffsetNonEncoder(double offset)
+    {
+        //FRONTRIGHT
+        if(FrontRightPower > 0)//going positive
+        {
+            FrontRight.setPower(FrontRightPower + offset);
+        }
+        else //going negative
+        {
+            FrontRight.setPower(FrontRightPower - offset);
+        }
+
+        //FRONTLEFT
+        if(FrontLeftPower > 0)//going positive
+        {
+            FrontLeft.setPower(FrontLeftPower + offset);
+        }
+        else //going negative
+        {
+            FrontLeft.setPower(FrontLeftPower - offset);
+        }
+
+        //REARRIGHT
+        if(RearRightPower > 0)//going positive
+        {
+            RearRight.setPower(RearRightPower + offset);
+        }
+        else //going negative
+        {
+            RearRight.setPower(RearRightPower - offset);
+        }
+
+        //REARLEFT
+        if(RearLeftPower > 0)//going positive
+        {
+            RearLeft.setPower(RearLeftPower + offset);
+        }
+        else //going negative
+        {
+            RearLeft.setPower(RearLeftPower - offset);
+        }
     }
 
     //Raw movement methods:

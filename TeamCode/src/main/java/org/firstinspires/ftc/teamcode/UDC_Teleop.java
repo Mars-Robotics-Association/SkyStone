@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 public class UDC_Teleop
 {
      SkyStoneBot Bot = null;
+     PIDAngleFollower angleFollower = null;
 
      double BaseDriveSpeedMultiplier = 1;
      double BaseTurnSpeedMultiplier = 1;
@@ -34,6 +35,7 @@ public class UDC_Teleop
     {
         Bot = new SkyStoneBot(opmode, rotatedREVHub);
         Bot.Init();
+        angleFollower = new PIDAngleFollower();
     }
 
     public void Start()
@@ -100,8 +102,11 @@ public class UDC_Teleop
             turnRight = false;
         }
 
+        //Get an offset of the robot so that it can stay on track:
+        double offset = angleFollower.GetOffsetToAdd(leftStickBaring, Bot.GetRobotAngle(), 0.01, 0, 0);
+
         //Make robot move at the angle of the left joystick at the determined speed while applying a turn to the value of the right joystick
-        Bot.MoveAtAngleTurning(leftStickBaring, DriveSpeedMultiplier * leftStickPower, turnRight, turnSpeed*TurnSpeedMultiplier, headlessMode);
+        Bot.MoveAtAngleTurning(leftStickBaring, DriveSpeedMultiplier * leftStickPower, turnRight, turnSpeed*TurnSpeedMultiplier, headlessMode, offset);
     }
 
     public void RawForwards(double speed)
