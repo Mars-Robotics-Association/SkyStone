@@ -11,6 +11,7 @@ public class TestCustomChassis extends OpMode
     private JoystickCalc Jc = null;
     public UDC_Teleop Teleop = null;
 
+
     private double DriveSpeedMultiplier;
     private double TurnSpeedMultiplier;
 
@@ -22,7 +23,8 @@ public class TestCustomChassis extends OpMode
     boolean FirstRun = true;
     boolean stopping = false;
 
-    private RevTouchSensor armRetractStop;
+    private RevTouchSensor ArmRetractStop;
+    private RevTouchSensor ArmUpStop;
 
     @Override
     public void init()
@@ -81,15 +83,15 @@ public class TestCustomChassis extends OpMode
         }
         else if (gamepad2.y)
         {
-            //put down stone
+            //put down stone.
+        }
+        if(gamepad2.a)
+        {
+        }
+        if (gamepad2.b)
+        {
         }
 
-        /*if(gamepad2.left_stick_y>JoystickThreshold){
-            Teleop.FoundationGrab(gamepad2.left_stick_y);
-        }
-        if(gamepad2.left_stick_y<-JoystickThreshold){
-            Teleop.FoundationGrab(gamepad2.left_stick_y);
-        }*/
         if(gamepad1.dpad_up){
             int fleft = Teleop.getfleftudc();
             int fright = Teleop.getfrightudc();
@@ -101,6 +103,10 @@ public class TestCustomChassis extends OpMode
             telemetry.addData("rear right wheel: ",rright);
             telemetry.update();
         }
+
+        telemetry.addData("Retract", ArmRetractStop.isPressed());
+        telemetry.addData("Extend", ArmUpStop.isPressed());
+
         telemetry.update();
     }
 
@@ -178,4 +184,6 @@ public class TestCustomChassis extends OpMode
             }
         }*/
     }
+
+
 }
