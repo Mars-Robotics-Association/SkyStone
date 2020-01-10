@@ -236,11 +236,11 @@ public class SkyStoneBot implements Robot
         //FRONTLEFT
         if(FrontLeft.getCurrentPosition() < FrontLeft.getTargetPosition())//going positive
         {
-            FrontLeft.setPower(FrontLeftPower - offset);
+            FrontLeft.setPower(FrontLeftPower + offset);
         }
         else //going negative
         {
-            FrontLeft.setPower(FrontLeftPower + offset);
+            FrontLeft.setPower(FrontLeftPower - offset);
         }
 
         //REARRIGHT
@@ -256,11 +256,11 @@ public class SkyStoneBot implements Robot
         //REARLEFT
         if(RearLeft.getCurrentPosition() < RearLeft.getTargetPosition())//going positive
         {
-            RearLeft.setPower(RearLeftPower - offset);
+            RearLeft.setPower(RearLeftPower + offset);
         }
         else //going negative
         {
-            RearLeft.setPower(RearLeftPower + offset);
+            RearLeft.setPower(RearLeftPower - offset);
         }
 
         opmode.telemetry.addData("FR power", FrontRight.getPower());
