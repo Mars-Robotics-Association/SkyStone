@@ -103,10 +103,11 @@ public class UDC_Teleop
         }
 
         //Get an offset of the robot so that it can stay on track:
-        double offset = angleFollower.GetOffsetToAdd(leftStickBaring, Bot.GetRobotAngle(), 0.01, 0, 0);
+        //double offset = angleFollower.GetOffsetToAdd(leftStickBaring, Bot.GetRobotAngle(), 0.01, 0, 0);
+        //opmode.telemetry.addData("Turn offset: ", offset);
 
         //Make robot move at the angle of the left joystick at the determined speed while applying a turn to the value of the right joystick
-        Bot.MoveAtAngleTurning(leftStickBaring, DriveSpeedMultiplier * leftStickPower, turnRight, turnSpeed*TurnSpeedMultiplier, headlessMode, offset);
+        Bot.MoveAtAngleTurning(leftStickBaring, DriveSpeedMultiplier * leftStickPower, turnRight, turnSpeed*TurnSpeedMultiplier, headlessMode, 0);
     }
 
     public void RawForwards(double speed)
