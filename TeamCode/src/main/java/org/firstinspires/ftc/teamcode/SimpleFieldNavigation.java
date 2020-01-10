@@ -35,6 +35,7 @@ public class SimpleFieldNavigation
     private double TurnSpeed = 0;
 
     PIDAngleFollower angleFollower = null;
+    private double pCoefficient = 0.006;
 
     public SimpleFieldNavigation(OpMode setOpmode)
     {
@@ -88,8 +89,8 @@ public class SimpleFieldNavigation
                 opmode.telemetry.addData("Not close enough: ", true);
 
                 //CODE FOR PID DRIVE CORRECTION
-                double offset = angleFollower.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), 0.03, 0, 0); //good
-                Bot.ApplyTurnOffset(offset);
+                double offset = angleFollower.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), pCoefficient, 0, 0); //good
+                Bot.ApplyTurnOffsetUsingEncoders(offset);
 
                 opmode.telemetry.addData("Robot Angle ", Bot.GetRobotAngle());
                 opmode.telemetry.addData("Target Angle ", Bot.TargetAngle);
@@ -161,6 +162,7 @@ public class SimpleFieldNavigation
     public void GoRight(double distance, double speed)
     {
         Bot.GoRightWithEncoder(speed, distance);
+        pCoefficient = 0.01;
         Navigating = true;
         Rotating = false;
     }
@@ -168,6 +170,7 @@ public class SimpleFieldNavigation
     public void GoForward(double distance, double speed)
     {
         Bot.GoForwardWithEncoder(speed, distance);
+        pCoefficient = 0.006;
         Navigating = true;
         Rotating = false;
     }
