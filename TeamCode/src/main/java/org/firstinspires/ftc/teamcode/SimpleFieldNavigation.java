@@ -35,6 +35,8 @@ public class SimpleFieldNavigation
 
     private double TurnSpeed = 0;
 
+    PIDAngleFollower angleFollower = null;
+
     public SimpleFieldNavigation(OpMode setOpmode)
     {
         this.opmode = setOpmode;
@@ -63,6 +65,7 @@ public class SimpleFieldNavigation
         Bot.Init();
         colorSensor = new ColorSensor(opmode);
         colorSensor.Init();
+        angleFollower = new PIDAngleFollower();
     }
 
     public void Start()
@@ -86,6 +89,10 @@ public class SimpleFieldNavigation
             if (!Bot.CheckIfEncodersCloseEnough()) //If not close to target
             {
                 opmode.telemetry.addData("Not close enough: ", true);
+
+                //CODE FOR PID DRIVE CORRECTION
+                double offset = angleFollower.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), 0.3, 0, 0);
+                Bot.ApplyTurnOffset(offset);
             }
             else //Stop
             {
