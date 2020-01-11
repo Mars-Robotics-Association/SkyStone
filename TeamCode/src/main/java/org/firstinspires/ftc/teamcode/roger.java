@@ -28,7 +28,7 @@ public class roger extends OpMode {
     @Override
     public void init() {
         silverFile = new File("/sdcard" + soundPath + "/silver.wav");
-        goldFile = new File("/sdcard" + soundPath + "/gold.wav");
+     //   goldFile = new File("/sdcard" + soundPath + "/gold.wav");
         bronzeFile = new File("/sdcard" + soundPath + "/bronze.wav");
         cobaltFile = new File("/sdcard" + soundPath + "/cobalt.wav");
 
@@ -50,13 +50,13 @@ public class roger extends OpMode {
         }
 
         if(gamepad1.dpad_up){
-            SoundPlayer.getInstance().startPlaying(hardwareMap.appContext, bronzeFile);
+           SoundPlayer.getInstance().startPlaying(hardwareMap.appContext, bronzeFile);
 
             telemetry.addData("playing sound","Bronze");
             telemetry.update();
         }
         if(gamepad1.dpad_left){
-            SoundPlayer.getInstance().startPlaying(hardwareMap.appContext, goldFile);
+           // SoundPlayer.getInstance().startPlaying(hardwareMap.appContext, goldFile);
 
             telemetry.addData("playing sound","Gold");
             telemetry.update();
