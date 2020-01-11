@@ -7,7 +7,7 @@ public class PIDAngleFollower
     public double GetOffsetToAdd(double targetAngle, double currentAngle, double pCoefficient, double iCoefficient, double dCoefficient)
     {
         double error = targetAngle - currentAngle; //difference between the target and actual angle (positive if going right)
-        double correction = error * pCoefficient; //Proportional control
+        double correction = error * pCoefficient + dCoefficient * (error/Math.abs(error)); //Proportional control
 
         return correction;
     }

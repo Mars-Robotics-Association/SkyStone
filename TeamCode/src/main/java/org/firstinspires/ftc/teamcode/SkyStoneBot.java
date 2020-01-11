@@ -39,7 +39,7 @@ public class SkyStoneBot implements Robot
 
     //END ENCODER MOVEMENT
 
-    private double EncoderTicks = 112/2;//ticks for one rotation 40:1, divided by 2 for 20:1
+    private double EncoderTicks = 1120/2;//ticks for one rotation 40:1, divided by 2 for 20:1
     private double WheelCircumference = 2 * 3.14;//circumference of wheel in inches
     private int encodedDistance = 0;
 
