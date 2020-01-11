@@ -70,6 +70,44 @@ public class roger extends OpMode {
 
 
 
+
+
     }
 
+    public void dependencies(){
+
+
+         File silverFile = null;
+         File goldFile = null;
+         File bronzeFile = null;
+         File cobaltFile = null;
+
+         String soundPath = "/FIRST/blocks/sounds";
+
+            silverFile = new File("/sdcard" + soundPath + "/silver.wav");
+            //   goldFile = new File("/sdcard" + soundPath + "/gold.wav");
+            bronzeFile = new File("/sdcard" + soundPath + "/bronze.wav");
+            cobaltFile = new File("/sdcard" + soundPath + "/cobalt.wav");
+
+
+
+    }
+
+
+    public void playSilver(){
+        dependencies();
+        SoundPlayer.getInstance().startPlaying(hardwareMap.appContext, silverFile);
+    }
+    public void playGold(){
+        dependencies();
+        SoundPlayer.getInstance().startPlaying(hardwareMap.appContext, goldFile);
+    }
+    public void playCobalt(){
+        dependencies();
+        SoundPlayer.getInstance().startPlaying(hardwareMap.appContext, cobaltFile);
+    }
+    public void playBronze(){
+        dependencies();
+        SoundPlayer.getInstance().startPlaying(hardwareMap.appContext, bronzeFile);
+    }
 }
