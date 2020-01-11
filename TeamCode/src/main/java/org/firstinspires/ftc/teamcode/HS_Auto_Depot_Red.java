@@ -27,7 +27,7 @@ public class HS_Auto_Depot_Red extends LinearOpMode {
         nav.Start();
         telemetry.addData("Status", "Initialized");
 
-        GoRight(-20,1);
+        GoRight(-20,0.2);
 
         //Block: Go forwards to the line
         nav.GoForward(10, 0.2);

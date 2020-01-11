@@ -162,7 +162,7 @@ public class SimpleFieldNavigation
     public void GoRight(double distance, double speed)
     {
         Bot.GoRightWithEncoder(speed, distance);
-        pCoefficient = 0.1;
+        pCoefficient = 0.05;
         Navigating = true;
         Rotating = false;
     }
@@ -170,7 +170,7 @@ public class SimpleFieldNavigation
     public void GoForward(double distance, double speed)
     {
         Bot.GoForwardWithEncoder(speed, distance);
-        pCoefficient = 0.06;
+        pCoefficient = 0.01;
         Navigating = true;
         Rotating = false;
     }
