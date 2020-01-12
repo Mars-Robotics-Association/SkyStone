@@ -14,14 +14,16 @@ public class ColorSensor
     NormalizedColorSensor colorSensor;
     View relativeLayout;
     OpMode opMode;
+    String sensorName = "colorSensorGround";
 
     // values is a reference to the hsvValues array.
     private float[] hsvValues = new float[3];
     private float values[] = hsvValues;
 
-    public ColorSensor(OpMode currentOpMode)
+    public ColorSensor(OpMode currentOpMode, String name)
     {
         opMode = currentOpMode;
+        sensorName = name;
     }
 
     public double returnHue()
@@ -38,7 +40,7 @@ public class ColorSensor
         relativeLayout = ((Activity) opMode.hardwareMap.appContext).findViewById(relativeLayoutId);
 
         // Get a reference to our sensor object.
-        colorSensor = opMode.hardwareMap.get(NormalizedColorSensor.class, "colorSensorGround");
+        colorSensor = opMode.hardwareMap.get(NormalizedColorSensor.class, sensorName);
 
         // If possible, turn the light on in the beginning (it might already be on anyway,
         // we just make sure it is if we can).

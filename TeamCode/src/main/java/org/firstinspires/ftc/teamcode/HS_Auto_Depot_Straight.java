@@ -27,7 +27,7 @@ public class HS_Auto_Depot_Straight extends LinearOpMode {
         nav = new SimpleFieldNavigation(this);
         nav.Init();
 
-        colorSensor = new ColorSensor(this);
+        colorSensor = new ColorSensor(this, "colorSensorGround");
         colorSensor.Init();
 
         waitForStart();
