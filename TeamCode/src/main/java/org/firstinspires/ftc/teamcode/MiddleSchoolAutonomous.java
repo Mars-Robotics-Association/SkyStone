@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 
@@ -26,11 +27,18 @@ public class MiddleSchoolAutonomous extends LinearOpMode {
 
         nav.Start();
         telemetry.addData("Status", "Initialized");
-
+        double time = getRuntime();
         //Block: Go forwards to the line
-        nav.GoForward(10, 0.05);
-
-        while(colorSensor.returnHue()<RedHue)
+        nav.GoForward(5, 0.1);
+        while (!nav.CheckIfAtTargetDestination()&&getRuntime()-time<3)
+        {
+            nav.Loop();
+            telemetry.addData("looping1: ", true);
+            telemetry.update();
+        }
+        nav.StopAll();
+/*
+        while(colorSensor.returnHue()<RedHue&&colorSensor.returnHue()>20)
         //while (Math.abs(RedHue - colorSensor.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensor.returnHue()) > HueThreshold)
         {
             nav.Loop();
@@ -47,7 +55,7 @@ public class MiddleSchoolAutonomous extends LinearOpMode {
 
         telemetry.addData("about to brake","");
         telemetry.update();
-        sleep(5000);
+        //sleep(5000);
 
 
         nav.Brake(-0.05);
@@ -56,7 +64,7 @@ public class MiddleSchoolAutonomous extends LinearOpMode {
             nav.Loop();
             telemetry.addData("looping1: ", true);
             telemetry.update();
-        }
+        }*/
         nav.StopAll();
 
     }
