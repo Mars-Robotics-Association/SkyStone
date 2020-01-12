@@ -380,6 +380,7 @@ public class SkyStoneBot implements Robot
         opmode.telemetry.addData("given angle: ", angle);
         CalculateWheelSpeedsTurning(relativeAngle, speed, turnRight, turnSpeed);
         ApplyTurnOffsetNonEncoder(PIDOffset);
+        opmode.telemetry.addData("PID Offset: ", PIDOffset);
         //CalculateWheelSpeeds(relativeAngle, speed);
 
         //set the powers of the motors
