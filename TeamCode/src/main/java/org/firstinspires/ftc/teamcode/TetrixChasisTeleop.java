@@ -1,9 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.ftccommon.SoundPlayer;
 import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.TouchSensor;
+
+import java.io.File;
 
 @TeleOp(name="TetrixChasisTeleop", group="Iterative Opmode")
 public class TetrixChasisTeleop extends OpMode
@@ -30,10 +33,17 @@ public class TetrixChasisTeleop extends OpMode
     private int[] PreviousMotorPositions = {0,0,0,0};
     private int[] TotalMotorClicks = {0,0,0,0};
     boolean FirstRun = true;
+    private File silverFile;
+    private String soundPath = "/FIRST/blocks/sounds";
+
 
     @Override
     public void init()
     {
+
+        File silverFile = new File("/sdcard" + soundPath + "/silver.wav");
+
+
         telemetry.addData("start",5 );
         telemetry.update();
         gripperPosition = 0.25;
@@ -78,6 +88,12 @@ public class TetrixChasisTeleop extends OpMode
         double turnSpeed = Math.abs(Jc.rightStickX);
 
         //Reset Gyro if needed
+        if(gamepad1.dpad_down){
+            SoundPlayer.getInstance().startPlaying(hardwareMap.appContext, silverFile);
+
+            telemetry.addData("playing sound","");
+        }
+
         if(gamepad1.x)
         {
             Teleop.gyroOffset();

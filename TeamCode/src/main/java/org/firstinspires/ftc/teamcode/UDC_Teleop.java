@@ -11,6 +11,8 @@ public class UDC_Teleop
      double BaseTurnSpeedMultiplier = 1;
      private double DriveSpeedMultiplier = 1 ;
      private double TurnSpeedMultiplier = 1;
+     private double DriveAngle;
+     private boolean DriveAngleReseted = false;
 
     private double JoystickThreshold = 0.2;
     double turnSpeed;
@@ -81,6 +83,7 @@ public class UDC_Teleop
     public void brake(double power)
     {
         Bot.Brake(power);
+        DriveAngleReseted = false;
     }
 
     public void forthSpeed()
@@ -91,6 +94,12 @@ public class UDC_Teleop
 
     public void chooseDirection(double rightStickX, double leftStickBaring, double leftStickPower) //Move
     {
+        if(!DriveAngleReseted)//reset the target drive angle
+        {
+            DriveAngle = Bot.GetRobotAngle();
+            DriveAngleReseted = true;
+        }
+
         //if we need to turn while moving, choose direction
         boolean turnRight = false;
         if (rightStickX > JoystickThreshold)
@@ -103,11 +112,11 @@ public class UDC_Teleop
         }
 
         //Get an offset of the robot so that it can stay on track:
-        //double offset = angleFollower.GetOffsetToAdd(leftStickBaring, Bot.GetRobotAngle(), 0.01, 0, 0);
-        //opmode.telemetry.addData("Turn offset: ", offset);
+        double offset = angleFollower.GetOffsetToAdd(DriveAngle, Bot.GetRobotAngle(), 0.01, 0, 0);
+        opmode.telemetry.addData("Turn offset: ", offset);
 
         //Make robot move at the angle of the left joystick at the determined speed while applying a turn to the value of the right joystick
-        Bot.MoveAtAngleTurning(leftStickBaring, DriveSpeedMultiplier * leftStickPower, turnRight, turnSpeed*TurnSpeedMultiplier, headlessMode, 0);
+        Bot.MoveAtAngleTurning(leftStickBaring, DriveSpeedMultiplier * leftStickPower, turnRight, 0, headlessMode, 0);
     }
 
     public void RawForwards(double speed)
@@ -135,6 +144,7 @@ public class UDC_Teleop
     {
         Bot.StopMotors();
         Bot.SetBrakePos();
+        DriveAngleReseted = false;
     }
    // public void FoundationGrab(double desiredAngle){ Bot.FoundationGrab(desiredAngle); }
     public int getfleftudc(){

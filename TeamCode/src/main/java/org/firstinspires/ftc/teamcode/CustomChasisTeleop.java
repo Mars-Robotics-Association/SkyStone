@@ -92,9 +92,7 @@ public class CustomChasisTeleop extends OpMode
         if(gamepad1.left_bumper) { Teleop.fullSpeed(); }
         if(gamepad1.right_bumper) { Teleop.threeFourthsSpeed(); }
         if(gamepad1.left_trigger>0.2) { Teleop.halfSpeed(); }
-/*
         if(gamepad1.right_trigger>0.2) { Teleop.forthSpeed(); }
-*/
 
         if(gamepad2.x)
         {
@@ -112,9 +110,6 @@ public class CustomChasisTeleop extends OpMode
         {
             grab.FoundationGrabDown();
         }
-
-
-
 
         if(gamepad1.dpad_up){
             int fleft = Teleop.getfleftudc();
@@ -140,48 +135,20 @@ public class CustomChasisTeleop extends OpMode
 
     public void ManageDriveMovement()//Manages general drive input
     {
-        //Raw D-pad stuff
-        /*if(gamepad1.dpad_up)
-        {
-            Teleop.RawForwards(1);
-        }
-        if(gamepad1.dpad_down)
-        {
-            Teleop.RawForwards(-1);
-        }
-        if(gamepad1.dpad_right)
-        {
-            Teleop.RawRight(1);
-        }
-        if(gamepad1.dpad_left)
-        {
-            Teleop.RawRight(-1);
-        }*/
-
         if(Jc.leftStickPower > JoystickThreshold) //Move
         {
             Teleop.chooseDirection(Jc.rightStickX, Jc.leftStickBaring, Jc.leftStickPower);
             stopping = false;
         }
-
         else if(Jc.rightStickX > JoystickThreshold) //Turn Right
         {
             Teleop.turnRight();
             stopping = false;
         }
-
-
         else if(Jc.rightStickX < -JoystickThreshold) //Turn Left
         {
             Teleop.turnLeft();
             stopping = false;
-        }
-
-        else if(gamepad1.right_trigger>0.2)
-        {
-            Teleop.brake(0.5);
-            telemetry.addData("Brake: ", true);
-            stopping = true;
         }
         else if(gamepad1.dpad_up){
             Teleop.RawForwards(1);
@@ -197,7 +164,7 @@ public class CustomChasisTeleop extends OpMode
         }
         else //STOP
         {
-            Teleop.stopWheels();
+            Teleop.brake(1);
         }
         /*else //STOP
         {
