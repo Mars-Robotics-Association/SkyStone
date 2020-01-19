@@ -30,7 +30,7 @@ public class HS_AutonomousTesting extends LinearOpMode {
         //Block: Go sideways 10 inches
         nav.GoRight(1000, 0.4);
         while (!nav.CheckIfAtTargetDestination())
-        {
+        {gdiweljdglh;ljbgtfayiHugtfeyguhtrga
             nav.Loop();
             telemetry.addData("looping1: ", true);
             telemetry.update();
