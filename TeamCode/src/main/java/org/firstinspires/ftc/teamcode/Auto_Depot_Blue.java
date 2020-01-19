@@ -9,8 +9,8 @@ import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 import com.qualcomm.robotcore.hardware.SwitchableLight;
 
 
-@Autonomous(name = "HS_Auto_Depot_Blue", group = "Autonomous")
-public class HS_Auto_Depot_Blue extends LinearOpMode {
+@Autonomous(name = "Auto_Depot_Blue", group = "Autonomous")
+public class Auto_Depot_Blue extends LinearOpMode {
 
     public SimpleFieldNavigation nav = null;
 
