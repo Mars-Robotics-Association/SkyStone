@@ -56,7 +56,7 @@ public class SimpleFieldNavigation
 
     public boolean CheckIfAtTargetDestination()
     {
-        return Bot.CheckIfEncodersCloseEnough();
+        return Bot.CheckCloseEnoughOdometry();
     }
 
     public void Init()
@@ -84,13 +84,14 @@ public class SimpleFieldNavigation
 
         if(Navigating)
         {
-            if (!Bot.CheckIfEncodersCloseEnough()) //If not close to target
+            if (!Bot.CheckCloseEnoughOdometry()) //If not close to target
             {
                 opmode.telemetry.addData("Not close enough: ", true);
 
                 //CODE FOR PID DRIVE CORRECTION
                 double offset = angleFollower.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), pCoefficient, 0, 0); //good
-                Bot.ApplyTurnOffsetUsingEncoders(offset);
+                Bot.MoveAtAngleTurning(Bot.TargetAngle, Bot.TargetSpeed, false, 0, false, offset);
+                //Bot.ApplyTurnOffsetUsingEncoders(offset);
 
                 opmode.telemetry.addData("Robot Angle ", Bot.GetRobotAngle());
                 opmode.telemetry.addData("Target Angle ", Bot.TargetAngle);
@@ -123,6 +124,31 @@ public class SimpleFieldNavigation
         {
             //Bot.StopMotors();
         }
+    }
+
+    public void MoveXandY(double XDistance, double YDistance, double speed)
+    {
+        pCoefficient = 0.01;
+        double angle = CalculateMoveAngle(XDistance, YDistance);
+        Bot.TargetAngle = angle;
+        double offset = angleFollower.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), pCoefficient, 0, 0); //good
+        Bot.SetTargetOdometry(XDistance, YDistance);
+        Bot.MoveAtAngleTurning(angle, speed, false, 0, false, offset);
+        Navigating = true;
+        Rotating = false;
+    }
+
+    public double CalculateMoveAngle(double X, double Y)
+    {
+        //Calculate angle of joystick
+        double baring = Math.atan2(Y, X); //get measurement of joystick angle
+        baring = Math.toDegrees(baring);
+        baring -= 90;
+        if(baring < 0)//convert degrees to positive if needed
+        {
+            baring = 360 + baring;
+        }
+        return baring;
     }
 
     public void RotateTo(double angle, double speed)
@@ -161,7 +187,7 @@ public class SimpleFieldNavigation
 
     public void GoRight(double distance, double speed)
     {
-        Bot.GoRightWithEncoder(speed, distance);
+        //Bot.GoRightWithEncoder(speed, distance);
         pCoefficient = 0.05;
         Navigating = true;
         Rotating = false;
@@ -169,7 +195,7 @@ public class SimpleFieldNavigation
 
     public void GoForward(double distance, double speed)
     {
-        Bot.GoForwardWithEncoder(speed, distance);
+        //Bot.GoForwardWithEncoder(speed, distance);
         pCoefficient = 0.01;
         Navigating = true;
         Rotating = false;

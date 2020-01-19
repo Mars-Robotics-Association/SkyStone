@@ -29,10 +29,15 @@ public class SkyStoneBot implements Robot
     private double RearLeftPower = 0;
 
     //ENCODER MOVEMENT
-    private double FrontRightTargetPos = 0;
-    private double FrontLeftTargetPos = 0;
-    private double RearRightTargetPos = 0;
-    private double RearLeftTargetPos = 0;
+    private double XRightTargetPos = 0;
+    private double XLeftTargetPos = 0;
+    private double YRightTargetPos = 0;
+    private double YLeftTargetPos = 0;
+
+    private double XRightCurrentPos = 0;
+    private double XLeftCurrentPos = 0;
+    private double YRightCurrentPos = 0;
+    private double YLeftCurrentPos = 0;
 
     public double TargetSpeed = 0;
     public double TargetAngle = 0;
@@ -159,7 +164,7 @@ public class SkyStoneBot implements Robot
 
     //ENCODER METHODS FOR SIMPLE AUTONOMOUS
 
-    public void GoForwardWithEncoder(double speed, double distance)
+    /*public void GoForwardWithEncoder(double speed, double distance)
     {
         StopAndResetEncoders();
 
@@ -219,9 +224,9 @@ public class SkyStoneBot implements Robot
         RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-    }
+    }*/
 
-    public void ApplyTurnOffsetUsingEncoders(double offset)
+   /* public void ApplyTurnOffsetUsingEncoders(double offset)
     {
         //FRONTRIGHT
         if(FrontRight.getCurrentPosition() < FrontRight.getTargetPosition())//going positive
@@ -268,11 +273,11 @@ public class SkyStoneBot implements Robot
         opmode.telemetry.addData("RR power", RearRight.getPower());
         opmode.telemetry.addData("RL power", RearLeft.getPower());
 
-        /*opmode.telemetry.addData("FR offset", (TargetSpeed * (FrontRight.getPower() * Math.abs(FrontRight.getPower())) - offset));
+        *//*opmode.telemetry.addData("FR offset", (TargetSpeed * (FrontRight.getPower() * Math.abs(FrontRight.getPower())) - offset));
         opmode.telemetry.addData("FL offset", (TargetSpeed * (FrontLeft.getPower() * Math.abs(FrontLeft.getPower())) - offset));
         opmode.telemetry.addData("RR offset", (TargetSpeed * (RearRight.getPower() * Math.abs(RearRight.getPower())) - offset));
-        opmode.telemetry.addData("RL offset", (TargetSpeed * (RearLeft.getPower() * Math.abs(RearLeft.getPower())) - offset));*/
-    }
+        opmode.telemetry.addData("RL offset", (TargetSpeed * (RearLeft.getPower() * Math.abs(RearLeft.getPower())) - offset));*//*
+    }*/
 
    /* public void MoveAtAngleTurningForEncoders(double angle, double speed, double turnSpeed)
     {
@@ -315,7 +320,7 @@ public class SkyStoneBot implements Robot
 
 
 
-    public boolean CheckIfEncodersCloseEnough()
+    /*public boolean CheckIfEncodersCloseEnough()
     {
         //check if the motors are close enough to their target to move on
         boolean closeEnoughFR = Math.abs(FrontRight.getCurrentPosition() - FrontRight.getTargetPosition()) < 20;
@@ -330,7 +335,7 @@ public class SkyStoneBot implements Robot
         {
             return false;
         }
-    }
+    }*/
 
     @Override
     public void RotateTowardsAngle(double angle, double speed)
@@ -376,8 +381,8 @@ public class SkyStoneBot implements Robot
         //get relative angle and calculate wheel speeds
         double relativeAngle = angle;
         if(headlessMode){relativeAngle += RobotAngle;}
-        opmode.telemetry.addData("relative angle: ", relativeAngle);
-        opmode.telemetry.addData("given angle: ", angle);
+        opmode.telemetry.addData("move angle: ", angle);
+        opmode.telemetry.addData("final angle: ", relativeAngle);
         CalculateWheelSpeedsTurning(relativeAngle, speed, turnRight, turnSpeed);
         ApplyTurnOffsetNonEncoder(PIDOffset);
         opmode.telemetry.addData("PID Offset: ", PIDOffset);
@@ -398,44 +403,39 @@ public class SkyStoneBot implements Robot
 
     public void ApplyTurnOffsetNonEncoder(double offset)
     {
-        //FRONTRIGHT
-        if(FrontRightPower > 0)//going positive
-        {
-            FrontRight.setPower(FrontRightPower + offset);
-        }
-        else //going negative
-        {
-            FrontRight.setPower(FrontRightPower - offset);
-        }
+        FrontRightPower += offset;
+        FrontLeftPower += offset;
+        RearRightPower += offset;
+        RearLeftPower += offset;
+    }
 
-        //FRONTLEFT
-        if(FrontLeftPower > 0)//going positive
-        {
-            FrontLeft.setPower(FrontLeftPower + offset);
-        }
-        else //going negative
-        {
-            FrontLeft.setPower(FrontLeftPower - offset);
-        }
+    public void SetTargetOdometry(double XR, double YR)
+    {
+        XRightTargetPos = XR;
+        XLeftTargetPos = XR;
+        YRightTargetPos = YR;
+        YLeftTargetPos = YR;
+    }
 
-        //REARRIGHT
-        if(RearRightPower > 0)//going positive
-        {
-            RearRight.setPower(RearRightPower + offset);
-        }
-        else //going negative
-        {
-            RearRight.setPower(RearRightPower - offset);
-        }
+    public boolean CheckCloseEnoughOdometry()
+    {
+        XRightCurrentPos = 0;
+        XLeftCurrentPos = 0;
+        YRightCurrentPos = 0;
+        YLeftCurrentPos = 0;
 
-        //REARLEFT
-        if(RearLeftPower > 0)//going positive
+        //check if the motors are close enough to their target to move on
+        boolean closeEnoughFR = Math.abs(XRightCurrentPos - XRightTargetPos) < 20;
+        boolean closeEnoughFL = Math.abs(XLeftCurrentPos - XLeftTargetPos) < 20;
+        boolean closeEnoughRR = Math.abs(YRightCurrentPos - YRightTargetPos) < 20;
+        boolean closeEnoughRL = Math.abs(YLeftCurrentPos - YLeftTargetPos) < 20;
+        if(closeEnoughFR && closeEnoughFL && closeEnoughRR && closeEnoughRL)//if all are, return true
         {
-            RearLeft.setPower(RearLeftPower + offset);
+            return true;
         }
-        else //going negative
+        else
         {
-            RearLeft.setPower(RearLeftPower - offset);
+            return false;
         }
     }
 
@@ -517,7 +517,6 @@ public class SkyStoneBot implements Robot
         FrontLeftBrakePos = FrontLeft.getCurrentPosition();
         RearRightBrakePos = RearRight.getCurrentPosition();
         RearLeftBrakePos = RearLeft.getCurrentPosition();
-
     }
 
     @Override
