@@ -4,8 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 
-@Autonomous(name = "HS_Auto_Depot_Red", group = "Autonomous")
-public class HS_Auto_Depot_Red extends LinearOpMode {
+@Autonomous(name = "Auto_Depot_Red", group = "Autonomous")
+public class Auto_Depot_Red extends LinearOpMode {
 
     public SimpleFieldNavigation nav = null;
 

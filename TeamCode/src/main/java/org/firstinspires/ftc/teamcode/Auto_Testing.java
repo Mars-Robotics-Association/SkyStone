@@ -12,8 +12,8 @@ import com.qualcomm.robotcore.hardware.SwitchableLight;
 Goes forwards to a blue or red line and then brakes
  */
 
-@Autonomous(name = "HS_Auto_Testing", group = "Autonomous")
-public class HS_AutonomousTesting extends LinearOpMode {
+@Autonomous(name = "Auto_Testing", group = "Autonomous")
+public class Auto_Testing extends LinearOpMode {
 
     public SimpleFieldNavigation nav = null;
 
