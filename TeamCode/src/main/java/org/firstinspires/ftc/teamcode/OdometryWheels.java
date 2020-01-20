@@ -17,10 +17,12 @@ public class OdometryWheels
     public void Init()
     {
         X = opMode.hardwareMap.dcMotor.get("OdometryWheelX");
+        Y = opMode.hardwareMap.dcMotor.get("OdometryWheelY");
     }
 
     public double[] GetCurrentData()
     {
-
+        double[] vals = {X.getCurrentPosition(), Y.getCurrentPosition()};
+        return vals;
     }
 }

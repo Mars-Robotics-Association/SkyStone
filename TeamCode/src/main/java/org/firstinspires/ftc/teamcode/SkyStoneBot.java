@@ -29,15 +29,11 @@ public class SkyStoneBot implements Robot
     private double RearLeftPower = 0;
 
     //ENCODER MOVEMENT
-    private double XRightTargetPos = 0;
-    private double XLeftTargetPos = 0;
-    private double YRightTargetPos = 0;
-    private double YLeftTargetPos = 0;
+    private double XTargetPos = 0;
+    private double YTargetPos = 0;
 
-    private double XRightCurrentPos = 0;
-    private double XLeftCurrentPos = 0;
-    private double YRightCurrentPos = 0;
-    private double YLeftCurrentPos = 0;
+    private double XCurrentPos = 0;
+    private double YCurrentPos = 0;
 
     public double TargetSpeed = 0;
     public double TargetAngle = 0;
@@ -409,27 +405,21 @@ public class SkyStoneBot implements Robot
         RearLeftPower += offset;
     }
 
-    public void SetTargetOdometry(double XR, double YR)
+    public void SetTargetOdometry(double X, double Y)
     {
-        XRightTargetPos = XR;
-        XLeftTargetPos = XR;
-        YRightTargetPos = YR;
-        YLeftTargetPos = YR;
+        XTargetPos = X;
+        YTargetPos = Y;
     }
 
-    public boolean CheckCloseEnoughOdometry()
+    public boolean CheckCloseEnoughOdometry(double CurrentX, double CurrentY)
     {
-        XRightCurrentPos = 0;
-        XLeftCurrentPos = 0;
-        YRightCurrentPos = 0;
-        YLeftCurrentPos = 0;
+        XCurrentPos = 0;
+        YCurrentPos = 0;
 
         //check if the motors are close enough to their target to move on
-        boolean closeEnoughFR = Math.abs(XRightCurrentPos - XRightTargetPos) < 20;
-        boolean closeEnoughFL = Math.abs(XLeftCurrentPos - XLeftTargetPos) < 20;
-        boolean closeEnoughRR = Math.abs(YRightCurrentPos - YRightTargetPos) < 20;
-        boolean closeEnoughRL = Math.abs(YLeftCurrentPos - YLeftTargetPos) < 20;
-        if(closeEnoughFR && closeEnoughFL && closeEnoughRR && closeEnoughRL)//if all are, return true
+        boolean closeEnoughX = Math.abs(XCurrentPos - XTargetPos) < 20;
+        boolean closeEnoughY = Math.abs(YCurrentPos - YTargetPos) < 20;
+        if(closeEnoughX && closeEnoughY)//if all are, return true
         {
             return true;
         }
