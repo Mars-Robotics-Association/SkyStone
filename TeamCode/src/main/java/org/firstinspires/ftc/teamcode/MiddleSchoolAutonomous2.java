@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-
+@Disabled
 @Autonomous(name = "MS Simple", group = "Autonomous")
 public class MiddleSchoolAutonomous2 extends LinearOpMode {
 
