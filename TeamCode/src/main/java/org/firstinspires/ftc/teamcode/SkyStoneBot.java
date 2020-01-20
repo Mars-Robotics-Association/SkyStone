@@ -360,13 +360,13 @@ public class SkyStoneBot implements Robot
         }
     }
 
-    public void StopAndResetEncoders()
+    /*public void StopAndResetEncoders()
     {
         FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         RearRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         RearLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-    }
+    }*/
 
     //END ENCODER METHODS FOR SIMPLE AUTONOMOUS
 
