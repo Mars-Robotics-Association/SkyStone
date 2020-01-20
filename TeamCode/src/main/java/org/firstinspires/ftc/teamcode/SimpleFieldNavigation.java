@@ -26,6 +26,7 @@ public class SimpleFieldNavigation
     public boolean Rotating = false;
 
     private OpMode opmode;
+    private OdometryWheels odometryWheels;
 
     public boolean firstRound = true;
 
@@ -56,7 +57,7 @@ public class SimpleFieldNavigation
 
     public boolean CheckIfAtTargetDestination()
     {
-        return Bot.CheckCloseEnoughOdometry();
+        return Bot.CheckCloseEnoughOdometry(odometryWheels.GetCurrentData()[0], odometryWheels.GetCurrentData()[1]);
     }
 
     public void Init()
@@ -64,6 +65,7 @@ public class SimpleFieldNavigation
         Bot = new SkyStoneBot(opmode, false);
         Bot.Init();
         angleFollower = new PIDAngleFollower();
+        odometryWheels = new OdometryWheels(opmode);
     }
 
     public void Start()
@@ -84,7 +86,7 @@ public class SimpleFieldNavigation
 
         if(Navigating)
         {
-            if (!Bot.CheckCloseEnoughOdometry()) //If not close to target
+            if (!Bot.CheckCloseEnoughOdometry(odometryWheels.GetCurrentData()[0], odometryWheels.GetCurrentData()[1])) //If not close to target
             {
                 opmode.telemetry.addData("Not close enough: ", true);
 
