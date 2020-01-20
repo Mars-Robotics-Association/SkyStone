@@ -1,11 +1,11 @@
-name: Android CI
+name: Android MacOS CI
 
 on: [push]
 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
 
     steps:
     - uses: actions/checkout@v1
