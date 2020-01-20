@@ -12,7 +12,7 @@ public class MiddleSchoolAutonomous2 extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        nav = new SimpleFieldNavigation(this);
+        nav = new SimpleFieldNavigation(this, false);
         nav.Init();
 
 

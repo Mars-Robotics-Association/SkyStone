@@ -16,7 +16,7 @@ public class Auto_Zone_Red extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        nav = new SimpleFieldNavigation(this);
+        nav = new SimpleFieldNavigation(this, true);
         fgrabber = new FoundationGrabber(this);
         nav.Init();
         fgrabber.Init();

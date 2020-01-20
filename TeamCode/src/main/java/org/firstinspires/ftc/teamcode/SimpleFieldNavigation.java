@@ -37,10 +37,12 @@ public class SimpleFieldNavigation
 
     PIDAngleFollower angleFollower = null;
     private double pCoefficient = 0.006;
+    private boolean useOdometryWheels = true;
 
-    public SimpleFieldNavigation(OpMode setOpmode)
+    public SimpleFieldNavigation(OpMode setOpmode, boolean useOdWheels)
     {
         this.opmode = setOpmode;
+        useOdometryWheels = useOdWheels;
     }
 
     public boolean isNavigating()
@@ -65,7 +67,7 @@ public class SimpleFieldNavigation
         Bot = new SkyStoneBot(opmode, false);
         Bot.Init();
         angleFollower = new PIDAngleFollower();
-        odometryWheels = new OdometryWheels(opmode);
+        odometryWheels = new OdometryWheels(opmode, useOdometryWheels);
     }
 
     public void Start()
@@ -92,7 +94,7 @@ public class SimpleFieldNavigation
 
                 //CODE FOR PID DRIVE CORRECTION
                 double offset = angleFollower.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), pCoefficient, 0, 0); //good
-                Bot.MoveAtAngleTurning(Bot.TargetAngle, Bot.TargetSpeed, false, 0, false, offset);
+                Bot.MoveAtAngleTurning(Bot.TargetAngle, Bot.TargetSpeed, true, 0, false, offset);
                 //Bot.ApplyTurnOffsetUsingEncoders(offset);
 
                 opmode.telemetry.addData("Robot Angle ", Bot.GetRobotAngle());
@@ -133,9 +135,10 @@ public class SimpleFieldNavigation
         pCoefficient = 0.01;
         double angle = CalculateMoveAngle(XDistance, YDistance);
         Bot.TargetAngle = angle;
+        Bot.TargetSpeed = speed;
         double offset = angleFollower.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), pCoefficient, 0, 0); //good
         Bot.SetTargetOdometry(XDistance, YDistance);
-        Bot.MoveAtAngleTurning(angle, speed, false, 0, false, offset);
+        Bot.MoveAtAngleTurning(angle, speed, true, 0, false, offset);
         Navigating = true;
         Rotating = false;
     }

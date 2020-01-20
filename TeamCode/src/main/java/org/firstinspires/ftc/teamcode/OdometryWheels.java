@@ -5,24 +5,34 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 public class OdometryWheels
 {
-    OpMode opMode;
-    DcMotor X;
-    DcMotor Y;
+    private OpMode opMode;
+    private DcMotor X;
+    private DcMotor Y;
+    private boolean dontDoAnything;
 
-    public OdometryWheels(OpMode setOpMode)
+    public OdometryWheels(OpMode setOpMode, boolean deactivate)
     {
         opMode = setOpMode;
+        dontDoAnything = deactivate;
     }
 
     public void Init()
     {
-        X = opMode.hardwareMap.dcMotor.get("OdometryWheelX");
-        Y = opMode.hardwareMap.dcMotor.get("OdometryWheelY");
+        if(!dontDoAnything)
+        {
+            X = opMode.hardwareMap.dcMotor.get("OdometryWheelX");
+            Y = opMode.hardwareMap.dcMotor.get("OdometryWheelY");
+        }
     }
 
     public double[] GetCurrentData()
     {
-        double[] vals = {X.getCurrentPosition(), Y.getCurrentPosition()};
+        double[] vals = {0,0};
+        if(!dontDoAnything)
+        {
+            vals = new double[]{X.getCurrentPosition(), Y.getCurrentPosition()};
+        }
+
         return vals;
     }
 }

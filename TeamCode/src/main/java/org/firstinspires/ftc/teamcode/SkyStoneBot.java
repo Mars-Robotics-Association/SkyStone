@@ -413,8 +413,8 @@ public class SkyStoneBot implements Robot
 
     public boolean CheckCloseEnoughOdometry(double CurrentX, double CurrentY)
     {
-        XCurrentPos = 0;
-        YCurrentPos = 0;
+        XCurrentPos = CurrentX;
+        YCurrentPos = CurrentY;
 
         //check if the motors are close enough to their target to move on
         boolean closeEnoughX = Math.abs(XCurrentPos - XTargetPos) < 20;
