@@ -1,4 +1,4 @@
-name: Android Windows CI
+name: Android MacOS CI
 
 on: [push]
 
