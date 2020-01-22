@@ -35,9 +35,16 @@ public class SimpleFieldNavigation
 
     private double TurnSpeed = 0;
 
-    PIDAngleFollower angleFollower = null;
+    PIDAngleFollower PID = null;
     private double pCoefficient = 0.006;
     private boolean useOdometryWheels = true;
+
+    //ENCODER MOVEMENT
+    private double XTargetPos = 0;
+    private double YTargetPos = 0;
+
+    private double XCurrentPos = 0;
+    private double YCurrentPos = 0;
 
     public SimpleFieldNavigation(OpMode setOpmode, boolean useOdWheels)
     {
@@ -59,14 +66,14 @@ public class SimpleFieldNavigation
 
     public boolean CheckIfAtTargetDestination()
     {
-        return Bot.CheckCloseEnoughOdometry(odometryWheels.GetCurrentData()[0], odometryWheels.GetCurrentData()[1]);
+        return CheckCloseEnoughOdometry(odometryWheels.GetCurrentData()[0], odometryWheels.GetCurrentData()[1]);
     }
 
     public void Init()
     {
         Bot = new SkyStoneBot(opmode, false);
         Bot.Init();
-        angleFollower = new PIDAngleFollower();
+        PID = new PIDAngleFollower();
         odometryWheels = new OdometryWheels(opmode, useOdometryWheels);
     }
 
@@ -88,56 +95,71 @@ public class SimpleFieldNavigation
 
         if(Navigating)
         {
-            if (!Bot.CheckCloseEnoughOdometry(odometryWheels.GetCurrentData()[0], odometryWheels.GetCurrentData()[1])) //If not close to target
-            {
-                opmode.telemetry.addData("Not close enough: ", true);
-
-                //CODE FOR PID DRIVE CORRECTION
-                double offset = angleFollower.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), pCoefficient, 0, 0); //good
-                Bot.MoveAtAngleTurning(Bot.TargetAngle, Bot.TargetSpeed, true, 0, false, offset);
-                //Bot.ApplyTurnOffsetUsingEncoders(offset);
-
-                opmode.telemetry.addData("Robot Angle ", Bot.GetRobotAngle());
-                opmode.telemetry.addData("Target Angle ", Bot.TargetAngle);
-                opmode.telemetry.addData("Offset ", offset);
-            }
-            else //Stop
-            {
-                opmode.telemetry.addData("Not close enough: ", false);
-                //Bot.StopAndResetEncoders();
-                //Bot.RotateTowardsAngle(TargetRot, 0.5);
-                //Rotating = true;
-                Navigating = false;
-            }
+            NavigationControl();
         }
 
         if(Rotating)
         {
-            if (!CheckCloseEnoughRotation()) //if not at rotation target
-            {
-                Bot.RotateTowardsAngle(TargetRot, TurnSpeed);
-            }
-            else //Stop
-            {
-                Bot.StopMotors();
-                Rotating = false;
-            }
+            RotationControl();
         }
 
         if(!Navigating && !Rotating)//stop if shouldn't do anything
         {
-            //Bot.StopMotors();
+            Bot.Brake(1);
+        }
+    }
+
+    void NavigationControl()
+    {
+        boolean closeEnough = CheckCloseEnoughOdometry(odometryWheels.GetCurrentData()[0], odometryWheels.GetCurrentData()[1]);
+        opmode.telemetry.addData("Close enough: ", closeEnough);
+
+        if (!closeEnough) //If not close to target
+        {
+            opmode.telemetry.addData("Not close enough: ", true);
+            opmode.telemetry.addData("Odometry X: ", odometryWheels.GetCurrentData()[0]);
+            opmode.telemetry.addData("Odometry Y: ", odometryWheels.GetCurrentData()[1]);
+
+            //CODE FOR PID DRIVE CORRECTION
+            double offset = PID.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), pCoefficient, 0, 0); //good
+            Bot.MoveAtAngleTurning(Bot.TargetAngle, Bot.TargetSpeed, true, 0, false, offset);
+            //Bot.ApplyTurnOffsetUsingEncoders(offset);
+
+            opmode.telemetry.addData("Robot Angle ", Bot.GetRobotAngle());
+            opmode.telemetry.addData("Target Angle ", Bot.TargetAngle);
+            opmode.telemetry.addData("Offset ", offset);
+        }
+        else //Stop
+        {
+            opmode.telemetry.addData("Not close enough: ", false);
+            //Bot.StopAndResetEncoders();
+            //Bot.RotateTowardsAngle(TargetRot, 0.5);
+            //Rotating = true;
+            Navigating = false;
+        }
+    }
+
+    void RotationControl()
+    {
+        if (!CheckCloseEnoughRotation()) //if not at rotation target
+        {
+            Bot.RotateTowardsAngle(TargetRot, TurnSpeed);
+        }
+        else //Stop
+        {
+            Bot.StopMotors();
+            Rotating = false;
         }
     }
 
     public void MoveXandY(double XDistance, double YDistance, double speed)
     {
-        pCoefficient = 0.01;
         double angle = CalculateMoveAngle(XDistance, YDistance);
         Bot.TargetAngle = angle;
         Bot.TargetSpeed = speed;
-        double offset = angleFollower.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), pCoefficient, 0, 0); //good
-        Bot.SetTargetOdometry(XDistance, YDistance);
+        double offset = PID.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), 0.01, 0, 0);
+        XTargetPos = XDistance;
+        YTargetPos = YDistance;
         Bot.MoveAtAngleTurning(angle, speed, true, 0, false, offset);
         Navigating = true;
         Rotating = false;
@@ -156,6 +178,24 @@ public class SimpleFieldNavigation
         return baring;
     }
 
+    public boolean CheckCloseEnoughOdometry(double CurrentX, double CurrentY)
+    {
+        XCurrentPos = CurrentX;
+        YCurrentPos = CurrentY;
+
+        //check if the motors are close enough to their target to move on
+        boolean closeEnoughX = Math.abs(XCurrentPos - XTargetPos) < 20;
+        boolean closeEnoughY = Math.abs(YCurrentPos - YTargetPos) < 20;
+        if(closeEnoughX && closeEnoughY)//if all are, return true
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public void RotateTo(double angle, double speed)
     {
         StopAll();
@@ -170,6 +210,8 @@ public class SimpleFieldNavigation
         Navigating = false;
         Rotating = false;
     }
+
+
 
     /*public boolean CheckCloseEnoughDistance()
     {

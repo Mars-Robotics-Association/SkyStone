@@ -21,13 +21,6 @@ public class SkyStoneBot implements Robot
     private double RearRightPower = 0;
     private double RearLeftPower = 0;
 
-    //ENCODER MOVEMENT
-    private double XTargetPos = 0;
-    private double YTargetPos = 0;
-
-    private double XCurrentPos = 0;
-    private double YCurrentPos = 0;
-
     public double TargetSpeed = 0;
     public double TargetAngle = 0;
 
@@ -86,8 +79,6 @@ public class SkyStoneBot implements Robot
         RearLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        //FoundationL = opmode.hardwareMap.get(Servo.class, "FoundationL");
-        //FoundationR = opmode.hardwareMap.get(Servo.class, "FoundationR");
         opmode.telemetry.update();
     }
 
@@ -396,30 +387,6 @@ public class SkyStoneBot implements Robot
         FrontLeftPower += offset;
         RearRightPower += offset;
         RearLeftPower += offset;
-    }
-
-    public void SetTargetOdometry(double X, double Y)
-    {
-        XTargetPos = X;
-        YTargetPos = Y;
-    }
-
-    public boolean CheckCloseEnoughOdometry(double CurrentX, double CurrentY)
-    {
-        XCurrentPos = CurrentX;
-        YCurrentPos = CurrentY;
-
-        //check if the motors are close enough to their target to move on
-        boolean closeEnoughX = Math.abs(XCurrentPos - XTargetPos) < 20;
-        boolean closeEnoughY = Math.abs(YCurrentPos - YTargetPos) < 20;
-        if(closeEnoughX && closeEnoughY)//if all are, return true
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 
     //Raw movement methods:

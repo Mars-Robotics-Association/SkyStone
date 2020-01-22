@@ -46,7 +46,6 @@ public class CustomChasisTeleop extends OpMode
         grab = new FoundationGrabber(this);
         grab.Init();
 
-        //armRetractStop = hardwareMap.touchSensor.get("ArmRetractStop");
         ArmRetractStop = hardwareMap.get(RevTouchSensor.class, "ArmRetractStop");
         ArmUpStop = hardwareMap.get(RevTouchSensor.class, "ArmUpStop");
 
@@ -92,7 +91,7 @@ public class CustomChasisTeleop extends OpMode
         if(gamepad1.left_bumper) { Teleop.fullSpeed(); }
         if(gamepad1.right_bumper) { Teleop.threeFourthsSpeed(); }
         if(gamepad1.left_trigger>0.2) { Teleop.halfSpeed(); }
-        if(gamepad1.right_trigger>0.2) { Teleop.forthSpeed(); }
+        if(gamepad1.right_trigger>0.2) { Teleop.brake(1); }
 
         if(gamepad2.x)
         {
@@ -164,7 +163,7 @@ public class CustomChasisTeleop extends OpMode
         }
         else //STOP
         {
-            Teleop.brake(1);
+            Teleop.stopWheels();
         }
         /*else //STOP
         {
