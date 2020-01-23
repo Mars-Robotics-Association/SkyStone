@@ -180,7 +180,7 @@ public class GripperTetrix implements Attachment{
         GripperUpDownRotateRight.setPosition(positionright);
     }
 
-    /*public void GripperOpen(){
+    *public void GripperOpen(){
 
         GripperR.setPosition(0.75);
         GripperL.setPosition(0.055);
