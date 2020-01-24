@@ -128,7 +128,7 @@ public class CustomChasisTeleop extends OpMode
         ManageGripperMovement();
         telemetry.addData("Retract", ArmRetractStop.isPressed());
         telemetry.addData("Extend", ArmUpStop.isPressed());
-
+        telemetry.addData("LiftEncoder", arm.VerticalPosition() );
         telemetry.update();
     }
 
@@ -150,16 +150,16 @@ public class CustomChasisTeleop extends OpMode
             stopping = false;
         }
         else if(gamepad1.dpad_up){
-            Teleop.RawForwards(1);
+            //Teleop.RawForwards(1);
         }
         else if(gamepad1.dpad_down){
-            Teleop.RawForwards(-1);
+            //Teleop.RawForwards(-1);
         }
         else if(gamepad1.dpad_right){
-            Teleop.RawRight(1);
+            //Teleop.RawRight(1);
         }
         else if(gamepad1.dpad_left){
-            Teleop.RawRight(-1);
+            //Teleop.RawRight(-1);
         }
         else //STOP
         {
@@ -201,6 +201,22 @@ public class CustomChasisTeleop extends OpMode
         else if(gamepad2.right_stick_y < -0.4)//move lift down
         {
             arm.LiftDown();
+        }
+        else if(gamepad1.dpad_up) //placeholder for move to position
+        {
+            arm.VerticalGoToPosition(100);
+        }
+        else if(gamepad1.dpad_left) //placeholder for move to position
+        {
+            arm.VerticalGoToPosition(200);
+        }
+        else if(gamepad1.dpad_down) //placeholder for move to position
+        {
+            arm.VerticalGoToPosition(300);
+        }
+        else if(gamepad1.dpad_right) //placeholder for move to position
+        {
+            arm.VerticalGoToPosition(400);
         }
         else//stop the arm from moving up or down
         {

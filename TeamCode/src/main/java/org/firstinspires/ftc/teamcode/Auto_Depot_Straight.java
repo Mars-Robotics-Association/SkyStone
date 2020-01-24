@@ -24,7 +24,7 @@ public class Auto_Depot_Straight extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        nav = new SimpleFieldNavigation(this, true);
+        nav = new SimpleFieldNavigation(this, false);
         nav.Init();
 
         colorSensor = new ColorSensor(this, "colorSensorGround");
@@ -36,7 +36,7 @@ public class Auto_Depot_Straight extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
 
         //Block: Go forwards to the line
-        nav.MoveXandY(0, 100, 0.2);
+        nav.MoveXandY(0, 100, 0.25);
         while (Math.abs(RedHue - colorSensor.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensor.returnHue()) > HueThreshold)
         {
             nav.Loop();

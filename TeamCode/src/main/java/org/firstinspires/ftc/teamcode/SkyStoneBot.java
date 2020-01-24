@@ -27,8 +27,8 @@ public class SkyStoneBot implements Robot
     //ENCODER MOVEMENT
 
 
-    private double EncoderTicksForward = 1120;//ticks for one inch
-    private double EncoderTicksSideways = 1120;//ticks for one inch
+    private double EncoderTicksForward = 112;//ticks for one inch
+    private double EncoderTicksSideways = 112;//ticks for one inch
     private int encodedDistance = 0;
 
     //Encoder End
@@ -108,13 +108,17 @@ public class SkyStoneBot implements Robot
             RobotAngle = Angles.secondAngle - RobotAngleOffset;
         }
 
-
         opmode.telemetry.addData("Target Encoder Distance ", encodedDistance);
 
         opmode.telemetry.addData("Front Right: ", FrontRight.getCurrentPosition());
         opmode.telemetry.addData("Front Left: ", FrontLeft.getCurrentPosition());
         opmode.telemetry.addData("Rear Right: ", RearRight.getCurrentPosition());
         opmode.telemetry.addData("Rear Left: ", RearLeft.getCurrentPosition());
+
+        opmode.telemetry.addData("Front Right target pos: ", FrontRight.getTargetPosition());
+        opmode.telemetry.addData("Front Left target pos: ", FrontLeft.getTargetPosition());
+        opmode.telemetry.addData("Rear Right target pos: ", RearRight.getTargetPosition());
+        opmode.telemetry.addData("Rear Left target pos: ", RearLeft.getTargetPosition());
 
         opmode.telemetry.addData("Front Right Brake: ", FrontRightBrakePos);
         opmode.telemetry.addData("Front Left Brake: ", FrontLeftBrakePos);
@@ -206,7 +210,6 @@ public class SkyStoneBot implements Robot
         FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
     }
 
     public void ApplyTurnOffsetUsingEncoders(double offset)
@@ -461,10 +464,10 @@ public class SkyStoneBot implements Robot
     }
 
     public void SetBrakePos(){
-        FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        /*FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         RearRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);*/
 
         FrontRightBrakePos = FrontRight.getCurrentPosition();
         FrontLeftBrakePos = FrontLeft.getCurrentPosition();

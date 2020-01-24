@@ -83,6 +83,17 @@ public class ArmAttachmentCustom implements Attachment {
         ArmVertical.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
+    public int VerticalPosition ()
+    {
+        return ArmVertical.getCurrentPosition();
+    }
+
+    public void VerticalGoToPosition(int target)
+    {
+        ArmVertical.setTargetPosition(target);
+        ArmVertical.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        VerticalsRestingPos = ArmVertical.getCurrentPosition();
+    }
 
 
 
