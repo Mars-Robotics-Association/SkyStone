@@ -128,7 +128,7 @@ public class CustomChasisTeleop extends OpMode
         ManageGripperMovement();
         telemetry.addData("Retract", ArmRetractStop.isPressed());
         telemetry.addData("Extend", ArmUpStop.isPressed());
-
+        telemetry.addData("LiftEncoder", arm.VerticalPosition() );
         telemetry.update();
     }
 
