@@ -112,7 +112,7 @@ public class GripperTetrix implements Attachment{
 
     }
 
-    public void GripperOpen(int robot ){
+    public void GripperOpen (){
 
 
             GripperR.setPosition(0.6);
@@ -120,30 +120,30 @@ public class GripperTetrix implements Attachment{
 
     }
 
-    public void GripperClose(int robot){
+    public void GripperClose(){
 
             GripperR.setPosition(0.75);
             GripperL.setPosition(0);
 
     }
 
-    public void GripperCloseLeft(int robot){
+    public void GripperCloseLeft(){
 
             GripperL.setPosition(0);
     }
 
-    public void GripperOpenLeft(int robot){
+    public void GripperOpenLeft(){
 
             GripperL.setPosition(0.5);
 
     }
 
-    public void GripperCloseRight(int robot){
+    public void GripperCloseRight(){
 
             GripperR.setPosition(0.35);}
 
 
-    public void GripperOpenRight(int robot){
+    public void GripperOpenRight(){
 
         GripperR.setPosition(0.6);}
 
@@ -159,7 +159,7 @@ public class GripperTetrix implements Attachment{
     {
         GripperUpDownRotateLeft.setPosition(positionleft);
         GripperUpDownRotateRight.setPosition(positionright);
-    }
+     }
 
     /*public void GripperOpen(){
 
