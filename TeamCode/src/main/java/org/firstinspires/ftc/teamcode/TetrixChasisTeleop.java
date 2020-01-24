@@ -240,11 +240,11 @@ public class TetrixChasisTeleop extends OpMode
         }
         if(gamepad2.left_bumper)//Open the gripper
         {
-            openGripper();
+            gripper.openGripper();
         }
         if(gamepad2.right_bumper)//close the gripper
         {
-            closeGripper();
+            gripper.closeGripper();
         }
         if(gamepad2.left_trigger>0.2)//Open the left side of the gripper
         {
