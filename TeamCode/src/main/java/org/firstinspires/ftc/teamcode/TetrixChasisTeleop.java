@@ -240,11 +240,11 @@ public class TetrixChasisTeleop extends OpMode
         }
         if(gamepad2.left_bumper)//Open the gripper
         {
-            gripper.openGripper();
+            openGripper();
         }
         if(gamepad2.right_bumper)//close the gripper
         {
-            gripper.closeGripper();
+            closeGripper();
         }
         if(gamepad2.left_trigger>0.2)//Open the left side of the gripper
         {
@@ -264,10 +264,10 @@ public class TetrixChasisTeleop extends OpMode
 
     //GripperTetrix Management Methods
     public void closeGripper(){
-        gripper.GripperClose(1);
+        gripper.GripperClose();
     }
     public void openGripper(){
-        gripper.GripperOpen(1);
+        gripper.GripperOpen();
     }
 
     public void gripperLeft() {
@@ -296,9 +296,9 @@ public class TetrixChasisTeleop extends OpMode
     public void gripper0(){gripperPosition=0;}
 
     public void gripperOpenLeft(){
-        gripper.GripperOpenLeft(1);
+        gripper.GripperOpenLeft();
     }
     public void gripperOpenRight(){
-        gripper.GripperOpenRight(1);
+        gripper.GripperOpenRight();
     }
 }

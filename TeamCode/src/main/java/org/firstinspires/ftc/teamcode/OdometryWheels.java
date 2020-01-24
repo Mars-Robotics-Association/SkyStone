@@ -8,30 +8,22 @@ public class OdometryWheels
     private OpMode opMode;
     private DcMotor X;
     private DcMotor Y;
-    private boolean dontDoAnything;
 
-    public OdometryWheels(OpMode setOpMode, boolean deactivate)
+    public OdometryWheels(OpMode setOpMode)
     {
         opMode = setOpMode;
-        dontDoAnything = deactivate;
     }
 
     public void Init()
     {
-        if(!dontDoAnything)
-        {
-            X = opMode.hardwareMap.dcMotor.get("OdometryWheelX");
-            Y = opMode.hardwareMap.dcMotor.get("OdometryWheelY");
-        }
+        X = opMode.hardwareMap.dcMotor.get("OdometryWheelX");
+        Y = opMode.hardwareMap.dcMotor.get("OdometryWheelY");
     }
 
     public double[] GetCurrentData()
     {
         double[] vals = {0,0};
-        if(!dontDoAnything)
-        {
-            vals = new double[]{X.getCurrentPosition(), Y.getCurrentPosition()};
-        }
+        vals = new double[]{X.getCurrentPosition(), Y.getCurrentPosition()};
 
         return vals;
     }

@@ -21,7 +21,7 @@ public class Auto_Depot_Blue extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        nav = new SimpleFieldNavigation(this, true);
+        nav = new SimpleFieldNavigation(this);
         nav.Init();
 
         colorSensor = new ColorSensor(this, "colorSensorGround");

@@ -17,7 +17,7 @@ public class MiddleSchoolAutonomous extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        nav = new SimpleFieldNavigation(this, false);
+        nav = new SimpleFieldNavigation(this);
         nav.Init();
 
         colorSensor = new ColorSensor(this, "colorSensorGround");

@@ -12,7 +12,7 @@ public class Auto_Encoder_Testing extends LinearOpMode
     @Override
     public void runOpMode()
     {
-        nav = new SimpleFieldNavigation(this, true);
+        nav = new SimpleFieldNavigation(this);
         nav.Init();
 
         waitForStart();
@@ -28,6 +28,7 @@ public class Auto_Encoder_Testing extends LinearOpMode
             telemetry.addData("looping1: ", true);
             telemetry.update();
         }
+        telemetry.update();
 
         //Stops all
         nav.StopAll();
