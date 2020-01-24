@@ -37,7 +37,7 @@ public class SimpleFieldNavigation
 
     PIDAngleFollower PID = null;
     private double pCoefficient = 0.006;
-    private boolean useOdometryWheels = true;
+    private boolean useOdometryWheels = false;
 
     //ENCODER MOVEMENT
     private double XTargetPos = 0;
@@ -67,7 +67,7 @@ public class SimpleFieldNavigation
 
     public boolean CheckIfAtTargetDestination()
     {
-        return CheckCloseEnoughOdometry(odometryWheels.GetCurrentData()[0], odometryWheels.GetCurrentData()[1]);
+        return Bot.CheckIfEncodersCloseEnough();
     }
 
     public void Init()
@@ -112,7 +112,14 @@ public class SimpleFieldNavigation
 
     void NavigationControl()
     {
-        boolean closeEnough = CheckCloseEnoughOdometry(odometryWheels.GetCurrentData()[0], odometryWheels.GetCurrentData()[1]);
+        boolean closeEnough = false;
+        if(useOdometryWheels) {
+            //closeEnough = CheckCloseEnoughOdometry(odometryWheels.GetCurrentData()[0], odometryWheels.GetCurrentData()[1]);
+        }
+        if(!useOdometryWheels) {
+            closeEnough = CheckIfAtTargetDestination();
+        }
+        closeEnough = CheckIfAtTargetDestination();
         opmode.telemetry.addData("Close enough: ", closeEnough);
 
         if (!closeEnough) //If not close to target
@@ -126,7 +133,7 @@ public class SimpleFieldNavigation
             if(useOdometryWheels) {
                 Bot.MoveAtAngleTurning(Bot.TargetAngle, Bot.TargetSpeed, true, 0, false, offset);
             }
-            else {
+            if(!useOdometryWheels) {
                 Bot.ApplyTurnOffsetUsingEncoders(offset);
             }
 
@@ -137,7 +144,7 @@ public class SimpleFieldNavigation
         else //Stop
         {
             opmode.telemetry.addData("Not close enough: ", false);
-            Bot.StopAndResetEncoders();
+            //StopAll();
             //Bot.RotateTowardsAngle(TargetRot, 0.5);
             //Rotating = true;
             Navigating = false;
@@ -254,6 +261,7 @@ public class SimpleFieldNavigation
     }
 
     public void Brake(double power){
+        Bot.SetBrakePos();
         Bot.Brake(power);
     }
     public void SetBrakePos(){
