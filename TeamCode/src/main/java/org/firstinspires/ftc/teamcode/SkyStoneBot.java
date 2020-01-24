@@ -24,11 +24,14 @@ public class SkyStoneBot implements Robot
     public double TargetSpeed = 0;
     public double TargetAngle = 0;
 
-    //END ENCODER MOVEMENT
+    //ENCODER MOVEMENT
 
-    private double EncoderTicks = 1120;//ticks for one rotation 40:1, divided by 2 for 20:1
-    private double WheelCircumference = 2 * 3.14;//circumference of wheel in inches
+
+    private double EncoderTicksForward = 1120;//ticks for one inch
+    private double EncoderTicksSideways = 1120;//ticks for one inch
     private int encodedDistance = 0;
+
+    //Encoder End
 
     int MotorPositions[]={0,0,0,0};
     private IMU imu;
@@ -144,11 +147,11 @@ public class SkyStoneBot implements Robot
 
     //ENCODER METHODS FOR SIMPLE AUTONOMOUS
 
-    /*public void GoForwardWithEncoder(double speed, double distance)
+    public void GoForwardWithEncoder(double speed, double distance)
     {
         StopAndResetEncoders();
 
-        encodedDistance = (int)((EncoderTicks/ WheelCircumference)*distance);//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
+        encodedDistance = (int)((EncoderTicksForward)*distance);//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
 
         TargetAngle = RobotAngle;
         TargetSpeed = speed;
@@ -179,7 +182,7 @@ public class SkyStoneBot implements Robot
     {
         StopAndResetEncoders();
 
-        encodedDistance = (int)((EncoderTicks/ WheelCircumference)*distance * Math.sqrt(2));//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
+        encodedDistance = (int)((EncoderTicksSideways)*distance * Math.sqrt(2));//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
 
         TargetAngle = RobotAngle;
         TargetSpeed = speed;
@@ -204,9 +207,9 @@ public class SkyStoneBot implements Robot
         RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-    }*/
+    }
 
-   /* public void ApplyTurnOffsetUsingEncoders(double offset)
+    public void ApplyTurnOffsetUsingEncoders(double offset)
     {
         //FRONTRIGHT
         if(FrontRight.getCurrentPosition() < FrontRight.getTargetPosition())//going positive
@@ -253,13 +256,13 @@ public class SkyStoneBot implements Robot
         opmode.telemetry.addData("RR power", RearRight.getPower());
         opmode.telemetry.addData("RL power", RearLeft.getPower());
 
-        *//*opmode.telemetry.addData("FR offset", (TargetSpeed * (FrontRight.getPower() * Math.abs(FrontRight.getPower())) - offset));
+        opmode.telemetry.addData("FR offset", (TargetSpeed * (FrontRight.getPower() * Math.abs(FrontRight.getPower())) - offset));
         opmode.telemetry.addData("FL offset", (TargetSpeed * (FrontLeft.getPower() * Math.abs(FrontLeft.getPower())) - offset));
         opmode.telemetry.addData("RR offset", (TargetSpeed * (RearRight.getPower() * Math.abs(RearRight.getPower())) - offset));
-        opmode.telemetry.addData("RL offset", (TargetSpeed * (RearLeft.getPower() * Math.abs(RearLeft.getPower())) - offset));*//*
-    }*/
+        opmode.telemetry.addData("RL offset", (TargetSpeed * (RearLeft.getPower() * Math.abs(RearLeft.getPower())) - offset));
+    }
 
-   /* public void MoveAtAngleTurningForEncoders(double angle, double speed, double turnSpeed)
+    public void MoveAtAngleTurningForEncoders(double angle, double speed, double turnSpeed)
     {
         FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -296,11 +299,11 @@ public class SkyStoneBot implements Robot
         FrontLeftBrakePos = FrontLeft.getCurrentPosition();
         RearRightBrakePos = RearRight.getCurrentPosition();
         RearLeftBrakePos = RearLeft.getCurrentPosition();
-    }*/
+    }
 
 
 
-    /*public boolean CheckIfEncodersCloseEnough()
+    public boolean CheckIfEncodersCloseEnough()
     {
         //check if the motors are close enough to their target to move on
         boolean closeEnoughFR = Math.abs(FrontRight.getCurrentPosition() - FrontRight.getTargetPosition()) < 20;
@@ -315,7 +318,7 @@ public class SkyStoneBot implements Robot
         {
             return false;
         }
-    }*/
+    }
 
     @Override
     public void RotateTowardsAngle(double angle, double speed)
@@ -340,13 +343,13 @@ public class SkyStoneBot implements Robot
         }
     }
 
-    /*public void StopAndResetEncoders()
+    public void StopAndResetEncoders()
     {
         FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         RearRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         RearLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-    }*/
+    }
 
     //END ENCODER METHODS FOR SIMPLE AUTONOMOUS
 
