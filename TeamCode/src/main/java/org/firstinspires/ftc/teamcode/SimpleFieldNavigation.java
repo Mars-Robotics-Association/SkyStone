@@ -46,6 +46,7 @@ public class SimpleFieldNavigation
     private double XCurrentPos = 0;
     private double YCurrentPos = 0;
 
+
     public SimpleFieldNavigation(OpMode setOpmode, boolean useOdWheels)
     {
         this.opmode = setOpmode;
@@ -122,8 +123,12 @@ public class SimpleFieldNavigation
 
             //CODE FOR PID DRIVE CORRECTION
             double offset = PID.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), pCoefficient, 0, 0); //good
-            Bot.MoveAtAngleTurning(Bot.TargetAngle, Bot.TargetSpeed, true, 0, false, offset);
-            //Bot.ApplyTurnOffsetUsingEncoders(offset);
+            if(useOdometryWheels) {
+                Bot.MoveAtAngleTurning(Bot.TargetAngle, Bot.TargetSpeed, true, 0, false, offset);
+            }
+            else {
+                Bot.ApplyTurnOffsetUsingEncoders(offset);
+            }
 
             opmode.telemetry.addData("Robot Angle ", Bot.GetRobotAngle());
             opmode.telemetry.addData("Target Angle ", Bot.TargetAngle);
@@ -132,7 +137,7 @@ public class SimpleFieldNavigation
         else //Stop
         {
             opmode.telemetry.addData("Not close enough: ", false);
-            //Bot.StopAndResetEncoders();
+            Bot.StopAndResetEncoders();
             //Bot.RotateTowardsAngle(TargetRot, 0.5);
             //Rotating = true;
             Navigating = false;
@@ -234,7 +239,7 @@ public class SimpleFieldNavigation
 
     public void GoRight(double distance, double speed)
     {
-        //Bot.GoRightWithEncoder(speed, distance);
+        Bot.GoRightWithEncoder(speed, distance);
         pCoefficient = 0.05;
         Navigating = true;
         Rotating = false;
@@ -242,7 +247,7 @@ public class SimpleFieldNavigation
 
     public void GoForward(double distance, double speed)
     {
-        //Bot.GoForwardWithEncoder(speed, distance);
+        Bot.GoForwardWithEncoder(speed, distance);
         pCoefficient = 0.01;
         Navigating = true;
         Rotating = false;
