@@ -194,11 +194,11 @@ public class CustomChasisTeleop extends OpMode
             arm.IntakeOff();
         }
 
-        if(gamepad2.right_stick_y > 0.4)//move lift up
+        if(gamepad2.right_stick_y < -0.4)//move lift up
         {
             arm.LiftUp();
         }
-        else if(gamepad2.right_stick_y < -0.4)//move lift down
+        else if(gamepad2.right_stick_y >0.4)//move lift down
         {
             arm.LiftDown();
         }
@@ -223,13 +223,13 @@ public class CustomChasisTeleop extends OpMode
             arm.LiftStopVertical();
         }
 
-        if(gamepad2.left_stick_y<-0.4  && !ArmRetractStop.isPressed())////extend arm
+        if(gamepad2.left_stick_y>0.4  && !ArmRetractStop.isPressed())////extend arm
         {
             arm.LiftRetract();
             telemetry.addData("should","move  retract");
         }
 
-        else if (gamepad2.left_stick_y>0.4 && !ArmUpStop.isPressed())//retract arm
+        else if (gamepad2.left_stick_y<-0.4 && !ArmUpStop.isPressed())//retract arm
         {
             arm.LiftExtend();
             telemetry.addData("should","move  extend");
