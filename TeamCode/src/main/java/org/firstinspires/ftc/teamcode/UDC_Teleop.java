@@ -25,17 +25,17 @@ public class UDC_Teleop
     OpMode opmode;
     public boolean headlessMode = false;
 
-    boolean rotatedREVHub = false;
+    boolean rotatedRobot = false;
 
-    public UDC_Teleop(OpMode thatopmode, boolean rotateREVHub)
+    public UDC_Teleop(OpMode thatopmode, boolean rotatedRobot)
     {
         opmode = thatopmode;
-        rotatedREVHub = rotateREVHub;
+        this.rotatedRobot = rotatedRobot;
     }
 
     public void Init()
     {
-        Bot = new SkyStoneBot(opmode, rotatedREVHub);
+        Bot = new SkyStoneBot(opmode, rotatedRobot);
         Bot.Init();
         angleFollower = new PIDAngleFollower();
     }

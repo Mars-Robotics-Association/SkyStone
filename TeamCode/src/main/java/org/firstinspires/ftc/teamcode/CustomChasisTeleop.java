@@ -34,7 +34,7 @@ public class CustomChasisTeleop extends OpMode
     {
         Jc = new JoystickCalc(this, 180);//was 180
 
-        Teleop = new UDC_Teleop(this, false);
+        Teleop = new UDC_Teleop(this, true);
         Teleop.Init();
 
         arm = new ArmAttachmentCustom(this);
