@@ -40,6 +40,28 @@ public class Auto_Zone_Red extends LinearOpMode {
         sleep(500);
         GoForward(-31,0.2);
         GoRight(5,0.2);
+        sleep(5000);
+
+
+
+        //begin line finding
+
+        nav.GoRight(-1000, 0.2);
+        while (Math.abs(RedHue - colorSensor.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensor.returnHue()) > HueThreshold)
+        {
+            nav.Loop();
+            telemetry.addData("looping1: ", true);
+            telemetry.addData("Hue: ", colorSensor.returnHue());
+            telemetry.update();
+        }
+
+        //Stops all
+        nav.StopAll();
+
+        //Brakes
+        nav.SetBrakePos();
+        nav.Brake(1);
+
 
         //Block: Go forwards to the line
 
