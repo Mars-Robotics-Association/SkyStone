@@ -33,6 +33,7 @@ public class Auto_Zone_Red extends LinearOpMode {
 
 
         fgrabber.FoundationGrabUp();
+        GoRight(16,0.2);
         GoForward(30,0.2);
         sleep(500);
         fgrabber.FoundationGrabDown();
