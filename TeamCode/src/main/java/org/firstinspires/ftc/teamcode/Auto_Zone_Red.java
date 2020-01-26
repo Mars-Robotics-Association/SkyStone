@@ -20,6 +20,8 @@ public class Auto_Zone_Red extends LinearOpMode {
         fgrabber = new FoundationGrabber(this);
         nav.Init();
         fgrabber.Init();
+        colorSensor = new ColorSensor(this, "colorSensorGround");
+        colorSensor.Init();
 
         //forward 30 in
         // back 31
@@ -33,20 +35,20 @@ public class Auto_Zone_Red extends LinearOpMode {
 
 
         fgrabber.FoundationGrabUp();
-        GoRight(16,0.2);
-        GoForward(30,0.2);
+        GoRight(-16,0.2);
+        GoForward(-30,0.2);
         sleep(500);
         fgrabber.FoundationGrabDown();
         sleep(500);
-        GoForward(-31,0.2);
-        GoRight(5,0.2);
+        GoForward(31,0.2);
+        GoRight(-5,0.2);
         sleep(5000);
 
 
 
         //begin line finding
 
-        nav.GoRight(-1000, 0.2);
+        nav.GoRight(1000, 0.2);
         while (Math.abs(RedHue - colorSensor.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensor.returnHue()) > HueThreshold)
         {
             nav.Loop();

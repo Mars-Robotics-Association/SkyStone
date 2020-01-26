@@ -157,6 +157,9 @@ public class GripperTetrix implements Attachment{
 
     public void GripperRotateUpDown(double positionleft, double positionright)
     {
+
+
+
         GripperUpDownRotateLeft.setPosition(positionleft);
         GripperUpDownRotateRight.setPosition(positionright);
      }
