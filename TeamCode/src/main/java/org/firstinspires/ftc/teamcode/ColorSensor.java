@@ -32,6 +32,12 @@ public class ColorSensor
         return hsvValues[0];
     }
 
+    public double returnLightness()
+    {
+        runSample();
+        return hsvValues[2];
+    }
+
     public void Init()
     {
         // Get a reference to the RelativeLayout so we can later change the background
