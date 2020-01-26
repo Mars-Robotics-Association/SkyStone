@@ -20,8 +20,8 @@ public class Auto_Encoder_Testing extends LinearOpMode
         nav.Start();
         telemetry.addData("Status", "Initialized");
 
-        //Block: Go sideways 10 inches
-        nav.GoForward(50, 0.4);
+        //Block: Go forwards 20 inches
+        nav.GoForward(20, 0.4);
         while (!nav.CheckIfAtTargetDestination())
         {
             nav.Loop();
@@ -36,7 +36,7 @@ public class Auto_Encoder_Testing extends LinearOpMode
         //Brakes
         nav.Brake(1);
 
-        sleep(500);
+        sleep(5000);
 
     }
 }

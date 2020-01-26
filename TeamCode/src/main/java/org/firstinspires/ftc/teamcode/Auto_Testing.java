@@ -16,31 +16,39 @@ Goes forwards to a blue or red line and then brakes
 public class Auto_Testing extends LinearOpMode {
 
     public SimpleFieldNavigation nav = null;
+    public ArmAttachmentCustom arm = null;
 
     @Override
-    public void runOpMode() {
+    public void runOpMode()
+    {
         nav = new SimpleFieldNavigation(this);
         nav.Init();
+
+        arm = new ArmAttachmentCustom(this);
+        arm.Init();
 
         waitForStart();
 
         nav.Start();
         telemetry.addData("Status", "Initialized");
 
-        //Block: Go sideways 10 inches
-        nav.GoRight(1000, 0.4);
-        while (!nav.CheckIfAtTargetDestination())
+        arm.VerticalGoToPosition(-300);
+        while (!arm.VerticalIsAtTargetPos())
         {
-            nav.Loop();
-            telemetry.addData("looping1: ", true);
-            telemetry.update();
+            telemetry.addData("Arm moving: ", true);
+            arm.VerticalUpdateBreakPos();
         }
+        arm.LiftStopVertical();
+
+        telemetry.update();
 
         //Stops all
         nav.StopAll();
 
         //Brakes
-        nav.SetBrakePos();
         nav.Brake(1);
+
+        sleep(500);
+
     }
 }

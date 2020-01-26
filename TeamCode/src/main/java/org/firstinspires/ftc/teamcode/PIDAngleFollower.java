@@ -9,6 +9,11 @@ public class PIDAngleFollower
         double error = targetAngle - currentAngle; //difference between the target and actual angle (positive if going right)
         double correction = error * pCoefficient + dCoefficient * (error/Math.abs(error)); //Proportional control
 
+        if(!(correction > 0) && !(correction < 0))
+        {
+            correction = 0;
+        }
+
         return correction;
     }
 }

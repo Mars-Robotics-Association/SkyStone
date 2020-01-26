@@ -102,7 +102,7 @@ public class SimpleFieldNavigation
 
         if(!Navigating && !Rotating)//stop if shouldn't do anything
         {
-            Bot.Brake(1);
+            //Bot.Brake(1);
         }
     }
 
@@ -116,7 +116,7 @@ public class SimpleFieldNavigation
             opmode.telemetry.addData("Not close enough: ", true);
 
             //CODE FOR PID DRIVE CORRECTION
-            double offset = PID.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), pCoefficient, 0, 0); //good
+            double offset = PID.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), 0.01 , 0, 0); //good
             Bot.ApplyTurnOffsetUsingEncoders(offset);
 
             opmode.telemetry.addData("Robot Angle ", Bot.GetRobotAngle());

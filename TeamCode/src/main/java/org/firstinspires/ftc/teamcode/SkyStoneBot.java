@@ -27,8 +27,8 @@ public class SkyStoneBot implements Robot
     //ENCODER MOVEMENT
 
 
-    private double EncoderTicksForward = 112;//ticks for one inch
-    private double EncoderTicksSideways = 112;//ticks for one inch
+    private double EncoderTicksForward = 1000/22.82;//ticks for one inch
+    private double EncoderTicksSideways = 1000/28.19;//ticks for one inch
     private int encodedDistance = 0;
 
     //Encoder End

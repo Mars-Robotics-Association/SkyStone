@@ -92,12 +92,26 @@ public class ArmAttachmentCustom implements Attachment {
     {
         ArmVertical.setTargetPosition(target);
         ArmVertical.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        ArmVertical.setPower(0.5);
         VerticalsRestingPos = ArmVertical.getCurrentPosition();
     }
 
+    public void VerticalUpdateBreakPos()
+    {
+        VerticalsRestingPos = ArmVertical.getCurrentPosition();
+    }
 
-
-
+    public boolean VerticalIsAtTargetPos()
+    {
+        if(Math.abs(ArmVertical.getTargetPosition() - ArmVertical.getCurrentPosition()) < 10)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     public void LiftExtend () {
         if(GoOut) {
@@ -134,14 +148,6 @@ public class ArmAttachmentCustom implements Attachment {
     public void LiftStopOut(){
         GoOut=false;
     }
-
-
-
-
-
-
-
-
 
     public void IntakeReverse()
     {
