@@ -40,19 +40,21 @@ public class Auto_Zone_Red extends LinearOpMode {
         sleep(500);
         fgrabber.FoundationGrabDown();
         sleep(500);
-        GoForward(31,0.4);
+
+        GoForward(31,0.2);
         sleep(1000);
         nav.RotateTo(0,0.4);
-        sleep(4000);
-        GoForward(4,0.3);
+        sleep(1000);
+        nav.GoForward(4,0.6);
+        sleep(1000);
 
-        GoRight(-12,0.4);
-        GoForward(2,0.3);
+       // GoRight(-12,0.4);
+        //GoForward(2,0.3);
 
         fgrabber.FoundationGrabUp();
 
 
-        GoRight(12, 0.4);
+        GoRight(12, 0.6);
 
 
         //begin line finding
