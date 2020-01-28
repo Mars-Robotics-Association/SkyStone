@@ -14,7 +14,7 @@ public class ColorSensor
     NormalizedColorSensor colorSensor;
     View relativeLayout;
     OpMode opMode;
-    String sensorName = "colorSensorGround";
+    String sensorName = "colorSensorCenter";
 
     // values is a reference to the hsvValues array.
     private float[] hsvValues = new float[3];
