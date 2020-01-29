@@ -13,8 +13,8 @@ public class TetrixChasisTeleop extends OpMode
 {
     private JoystickCalc Jc = null;
     public UDC_Teleop Teleop = null;
-    public ArmAttachmentTetrix arm;
-    GripperTetrix gripper;
+    public ArmAttachmentTetrix arm = null;
+    public GripperTetrix gripper = null;
     public FoundationGrabber grab = null;
 
 

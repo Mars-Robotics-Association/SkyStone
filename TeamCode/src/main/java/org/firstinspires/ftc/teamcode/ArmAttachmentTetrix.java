@@ -103,12 +103,12 @@ public class ArmAttachmentTetrix implements Attachment {
 
     public void LiftExtend ()
     {
-        ArmHorizontal.setPower(0.3*Hratio);
+        ArmHorizontal.setPower(0.4*Hratio);
     }
 
     public void LiftRetract ()
     {
-        ArmHorizontal.setPower(-0.2*Hratio);
+        ArmHorizontal.setPower(-0.4*Hratio);
 
     }
 
