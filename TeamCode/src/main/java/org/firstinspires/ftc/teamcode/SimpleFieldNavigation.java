@@ -83,6 +83,7 @@ public class SimpleFieldNavigation
     public void Loop()
     {
         Bot.Loop();
+        CurrentRot = Bot.GetRobotAngle();
 
         if(firstRound)
         {
@@ -183,6 +184,11 @@ public class SimpleFieldNavigation
     }
     public void SetBrakePos(){
         Bot.SetBrakePos();
+    }
+
+    public void ResetGyro()
+    {
+        Bot.OffsetGyro();
     }
 
     public boolean CheckCloseEnoughRotation()

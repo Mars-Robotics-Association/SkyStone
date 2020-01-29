@@ -32,13 +32,21 @@ public class Auto_Testing extends LinearOpMode {
         nav.Start();
         telemetry.addData("Status", "Initialized");
 
-        arm.VerticalGoToPosition(300);
-        while (!arm.VerticalIsAtTargetPos())
+        nav.RotateTo(90, 0.5);
+        while (!nav.CheckCloseEnoughRotation())
         {
-            telemetry.addData("Arm moving: ", true);
-            arm.VerticalUpdateBreakPos();
+            telemetry.addData("Rotating ", true);
+            telemetry.update();
         }
-        arm.LiftStopVertical();
+        nav.StopAll();
+
+        nav.RotateTo(0, 0.5);
+        while (!nav.CheckCloseEnoughRotation())
+        {
+            telemetry.addData("Rotating ", true);
+            telemetry.update();
+        }
+        nav.StopAll();
 
         telemetry.update();
 
