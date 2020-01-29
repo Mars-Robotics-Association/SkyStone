@@ -12,6 +12,7 @@ public class CustomChasisTeleop extends OpMode
     public ArmAttachmentCustom arm = null;
     public FoundationGrabber grab = null;
     public GripperCustom gripper = null;
+    public TapeMeasure tape =null;
     //public SkyStoneBot bot = null;
 
 
@@ -25,6 +26,8 @@ public class CustomChasisTeleop extends OpMode
     private int[] TotalMotorClicks = {0,0,0,0};
     boolean FirstRun = true;
     boolean stopping = false;
+    double tapeMeasureExtensionTime = 0;
+    boolean tapeMeasureExtending = false;
 
     private RevTouchSensor ArmRetractStop;
     private RevTouchSensor ArmUpStop;
@@ -45,6 +48,9 @@ public class CustomChasisTeleop extends OpMode
 
         grab = new FoundationGrabber(this);
         grab.Init();
+
+        tape = new TapeMeasure(this);
+        tape.Init();
 
         ArmRetractStop = hardwareMap.get(RevTouchSensor.class, "ArmRetractStop");
         ArmUpStop = hardwareMap.get(RevTouchSensor.class, "ArmUpStop");
@@ -109,6 +115,21 @@ public class CustomChasisTeleop extends OpMode
         {
             grab.FoundationGrabDown();
         }
+
+
+        if (gamepad1.dpad_down&&(getRuntime()-tapeMeasureExtensionTime<2)){
+            tape.TapeMeasureMotorOn();
+            if(!tapeMeasureExtending){
+                tapeMeasureExtensionTime=getRuntime();
+            }
+            tapeMeasureExtending =true;
+        }
+        else{
+            tape.TapeMeasureMotorOff();
+            tapeMeasureExtensionTime=getRuntime();
+        }
+
+
 
         if(gamepad1.dpad_up){
             int fleft = Teleop.getfleftudc();
