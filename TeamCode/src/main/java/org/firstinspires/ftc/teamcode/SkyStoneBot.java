@@ -103,7 +103,7 @@ public class SkyStoneBot implements Robot
         {
             RobotAngle = Angles.firstAngle - RobotAngleOffset;
         }
-        else //use other gyro orientation (for custom bot)
+        else //use other gyro orientation (for tetrix bot)
         {
             RobotAngle = Angles.firstAngle - RobotAngleOffset - 180;
         }

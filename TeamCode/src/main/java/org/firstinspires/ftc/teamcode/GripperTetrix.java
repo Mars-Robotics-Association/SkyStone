@@ -115,8 +115,8 @@ public class GripperTetrix implements Attachment{
     public void GripperOpen (){
 
 
-            GripperR.setPosition(0.6);
-            GripperL.setPosition(0.1);
+            GripperR.setPosition(0.45);
+            GripperL.setPosition(0.35);
 
     }
 
