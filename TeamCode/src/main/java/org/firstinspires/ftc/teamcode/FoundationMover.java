@@ -54,7 +54,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 
-public class GripperCustom implements Attachment{
+public class FoundationMover implements Attachment{
 
 
     static double GripperLAngle = 0;
@@ -68,7 +68,7 @@ public class GripperCustom implements Attachment{
 
     OpMode opmode;
 
-    public GripperCustom(OpMode thatopmode){
+    public FoundationMover(OpMode thatopmode){
         opmode = thatopmode;
     }
 
