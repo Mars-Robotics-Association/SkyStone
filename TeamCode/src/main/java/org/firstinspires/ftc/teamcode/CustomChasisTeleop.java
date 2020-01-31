@@ -223,7 +223,7 @@ public class CustomChasisTeleop extends OpMode
         {
             arm.LiftDown();
         }
-        else if(gamepad1.dpad_up) //placeholder for move to position
+        /*else if(gamepad1.dpad_up) //placeholder for move to position
         {
             arm.VerticalGoToPosition(100);
         }
@@ -238,7 +238,7 @@ public class CustomChasisTeleop extends OpMode
         else if(gamepad1.dpad_right) //placeholder for move to position
         {
             arm.VerticalGoToPosition(400);
-        }
+        }*/
         else//stop the arm from moving up or down
         {
             arm.LiftStopVertical();

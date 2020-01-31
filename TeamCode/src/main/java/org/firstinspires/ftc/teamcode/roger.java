@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import java.io.File;
-
+@Disabled
 @TeleOp(name="roger", group="Iterative Opmode")
 public class roger extends OpMode {
     private File silverFile = null;

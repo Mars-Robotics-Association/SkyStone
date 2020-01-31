@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
 import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 import com.qualcomm.robotcore.hardware.SwitchableLight;
 
-
+@Disabled
 @Autonomous(name = "Auto_Depot_Blue", group = "Autonomous")
 public class Auto_Depot_Blue extends LinearOpMode {
 

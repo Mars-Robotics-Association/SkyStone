@@ -4,6 +4,7 @@ import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+@Disabled
 @TeleOp(name="TEST-CustomChasisTeleop", group="Iterative Opmode")
 public class TestCustomChassis extends OpMode
 {
