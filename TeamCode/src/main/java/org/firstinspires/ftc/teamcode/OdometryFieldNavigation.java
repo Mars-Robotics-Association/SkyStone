@@ -1,18 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
-/*
-Class that completes the following goals:
-    >Allows code to set destinations for the robot
-    >Contains a coroutine for navigating to destination
-    >Contains a function/method for getting the rotation at game start
-    >Eventually allows for obstacle avoidance
- */
-
-
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-
-public class SimpleFieldNavigation
+public class OdometryFieldNavigation
 {
     private double closeEnoughThresholdDist = 10; //in inches
     private double closeEnoughThresholdRot = 5; //in degrees
@@ -26,6 +16,7 @@ public class SimpleFieldNavigation
     public boolean Rotating = false;
 
     private OpMode opmode;
+    private OdometryWheels odometryWheels;
 
     public boolean firstRound = true;
 
@@ -45,7 +36,7 @@ public class SimpleFieldNavigation
     private double YCurrentPos = 0;
 
 
-    public SimpleFieldNavigation(OpMode setOpmode)
+    public OdometryFieldNavigation(OpMode setOpmode)
     {
         this.opmode = setOpmode;
     }
@@ -62,16 +53,12 @@ public class SimpleFieldNavigation
         }
     }
 
-    public boolean CheckIfAtTargetDestination()
-    {
-        return Bot.CheckIfEncodersCloseEnough();
-    }
-
     public void Init()
     {
         Bot = new SkyStoneBot(opmode, false);
         Bot.Init();
         PID = new PIDAngleFollower();
+        odometryWheels = new OdometryWheels(opmode);
     }
 
     public void Start()
@@ -83,7 +70,6 @@ public class SimpleFieldNavigation
     public void Loop()
     {
         Bot.Loop();
-        CurrentRot = Bot.GetRobotAngle();
 
         if(firstRound)
         {
@@ -103,22 +89,26 @@ public class SimpleFieldNavigation
 
         if(!Navigating && !Rotating)//stop if shouldn't do anything
         {
-            //Bot.Brake(1);
+            Bot.Brake(1);
         }
     }
 
     void NavigationControl()
     {
-        boolean closeEnough = CheckIfAtTargetDestination();
+        boolean closeEnough = false;
+        closeEnough = CheckCloseEnoughOdometry(odometryWheels.GetCurrentData()[0], odometryWheels.GetCurrentData()[1]);
+
         opmode.telemetry.addData("Close enough: ", closeEnough);
 
         if (!closeEnough) //If not close to target
         {
             opmode.telemetry.addData("Not close enough: ", true);
+            opmode.telemetry.addData("Odometry X: ", odometryWheels.GetCurrentData()[0]);
+            opmode.telemetry.addData("Odometry Y: ", odometryWheels.GetCurrentData()[1]);
 
             //CODE FOR PID DRIVE CORRECTION
-            double offset = PID.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), 0.01 , 0, 0); //good
-            Bot.ApplyTurnOffsetUsingEncoders(offset);
+            double offset = PID.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), pCoefficient, 0, 0); //good
+            Bot.MoveAtAngleTurning(Bot.TargetAngle, Bot.TargetSpeed, true, 0, false, offset);
 
             opmode.telemetry.addData("Robot Angle ", Bot.GetRobotAngle());
             opmode.telemetry.addData("Target Angle ", Bot.TargetAngle);
@@ -147,6 +137,50 @@ public class SimpleFieldNavigation
         }
     }
 
+    public void MoveXandY(double XDistance, double YDistance, double speed)
+    {
+        double angle = CalculateMoveAngle(XDistance, YDistance);
+        Bot.TargetAngle = angle;
+        Bot.TargetSpeed = speed;
+        double offset = PID.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), 0.01, 0, 0);
+        XTargetPos = XDistance;
+        YTargetPos = YDistance;
+        Bot.MoveAtAngleTurning(angle, speed, true, 0, false, offset);
+        Navigating = true;
+        Rotating = false;
+    }
+
+    public double CalculateMoveAngle(double X, double Y)
+    {
+        //Calculate angle of joystick
+        double baring = Math.atan2(Y, X); //get measurement of joystick angle
+        baring = Math.toDegrees(baring);
+        baring -= 90;
+        if(baring < 0)//convert degrees to positive if needed
+        {
+            baring = 360 + baring;
+        }
+        return baring;
+    }
+
+    public boolean CheckCloseEnoughOdometry(double CurrentX, double CurrentY)
+    {
+        XCurrentPos = CurrentX;
+        YCurrentPos = CurrentY;
+
+        //check if the motors are close enough to their target to move on
+        boolean closeEnoughX = Math.abs(XCurrentPos - XTargetPos) < 20;
+        boolean closeEnoughY = Math.abs(YCurrentPos - YTargetPos) < 20;
+        if(closeEnoughX && closeEnoughY)//if all are, return true
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public void RotateTo(double angle, double speed)
     {
         StopAll();
@@ -162,33 +196,12 @@ public class SimpleFieldNavigation
         Rotating = false;
     }
 
-    public void GoRight(double distance, double speed)
-    {
-        Bot.GoRightWithEncoder(speed, distance);
-        pCoefficient = 0.05;
-        Navigating = true;
-        Rotating = false;
-    }
-
-    public void GoForward(double distance, double speed)
-    {
-        Bot.GoForwardWithEncoder(speed, distance);
-        pCoefficient = 0.01;
-        Navigating = true;
-        Rotating = false;
-    }
-
     public void Brake(double power){
         Bot.SetBrakePos();
         Bot.Brake(power);
     }
     public void SetBrakePos(){
         Bot.SetBrakePos();
-    }
-
-    public void ResetGyro()
-    {
-        Bot.OffsetGyro();
     }
 
     public boolean CheckCloseEnoughRotation()
@@ -199,5 +212,4 @@ public class SimpleFieldNavigation
         }
         else return false;
     }
-
 }

@@ -2,20 +2,27 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.CRServo;
 
 public class ArmAttachmentCustom implements Attachment {
-    private DcMotor ArmHorizontal = null;
     private DcMotor ArmVertical = null;
     private DcMotor ArmLeft = null;
     private DcMotor ArmRight = null;
     private DcMotor LeftIntake = null;
     private DcMotor RightIntake = null;
+    private Servo LiftExtendLeft = null;
+    private Servo LiftExtendRight = null;
 
     double Vratio;
     double Hratio;
+    boolean GoIn = true;
+    boolean GoOut = true;
+
+
     OpMode opmode;
 
-    int VerticalsRestingPos;//hi
+    int VerticalsRestingPos;
 
     public GripperTetrix gripper;
 
@@ -25,8 +32,10 @@ public class ArmAttachmentCustom implements Attachment {
 
     @Override
     public void Init() {
-        ArmHorizontal = opmode.hardwareMap.dcMotor.get("ArmHorizontal");
+        LiftExtendLeft = opmode.hardwareMap.servo.get("LiftExtendLeft");
+        LiftExtendRight = opmode.hardwareMap.servo.get("LiftExtendRight");
         ArmVertical = opmode.hardwareMap.dcMotor.get("ArmVertical");
+
 
         LeftIntake = opmode.hardwareMap.dcMotor.get("LeftIntake");
         RightIntake = opmode.hardwareMap.dcMotor.get("RightIntake");
@@ -74,21 +83,71 @@ public class ArmAttachmentCustom implements Attachment {
         ArmVertical.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
-    public void LiftExtend () {
-        ArmHorizontal.setPower(1*Hratio);
+    public int VerticalPosition ()
+    {
+        return ArmVertical.getCurrentPosition();
     }
 
-    public void LiftRetract ()
+    public void VerticalGoToPosition(int target)
     {
-        ArmHorizontal.setPower(-1*Hratio);
+        ArmVertical.setTargetPosition(target);
+        ArmVertical.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        ArmVertical.setPower(0.5);
+        VerticalsRestingPos = ArmVertical.getCurrentPosition();
+    }
 
+    public void VerticalUpdateBreakPos()
+    {
+        VerticalsRestingPos = ArmVertical.getCurrentPosition();
+    }
+
+    public boolean VerticalIsAtTargetPos()
+    {
+        if(Math.abs(ArmVertical.getTargetPosition() - ArmVertical.getCurrentPosition()) < 10)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void LiftExtend () {
+        if(GoOut) {
+            LiftExtendLeft.setPosition(0.9);
+            LiftExtendRight.setPosition(0.1);
+            GoIn=true;
+        }
+        else{
+            LiftStopHorizontal();
+        }
+    }
+
+    public void LiftRetract () {
+        if(GoIn) {
+            LiftExtendLeft.setPosition(0.1);
+            LiftExtendRight.setPosition(0.9);
+            GoOut=true;
+        }
+        else{
+            LiftStopHorizontal();
+        }
     }
 
     public void LiftStopHorizontal ()
     {
-        ArmHorizontal.setPower(0*Hratio);
+        LiftExtendLeft.setPosition(0.5);
+        LiftExtendRight.setPosition(0.5);
     }
 
+    public void LiftStopIn(){
+        GoIn=false;
+    }
+
+    public void LiftStopOut(){
+        GoOut=false;
+    }
 
     public void IntakeReverse()
     {
@@ -106,5 +165,10 @@ public class ArmAttachmentCustom implements Attachment {
     {
         LeftIntake.setPower(0);
         RightIntake.setPower(0);
+    }
+
+    public int getarmval(){
+        int armval = ArmVertical.getCurrentPosition();
+        return armval;
     }
 }

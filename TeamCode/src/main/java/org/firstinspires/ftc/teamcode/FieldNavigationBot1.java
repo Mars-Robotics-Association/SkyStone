@@ -107,7 +107,7 @@ public class FieldNavigationBot1
             else { //Stop and rotate to target
                 opmode.telemetry.addData("Not close enough: ", false);
                 Bot.StopMotors();
-                //Bot.RotateTo(TargetRot, 0.5);
+                //Bot.RotateTowardsAngle(TargetRot, 0.5);
                 //Rotating = true;
                 //Navigating = false;
             }

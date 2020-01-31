@@ -5,11 +5,14 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 public class UDC_Teleop
 {
      SkyStoneBot Bot = null;
+     PIDAngleFollower angleFollower = null;
 
      double BaseDriveSpeedMultiplier = 1;
      double BaseTurnSpeedMultiplier = 1;
      private double DriveSpeedMultiplier = 1 ;
      private double TurnSpeedMultiplier = 1;
+     private double DriveAngle;
+     private boolean DriveAngleReseted = false;
 
     private double JoystickThreshold = 0.2;
     double turnSpeed;
@@ -22,18 +25,19 @@ public class UDC_Teleop
     OpMode opmode;
     public boolean headlessMode = false;
 
-    boolean rotatedREVHub = false;
+    boolean rotatedRobot = false;
 
-    public UDC_Teleop(OpMode thatopmode, boolean rotateREVHub)
+    public UDC_Teleop(OpMode thatopmode, boolean rotatedRobot)
     {
         opmode = thatopmode;
-        rotatedREVHub = rotateREVHub;
+        this.rotatedRobot = rotatedRobot;
     }
 
     public void Init()
     {
-        Bot = new SkyStoneBot(opmode, rotatedREVHub);
+        Bot = new SkyStoneBot(opmode, rotatedRobot);
         Bot.Init();
+        angleFollower = new PIDAngleFollower();
     }
 
     public void Start()
@@ -76,9 +80,10 @@ public class UDC_Teleop
         TurnSpeedMultiplier = BaseTurnSpeedMultiplier/2;
     }
 
-    public void brake()
+    public void brake(double power)
     {
-        Bot.Brake();
+        Bot.Brake(power);
+        DriveAngleReseted = false;
     }
 
     public void forthSpeed()
@@ -89,6 +94,12 @@ public class UDC_Teleop
 
     public void chooseDirection(double rightStickX, double leftStickBaring, double leftStickPower) //Move
     {
+        if(!DriveAngleReseted)//reset the target drive angle
+        {
+            DriveAngle = Bot.GetRobotAngle();
+            DriveAngleReseted = true;
+        }
+
         //if we need to turn while moving, choose direction
         boolean turnRight = false;
         if (rightStickX > JoystickThreshold)
@@ -100,8 +111,19 @@ public class UDC_Teleop
             turnRight = false;
         }
 
+        //Get an offset of the robot so that it can stay on track:
+        double offset = angleFollower.GetOffsetToAdd(DriveAngle, Bot.GetRobotAngle(), 0.01, 0, 0);
+        opmode.telemetry.addData("Target Angle: ", DriveAngle);
+        opmode.telemetry.addData("Current Angle: ", Bot.GetRobotAngle());
+        opmode.telemetry.addData("Turn offset: ", offset);
+
+        if (!(offset > 0) && !(offset < 0))
+        {
+            offset = 0;
+        }
+
         //Make robot move at the angle of the left joystick at the determined speed while applying a turn to the value of the right joystick
-        Bot.MoveAtAngleTurning(leftStickBaring, DriveSpeedMultiplier * leftStickPower, turnRight, turnSpeed*TurnSpeedMultiplier, headlessMode);
+        Bot.MoveAtAngleTurning(leftStickBaring, DriveSpeedMultiplier * leftStickPower, turnRight, 0, headlessMode, offset);
     }
 
     public void RawForwards(double speed)
@@ -117,19 +139,39 @@ public class UDC_Teleop
     public void turnRight() //Turn Right
     {
         Bot.RawTurn(true, turnSpeed*TurnSpeedMultiplier/2);
+        DriveAngleReseted = false;
     }
 
 
     public void turnLeft() //Turn Left
     {
         Bot.RawTurn(false, turnSpeed*TurnSpeedMultiplier/2);
+        DriveAngleReseted = false;
     }
 
     public void stopWheels() //STOP
     {
         Bot.StopMotors();
+        Bot.SetBrakePos();
+        DriveAngleReseted = false;
     }
-    public void FoundationGrab(double desiredAngle){
-        Bot.FoundationGrab(desiredAngle);
+   // public void FoundationGrab(double desiredAngle){ Bot.FoundationGrab(desiredAngle); }
+    public int getfleftudc(){
+        int fleft = Bot.getfleft();
+        return fleft;
     }
+    public int getfrightudc(){
+        int fright = Bot.getfright();
+        return fright;
+    }
+    public int getrleftudc(){
+        int rleft = Bot.getrleft();
+        return rleft;
+    }
+    public int getrrightudc(){
+        int rright = Bot.getrright();
+        return rright;
+    }
+
+
 }

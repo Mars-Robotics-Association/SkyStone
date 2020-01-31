@@ -1,12 +1,13 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.vuforia.Vec3F;
 
-
+@Disabled
 //Test Program for using a linear system of navigation with the WaypointManager
 @Autonomous(name = "SquareAutonomous", group = "Autonomous")
 public class SquareAutonomous extends LinearOpMode {

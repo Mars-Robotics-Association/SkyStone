@@ -1,17 +1,22 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.ftccommon.SoundPlayer;
 import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.TouchSensor;
+
+import java.io.File;
 
 @TeleOp(name="TetrixChasisTeleop", group="Iterative Opmode")
 public class TetrixChasisTeleop extends OpMode
 {
     private JoystickCalc Jc = null;
     public UDC_Teleop Teleop = null;
-    public ArmAttachmentTetrix arm;
-    GripperTetrix gripper;
+    public ArmAttachmentTetrix arm = null;
+    public GripperTetrix gripper = null;
+    public FoundationGrabber grab = null;
+
 
     private RevTouchSensor armUpStop;
 
@@ -28,10 +33,17 @@ public class TetrixChasisTeleop extends OpMode
     private int[] PreviousMotorPositions = {0,0,0,0};
     private int[] TotalMotorClicks = {0,0,0,0};
     boolean FirstRun = true;
+    private File silverFile;
+    private String soundPath = "/FIRST/blocks/sounds";
+
 
     @Override
     public void init()
     {
+
+        File silverFile = new File("/sdcard" + soundPath + "/silver.wav");
+
+
         telemetry.addData("start",5 );
         telemetry.update();
         gripperPosition = 0.25;
@@ -42,6 +54,9 @@ public class TetrixChasisTeleop extends OpMode
 
         Teleop = new UDC_Teleop(this, false);
         Teleop.Init();
+
+        grab = new FoundationGrabber(this);
+        grab.Init();
 
         arm = new ArmAttachmentTetrix(this);
         arm.Init();
@@ -73,9 +88,27 @@ public class TetrixChasisTeleop extends OpMode
         double turnSpeed = Math.abs(Jc.rightStickX);
 
         //Reset Gyro if needed
+        if(gamepad1.dpad_down){
+            SoundPlayer.getInstance().startPlaying(hardwareMap.appContext, silverFile);
+
+            telemetry.addData("playing sound","");
+        }
+
         if(gamepad1.x)
         {
             Teleop.gyroOffset();
+        }
+
+        //lift test
+        if(gamepad1.a)
+        {
+
+        }
+
+        //lift test
+        if(gamepad1.b)
+        {
+
         }
 
         //SwitchModes
@@ -92,9 +125,9 @@ public class TetrixChasisTeleop extends OpMode
 
         //switch between normal and slow modes
         if(gamepad1.left_bumper) { Teleop.fullSpeed(); }
-        if(gamepad1.right_bumper) { Teleop.halfSpeed(); }
-        if(gamepad1.left_trigger>0.2) { Teleop.brake(); }
-        if(gamepad1.right_trigger>0.2) { Teleop.forthSpeed(); }
+        if(gamepad1.right_bumper) { Teleop.threeFourthsSpeed();}
+        if(gamepad1.left_trigger>0.2) { Teleop.halfSpeed();  }
+        if(gamepad1.right_trigger>0.2) {Teleop.brake(0.2); }
 
 
         if(gamepad2.x){
@@ -104,11 +137,25 @@ public class TetrixChasisTeleop extends OpMode
             //put down stone
         }
         if(gamepad2.left_stick_y>0.5){
-            Teleop.FoundationGrab(gamepad2.left_stick_y);
+            grab.FoundationGrab(gamepad2.left_stick_y);
         }
         if(gamepad2.left_stick_y<-0.5){
-            Teleop.FoundationGrab(gamepad2.left_stick_y);
+            grab.FoundationGrab(gamepad2.left_stick_y);
         }
+        if(gamepad1.dpad_up){
+            int fleft = Teleop.getfleftudc();
+            int fright = Teleop.getfrightudc();
+            int rleft = Teleop.getrleftudc();
+            int rright = Teleop.getrrightudc();
+            int armval = arm.getarmval();
+            telemetry.addData("front left wheel: ",fleft);
+            telemetry.addData("front right wheel: ",fright);
+            telemetry.addData("rear left wheel: ",rleft);
+            telemetry.addData("rear right wheel: ",rright);
+            telemetry.addData("arm vertical: ",armval);
+            telemetry.update();
+        }
+
 
         arm.Loop();
         ManageArmMovement();
@@ -217,10 +264,10 @@ public class TetrixChasisTeleop extends OpMode
 
     //GripperTetrix Management Methods
     public void closeGripper(){
-        gripper.GripperClose(1);
+        gripper.GripperClose();
     }
     public void openGripper(){
-        gripper.GripperOpen(1);
+        gripper.GripperOpen();
     }
 
     public void gripperLeft() {
@@ -249,9 +296,9 @@ public class TetrixChasisTeleop extends OpMode
     public void gripper0(){gripperPosition=0;}
 
     public void gripperOpenLeft(){
-        gripper.GripperOpenLeft(1);
+        gripper.GripperOpenLeft();
     }
     public void gripperOpenRight(){
-        gripper.GripperOpenRight(1);
+        gripper.GripperOpenRight();
     }
 }

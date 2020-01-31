@@ -64,7 +64,11 @@ public class GripperCustom implements Attachment{
     private Servo GripperL = null;
     private Servo GripperR = null;
     private Servo GripperRotate = null;
+    private Servo GripperUpDownR = null;
+    private Servo GripperUpDownL = null;
     private double gripperPosition = 0.5;
+    private double gripperVRPosition = 0.5;
+    private double gripperVLPosition = 0.5;
 
     OpMode opmode;
 
@@ -77,6 +81,8 @@ public class GripperCustom implements Attachment{
         GripperL= opmode.hardwareMap.servo.get("GripperL");
         GripperR= opmode.hardwareMap.servo.get("GripperR");
         GripperRotate= opmode.hardwareMap.servo.get("GripperRotate");
+        GripperUpDownR= opmode.hardwareMap.servo.get("GripperUpDownRotateR");
+        GripperUpDownL= opmode.hardwareMap.servo.get("GripperUpDownRotateL");
     }
 
     public void updateGrippers(){
@@ -147,6 +153,31 @@ public class GripperCustom implements Attachment{
         }
 
         GripperRotate.setPosition(gripperPosition);
+    }
+
+    public void GripperUpDownRotate(double percentToAdd)
+    {
+        gripperVRPosition += percentToAdd;
+        gripperVLPosition -= percentToAdd;
+        if(gripperVRPosition > 1)
+        {
+            gripperVRPosition = 1;
+        }
+        if(gripperVRPosition < 0)
+        {
+            gripperVRPosition = 0;
+        }
+        if(gripperVLPosition > 1)
+        {
+            gripperVLPosition = 1;
+        }
+        if(gripperVLPosition < 0)
+        {
+            gripperVLPosition = 0;
+        }
+
+        GripperUpDownR.setPosition(gripperVRPosition);
+        GripperUpDownL.setPosition(gripperVLPosition);
     }
 
 

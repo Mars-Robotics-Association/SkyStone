@@ -99,22 +99,26 @@ public class ArmAttachmentTetrix implements Attachment {
 
         ArmLeft.setTargetPosition(ArmLeftResting);
         ArmLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
     }
 
     public void LiftExtend ()
     {
-        ArmHorizontal.setPower(0.3*Hratio);
+        ArmHorizontal.setPower(0.4*Hratio);
     }
 
     public void LiftRetract ()
     {
-        ArmHorizontal.setPower(-0.2*Hratio);
+        ArmHorizontal.setPower(-0.4*Hratio);
 
     }
 
     public void LiftStopHorizontal ()
     {
         ArmHorizontal.setPower(0*Hratio);
+    }
+
+    public int getarmval(){
+        int armval = ArmVertical.getCurrentPosition();
+        return armval;
     }
 }
