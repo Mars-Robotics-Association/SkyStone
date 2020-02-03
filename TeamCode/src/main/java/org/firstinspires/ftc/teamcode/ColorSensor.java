@@ -5,13 +5,18 @@ import android.graphics.Color;
 import android.view.View;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
 import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 import com.qualcomm.robotcore.hardware.SwitchableLight;
 
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+
 public class ColorSensor
 {
     NormalizedColorSensor colorSensor;
+    DistanceSensor sensorDistance;
+
     View relativeLayout;
     OpMode opMode;
     String sensorName = "colorSensorCenter";
@@ -38,6 +43,11 @@ public class ColorSensor
         return hsvValues[2];
     }
 
+    public double returnDistanceCM()
+    {
+        return sensorDistance.getDistance(DistanceUnit.CM);
+    }
+
     public void Init()
     {
         // Get a reference to the RelativeLayout so we can later change the background
@@ -47,6 +57,7 @@ public class ColorSensor
 
         // Get a reference to our sensor object.
         colorSensor = opMode.hardwareMap.get(NormalizedColorSensor.class, sensorName);
+        sensorDistance = opMode.hardwareMap.get(DistanceSensor.class, sensorName);
 
         // If possible, turn the light on in the beginning (it might already be on anyway,
         // we just make sure it is if we can).

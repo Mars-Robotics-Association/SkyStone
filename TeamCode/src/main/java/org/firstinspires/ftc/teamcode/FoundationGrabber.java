@@ -77,4 +77,26 @@ public class FoundationGrabber implements Attachment {
         FoundationR.setPosition(1);
     }
 
+    public void FoundationGrabUpR()
+    {
+
+        FoundationR.setPosition(0);
+    }
+
+    public void FoundationGrabDownR()
+    {
+        FoundationR.setPosition(1);
+    }
+
+    public void FoundationGrabUpL()
+    {
+
+        FoundationL.setPosition(1);
+    }
+
+    public void FoundationGrabDownL()
+    {
+        FoundationL.setPosition(0);
+    }
+
 }

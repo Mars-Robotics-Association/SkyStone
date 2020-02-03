@@ -74,7 +74,7 @@ public class UDC_Teleop
         TurnSpeedMultiplier = BaseTurnSpeedMultiplier*3/4;
     }
 
-    public void halfSpeed()
+    public void quarterSpeed()
     {
         DriveSpeedMultiplier = BaseDriveSpeedMultiplier/2;
         TurnSpeedMultiplier = BaseTurnSpeedMultiplier/2;

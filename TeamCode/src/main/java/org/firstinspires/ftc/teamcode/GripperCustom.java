@@ -119,8 +119,8 @@ public class GripperCustom implements Attachment{
     }
 
     public void GripperClose(){
-        GripperR.setPosition(.45);//.35
-        GripperL.setPosition(.65);//.85
+        GripperR.setPosition(.35);//.35
+        GripperL.setPosition(.75);//.85
     }
 
     public void GripperCloseLeft(){

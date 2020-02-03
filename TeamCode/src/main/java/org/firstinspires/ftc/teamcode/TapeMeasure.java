@@ -40,7 +40,7 @@ public class TapeMeasure implements Attachment {
 
     public void TapeMeasureMotorOn () //Moves the lift up and resets the resting target for LiftStopVertical
     {
-        TapeMeasureMotor.setPower(1);
+        TapeMeasureMotor.setPower(-1);
     }
 
     public void TapeMeasureMotorOff () //Moves the lift down and resets the resting target for LiftStopVertical

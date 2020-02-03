@@ -38,7 +38,7 @@ public class Auto_Zone_Red extends LinearOpMode {
         GoRight(-18,0.8); //Line up with foundation
         GoForward(-30,0.6); //Go to foundation
         fgrabber.FoundationGrabDown(); //Grab foundation
-        sleep(500);
+        sleep(1000);
 
         //PULL BACK FOUNDATION
         GoForward(31,0.2);//Pull foundation back
@@ -60,9 +60,15 @@ public class Auto_Zone_Red extends LinearOpMode {
         sleep(1000);//wait 1 second
         nav.StopAll();//stop
 
+        nav.GoForward(40, 0.8);
+        sleep(1500);
+        nav.StopAll();
+
+        GoRight(-20, 0.8);
+
 
         //DRIVE TO THE LINE
-        nav.GoRight(100, 0.4);//begin driving
+        nav.GoRight(100, 0.3);//begin driving
         while (Math.abs(RedHue - colorSensor.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensor.returnHue()) > HueThreshold)//wait until the line is seen
         {
             nav.Loop();

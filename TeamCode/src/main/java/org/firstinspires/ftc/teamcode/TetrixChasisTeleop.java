@@ -4,7 +4,6 @@ import com.qualcomm.ftccommon.SoundPlayer;
 import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import java.io.File;
 
@@ -126,7 +125,7 @@ public class TetrixChasisTeleop extends OpMode
         //switch between normal and slow modes
         if(gamepad1.left_bumper) { Teleop.fullSpeed(); }
         if(gamepad1.right_bumper) { Teleop.threeFourthsSpeed();}
-        if(gamepad1.left_trigger>0.2) { Teleop.halfSpeed();  }
+        if(gamepad1.left_trigger>0.2) { Teleop.quarterSpeed();  }
         if(gamepad1.right_trigger>0.2) {Teleop.brake(0.2); }
 
 

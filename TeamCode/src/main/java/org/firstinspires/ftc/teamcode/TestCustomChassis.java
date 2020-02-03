@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -70,7 +69,7 @@ public class TestCustomChassis extends OpMode
         //switch between normal and slow modes
         if(gamepad1.left_bumper) { Teleop.fullSpeed(); }
         if(gamepad1.right_bumper) { Teleop.threeFourthsSpeed(); }
-        if(gamepad1.left_trigger>0.2) { Teleop.halfSpeed(); }
+        if(gamepad1.left_trigger>0.2) { Teleop.quarterSpeed(); }
 /*
         if(gamepad1.right_trigger>0.2) { Teleop.forthSpeed(); }
 */
