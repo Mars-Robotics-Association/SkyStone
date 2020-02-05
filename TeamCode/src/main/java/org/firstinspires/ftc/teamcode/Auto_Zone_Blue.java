@@ -90,7 +90,7 @@ public class Auto_Zone_Blue extends LinearOpMode {
 
 
     public void GoForward(double distance, double speed){
-        nav.GoForward(distance, 0.3);
+        nav.GoForward(distance, speed);
         while (!nav.CheckIfAtTargetDestination())
         {
             nav.Loop();
@@ -100,7 +100,7 @@ public class Auto_Zone_Blue extends LinearOpMode {
         nav.StopAll();
     }
     public void GoRight(double distance, double speed){
-        nav.GoRight(distance, 0.3);
+        nav.GoRight(distance, speed);
         while (!nav.CheckIfAtTargetDestination())
         {
             nav.Loop();

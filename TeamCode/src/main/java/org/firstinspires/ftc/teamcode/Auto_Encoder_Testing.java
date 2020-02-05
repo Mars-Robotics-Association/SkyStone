@@ -22,7 +22,7 @@ public class Auto_Encoder_Testing extends LinearOpMode
         telemetry.addData("Status", "Initialized");
 
         //Block: Go forwards 20 inches
-        nav.GoForward(20, 0.4);
+        nav.GoForward(20, 1);
         while (!nav.CheckIfAtTargetDestination())
         {
             nav.Loop();

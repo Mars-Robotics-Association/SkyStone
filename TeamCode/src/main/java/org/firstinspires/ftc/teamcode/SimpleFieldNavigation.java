@@ -85,6 +85,11 @@ public class SimpleFieldNavigation
         Bot.Loop();
         CurrentRot = Bot.GetRobotAngle();
 
+        opmode.telemetry.addData("Current Angle: ", CurrentRot);
+        opmode.telemetry.addData("Target Rot: ", TargetRot);
+        opmode.telemetry.addData("Navigating: ", Navigating);
+        opmode.telemetry.addData("Rotating: ", Rotating);
+
         if(firstRound)
         {
             Bot.OffsetGyro();
@@ -103,7 +108,7 @@ public class SimpleFieldNavigation
 
         if(!Navigating && !Rotating)//stop if shouldn't do anything
         {
-            //Bot.Brake(1);
+            Bot.StopMotors();
         }
     }
 
@@ -197,7 +202,11 @@ public class SimpleFieldNavigation
         {
             return true;
         }
-        else return false;
+        else
+        {
+            opmode.telemetry.addData("Close Enough Rotation: ", false);
+            return false;
+        }
     }
 
 }

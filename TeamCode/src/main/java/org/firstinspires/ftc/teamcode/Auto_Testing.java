@@ -33,15 +33,35 @@ public class Auto_Testing extends LinearOpMode {
 
         waitForStart();
 
-        boolean run = true;
-        while (run)
+        nav.RotateTo(180, 0.5);
+        while (!nav.CheckCloseEnoughRotation())
         {
-            telemetry.addData("Detected Skystone: ", true);
-            telemetry.addData("Detected Color: ", colorSensorSkystone.returnHue());
-            telemetry.addData("Detected Lightness: ", colorSensorSkystone.returnLightness());
-            telemetry.addData("Detected Distance: ", colorSensorSkystone.returnDistanceCM());
+            telemetry.addData("Turning to ", 180);
             telemetry.update();
         }
+        nav.StopAll();
+
+        sleep(1000);
+
+        nav.RotateTo(270, 0.5);
+        while (!nav.CheckCloseEnoughRotation())
+        {
+            telemetry.addData("Turning to ", 270);
+            telemetry.update();
+        }
+        nav.StopAll();
+
+        sleep(1000);
+
+        nav.RotateTo(0, 0.5);
+        while (!nav.CheckCloseEnoughRotation())
+        {
+            telemetry.addData("Turning to ", 0);
+            telemetry.update();
+        }
+        nav.StopAll();
+
+        sleep(1000);
 
         telemetry.update();
 
