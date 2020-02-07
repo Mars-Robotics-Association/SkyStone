@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<Robot type="FirstInspires-FTC">
+    <LynxUsbDevice name="Expansion Hub Portal 1" serialNumber="DQ3LY135" parentModuleAddress="1">
+        <LynxModule name="Expansion Hub 1" port="1">
+            <NeveRest40Gearmotor name="FrontRight" port="0" />
+            <NeveRest40Gearmotor name="FrontLeft" port="1" />
+            <NeveRest40Gearmotor name="RearRight" port="2" />
+            <NeveRest40Gearmotor name="RearLeft" port="3" />
+            <Servo name="FoundationL" port="0" />
+            <Servo name="FoundationR" port="1" />
+            <Servo name="LiftExtendLeft" port="2" />
+            <Servo name="LiftExtendRight" port="3" />
+            <Servo name="CapstoneDeploy" port="4" />
+            <RevTouchSensor name="ArmRetractStop" port="1" />
+            <RevTouchSensor name="ArmUpStop" port="3" />
+            <LynxEmbeddedIMU name="imu" port="0" bus="0" />
+            <LynxColorSensor name="colorSensorGround" port="0" bus="1" />
+            <LynxColorSensor name="colorSensorRight" port="0" bus="2" />
+        </LynxModule>
+        <LynxModule name="Expansion Hub 2" port="2">
+            <NeveRest40Gearmotor name="ArmVertical" port="0" />
+            <NeveRest40Gearmotor name="TapeMeasureMotor" port="1" />
+            <TetrixMotor name="LeftIntake" port="2" />
+            <TetrixMotor name="RightIntake" port="3" />
+            <Servo name="GripperL" port="0" />
+            <Servo name="GripperR" port="1" />
+            <Servo name="GripperRotate" port="2" />
+            <Servo name="GripperUpDownRotateLeft" port="3" />
+            <Servo name="GripperUpDownRotateRight" port="4" />
+            <LynxColorSensor name="colorSensorCenter" port="0" bus="0" />
+            <LynxColorSensor name="colorSensorLeft" port="0" bus="1" />
+        </LynxModule>
+    </LynxUsbDevice>
+    <Webcam name="Webcam 1" serialNumber="E811EED0" />
+</Robot>

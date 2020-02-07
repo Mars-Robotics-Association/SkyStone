@@ -1,0 +1,469 @@
+--------- beginning of main
+05-27 15:59:16.983 18912 18912 I chatty  : uid=10125 com.qualcomm.ftcrobotcontroller expire 1 line
+05-27 15:59:16.984 18776 18910 I chatty  : uid=10125 com.qualcomm.ftcrobotcontroller expire 1 line
+05-27 15:59:16.985 18776 18911 I chatty  : uid=10125 com.qualcomm.ftcrobotcontroller expire 1 line
+05-27 15:59:16.990 18776 18858 I chatty  : uid=10125 opmode loop() expire 5 lines
+05-27 15:59:16.990 18776 18912 I chatty  : uid=10125 com.qualcomm.ftcrobotcontroller expire 1 line
+05-27 15:59:16.991 18776 18858 I chatty  : uid=10125 opmode loop() expire 6 lines
+05-27 15:59:17.621 18776 18867 I chatty  : uid=10125 SoundPlayerSche expire 1 line
+05-27 15:59:17.629 18776 18845 I chatty  : uid=10125 pool-14-thread- expire 1 line
+05-27 15:59:19.073 18776 18776 I chatty  : uid=10125 com.qualcomm.ftcrobotcontroller expire 10 lines
+05-27 16:03:41.796 18776 18776 I chatty  : uid=10125 com.qualcomm.ftcrobotcontroller expire 7 lines
+05-27 16:03:41.797 18776 18858 I chatty  : uid=10125 opmode loop() expire 108 lines
+05-27 16:03:41.800 18776 18798 I chatty  : uid=10125 callback looper expire 2 lines
+05-27 16:03:41.816 18776 18921 I chatty  : uid=10125 lynx incoming d expire 2 lines
+05-27 16:03:41.828 18776 18843 I chatty  : uid=10125 lynx module exe expire 45 lines
+05-27 16:03:41.848 18776 18844 I chatty  : uid=10125 lynx module exe expire 55 lines
+05-27 16:03:41.859 18776 18838 I chatty  : uid=10125 pRunnable.run() expire 1 line
+05-27 16:03:41.863 18776 18848 I chatty  : uid=10125 SoundPlayer-#0 expire 2 lines
+05-27 16:03:41.869 18776 18845 I chatty  : uid=10125 pool-14-thread- expire 2 lines
+05-27 16:03:41.949 18776 18918 I chatty  : uid=10125 bulkPacketInWor expire 1 line
+05-27 16:03:45.474 18776 18786 I chatty  : uid=10125 HeapTaskDaemon expire 5 lines
+05-27 16:03:58.761 18776 18844 I chatty  : uid=10125 lynx module exe expire 8 lines
+05-27 16:03:59.263 18776 18843 I chatty  : uid=10125 lynx module exe expire 8 lines
+05-27 16:04:01.212 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=151 ref#=0 
+05-27 16:04:01.313 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=151 ref#=0 
+05-27 16:04:01.413 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=151 ref#=0 
+05-27 16:04:01.514 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=151 ref#=0 
+05-27 16:04:01.515 18776 18776 I BatteryChecker: percent remaining: 23 is charging: false
+05-27 16:04:01.612 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=151 ref#=0 
+05-27 16:04:01.612 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=151
+05-27 16:04:01.612 18776 18844 V RobotCore: nack rec'd mod=2 msg#=151 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:01.613 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:01.714 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=244 ref#=0 
+05-27 16:04:01.814 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=244 ref#=0 
+05-27 16:04:01.915 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=244 ref#=0 
+05-27 16:04:02.015 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=244 ref#=0 
+05-27 16:04:02.113 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=244 ref#=0 
+05-27 16:04:02.113 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=244
+05-27 16:04:02.114 18776 18843 V RobotCore: nack rec'd mod=1 msg#=244 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:02.114 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:03.663 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=152 ref#=0 
+05-27 16:04:03.763 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=152 ref#=0 
+05-27 16:04:03.864 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=152 ref#=0 
+05-27 16:04:03.965 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=152 ref#=0 
+05-27 16:04:04.062 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=152 ref#=0 
+05-27 16:04:04.063 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=152
+05-27 16:04:04.063 18776 18844 V RobotCore: nack rec'd mod=2 msg#=152 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:04.063 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:04.164 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=245 ref#=0 
+05-27 16:04:04.265 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=245 ref#=0 
+05-27 16:04:04.365 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=245 ref#=0 
+05-27 16:04:04.466 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=245 ref#=0 
+05-27 16:04:04.563 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=245 ref#=0 
+05-27 16:04:04.564 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=245 ref#=0 
+05-27 16:04:04.564 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=245
+05-27 16:04:04.564 18776 18843 V RobotCore: nack rec'd mod=1 msg#=245 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:04.565 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:05.517 18776 18776 I BatteryChecker: percent remaining: 23 is charging: false
+05-27 16:04:06.113 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=153 ref#=0 
+05-27 16:04:06.214 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=153 ref#=0 
+05-27 16:04:06.314 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=153 ref#=0 
+05-27 16:04:06.415 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=153 ref#=0 
+05-27 16:04:06.513 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=153 ref#=0 
+05-27 16:04:06.513 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=153
+05-27 16:04:06.513 18776 18844 V RobotCore: nack rec'd mod=2 msg#=153 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:06.514 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:06.615 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=246 ref#=0 
+05-27 16:04:06.716 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=246 ref#=0 
+05-27 16:04:06.816 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=246 ref#=0 
+05-27 16:04:06.917 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=246 ref#=0 
+05-27 16:04:07.015 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=246 ref#=0 
+05-27 16:04:07.015 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=246
+05-27 16:04:07.015 18776 18843 V RobotCore: nack rec'd mod=1 msg#=246 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:07.016 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:08.564 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=154 ref#=0 
+05-27 16:04:08.665 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=154 ref#=0 
+05-27 16:04:08.765 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=154 ref#=0 
+05-27 16:04:08.866 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=154 ref#=0 
+05-27 16:04:08.963 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=154 ref#=0 
+05-27 16:04:08.964 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=154
+05-27 16:04:08.964 18776 18844 V RobotCore: nack rec'd mod=2 msg#=154 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:08.964 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:09.066 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=247 ref#=0 
+05-27 16:04:09.166 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=247 ref#=0 
+05-27 16:04:09.267 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=247 ref#=0 
+05-27 16:04:09.368 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=247 ref#=0 
+05-27 16:04:09.465 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=247 ref#=0 
+05-27 16:04:09.466 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=247
+05-27 16:04:09.466 18776 18843 V RobotCore: nack rec'd mod=1 msg#=247 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:09.466 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:10.235 18776 18776 I BatteryChecker: percent remaining: 22 is charging: false
+05-27 16:04:11.015 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=155 ref#=0 
+05-27 16:04:11.115 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=155 ref#=0 
+05-27 16:04:11.216 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=155 ref#=0 
+05-27 16:04:11.317 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=155 ref#=0 
+05-27 16:04:11.414 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=155 ref#=0 
+05-27 16:04:11.415 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=155
+05-27 16:04:11.415 18776 18844 V RobotCore: nack rec'd mod=2 msg#=155 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:11.415 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:11.517 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=248 ref#=0 
+05-27 16:04:11.617 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=248 ref#=0 
+05-27 16:04:11.718 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=248 ref#=0 
+05-27 16:04:11.818 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=248 ref#=0 
+05-27 16:04:11.916 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=248 ref#=0 
+05-27 16:04:11.917 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=248
+05-27 16:04:11.917 18776 18843 V RobotCore: nack rec'd mod=1 msg#=248 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:11.917 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:13.466 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=156 ref#=0 
+05-27 16:04:13.566 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=156 ref#=0 
+05-27 16:04:13.667 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=156 ref#=0 
+05-27 16:04:13.768 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=156 ref#=0 
+05-27 16:04:13.865 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=156 ref#=0 
+05-27 16:04:13.866 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=156
+05-27 16:04:13.866 18776 18844 V RobotCore: nack rec'd mod=2 msg#=156 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:13.866 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:13.967 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=249 ref#=0 
+05-27 16:04:14.068 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=249 ref#=0 
+05-27 16:04:14.168 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=249 ref#=0 
+05-27 16:04:14.269 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=249 ref#=0 
+05-27 16:04:14.366 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=249 ref#=0 
+05-27 16:04:14.367 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=249 ref#=0 
+05-27 16:04:14.367 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=249
+05-27 16:04:14.367 18776 18843 V RobotCore: nack rec'd mod=1 msg#=249 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:14.368 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:15.916 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=157 ref#=0 
+05-27 16:04:16.017 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=157 ref#=0 
+05-27 16:04:16.118 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=157 ref#=0 
+05-27 16:04:16.218 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=157 ref#=0 
+05-27 16:04:16.316 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=157 ref#=0 
+05-27 16:04:16.316 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=157
+05-27 16:04:16.317 18776 18844 V RobotCore: nack rec'd mod=2 msg#=157 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:16.317 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:16.418 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=250 ref#=0 
+05-27 16:04:16.518 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=250 ref#=0 
+05-27 16:04:16.619 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=250 ref#=0 
+05-27 16:04:16.719 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=250 ref#=0 
+05-27 16:04:16.817 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=250 ref#=0 
+05-27 16:04:16.818 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=250
+05-27 16:04:16.818 18776 18843 V RobotCore: nack rec'd mod=1 msg#=250 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:16.818 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:18.367 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=158 ref#=0 
+05-27 16:04:18.468 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=158 ref#=0 
+05-27 16:04:18.568 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=158 ref#=0 
+05-27 16:04:18.669 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=158 ref#=0 
+05-27 16:04:18.767 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=158 ref#=0 
+05-27 16:04:18.767 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=158
+05-27 16:04:18.767 18776 18844 V RobotCore: nack rec'd mod=2 msg#=158 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:18.768 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:18.868 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=251 ref#=0 
+05-27 16:04:18.969 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=251 ref#=0 
+05-27 16:04:19.069 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=251 ref#=0 
+05-27 16:04:19.170 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=251 ref#=0 
+05-27 16:04:19.268 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=251 ref#=0 
+05-27 16:04:19.268 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=251 ref#=0 
+05-27 16:04:19.268 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=251
+05-27 16:04:19.268 18776 18843 V RobotCore: nack rec'd mod=1 msg#=251 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:19.269 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:20.818 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=159 ref#=0 
+05-27 16:04:20.918 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=159 ref#=0 
+05-27 16:04:21.019 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=159 ref#=0 
+05-27 16:04:21.120 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=159 ref#=0 
+05-27 16:04:21.217 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=159 ref#=0 
+05-27 16:04:21.218 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=159
+05-27 16:04:21.218 18776 18844 V RobotCore: nack rec'd mod=2 msg#=159 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:21.218 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:21.319 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=252 ref#=0 
+05-27 16:04:21.420 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=252 ref#=0 
+05-27 16:04:21.520 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=252 ref#=0 
+05-27 16:04:21.621 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=252 ref#=0 
+05-27 16:04:21.718 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=252 ref#=0 
+05-27 16:04:21.719 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=252
+05-27 16:04:21.719 18776 18843 V RobotCore: nack rec'd mod=1 msg#=252 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:21.719 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:23.268 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=160 ref#=0 
+05-27 16:04:23.369 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=160 ref#=0 
+05-27 16:04:23.469 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=160 ref#=0 
+05-27 16:04:23.570 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=160 ref#=0 
+05-27 16:04:23.667 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=160 ref#=0 
+05-27 16:04:23.668 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=160 ref#=0 
+05-27 16:04:23.668 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=160
+05-27 16:04:23.668 18776 18844 V RobotCore: nack rec'd mod=2 msg#=160 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:23.669 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:23.769 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=253 ref#=0 
+05-27 16:04:23.870 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=253 ref#=0 
+05-27 16:04:23.970 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=253 ref#=0 
+05-27 16:04:24.071 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=253 ref#=0 
+05-27 16:04:24.169 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=253 ref#=0 
+05-27 16:04:24.169 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=253 ref#=0 
+05-27 16:04:24.169 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=253
+05-27 16:04:24.169 18776 18843 V RobotCore: nack rec'd mod=1 msg#=253 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:24.170 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:25.719 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=161 ref#=0 
+05-27 16:04:25.820 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=161 ref#=0 
+05-27 16:04:25.920 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=161 ref#=0 
+05-27 16:04:26.021 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=161 ref#=0 
+05-27 16:04:26.118 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=161 ref#=0 
+05-27 16:04:26.119 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=161
+05-27 16:04:26.119 18776 18844 V RobotCore: nack rec'd mod=2 msg#=161 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:26.119 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:26.220 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=254 ref#=0 
+05-27 16:04:26.321 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=254 ref#=0 
+05-27 16:04:26.421 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=254 ref#=0 
+05-27 16:04:26.522 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=254 ref#=0 
+05-27 16:04:26.619 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=254 ref#=0 
+05-27 16:04:26.620 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=254 ref#=0 
+05-27 16:04:26.620 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=254
+05-27 16:04:26.620 18776 18843 V RobotCore: nack rec'd mod=1 msg#=254 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:26.621 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:28.169 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=162 ref#=0 
+05-27 16:04:28.270 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=162 ref#=0 
+05-27 16:04:28.371 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=162 ref#=0 
+05-27 16:04:28.471 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=162 ref#=0 
+05-27 16:04:28.569 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=162 ref#=0 
+05-27 16:04:28.569 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=162
+05-27 16:04:28.570 18776 18844 V RobotCore: nack rec'd mod=2 msg#=162 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:28.570 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:28.671 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=255 ref#=0 
+05-27 16:04:28.771 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=255 ref#=0 
+05-27 16:04:28.872 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=255 ref#=0 
+05-27 16:04:28.972 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=255 ref#=0 
+05-27 16:04:29.070 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=255 ref#=0 
+05-27 16:04:29.070 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=255 ref#=0 
+05-27 16:04:29.071 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=255
+05-27 16:04:29.071 18776 18843 V RobotCore: nack rec'd mod=1 msg#=255 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:29.071 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:30.620 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=163 ref#=0 
+05-27 16:04:30.721 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=163 ref#=0 
+05-27 16:04:30.822 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=163 ref#=0 
+05-27 16:04:30.922 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=163 ref#=0 
+05-27 16:04:31.020 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=163 ref#=0 
+05-27 16:04:31.020 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=163
+05-27 16:04:31.021 18776 18844 V RobotCore: nack rec'd mod=2 msg#=163 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:31.021 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:31.122 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=1 ref#=0 
+05-27 16:04:31.223 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=1 ref#=0 
+05-27 16:04:31.324 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=1 ref#=0 
+05-27 16:04:31.424 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=1 ref#=0 
+05-27 16:04:31.522 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=1 ref#=0 
+05-27 16:04:31.522 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=1 ref#=0 
+05-27 16:04:31.523 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=1
+05-27 16:04:31.523 18776 18843 V RobotCore: nack rec'd mod=1 msg#=1 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:31.523 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:33.071 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=164 ref#=0 
+05-27 16:04:33.172 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=164 ref#=0 
+05-27 16:04:33.272 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=164 ref#=0 
+05-27 16:04:33.373 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=164 ref#=0 
+05-27 16:04:33.470 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=164 ref#=0 
+05-27 16:04:33.471 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=164 ref#=0 
+05-27 16:04:33.471 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=164
+05-27 16:04:33.471 18776 18844 V RobotCore: nack rec'd mod=2 msg#=164 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:33.471 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:33.573 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=2 ref#=0 
+05-27 16:04:33.674 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=2 ref#=0 
+05-27 16:04:33.774 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=2 ref#=0 
+05-27 16:04:33.875 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=2 ref#=0 
+05-27 16:04:33.973 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=2 ref#=0 
+05-27 16:04:33.973 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=2
+05-27 16:04:33.973 18776 18843 V RobotCore: nack rec'd mod=1 msg#=2 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:33.973 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:35.522 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=165 ref#=0 
+05-27 16:04:35.622 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=165 ref#=0 
+05-27 16:04:35.723 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=165 ref#=0 
+05-27 16:04:35.823 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=165 ref#=0 
+05-27 16:04:35.921 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=165 ref#=0 
+05-27 16:04:35.922 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=165
+05-27 16:04:35.922 18776 18844 V RobotCore: nack rec'd mod=2 msg#=165 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:35.922 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:36.024 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=3 ref#=0 
+05-27 16:04:36.124 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=3 ref#=0 
+05-27 16:04:36.225 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=3 ref#=0 
+05-27 16:04:36.326 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=3 ref#=0 
+05-27 16:04:36.424 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=3 ref#=0 
+05-27 16:04:36.424 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=3
+05-27 16:04:36.424 18776 18843 V RobotCore: nack rec'd mod=1 msg#=3 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:36.425 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:37.973 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=166 ref#=0 
+05-27 16:04:38.073 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=166 ref#=0 
+05-27 16:04:38.174 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=166 ref#=0 
+05-27 16:04:38.274 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=166 ref#=0 
+05-27 16:04:38.372 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=166 ref#=0 
+05-27 16:04:38.373 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=166
+05-27 16:04:38.373 18776 18844 V RobotCore: nack rec'd mod=2 msg#=166 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:38.373 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:38.475 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=4 ref#=0 
+05-27 16:04:38.575 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=4 ref#=0 
+05-27 16:04:38.676 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=4 ref#=0 
+05-27 16:04:38.776 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=4 ref#=0 
+05-27 16:04:38.874 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=4 ref#=0 
+05-27 16:04:38.875 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=4
+05-27 16:04:38.875 18776 18843 V RobotCore: nack rec'd mod=1 msg#=4 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:38.875 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:40.424 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=167 ref#=0 
+05-27 16:04:40.524 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=167 ref#=0 
+05-27 16:04:40.625 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=167 ref#=0 
+05-27 16:04:40.725 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=167 ref#=0 
+05-27 16:04:40.823 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=167 ref#=0 
+05-27 16:04:40.823 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=167 ref#=0 
+05-27 16:04:40.823 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=167
+05-27 16:04:40.824 18776 18844 V RobotCore: nack rec'd mod=2 msg#=167 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:40.824 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:40.925 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=5 ref#=0 
+05-27 16:04:41.026 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=5 ref#=0 
+05-27 16:04:41.126 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=5 ref#=0 
+05-27 16:04:41.227 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=5 ref#=0 
+05-27 16:04:41.325 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=5 ref#=0 
+05-27 16:04:41.325 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=5
+05-27 16:04:41.325 18776 18843 V RobotCore: nack rec'd mod=1 msg#=5 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:41.326 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:42.874 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=168 ref#=0 
+05-27 16:04:42.975 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=168 ref#=0 
+05-27 16:04:43.075 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=168 ref#=0 
+05-27 16:04:43.176 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=168 ref#=0 
+05-27 16:04:43.273 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=168 ref#=0 
+05-27 16:04:43.274 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=168 ref#=0 
+05-27 16:04:43.274 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=168
+05-27 16:04:43.274 18776 18844 V RobotCore: nack rec'd mod=2 msg#=168 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:43.275 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:43.376 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=6 ref#=0 
+05-27 16:04:43.476 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=6 ref#=0 
+05-27 16:04:43.577 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=6 ref#=0 
+05-27 16:04:43.678 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=6 ref#=0 
+05-27 16:04:43.775 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=6 ref#=0 
+05-27 16:04:43.776 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=6
+05-27 16:04:43.776 18776 18843 V RobotCore: nack rec'd mod=1 msg#=6 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:43.776 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:45.325 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=169 ref#=0 
+05-27 16:04:45.425 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=169 ref#=0 
+05-27 16:04:45.526 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=169 ref#=0 
+05-27 16:04:45.626 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=169 ref#=0 
+05-27 16:04:45.724 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=169 ref#=0 
+05-27 16:04:45.724 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=169 ref#=0 
+05-27 16:04:45.725 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=169
+05-27 16:04:45.725 18776 18844 V RobotCore: nack rec'd mod=2 msg#=169 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:45.725 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:45.826 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=7 ref#=0 
+05-27 16:04:45.927 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=7 ref#=0 
+05-27 16:04:46.028 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=7 ref#=0 
+05-27 16:04:46.128 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=7 ref#=0 
+05-27 16:04:46.226 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=7 ref#=0 
+05-27 16:04:46.226 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=7
+05-27 16:04:46.227 18776 18843 V RobotCore: nack rec'd mod=1 msg#=7 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:46.227 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:47.775 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=170 ref#=0 
+05-27 16:04:47.876 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=170 ref#=0 
+05-27 16:04:47.977 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=170 ref#=0 
+05-27 16:04:48.077 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=170 ref#=0 
+05-27 16:04:48.175 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=170 ref#=0 
+05-27 16:04:48.175 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=170
+05-27 16:04:48.176 18776 18844 V RobotCore: nack rec'd mod=2 msg#=170 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:48.176 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:48.277 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=8 ref#=0 
+05-27 16:04:48.378 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=8 ref#=0 
+05-27 16:04:48.478 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=8 ref#=0 
+05-27 16:04:48.579 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=8 ref#=0 
+05-27 16:04:48.676 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=8 ref#=0 
+05-27 16:04:48.677 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=8
+05-27 16:04:48.677 18776 18843 V RobotCore: nack rec'd mod=1 msg#=8 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:48.677 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:50.226 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=171 ref#=0 
+05-27 16:04:50.327 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=171 ref#=0 
+05-27 16:04:50.427 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=171 ref#=0 
+05-27 16:04:50.528 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=171 ref#=0 
+05-27 16:04:50.625 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=171 ref#=0 
+05-27 16:04:50.626 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=171 ref#=0 
+05-27 16:04:50.626 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=171
+05-27 16:04:50.626 18776 18844 V RobotCore: nack rec'd mod=2 msg#=171 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:50.626 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:50.727 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=9 ref#=0 
+05-27 16:04:50.828 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=9 ref#=0 
+05-27 16:04:50.929 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=9 ref#=0 
+05-27 16:04:51.029 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=9 ref#=0 
+05-27 16:04:51.127 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=9 ref#=0 
+05-27 16:04:51.127 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=9 ref#=0 
+05-27 16:04:51.127 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=9
+05-27 16:04:51.128 18776 18843 V RobotCore: nack rec'd mod=1 msg#=9 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:51.128 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:52.676 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=172 ref#=0 
+05-27 16:04:52.777 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=172 ref#=0 
+05-27 16:04:52.878 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=172 ref#=0 
+05-27 16:04:52.978 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=172 ref#=0 
+05-27 16:04:53.076 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=172 ref#=0 
+05-27 16:04:53.076 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=172 ref#=0 
+05-27 16:04:53.077 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=172
+05-27 16:04:53.077 18776 18844 V RobotCore: nack rec'd mod=2 msg#=172 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:53.077 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:53.178 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=10 ref#=0 
+05-27 16:04:53.279 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=10 ref#=0 
+05-27 16:04:53.379 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=10 ref#=0 
+05-27 16:04:53.480 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=10 ref#=0 
+05-27 16:04:53.577 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=10 ref#=0 
+05-27 16:04:53.578 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=10 ref#=0 
+05-27 16:04:53.578 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=10
+05-27 16:04:53.578 18776 18843 V RobotCore: nack rec'd mod=1 msg#=10 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:53.579 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:55.127 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=173 ref#=0 
+05-27 16:04:55.228 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=173 ref#=0 
+05-27 16:04:55.328 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=173 ref#=0 
+05-27 16:04:55.429 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=173 ref#=0 
+05-27 16:04:55.527 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=173 ref#=0 
+05-27 16:04:55.527 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=173 ref#=0 
+05-27 16:04:55.527 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=173
+05-27 16:04:55.527 18776 18844 V RobotCore: nack rec'd mod=2 msg#=173 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:55.528 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:55.629 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=11 ref#=0 
+05-27 16:04:55.729 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=11 ref#=0 
+05-27 16:04:55.830 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=11 ref#=0 
+05-27 16:04:55.930 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=11 ref#=0 
+05-27 16:04:56.028 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=11 ref#=0 
+05-27 16:04:56.028 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=11 ref#=0 
+05-27 16:04:56.029 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=11
+05-27 16:04:56.029 18776 18843 V RobotCore: nack rec'd mod=1 msg#=11 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:56.029 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:56.657 18776 18776 I BatteryChecker: percent remaining: 22 is charging: false
+05-27 16:04:57.578 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=174 ref#=0 
+05-27 16:04:57.678 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=174 ref#=0 
+05-27 16:04:57.779 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=174 ref#=0 
+05-27 16:04:57.880 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=174 ref#=0 
+05-27 16:04:57.977 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=174 ref#=0 
+05-27 16:04:57.978 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=174 ref#=0 
+05-27 16:04:57.978 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=174
+05-27 16:04:57.978 18776 18844 V RobotCore: nack rec'd mod=2 msg#=174 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:57.979 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:04:58.079 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=12 ref#=0 
+05-27 16:04:58.180 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=12 ref#=0 
+05-27 16:04:58.281 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=12 ref#=0 
+05-27 16:04:58.381 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=12 ref#=0 
+05-27 16:04:58.479 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=12 ref#=0 
+05-27 16:04:58.479 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=12
+05-27 16:04:58.479 18776 18843 V RobotCore: nack rec'd mod=1 msg#=12 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:04:58.480 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:05:00.029 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=175 ref#=0 
+05-27 16:05:00.129 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=175 ref#=0 
+05-27 16:05:00.230 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=175 ref#=0 
+05-27 16:05:00.330 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=175 ref#=0 
+05-27 16:05:00.428 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=175 ref#=0 
+05-27 16:05:00.428 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=175 ref#=0 
+05-27 16:05:00.428 18776 18844 V LynxModule: retransmitting: mod=2 cmd=0x7f04 msg#=175 ref#=0 
+05-27 16:05:00.429 18776 18844 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=2 msg#=175
+05-27 16:05:00.429 18776 18844 V RobotCore: nack rec'd mod=2 msg#=175 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:05:00.429 18776 18844 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:05:00.530 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=13 ref#=0 
+05-27 16:05:00.631 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=13 ref#=0 
+05-27 16:05:00.731 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=13 ref#=0 
+05-27 16:05:00.832 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=13 ref#=0 
+05-27 16:05:00.930 18776 18843 V LynxModule: retransmitting: mod=1 cmd=0x7f04 msg#=13 ref#=0 
+05-27 16:05:00.930 18776 18843 V RobotCore: timeout: abandoning waiting 500ms for ack: cmd=LynxKeepAliveCommand mod=1 msg#=13
+05-27 16:05:00.930 18776 18843 V RobotCore: nack rec'd mod=1 msg#=13 ref#=0 reason=ABANDONED_WAITING_FOR_ACK:257
+05-27 16:05:00.931 18776 18843 W LynxModule: LynxKeepAliveCommand was abandoned waiting for ack
+05-27 16:05:01.619 18776 18838 V Robocol : received command: CMD_INIT_OP_MODE(34097) $Stop$Robot$
+05-27 16:05:01.620 18776 18837 I BatteryChecker: percent remaining: 22 is charging: false
+05-27 16:05:01.721 18776 18837 V LynxModule: retransmitting: mod=2 cmd=0x1007 msg#=176 ref#=0 
+05-27 16:05:01.822 18776 18837 V LynxModule: retransmitting: mod=2 cmd=0x1007 msg#=176 ref#=0 
+05-27 16:05:01.871 18776 18837 V LynxModule: retransmitting: mod=2 cmd=0x1007 msg#=176 ref#=0 
+05-27 16:05:01.871 18776 18837 V LynxModule: retransmitting: mod=2 cmd=0x1007 msg#=176 ref#=0 
+05-27 16:05:01.872 18776 18837 V RobotCore: timeout: abandoning waiting 250ms for response: cmd=LynxGetADCCommand mod=2 msg#=176
+05-27 16:05:01.872 18776 18837 V RobotCore: nack rec'd mod=2 msg#=176 ref#=0 reason=ABANDONED_WAITING_FOR_RESPONSE:256
+05-27 16:05:01.872 18776 18837 W LynxVoltageSensor: LynxGetADCCommand was abandoned waiting for response
+05-27 16:05:01.973 18776 18837 V LynxModule: retransmitting: mod=1 cmd=0x1007 msg#=14 ref#=0 
+05-27 16:05:02.074 18776 18837 V LynxModule: retransmitting: mod=1 cmd=0x1007 msg#=14 ref#=0 
+05-27 16:05:02.123 18776 18837 V LynxModule: retransmitting: mod=1 cmd=0x1007 msg#=14 ref#=0 
+05-27 16:05:02.124 18776 18837 V RobotCore: timeout: abandoning waiting 250ms for response: cmd=LynxGetADCCommand mod=1 msg#=14
+05-27 16:05:02.124 18776 18837 V RobotCore: nack rec'd mod=1 msg#=14 ref#=0 reason=ABANDONED_WAITING_FOR_RESPONSE:256
+05-27 16:05:02.124 18776 18837 W LynxVoltageSensor: LynxGetADCCommand was abandoned waiting for response
+05-27 16:05:02.125 18776 18837 I RobotCore: ******************** STOP - OPMODE /storage/emulated/0/FIRST/matchlogs/Match-0-simpleBlueZone.txt ********************
+05-27 16:05:02.126 18776 18837 E Robocol : command processing took 0.506 s: command=CMD_INIT_OP_MODE
+05-27 16:05:02.134 18776 18962 I RobotCore: saving match logcat to /storage/emulated/0/FIRST/matchlogs/Match-0-simpleBlueZone.txt
+05-27 16:05:02.134 18776 18962 I RobotCore: logging command line: exec logcat -d -T '5-27 15:55:42.000' -f /storage/emulated/0/FIRST/matchlogs/Match-0-simpleBlueZone.txt -n4 -v threadtime UsbRequestJNI:S UsbRequest:S art:W ThreadPool:W System:W ExtendedExtractor:W OMXClient:W MediaPlayer:W dalvikvm:W  *:V
+05-27 16:05:02.135 18776 18898 V RobotCore: thread: ...terminating 'LinearOpMode main'
+05-27 16:05:02.150 18776 18858 I RobotCore: Attempting to switch to op mode $Stop$Robot$

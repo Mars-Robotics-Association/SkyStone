@@ -1,0 +1,196 @@
+--------- beginning of main
+02-02 13:48:41.517  4786  5181 V Robocol : received command: CMD_SET_MATCH_NUMBER(20598) 0
+02-02 13:48:41.519  4786  5181 V Robocol : received command: CMD_INIT_OP_MODE(20599) CustomChasisTeleop
+02-02 13:48:41.538  4786  5180 I RobotCore: ******************** START - OPMODE CustomChasisTeleop ********************
+02-02 13:48:41.539  4786  5187 I RobotCore: Attempting to switch to op mode CustomChasisTeleop
+02-02 13:48:41.752  4786  5187 V AMSColorSensorImpl: internalInitialize()...
+02-02 13:48:41.778  4786  5187 V AMSColorSensorImpl: state: 07 f6 ff ff 00 00 00 00 00 00 00 00 00 00 08 61 
+02-02 13:48:41.781  4786  5187 V AMSColorSensorImpl: state| 00 01 60 33 36 00 0f 00 14 
+02-02 13:48:41.791  4786  5187 V AMSColorSensorImpl: disable() enabled=0x07...
+02-02 13:48:41.820  4786  5187 V AMSColorSensorImpl: ...disable() enabled=0x00
+02-02 13:48:41.820  4786  5187 V AMSColorSensorImpl: setIntegrationTime(0xf6)
+02-02 13:48:41.833  4786  5187 V AMSColorSensorImpl: setGain(GAIN_4)
+02-02 13:48:41.855  4786  5187 V AMSColorSensorImpl: setPDrive(Percent12_5)
+02-02 13:48:41.878  4786  5187 V AMSColorSensorImpl: setProximityPulseCount(0x08)
+02-02 13:48:41.900  4786  5187 V AMSColorSensorImpl: enable() enabled=0x00...
+02-02 13:48:41.942  4786  5187 V AMSColorSensorImpl: ...enable() enabled=0x07
+02-02 13:48:41.958  4786  5187 V AMSColorSensorImpl: state: 07 f6 ff ff 00 00 00 00 00 00 00 00 00 00 08 61 
+02-02 13:48:41.960  4786  5187 V AMSColorSensorImpl: state| 00 01 60 33 36 00 0f 00 14 
+02-02 13:48:41.961  4786  5187 V AMSColorSensorImpl: ...internalInitialize()
+02-02 13:48:41.961  4786  5187 V AMSColorSensorImpl: internalInitialize()...
+02-02 13:48:41.990  4786  5187 V AMSColorSensorImpl: state: 07 f6 ff ff 00 00 00 00 00 00 00 00 00 00 08 61 
+02-02 13:48:41.992  4786  5187 V AMSColorSensorImpl: state| 00 01 60 33 36 00 11 00 14 
+02-02 13:48:42.007  4786  5187 V AMSColorSensorImpl: disable() enabled=0x07...
+02-02 13:48:42.040  4786  5187 V AMSColorSensorImpl: ...disable() enabled=0x00
+02-02 13:48:42.041  4786  5187 V AMSColorSensorImpl: setIntegrationTime(0xf6)
+02-02 13:48:42.062  4786  5187 V AMSColorSensorImpl: setGain(GAIN_4)
+02-02 13:48:42.090  4786  5187 V AMSColorSensorImpl: setPDrive(Percent12_5)
+02-02 13:48:42.115  4786  5187 V AMSColorSensorImpl: setProximityPulseCount(0x08)
+02-02 13:48:42.142  4786  5187 V AMSColorSensorImpl: enable() enabled=0x00...
+02-02 13:48:42.193  4786  5187 V AMSColorSensorImpl: ...enable() enabled=0x07
+02-02 13:48:42.211  4786  5187 V AMSColorSensorImpl: state: 07 f6 ff ff 00 00 00 00 00 00 00 00 00 00 08 61 
+02-02 13:48:42.214  4786  5187 V AMSColorSensorImpl: state| 00 01 60 33 36 00 11 00 14 
+02-02 13:48:42.214  4786  5187 V AMSColorSensorImpl: ...internalInitialize()
+02-02 13:48:42.496  4786  5187 V AMSColorSensorImpl: internalInitialize()...
+02-02 13:48:42.509  4786  5187 V RobotCore: addr=false data=true arb=false clock=false
+02-02 13:48:42.510  4786  5187 E AMSColorSensor: readStatusQuery: cbExpected=1 cbRead=0
+02-02 13:48:42.510  4786  5187 E LynxI2cDeviceSynch: placeholder: readStatusQuery
+02-02 13:48:42.511  4786  5187 E AMSColorSensorImpl: unexpected AMS color sensor chipid: found=0 expected=96
+02-02 13:48:42.511  4786  5187 V AMSColorSensorImpl: ...internalInitialize()
+02-02 13:48:42.511  4786  5187 V AMSColorSensorImpl: internalInitialize()...
+02-02 13:48:42.535  4786  5187 V AMSColorSensorImpl: state: 07 f6 ff ff 00 00 00 00 00 00 00 00 00 00 08 61 
+02-02 13:48:42.538  4786  5187 V AMSColorSensorImpl: state| 00 01 60 33 e3 01 96 00 b4 
+02-02 13:48:42.548  4786  5187 V AMSColorSensorImpl: disable() enabled=0x07...
+02-02 13:48:42.576  4786  5187 V AMSColorSensorImpl: ...disable() enabled=0x00
+02-02 13:48:42.577  4786  5187 V AMSColorSensorImpl: setIntegrationTime(0xf6)
+02-02 13:48:42.591  4786  5187 V AMSColorSensorImpl: setGain(GAIN_4)
+02-02 13:48:42.613  4786  5187 V AMSColorSensorImpl: setPDrive(Percent12_5)
+02-02 13:48:42.636  4786  5187 V AMSColorSensorImpl: setProximityPulseCount(0x08)
+02-02 13:48:42.661  4786  5187 V AMSColorSensorImpl: enable() enabled=0x00...
+02-02 13:48:42.705  4786  5187 V AMSColorSensorImpl: ...enable() enabled=0x07
+02-02 13:48:42.729  4786  5187 V AMSColorSensorImpl: state: 07 f6 ff ff 00 00 00 00 00 00 00 00 00 00 08 61 
+02-02 13:48:42.731  4786  5187 V AMSColorSensorImpl: state| 00 01 60 33 e3 01 95 00 b3 
+02-02 13:48:42.731  4786  5187 V AMSColorSensorImpl: ...internalInitialize()
+02-02 13:48:42.833  4786  5187 V RobotCore: addr=false data=true arb=false clock=false
+02-02 13:48:42.833  4786  5187 E LynxI2cDeviceSynch: readStatusQuery: cbExpected=1 cbRead=0
+02-02 13:48:42.833  4786  5187 E LynxI2cDeviceSynch: placeholder: readStatusQuery
+02-02 13:48:42.904  4786  5187 V RobotCore: addr=false data=true arb=false clock=false
+02-02 13:48:42.904  4786  5187 E LynxI2cDeviceSynch: readStatusQuery: cbExpected=1 cbRead=0
+02-02 13:48:42.977  4786  5187 V RobotCore: addr=false data=true arb=false clock=false
+02-02 13:48:42.978  4786  5187 E LynxI2cDeviceSynch: readStatusQuery: cbExpected=1 cbRead=0
+02-02 13:48:43.052  4786  5187 V RobotCore: addr=false data=true arb=false clock=false
+02-02 13:48:43.052  4786  5187 E LynxI2cDeviceSynch: readStatusQuery: cbExpected=1 cbRead=0
+02-02 13:48:43.124  4786  5187 V RobotCore: addr=false data=true arb=false clock=false
+02-02 13:48:43.125  4786  5187 E LynxI2cDeviceSynch: readStatusQuery: cbExpected=1 cbRead=0
+02-02 13:48:43.597  4786  5187 W IMU     : re-issuing IMU mode: system status=IDLE expected=RUNNING_FUSION
+02-02 13:48:43.936  4786  5197 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(11561), attempt: 0
+02-02 13:48:44.961  4786  5181 V Robocol : received command: CMD_RUN_OP_MODE(20692) CustomChasisTeleop
+02-02 13:48:45.016  4786  5197 V Robocol : sending CMD_NOTIFY_RUN_OP_MODE(11590), attempt: 0
+02-02 13:48:46.027  4786  5519 V IMU     : dt=1.008s accel=(1.130 -5.300 1.100)m/s^2
+02-02 13:48:47.044  4786  5519 V IMU     : dt=1.016s accel=(2.780 -0.940 -5.620)m/s^2
+02-02 13:48:48.058  4786  5519 V IMU     : dt=1.016s accel=(0.770 -0.970 -0.370)m/s^2
+02-02 13:48:49.072  4786  5519 V IMU     : dt=1.014s accel=(0.490 1.020 -1.210)m/s^2
+02-02 13:48:50.084  4786  5519 V IMU     : dt=1.012s accel=(-0.190 0.530 -0.070)m/s^2
+02-02 13:48:51.100  4786  5519 V IMU     : dt=1.016s accel=(0.230 0.090 -0.030)m/s^2
+02-02 13:48:52.113  4786  5519 V IMU     : dt=1.013s accel=(-2.520 1.380 -0.720)m/s^2
+02-02 13:48:53.127  4786  5519 V IMU     : dt=1.013s accel=(-2.530 -0.390 0.020)m/s^2
+02-02 13:48:54.147  4786  5519 V IMU     : dt=1.020s accel=(3.460 0.800 0.970)m/s^2
+02-02 13:48:55.164  4786  5519 V IMU     : dt=1.016s accel=(0.570 1.780 0.920)m/s^2
+02-02 13:48:56.177  4786  5519 V IMU     : dt=1.014s accel=(-0.830 -4.950 -0.280)m/s^2
+02-02 13:48:57.187  4786  5519 V IMU     : dt=1.011s accel=(0.140 -0.460 -2.310)m/s^2
+02-02 13:48:58.204  4786  5519 V IMU     : dt=1.016s accel=(1.870 0.400 -0.600)m/s^2
+02-02 13:48:59.216  4786  5519 V IMU     : dt=1.013s accel=(-0.040 -0.130 0.950)m/s^2
+02-02 13:49:00.229  4786  5519 V IMU     : dt=1.013s accel=(-0.700 5.530 4.880)m/s^2
+02-02 13:49:01.242  4786  5519 V IMU     : dt=1.012s accel=(1.350 -2.070 -0.300)m/s^2
+02-02 13:49:02.253  4786  5519 V IMU     : dt=1.012s accel=(1.090 -1.410 0.090)m/s^2
+02-02 13:49:03.264  4786  5519 V IMU     : dt=1.011s accel=(-0.810 -1.020 -0.010)m/s^2
+02-02 13:49:04.283  4786  5519 V IMU     : dt=1.019s accel=(0.440 2.460 2.050)m/s^2
+02-02 13:49:05.305  4786  5519 V IMU     : dt=1.021s accel=(-1.620 3.240 -5.060)m/s^2
+02-02 13:49:06.319  4786  5519 V IMU     : dt=1.014s accel=(0.430 -2.840 0.830)m/s^2
+02-02 13:49:07.333  4786  5519 V IMU     : dt=1.014s accel=(0.940 -0.550 4.650)m/s^2
+02-02 13:49:08.347  4786  5519 V IMU     : dt=1.015s accel=(-0.090 -0.010 4.220)m/s^2
+02-02 13:49:09.361  4786  5519 V IMU     : dt=1.013s accel=(-0.300 -1.800 0.650)m/s^2
+02-02 13:49:10.378  4786  5519 V IMU     : dt=1.017s accel=(0.110 -0.070 0.020)m/s^2
+02-02 13:49:11.395  4786  5519 V IMU     : dt=1.017s accel=(0.220 0.520 -0.170)m/s^2
+02-02 13:49:12.406  4786  5519 V IMU     : dt=1.012s accel=(-1.150 5.590 1.340)m/s^2
+02-02 13:49:13.419  4786  5519 V IMU     : dt=1.012s accel=(0.530 1.940 -0.520)m/s^2
+02-02 13:49:14.432  4786  5519 V IMU     : dt=1.014s accel=(-0.500 -1.180 -1.910)m/s^2
+02-02 13:49:15.454  4786  5519 V IMU     : dt=1.022s accel=(-0.570 -1.070 1.460)m/s^2
+02-02 13:49:16.467  4786  5519 V IMU     : dt=1.013s accel=(0.250 0.760 -0.070)m/s^2
+02-02 13:49:17.472  4786  5519 V IMU     : dt=1.005s accel=(-1.310 0.710 0.090)m/s^2
+02-02 13:49:18.483  4786  5519 V IMU     : dt=1.011s accel=(5.150 -0.980 2.120)m/s^2
+02-02 13:49:19.505  4786  5519 V IMU     : dt=1.022s accel=(-0.080 0.820 -0.050)m/s^2
+02-02 13:49:20.523  4786  5519 V IMU     : dt=1.018s accel=(0.250 0.560 0.480)m/s^2
+02-02 13:49:21.536  4786  5519 V IMU     : dt=1.013s accel=(1.770 -0.220 2.840)m/s^2
+02-02 13:49:22.548  4786  5519 V IMU     : dt=1.011s accel=(0.660 0.180 0.090)m/s^2
+02-02 13:49:23.562  4786  5519 V IMU     : dt=1.015s accel=(0.210 -2.000 -0.320)m/s^2
+02-02 13:49:24.587  4786  5519 V IMU     : dt=1.022s accel=(0.850 -0.670 3.000)m/s^2
+02-02 13:49:25.595  4786  5519 V IMU     : dt=1.011s accel=(0.500 0.160 0.610)m/s^2
+02-02 13:49:26.610  4786  5519 V IMU     : dt=1.013s accel=(-0.530 -0.050 -0.090)m/s^2
+02-02 13:49:27.621  4786  5519 V IMU     : dt=1.012s accel=(0.260 -3.740 2.210)m/s^2
+02-02 13:49:28.640  4786  5519 V IMU     : dt=1.020s accel=(-1.020 -1.020 -0.240)m/s^2
+02-02 13:49:29.652  4786  5519 V IMU     : dt=1.012s accel=(-2.580 -1.070 -0.270)m/s^2
+02-02 13:49:30.664  4786  5519 V IMU     : dt=1.012s accel=(-1.130 -1.570 -0.380)m/s^2
+02-02 13:49:31.679  4786  5519 V IMU     : dt=1.014s accel=(0.330 0.070 0.130)m/s^2
+02-02 13:49:32.692  4786  5519 V IMU     : dt=1.014s accel=(0.610 -0.600 -3.730)m/s^2
+02-02 13:49:33.714  4786  5519 V IMU     : dt=1.021s accel=(-0.630 -1.500 -1.040)m/s^2
+02-02 13:49:34.730  4786  5519 V IMU     : dt=1.017s accel=(-1.640 0.710 1.340)m/s^2
+02-02 13:49:35.749  4786  5519 V IMU     : dt=1.017s accel=(0.090 -0.070 -0.150)m/s^2
+02-02 13:49:36.754  4786  5519 V IMU     : dt=1.007s accel=(0.060 -0.100 -0.660)m/s^2
+02-02 13:49:37.766  4786  5519 V IMU     : dt=1.012s accel=(-1.130 -1.720 1.810)m/s^2
+02-02 13:49:38.778  4786  5519 V IMU     : dt=1.012s accel=(-0.880 -1.880 -2.430)m/s^2
+02-02 13:49:39.794  4786  5519 V IMU     : dt=1.016s accel=(1.480 -0.580 0.850)m/s^2
+02-02 13:49:40.810  4786  5519 V IMU     : dt=1.014s accel=(1.150 2.080 -2.710)m/s^2
+02-02 13:49:41.826  4786  5519 V IMU     : dt=1.017s accel=(0.050 0.050 0.960)m/s^2
+02-02 13:49:42.838  4786  5519 V IMU     : dt=1.011s accel=(3.440 0.100 1.700)m/s^2
+02-02 13:49:43.854  4786  5519 V IMU     : dt=1.016s accel=(0.390 -1.590 -0.070)m/s^2
+02-02 13:49:44.867  4786  5519 V IMU     : dt=1.015s accel=(0.180 -2.870 1.850)m/s^2
+02-02 13:49:45.881  4786  5519 V IMU     : dt=1.014s accel=(2.110 -2.280 3.080)m/s^2
+02-02 13:49:46.894  4786  5519 V IMU     : dt=1.013s accel=(0.620 -0.840 0.950)m/s^2
+02-02 13:49:47.909  4786  5519 V IMU     : dt=1.013s accel=(-2.280 0.630 0.990)m/s^2
+02-02 13:49:48.921  4786  5519 V IMU     : dt=1.011s accel=(0.250 -0.220 -0.030)m/s^2
+02-02 13:49:49.932  4786  5519 V IMU     : dt=1.014s accel=(0.560 -0.290 1.280)m/s^2
+02-02 13:49:50.947  4786  5519 V IMU     : dt=1.014s accel=(-0.520 -0.730 0.860)m/s^2
+02-02 13:49:51.959  4786  5519 V IMU     : dt=1.011s accel=(-0.910 -1.120 0.710)m/s^2
+02-02 13:49:52.970  4786  5519 V IMU     : dt=1.012s accel=(-0.310 -1.110 0.490)m/s^2
+02-02 13:49:53.984  4786  5519 V IMU     : dt=1.013s accel=(0.240 -0.130 0.000)m/s^2
+02-02 13:49:54.999  4786  5519 V IMU     : dt=1.015s accel=(0.140 -0.120 0.020)m/s^2
+02-02 13:49:56.015  4786  5519 V IMU     : dt=1.017s accel=(0.190 -0.100 0.020)m/s^2
+02-02 13:49:57.023  4786  5519 V IMU     : dt=1.008s accel=(0.230 -0.110 0.030)m/s^2
+02-02 13:49:58.040  4786  5519 V IMU     : dt=1.015s accel=(0.160 -0.110 0.030)m/s^2
+02-02 13:49:59.051  4786  5519 V IMU     : dt=1.013s accel=(0.170 -0.100 0.030)m/s^2
+02-02 13:50:00.063  4786  5519 V IMU     : dt=1.012s accel=(0.150 -0.100 0.000)m/s^2
+02-02 13:50:01.073  4786  5519 V IMU     : dt=1.010s accel=(0.140 -0.110 0.030)m/s^2
+02-02 13:50:02.084  4786  5519 V IMU     : dt=1.011s accel=(0.200 -0.130 0.010)m/s^2
+02-02 13:50:03.097  4786  5519 V IMU     : dt=1.013s accel=(0.190 -0.100 -0.010)m/s^2
+02-02 13:50:04.111  4786  5519 V IMU     : dt=1.013s accel=(0.210 -0.110 0.040)m/s^2
+02-02 13:50:05.128  4786  5519 V IMU     : dt=1.017s accel=(0.200 -0.110 0.010)m/s^2
+02-02 13:50:06.144  4786  5519 V IMU     : dt=1.017s accel=(0.450 0.130 0.040)m/s^2
+02-02 13:50:07.156  4786  5519 V IMU     : dt=1.012s accel=(0.380 -0.330 -0.110)m/s^2
+02-02 13:50:08.171  4786  5519 V IMU     : dt=1.014s accel=(0.250 -0.050 0.060)m/s^2
+02-02 13:50:09.189  4786  5519 V IMU     : dt=1.018s accel=(0.190 -0.080 0.000)m/s^2
+02-02 13:50:10.201  4786  5519 V IMU     : dt=1.013s accel=(0.160 -0.150 0.050)m/s^2
+02-02 13:50:11.218  4786  5519 V IMU     : dt=1.016s accel=(1.780 -1.090 -1.440)m/s^2
+02-02 13:50:12.245  4786  5519 V IMU     : dt=1.024s accel=(-1.480 -0.060 0.590)m/s^2
+02-02 13:50:13.254  4786  5519 V IMU     : dt=1.013s accel=(1.730 -0.100 -0.810)m/s^2
+02-02 13:50:14.266  4786  5519 V IMU     : dt=1.012s accel=(0.060 0.240 0.390)m/s^2
+02-02 13:50:15.277  4786  5519 V IMU     : dt=1.010s accel=(0.230 -0.270 0.250)m/s^2
+02-02 13:50:16.292  4786  5519 V IMU     : dt=1.015s accel=(-0.240 3.230 -1.170)m/s^2
+02-02 13:50:17.306  4786  5519 V IMU     : dt=1.015s accel=(0.420 0.170 -0.020)m/s^2
+02-02 13:50:18.320  4786  5519 V IMU     : dt=1.013s accel=(0.260 0.050 -0.120)m/s^2
+02-02 13:50:19.331  4786  5519 V IMU     : dt=1.012s accel=(0.340 -0.220 0.760)m/s^2
+02-02 13:50:20.344  4786  5519 V IMU     : dt=1.011s accel=(0.130 0.050 -0.060)m/s^2
+02-02 13:50:21.359  4786  5519 V IMU     : dt=1.016s accel=(0.290 -0.470 0.920)m/s^2
+02-02 13:50:22.373  4786  5519 V IMU     : dt=1.015s accel=(-0.310 0.160 -1.060)m/s^2
+02-02 13:50:23.387  4786  5519 V IMU     : dt=1.014s accel=(3.300 1.470 1.690)m/s^2
+02-02 13:50:24.408  4786  5519 V IMU     : dt=1.020s accel=(0.310 0.290 0.620)m/s^2
+02-02 13:50:25.424  4786  5519 V IMU     : dt=1.016s accel=(-1.260 -4.840 0.690)m/s^2
+02-02 13:50:26.436  4786  5519 V IMU     : dt=1.012s accel=(-0.220 -0.620 -1.990)m/s^2
+02-02 13:50:27.445  4786  5519 V IMU     : dt=1.010s accel=(-1.640 0.920 -3.130)m/s^2
+02-02 13:50:28.461  4786  5519 V IMU     : dt=1.016s accel=(1.800 -1.380 -1.760)m/s^2
+02-02 13:50:29.475  4786  5519 V IMU     : dt=1.014s accel=(-0.710 1.670 3.550)m/s^2
+02-02 13:50:30.487  4786  5519 V IMU     : dt=1.012s accel=(0.230 0.060 -0.090)m/s^2
+02-02 13:50:31.502  4786  5519 V IMU     : dt=1.014s accel=(0.090 -0.060 0.540)m/s^2
+02-02 13:50:32.513  4786  5519 V IMU     : dt=1.012s accel=(0.280 0.240 -0.040)m/s^2
+02-02 13:50:33.524  4786  5519 V IMU     : dt=1.011s accel=(-0.040 -1.460 -0.780)m/s^2
+02-02 13:50:34.543  4786  5519 V IMU     : dt=1.018s accel=(0.560 0.310 0.310)m/s^2
+02-02 13:50:35.554  4786  5519 V IMU     : dt=1.012s accel=(0.260 0.060 -0.080)m/s^2
+02-02 13:50:36.569  4786  5519 V IMU     : dt=1.014s accel=(0.220 0.040 -0.090)m/s^2
+02-02 13:50:37.578  4786  5519 V IMU     : dt=1.010s accel=(0.190 0.010 -0.090)m/s^2
+02-02 13:50:38.584  4786  5519 V IMU     : dt=1.006s accel=(-1.140 -3.180 0.450)m/s^2
+02-02 13:50:39.600  4786  5519 V IMU     : dt=1.015s accel=(5.060 -0.380 -1.560)m/s^2
+02-02 13:50:40.617  4786  5519 V IMU     : dt=1.017s accel=(4.700 -0.060 2.440)m/s^2
+02-02 13:50:41.631  4786  5519 V IMU     : dt=1.014s accel=(1.080 -3.570 -0.230)m/s^2
+02-02 13:50:42.645  4786  5519 V IMU     : dt=1.014s accel=(-0.960 0.400 -1.520)m/s^2
+02-02 13:50:43.659  4786  5519 V IMU     : dt=1.012s accel=(-2.120 19.670 3.080)m/s^2
+02-02 13:50:44.672  4786  5519 V IMU     : dt=1.015s accel=(-0.230 -0.200 0.400)m/s^2
+02-02 13:50:45.686  4786  5519 V IMU     : dt=1.015s accel=(0.160 0.130 0.130)m/s^2
+02-02 13:50:45.961  4786  5181 V Robocol : received command: CMD_INIT_OP_MODE(24824) $Stop$Robot$
+02-02 13:50:46.094  4786  5180 I RobotCore: ******************** STOP - OPMODE /storage/emulated/0/FIRST/matchlogs/Match-0-CustomChasisTeleop.txt ********************
+02-02 13:50:46.099  4786  5180 I RobotCore: Pruning old logs deleting Match-0-Auto_Depot_Straight.txt
+02-02 13:50:46.108  4786  5187 I RobotCore: Attempting to switch to op mode $Stop$Robot$
+02-02 13:50:46.109  4786  5532 I RobotCore: saving match logcat to /storage/emulated/0/FIRST/matchlogs/Match-0-CustomChasisTeleop.txt
+02-02 13:50:46.110  4786  5532 I RobotCore: logging command line: exec logcat -d -T '2-2 13:48:41.000' -f /storage/emulated/0/FIRST/matchlogs/Match-0-CustomChasisTeleop.txt -n4 -v threadtime UsbRequestJNI:S UsbRequest:S art:W ThreadPool:W System:W ExtendedExtractor:W OMXClient:W MediaPlayer:W dalvikvm:W  *:V
+02-02 13:50:46.136  4786  5197 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(15839), attempt: 0
+02-02 13:50:46.133  5533  5533 W sh      : type=1400 audit(0.0:24308): avc: denied { read } for uid=10125 name="/" dev="rootfs" ino=1 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0
+02-02 13:50:46.160  4786  5181 V Robocol : received command: CMD_RUN_OP_MODE(24830) $Stop$Robot$
