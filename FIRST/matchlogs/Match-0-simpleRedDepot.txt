@@ -1,0 +1,62 @@
+--------- beginning of main
+12-29 18:33:41.524 23089 23425 V Robocol : received command: CMD_SET_MATCH_NUMBER(10386) 0
+12-29 18:33:41.528 23089 23425 V Robocol : received command: CMD_INIT_OP_MODE(10387) simpleRedDepot
+12-29 18:33:41.555 23089 23424 I RobotCore: ******************** START - OPMODE simpleRedDepot ********************
+12-29 18:33:41.559 23089 23430 I RobotCore: Attempting to switch to op mode simpleRedDepot
+12-29 18:33:41.765 23089 23430 V AMSColorSensorImpl: internalInitialize()...
+12-29 18:33:41.796 23089 23430 V AMSColorSensorImpl: state: 07 f6 ff ff 00 00 00 00 00 00 00 00 00 00 08 61 
+12-29 18:33:41.800 23089 23430 V AMSColorSensorImpl: state| 00 01 60 33 58 00 1e 00 1f 
+12-29 18:33:41.810 23089 23430 V AMSColorSensorImpl: disable() enabled=0x07...
+12-29 18:33:41.836 23089 23430 V AMSColorSensorImpl: ...disable() enabled=0x00
+12-29 18:33:41.836 23089 23430 V AMSColorSensorImpl: setIntegrationTime(0xf6)
+12-29 18:33:41.848 23089 23430 V AMSColorSensorImpl: setGain(GAIN_4)
+12-29 18:33:41.868 23089 23430 V AMSColorSensorImpl: setPDrive(Percent12_5)
+12-29 18:33:41.889 23089 23430 V AMSColorSensorImpl: setProximityPulseCount(0x08)
+12-29 18:33:41.910 23089 23430 V AMSColorSensorImpl: enable() enabled=0x00...
+12-29 18:33:41.950 23089 23430 V AMSColorSensorImpl: ...enable() enabled=0x07
+12-29 18:33:41.972 23089 23430 V AMSColorSensorImpl: state: 07 f6 ff ff 00 00 00 00 00 00 00 00 00 00 08 61 
+12-29 18:33:41.974 23089 23430 V AMSColorSensorImpl: state| 00 01 60 33 58 00 1e 00 1f 
+12-29 18:33:41.974 23089 23430 V AMSColorSensorImpl: ...internalInitialize()
+12-29 18:33:42.228 23089 23611 V RobotCore: thread: 'LinearOpMode main' starting...
+12-29 18:33:42.241 23089 23433 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(468), attempt: 0
+12-29 18:33:42.332 23089 23611 V RobotCore: addr=false data=true arb=false clock=false
+12-29 18:33:42.332 23089 23611 E LynxI2cDeviceSynch: readStatusQuery: cbExpected=1 cbRead=0
+12-29 18:33:42.332 23089 23611 E LynxI2cDeviceSynch: placeholder: readStatusQuery
+12-29 18:33:42.403 23089 23611 V RobotCore: addr=false data=true arb=false clock=false
+12-29 18:33:42.403 23089 23611 E LynxI2cDeviceSynch: readStatusQuery: cbExpected=1 cbRead=0
+12-29 18:33:42.475 23089 23611 V RobotCore: addr=false data=true arb=false clock=false
+12-29 18:33:42.476 23089 23611 E LynxI2cDeviceSynch: readStatusQuery: cbExpected=1 cbRead=0
+12-29 18:33:42.547 23089 23611 V RobotCore: addr=false data=true arb=false clock=false
+12-29 18:33:42.548 23089 23611 E LynxI2cDeviceSynch: readStatusQuery: cbExpected=1 cbRead=0
+12-29 18:33:42.619 23089 23611 V RobotCore: addr=false data=true arb=false clock=false
+12-29 18:33:42.620 23089 23611 E LynxI2cDeviceSynch: readStatusQuery: cbExpected=1 cbRead=0
+12-29 18:33:43.095 23089 23611 W IMU     : re-issuing IMU mode: system status=IDLE expected=RUNNING_FUSION
+12-29 18:33:45.284 23089 23425 V Robocol : received command: CMD_RUN_OP_MODE(10430) simpleRedDepot
+12-29 18:33:45.323 23089 23433 V Robocol : sending CMD_NOTIFY_RUN_OP_MODE(504), attempt: 0
+12-29 18:33:46.354 23089 23612 V IMU     : dt=1.007s accel=(0.000 -1.270 0.540)m/s^2
+12-29 18:33:47.370 23089 23612 V IMU     : dt=1.016s accel=(0.140 -0.420 0.010)m/s^2
+12-29 18:33:48.374 23089 23612 V IMU     : dt=1.004s accel=(0.190 0.000 0.000)m/s^2
+12-29 18:33:49.389 23089 23612 V IMU     : dt=1.014s accel=(0.340 0.090 -0.430)m/s^2
+12-29 18:33:50.402 23089 23612 V IMU     : dt=1.012s accel=(-1.330 -1.160 0.320)m/s^2
+12-29 18:33:51.413 23089 23612 V IMU     : dt=1.012s accel=(0.290 0.360 0.100)m/s^2
+12-29 18:33:52.429 23089 23612 V IMU     : dt=1.015s accel=(0.310 0.090 -0.010)m/s^2
+12-29 18:33:53.440 23089 23612 V IMU     : dt=1.012s accel=(-0.260 0.080 0.290)m/s^2
+12-29 18:33:54.448 23089 23612 V IMU     : dt=1.008s accel=(1.080 0.100 -0.420)m/s^2
+12-29 18:33:55.464 23089 23612 V IMU     : dt=1.013s accel=(1.050 1.520 -0.510)m/s^2
+12-29 18:33:56.465 23089 23612 V IMU     : dt=1.004s accel=(0.890 1.400 0.320)m/s^2
+12-29 18:33:57.469 23089 23612 V IMU     : dt=1.004s accel=(0.550 -1.190 1.210)m/s^2
+12-29 18:33:58.484 23089 23612 V IMU     : dt=1.015s accel=(-0.660 1.350 -0.380)m/s^2
+12-29 18:33:59.498 23089 23612 V IMU     : dt=1.012s accel=(-0.700 -0.600 -0.260)m/s^2
+12-29 18:34:00.513 23089 23612 V IMU     : dt=1.016s accel=(-1.460 -0.320 0.360)m/s^2
+12-29 18:34:01.516 23089 23612 V IMU     : dt=1.004s accel=(0.090 -1.420 0.290)m/s^2
+12-29 18:34:02.532 23089 23612 V IMU     : dt=1.015s accel=(0.110 -1.590 1.050)m/s^2
+12-29 18:34:03.542 23089 23612 V IMU     : dt=1.010s accel=(1.310 0.490 -0.560)m/s^2
+12-29 18:34:04.555 23089 23612 V IMU     : dt=1.012s accel=(-0.420 3.020 -0.630)m/s^2
+12-29 18:34:05.564 23089 23612 V IMU     : dt=1.011s accel=(1.700 0.160 0.190)m/s^2
+12-29 18:34:06.576 23089 23612 V IMU     : dt=1.011s accel=(0.150 0.120 0.070)m/s^2
+12-29 18:34:07.443 23089 23425 V Robocol : received command: CMD_INIT_OP_MODE(10975) $Stop$Robot$
+12-29 18:34:07.477 23089 23424 I RobotCore: ******************** STOP - OPMODE /storage/emulated/0/FIRST/matchlogs/Match-0-simpleRedDepot.txt ********************
+12-29 18:34:07.485 23089 23616 I RobotCore: saving match logcat to /storage/emulated/0/FIRST/matchlogs/Match-0-simpleRedDepot.txt
+12-29 18:34:07.485 23089 23616 I RobotCore: logging command line: exec logcat -d -T '12-29 18:33:41.000' -f /storage/emulated/0/FIRST/matchlogs/Match-0-simpleRedDepot.txt -n4 -v threadtime UsbRequestJNI:S UsbRequest:S art:W ThreadPool:W System:W ExtendedExtractor:W OMXClient:W MediaPlayer:W dalvikvm:W  *:V
+12-29 18:34:07.488 23089 23611 E LynxI2cDeviceSynch: placeholder: readTimestamped
+12-29 18:34:07.508 23617 23617 W sh      : type=1400 audit(0.0:12404): avc: denied { read } for uid=10125 name="/" dev="rootfs" ino=1 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:rootfs:s0 tclass=dir permissive=0

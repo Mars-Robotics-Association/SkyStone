@@ -13,6 +13,7 @@ public class CustomChasisTeleop extends OpMode
     public FoundationGrabber grab = null;
     public GripperCustom gripper = null;
     public TapeMeasure tape =null;
+    public CapstoneDeployer Deployer = null;
     //public SkyStoneBot bot = null;
 
 
@@ -52,8 +53,12 @@ public class CustomChasisTeleop extends OpMode
         tape = new TapeMeasure(this);
         tape.Init();
 
+        Deployer = new CapstoneDeployer(this);
+        Deployer.Init();
+
         ArmRetractStop = hardwareMap.get(RevTouchSensor.class, "ArmRetractStop");
         ArmUpStop = hardwareMap.get(RevTouchSensor.class, "ArmUpStop");
+
 
     }
 
@@ -143,6 +148,12 @@ public class CustomChasisTeleop extends OpMode
             telemetry.addData("rear right wheel: ",rright);
             telemetry.addData("arm vertical: ",armval);
             telemetry.update();
+        }
+        if(gamepad1.dpad_right){
+            Deployer.DeployCapstone();
+        }
+        else if(gamepad1.dpad_left){
+            Deployer.RetractCapstone();
         }
 
         ManageArmMovement();

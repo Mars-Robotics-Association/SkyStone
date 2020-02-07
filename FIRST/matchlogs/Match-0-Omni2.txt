@@ -1,0 +1,84 @@
+--------- beginning of main
+09-30 20:03:26.502 13103 13471 V Robocol : received command: CMD_SET_MATCH_NUMBER(26186) 0
+09-30 20:03:26.503 13103 13471 V Robocol : received command: CMD_INIT_OP_MODE(26187) Omni2
+09-30 20:03:26.518 13103 13470 I RobotCore: ******************** START - OPMODE Omni2 ********************
+09-30 20:03:26.519 13103 14042 I RobotCore: Attempting to switch to op mode Omni2
+09-30 20:03:26.559 13103 14042 W LynxPwmOutputController: LynxSetPWMEnableCommand not implemented by lynx hw; ignoring
+09-30 20:03:26.563 13103 14042 W LynxPwmOutputController: LynxSetPWMConfigurationCommand not implemented by lynx hw; ignoring
+09-30 20:03:26.567 13103 14042 W LynxPwmOutputController: LynxSetPWMEnableCommand not implemented by lynx hw; ignoring
+09-30 20:03:26.570 13103 14042 W LynxPwmOutputController: LynxSetPWMConfigurationCommand not implemented by lynx hw; ignoring
+09-30 20:03:26.575 13103 14042 W LynxPwmOutputController: LynxSetPWMEnableCommand not implemented by lynx hw; ignoring
+09-30 20:03:26.579 13103 14042 W LynxPwmOutputController: LynxSetPWMConfigurationCommand not implemented by lynx hw; ignoring
+09-30 20:03:26.583 13103 14042 W LynxPwmOutputController: LynxSetPWMEnableCommand not implemented by lynx hw; ignoring
+09-30 20:03:26.587 13103 14042 W LynxPwmOutputController: LynxSetPWMConfigurationCommand not implemented by lynx hw; ignoring
+09-30 20:03:26.692 13103 13472 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(21124), attempt: 0
+09-30 20:03:27.183 13103 13471 V Robocol : received command: CMD_RUN_OP_MODE(26204) Omni2
+09-30 20:03:27.213 13103 13472 V Robocol : sending CMD_NOTIFY_RUN_OP_MODE(21135), attempt: 0
+09-30 20:03:37.852 13103 14037 E BulkPacketInWorker: DQ16GRFO: bulkTransfer() error: -1
+09-30 20:03:37.855 13103 13121 D CameraManager: ---------------------------------------------- ACTION_USB_DEVICE_DETACHED
+09-30 20:03:37.863 13103 13103 V FtDeviceManager: ACTION_USB_DEVICE_DETACHED: /dev/bus/usb/001/006
+09-30 20:03:37.863 13103 13103 V FtDevice: vv********************DQ16GRFO closing********************vv 0x0e1cb9ab
+09-30 20:03:37.863 13103 13103 V FtDevice: DQ16GRFO stopping thread readBufferManager
+09-30 20:03:37.863 13103 14038 V FtDevice: DQ16GRFO thread readBufferManager is stopped
+09-30 20:03:37.864 13103 14042 V RobotCore: event loop: device has shutdown abnormally: ABNORMAL
+09-30 20:03:37.864 13103 14042 V EventLoopManager: event loop: detaching device DQ16GRFO
+09-30 20:03:37.864 13103 14042 I FtcEventLoop: vv===== MODULE DETACH RECOVERY: disarm REV Robotics USB Expansion Hub Portal [DQ16GRFO]=====vv
+09-30 20:03:37.865 13103 14042 V LynxUsb : disarmDevice() serial=DQ16GRFO...
+09-30 20:03:37.865 13103 14042 V LynxUsb : shutting down incoming datagrams
+09-30 20:03:37.865 13103 13103 V FtDevice: DQ16GRFO stopping thread bulkPacketInWorker
+09-30 20:03:37.865 13103 14040 V RobotCore: thread: ...terminating 'lynx incoming datagrams'
+09-30 20:03:37.865 13103 14042 V RobotUsbDeviceFtdi: closing DQ16GRFO
+09-30 20:03:37.866 13103 14037 V FtDevice: DQ16GRFO thread bulkPacketInWorker is stopped
+09-30 20:03:37.866 13103 13103 V MonitoredUsbDeviceConnection: closing UsbDeviceConnection(DQ16GRFO)
+09-30 20:03:37.866 13103 13103 D UsbDeviceConnectionJNI: close
+09-30 20:03:37.866 13103 13103 V FtDevice: ^^********************DQ16GRFO closed ********************^^
+09-30 20:03:37.866 13103 14042 V LynxUsb : ...done disarmDevice()
+09-30 20:03:37.867 13103 14042 I FtcEventLoop: ======= MODULE DETACH RECOVERY: pretend REV Robotics USB Expansion Hub Portal [DQ16GRFO]=======
+09-30 20:03:37.867 13103 14042 V LynxUsb : doPretend() serial=DQ16GRFO
+09-30 20:03:37.867 13103 14042 I FtcEventLoop: ^^===== MODULE DETACH RECOVERY: complete REV Robotics USB Expansion Hub Portal [DQ16GRFO]=====^^
+09-30 20:03:37.869 13103 14042 D RobotCore: system telemetry: key=$System$Warning$ msg="problem with "Expansion Hub DC Motor Controller [USB DQ16GRFO; module 2]"; problem with "Expansion Hub Servo Controller [USB DQ16GRFO; module 2]"; problem with "Expansion Hub Voltage Sensor [USB DQ16GRFO; module 2]"; problem with "Expansion Hub Pwm Controller [USB DQ16GRFO; module 2]"; problem with "Expansion Hub Analog Input Controller [USB DQ16GRFO; module 2]"; problem with "Expansion Hub Digital Channel Controller [USB DQ16GRFO; module 2]"; problem with "ColorSensor""
+09-30 20:03:37.878 13103 13475 D SoundPlayer: playing volume=1.000000 samp=2|ms=1044
+09-30 20:03:37.892 13103 13472 V Robocol : sending CMD_PLAY_SOUND(21283), attempt: 0
+09-30 20:03:45.413 13103 13103 V FtDeviceManager: ACTION_USB_DEVICE_ATTACHED: /dev/bus/usb/001/002
+09-30 20:03:45.413 13103 13103 V FtDeviceManager: addOrUpdateUsbDevice(vid=0x0403 pid=0x6015)
+09-30 20:03:45.414 13103 13103 V FtDeviceManager: requesting permissions for device=/dev/bus/usb/001/002
+09-30 20:03:45.414 13103 13121 D CameraManager: ---------------------------------------------- ACTION_USB_DEVICE_ATTACHED
+09-30 20:03:45.423 13103 13103 V FtDevice: initialize(vid=0x0403 pid=0x6015 bcdDevice=0x1000)
+09-30 20:03:45.423 13103 13103 V MonitoredUsbDeviceConnection: closing UsbDeviceConnection(DQ16GRFO)
+09-30 20:03:45.423 13103 13103 D UsbDeviceConnectionJNI: close
+09-30 20:03:45.423 13103 13103 V MonitoredUsbDeviceConnection: closing UsbDeviceConnection(DQ16GRFO)
+09-30 20:03:45.423 13103 13103 D UsbDeviceConnectionJNI: close
+09-30 20:03:45.423 13103 13103 V RCActivity: onPause()
+09-30 20:03:45.424 13103 13103 V RCActivity: ACTION_USB_DEVICE_ATTACHED: /dev/bus/usb/001/002
+09-30 20:03:45.424 13103 13103 V RCActivity: onResume()
+09-30 20:03:45.424 13103 13103 V FtDeviceManager: permission granted for device /dev/bus/usb/001/002
+09-30 20:03:45.428 13103 14042 I FtcEventLoop: vv===== MODULE ATTACH: disarm REV Robotics USB Expansion Hub Portal [DQ16GRFO]=====vv
+09-30 20:03:45.428 13103 14042 V LynxUsb : disarmDevice() serial=DQ16GRFO...
+09-30 20:03:45.428 13103 14042 V LynxUsb : ...done disarmDevice()
+09-30 20:03:45.428 13103 14042 I FtcEventLoop: ======= MODULE ATTACH: arm or pretend REV Robotics USB Expansion Hub Portal [DQ16GRFO]=======
+09-30 20:03:45.429 13103 14042 V FtDeviceManager: createDeviceInfoList(): 1 USB devices
+09-30 20:03:45.433 13103 14042 V FtDevice: vv********************DQ16GRFO opening********************vv 0x01cc7a1a
+09-30 20:03:45.433 13103 14042 V FtDevice: ^^********************DQ16GRFO opened ********************^^
+09-30 20:03:45.433 13103 14042 V FtDevice: resetting DQ16GRFO
+09-30 20:03:45.439 13103 14042 V LynxUsb : armDevice() serial=DQ16GRFO...
+09-30 20:03:45.439 13103 14042 V LynxModule: pingAndQueryKnownInterfaces mod=2
+09-30 20:03:45.440 13103 14169 V RobotCore: thread: 'lynx incoming datagrams' starting...
+09-30 20:03:45.442 13103 14169 V LynxUsb : synchronization gained: serial=DQ16GRFO
+09-30 20:03:45.444 13103 14042 V LynxModule: mod#=2 queryInterface(DEKA)=49 commands starting at 4096
+09-30 20:03:45.448 13103 14042 V LynxModule: mod#=2 intf=DEKA: expected 54 commands; found 49
+09-30 20:03:45.450 13103 14042 V LynxModule: sendLEDPatternSteps(): #steps=6
+09-30 20:03:45.455 13103 14042 V LynxUsb : ...done armDevice()
+09-30 20:03:45.455 13103 14042 I FtcEventLoop: ^^===== MODULE ATTACH: complete REV Robotics USB Expansion Hub Portal [DQ16GRFO]=====^^
+09-30 20:03:45.468 13103 14041 V LynxModule: received status: LynxGetModuleStatusResponse(status=0x05 alerts=0x00: KeepAliveTimeout|FailSafe)
+09-30 20:03:45.468 13103 14041 V LynxModule: resendCurrentPattern()
+09-30 20:03:45.468 13103 14041 V LynxModule: sendLEDPatternSteps(): #steps=6
+09-30 20:03:45.490 13103 14042 D RobotCore: system telemetry: key=$System$Warning$ msg="problem with "ColorSensor""
+09-30 20:03:45.494 13103 13475 D SoundPlayer: playing volume=1.000000 samp=2|ms=1044
+09-30 20:03:45.532 13103 13472 V Robocol : sending CMD_PLAY_SOUND(21481), attempt: 0
+09-30 20:03:47.262 13103 13471 V Robocol : received command: CMD_INIT_OP_MODE(26574) $Stop$Robot$
+09-30 20:03:47.266 13103 13470 I RobotCore: ******************** STOP - OPMODE /storage/emulated/0/FIRST/matchlogs/Match-0-Omni2.txt ********************
+09-30 20:03:47.268 13103 14042 I RobotCore: Attempting to switch to op mode $Stop$Robot$
+09-30 20:03:47.269 13103 14170 I RobotCore: saving match logcat to /storage/emulated/0/FIRST/matchlogs/Match-0-Omni2.txt
+09-30 20:03:47.269 13103 14170 I RobotCore: logging command line: exec logcat -d -T '9-30 20:3:26.000' -f /storage/emulated/0/FIRST/matchlogs/Match-0-Omni2.txt -n4 -v threadtime UsbRequestJNI:S UsbRequest:S art:W ThreadPool:W System:W ExtendedExtractor:W OMXClient:W MediaPlayer:W dalvikvm:W  *:V
+09-30 20:03:47.292 13103 13472 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(21511), attempt: 0
+09-30 20:03:47.303 13103 13471 V Robocol : received command: CMD_RUN_OP_MODE(26579) $Stop$Robot$

@@ -1,0 +1,58 @@
+--------- beginning of main
+05-26 01:15:45.617 30772 31227 V Robocol : received command: CMD_SET_MATCH_NUMBER(10958) 0
+05-26 01:15:45.624 30772 31227 V Robocol : received command: CMD_INIT_OP_MODE(10959) simpleBlueDepot
+05-26 01:15:45.635 30772 31226 I RobotCore: ******************** START - OPMODE simpleBlueDepot ********************
+05-26 01:15:45.637 30772 31235 I RobotCore: Attempting to switch to op mode simpleBlueDepot
+05-26 01:15:45.660 30772 31235 W LynxMotor: not supported: setPIDFCoefficients(1, RUN_USING_ENCODER, PIDFCoefficients(p=2.000000 i=0.500000 d=0.000000 f=11.000000 alg=PIDF))
+05-26 01:15:45.660 30772 31235 W LynxMotor: not supported: setPIDFCoefficients(1, RUN_TO_POSITION, PIDFCoefficients(p=5.000000 i=0.000000 d=0.000000 f=0.000000 alg=PIDF))
+05-26 01:15:45.660 30772 31235 W LynxMotor: not supported: setPIDFCoefficients(3, RUN_USING_ENCODER, PIDFCoefficients(p=2.000000 i=0.500000 d=0.000000 f=11.000000 alg=PIDF))
+05-26 01:15:45.661 30772 31235 W LynxMotor: not supported: setPIDFCoefficients(3, RUN_TO_POSITION, PIDFCoefficients(p=5.000000 i=0.000000 d=0.000000 f=0.000000 alg=PIDF))
+05-26 01:15:45.692 30772 31235 W LynxMotor: not supported: setPIDFCoefficients(0, RUN_USING_ENCODER, PIDFCoefficients(p=2.000000 i=0.500000 d=0.000000 f=11.000000 alg=PIDF))
+05-26 01:15:45.693 30772 31235 W LynxMotor: not supported: setPIDFCoefficients(0, RUN_TO_POSITION, PIDFCoefficients(p=5.000000 i=0.000000 d=0.000000 f=0.000000 alg=PIDF))
+05-26 01:15:45.790 30772 31235 W LynxMotor: not supported: setPIDFCoefficients(0, RUN_USING_ENCODER, PIDFCoefficients(p=2.000000 i=0.500000 d=0.000000 f=11.000000 alg=PIDF))
+05-26 01:15:45.791 30772 31235 W LynxMotor: not supported: setPIDFCoefficients(0, RUN_TO_POSITION, PIDFCoefficients(p=5.000000 i=0.000000 d=0.000000 f=0.000000 alg=PIDF))
+05-26 01:15:45.791 30772 31235 W LynxMotor: not supported: setPIDFCoefficients(1, RUN_USING_ENCODER, PIDFCoefficients(p=2.000000 i=0.500000 d=0.000000 f=11.000000 alg=PIDF))
+05-26 01:15:45.791 30772 31235 W LynxMotor: not supported: setPIDFCoefficients(1, RUN_TO_POSITION, PIDFCoefficients(p=5.000000 i=0.000000 d=0.000000 f=0.000000 alg=PIDF))
+05-26 01:15:45.792 30772 31235 W LynxMotor: not supported: setPIDFCoefficients(2, RUN_USING_ENCODER, PIDFCoefficients(p=2.000000 i=0.500000 d=0.000000 f=11.000000 alg=PIDF))
+05-26 01:15:45.793 30772 31235 W LynxMotor: not supported: setPIDFCoefficients(2, RUN_TO_POSITION, PIDFCoefficients(p=5.000000 i=0.000000 d=0.000000 f=0.000000 alg=PIDF))
+05-26 01:15:45.793 30772 31235 W LynxMotor: not supported: setPIDFCoefficients(3, RUN_USING_ENCODER, PIDFCoefficients(p=2.000000 i=0.500000 d=0.000000 f=11.000000 alg=PIDF))
+05-26 01:15:45.793 30772 31235 W LynxMotor: not supported: setPIDFCoefficients(3, RUN_TO_POSITION, PIDFCoefficients(p=5.000000 i=0.000000 d=0.000000 f=0.000000 alg=PIDF))
+05-26 01:15:45.973 30772 31235 W LynxMotor: not supported: setPIDFCoefficients(2, RUN_USING_ENCODER, PIDFCoefficients(p=2.000000 i=0.500000 d=0.000000 f=11.000000 alg=PIDF))
+05-26 01:15:45.974 30772 31235 W LynxMotor: not supported: setPIDFCoefficients(2, RUN_TO_POSITION, PIDFCoefficients(p=5.000000 i=0.000000 d=0.000000 f=0.000000 alg=PIDF))
+05-26 01:15:45.984 30772 31235 V AMSColorSensorImpl: internalInitialize()...
+05-26 01:15:46.006 30772 31235 V AMSColorSensorImpl: state: 07 f6 ff ff 00 00 00 00 00 00 00 00 00 00 08 61 
+05-26 01:15:46.006 30772 31235 V AMSColorSensorImpl: state| 00 01 60 33 75 0c 5a 03 d8 
+05-26 01:15:46.019 30772 31235 V AMSColorSensorImpl: disable() enabled=0x07...
+05-26 01:15:46.046 30772 31235 V AMSColorSensorImpl: ...disable() enabled=0x00
+05-26 01:15:46.046 30772 31235 V AMSColorSensorImpl: setIntegrationTime(0xf6)
+05-26 01:15:46.055 30772 31235 V AMSColorSensorImpl: setGain(GAIN_4)
+05-26 01:15:46.076 30772 31235 V AMSColorSensorImpl: setPDrive(Percent12_5)
+05-26 01:15:46.097 30772 31235 V AMSColorSensorImpl: setProximityPulseCount(0x08)
+05-26 01:15:46.118 30772 31235 V AMSColorSensorImpl: enable() enabled=0x00...
+05-26 01:15:46.158 30772 31235 V AMSColorSensorImpl: ...enable() enabled=0x07
+05-26 01:15:46.176 30772 31235 V AMSColorSensorImpl: state: 07 f6 ff ff 00 00 00 00 00 00 00 00 00 00 08 61 
+05-26 01:15:46.176 30772 31235 V AMSColorSensorImpl: state| 00 01 60 22 00 00 59 03 d7 
+05-26 01:15:46.176 30772 31235 V AMSColorSensorImpl: ...internalInitialize()
+05-26 01:15:46.189 30772 31335 V RobotCore: thread: 'LinearOpMode main' starting...
+05-26 01:15:46.190 30772 31335 V RobotCore: thread: ...terminating 'LinearOpMode main'
+05-26 01:15:46.191 30772 31235 E EventLoopManager: Event loop threw an exception
+05-26 01:15:46.193 30772 31235 E EventLoopManager: java.lang.NullPointerException: Attempt to invoke virtual method 'void org.firstinspires.ftc.teamcode.SimpleFieldNavigation.GoForward(double, boolean)' on a null object reference
+05-26 01:15:46.195 30772 31235 E EventLoopManager: 	at org.firstinspires.ftc.teamcode.simpleBlueDepot.runOpMode(simpleBlueDepot.java:20)
+05-26 01:15:46.196 30772 31235 E EventLoopManager: 	at com.qualcomm.robotcore.eventloop.opmode.LinearOpMode$LinearOpModeHelper$1.run(LinearOpMode.java:305)
+05-26 01:15:46.196 30772 31235 E EventLoopManager: 	at com.qualcomm.robotcore.util.ThreadPool.logThreadLifeCycle(ThreadPool.java:737)
+05-26 01:15:46.198 30772 31235 E EventLoopManager: 	at com.qualcomm.robotcore.eventloop.opmode.LinearOpMode$LinearOpModeHelper.run(LinearOpMode.java:300)
+05-26 01:15:46.198 30772 31235 E EventLoopManager: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1113)
+05-26 01:15:46.199 30772 31235 E EventLoopManager: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:588)
+05-26 01:15:46.200 30772 31235 E EventLoopManager: 	at com.qualcomm.robotcore.util.ThreadPool$ThreadFactoryImpl$1.run(ThreadPool.java:793)
+05-26 01:15:46.200 30772 31235 E EventLoopManager: 	at java.lang.Thread.run(Thread.java:818)
+05-26 01:15:46.201 30772 31235 V RobotCore: RobotCoreException in EventLoopManager: EventLoop Exception in loop(): NullPointerException - Attempt to invoke virtual method 'void org.firstinspires.ftc.teamcode.SimpleFieldNavigation.GoForward(double, boolean)' on a null object reference
+05-26 01:15:46.201 30772 31235 V RobotCore: EventLoopManager state is EMERGENCY_STOP
+05-26 01:15:46.201 30772 31235 V RobotCore: Robot Status: EMERGENCY STOP
+05-26 01:15:46.202 30772 31235 D RobotCore: system telemetry: key=$System$Error$ msg="User code threw an uncaught exception: NullPointerException - Attempt to invoke virtual method 'void org.firstinspires.ftc.teamcode.SimpleFieldNavigation.GoForward(double, boolean)' on a null object reference"
+05-26 01:15:46.203 30772 31235 I FtcEventLoop: ======= TEARDOWN =======
+05-26 01:15:46.205 30772 31235 I RobotCore: ******************** STOP - OPMODE /storage/emulated/0/FIRST/matchlogs/Match-0-simpleBlueDepot.txt ********************
+05-26 01:15:46.212 30772 31238 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(1086), attempt: 0
+05-26 01:15:46.213 30772 31238 V Robocol : sending CMD_NOTIFY_ROBOT_STATE(1087), attempt: 0
+05-26 01:15:46.217 30772 31336 I RobotCore: saving match logcat to /storage/emulated/0/FIRST/matchlogs/Match-0-simpleBlueDepot.txt
+05-26 01:15:46.217 30772 31336 I RobotCore: logging command line: exec logcat -d -T '5-26 1:15:45.000' -f /storage/emulated/0/FIRST/matchlogs/Match-0-simpleBlueDepot.txt -n4 -v threadtime UsbRequestJNI:S UsbRequest:S art:W ThreadPool:W System:W ExtendedExtractor:W OMXClient:W MediaPlayer:W dalvikvm:W  *:V
+05-26 01:15:46.260 30772 31232 V SoundInfo: construct(0x07f90076)

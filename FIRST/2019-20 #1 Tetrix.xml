@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<Robot type="FirstInspires-FTC">
+    <LynxUsbDevice name="Expansion Hub Portal 1" serialNumber="DQ1O4APQ" parentModuleAddress="1">
+        <LynxModule name="Expansion Hub 1" port="1">
+            <NeveRest40Gearmotor name="FrontRight" port="0" />
+            <NeveRest40Gearmotor name="FrontLeft" port="1" />
+            <NeveRest40Gearmotor name="RearRight" port="2" />
+            <NeveRest40Gearmotor name="RearLeft" port="3" />
+            <Servo name="FoundationL" port="0" />
+            <Servo name="FoundationR" port="1" />
+            <Servo name="LiftExtendLeft" port="2" />
+            <Servo name="LiftExtendRight" port="3" />
+            <Servo name="CapstoneDeploy" port="4" />
+            <RevTouchSensor name="ArmRetractStop" port="1" />
+            <RevTouchSensor name="ArmUpStop" port="3" />
+            <LynxEmbeddedIMU name="imu" port="0" bus="0" />
+            <LynxColorSensor name="colorSensorGround" port="0" bus="1" />
+            <LynxColorSensor name="colorSensorRight" port="0" bus="2" />
+        </LynxModule>
+        <LynxModule name="Expansion Hub 2" port="2">
+            <NeveRest40Gearmotor name="TapeMeasureMotor" port="0" />
+            <NeveRest40Gearmotor name="ArmHorizontal" port="1" />
+            <NeveRest40Gearmotor name="ArmLeft" port="2" />
+            <TetrixMotor name="ArmRight" port="3" />
+            <Servo name="GripperL" port="0" />
+            <Servo name="GripperR" port="1" />
+            <Servo name="GripperRotate" port="2" />
+            <Servo name="GripperUpDownRotateLeft" port="3" />
+            <Servo name="GripperUpDownRotateRight" port="4" />
+            <RevTouchSensor name="motorGate" port="1" />
+            <LynxColorSensor name="colorSensorLeft" port="0" bus="1" />
+            <LynxColorSensor name="colorSensorCenter" port="0" bus="0" />
+        </LynxModule>
+    </LynxUsbDevice>
+    <Webcam name="Webcam 1" serialNumber="97B1EED0" />
+    <Webcam name="Webcam 2" serialNumber="E8022FD0" />
+</Robot>
