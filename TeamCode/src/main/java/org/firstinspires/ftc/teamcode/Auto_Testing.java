@@ -11,7 +11,6 @@ import com.qualcomm.robotcore.hardware.SwitchableLight;
 /*
 Goes forwards to a blue or red line and then brakes
  */
-@Disabled
 @Autonomous(name = "Auto_Testing", group = "Autonomous")
 public class Auto_Testing extends LinearOpMode {
 
@@ -33,9 +32,10 @@ public class Auto_Testing extends LinearOpMode {
 
         waitForStart();
 
-        nav.RotateTo(180, 0.5);
+        nav.RotateTo(180, 0.2);
         while (!nav.CheckCloseEnoughRotation())
         {
+            nav.Loop();
             telemetry.addData("Turning to ", 180);
             telemetry.update();
         }
@@ -43,9 +43,10 @@ public class Auto_Testing extends LinearOpMode {
 
         sleep(1000);
 
-        nav.RotateTo(270, 0.5);
+        nav.RotateTo(270, 0.2);
         while (!nav.CheckCloseEnoughRotation())
         {
+            nav.Loop();
             telemetry.addData("Turning to ", 270);
             telemetry.update();
         }

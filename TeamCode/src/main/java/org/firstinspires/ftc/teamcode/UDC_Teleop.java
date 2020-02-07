@@ -15,7 +15,7 @@ public class UDC_Teleop
      private boolean DriveAngleReseted = false;
 
     private double JoystickThreshold = 0.2;
-    double turnSpeed;
+    private double turnSpeed;
 
     private int[] MaxMotorPositions = {0,0,0,0};
     private int[] PreviousMotorPositions = {0,0,0,0};
@@ -96,20 +96,30 @@ public class UDC_Teleop
     {
         if(!DriveAngleReseted)//reset the target drive angle
         {
+            opmode.telemetry.addData("RESETING DRRIVE ANGLE: ", true);
             DriveAngle = Bot.GetRobotAngle();
             DriveAngleReseted = true;
         }
+
+        opmode.telemetry.addData("DRIVE ANGLE: ", DriveAngle);
 
         //if we need to turn while moving, choose direction
         boolean turnRight = false;
         if (rightStickX > JoystickThreshold)
         {
             turnRight = true;
+            DriveAngle -= 6 * Math.abs(rightStickX);
         }
         if (rightStickX <= JoystickThreshold)
         {
             turnRight = false;
+            DriveAngle += 6 * Math.abs(rightStickX);
         }
+        /*if(Math.abs(rightStickX) > 0)//if turning
+        {
+            opmode.telemetry.addData("turning: ", true);
+            DriveAngleReseted = false;
+        }*/
 
         //Get an offset of the robot so that it can stay on track:
         double offset = angleFollower.GetOffsetToAdd(DriveAngle, Bot.GetRobotAngle(), 0.01, 0, 0);
@@ -123,7 +133,7 @@ public class UDC_Teleop
         }
 
         //Make robot move at the angle of the left joystick at the determined speed while applying a turn to the value of the right joystick
-        Bot.MoveAtAngleTurning(leftStickBaring, DriveSpeedMultiplier * leftStickPower, turnRight, 0, headlessMode, offset);
+        Bot.MoveAtAngleTurning(leftStickBaring, DriveSpeedMultiplier * leftStickPower, turnRight, 0 * TurnSpeedMultiplier, headlessMode, offset);
     }
 
     public void RawForwards(double speed)

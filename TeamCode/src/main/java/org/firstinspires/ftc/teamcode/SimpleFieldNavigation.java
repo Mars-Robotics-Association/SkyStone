@@ -22,8 +22,8 @@ public class SimpleFieldNavigation
     private double BlueHue = 207;
     private SkyStoneBot Bot;
 
-    public boolean Navigating = false;
-    public boolean Rotating = false;
+    private boolean Navigating = false;
+    private boolean Rotating = false;
 
     private OpMode opmode;
 
@@ -141,6 +141,7 @@ public class SimpleFieldNavigation
 
     void RotationControl()
     {
+        opmode.telemetry.addData("turning: ", TargetRot);
         if (!CheckCloseEnoughRotation()) //if not at rotation target
         {
             Bot.RotateTowardsAngle(TargetRot, TurnSpeed);
@@ -204,7 +205,7 @@ public class SimpleFieldNavigation
         }
         else
         {
-            opmode.telemetry.addData("Close Enough Rotation: ", false);
+            //opmode.telemetry.addData("Close Enough Rotation: ", false);
             return false;
         }
     }

@@ -109,8 +109,11 @@ public class SkyStoneBot implements Robot
         }
 
         opmode.telemetry.addData("Target Encoder Distance ", encodedDistance);
+        opmode.telemetry.addData("RobotAngle: ", RobotAngle);
+        opmode.telemetry.addData("RobotAngleOffset: ", RobotAngleOffset);
+        opmode.telemetry.addData("Angles.firstangle", Angles.firstAngle);
 
-        opmode.telemetry.addData("Front Right: ", FrontRight.getCurrentPosition());
+        /*opmode.telemetry.addData("Front Right: ", FrontRight.getCurrentPosition());
         opmode.telemetry.addData("Front Left: ", FrontLeft.getCurrentPosition());
         opmode.telemetry.addData("Rear Right: ", RearRight.getCurrentPosition());
         opmode.telemetry.addData("Rear Left: ", RearLeft.getCurrentPosition());
@@ -123,7 +126,7 @@ public class SkyStoneBot implements Robot
         opmode.telemetry.addData("Front Right Brake: ", FrontRightBrakePos);
         opmode.telemetry.addData("Front Left Brake: ", FrontLeftBrakePos);
         opmode.telemetry.addData("Rear Right Brake: ", RearRightBrakePos);
-        opmode.telemetry.addData("Rear Left Brake: ", RearLeftBrakePos);
+        opmode.telemetry.addData("Rear Left Brake: ", RearLeftBrakePos);*/
     }
 
     public void OffsetGyro()
