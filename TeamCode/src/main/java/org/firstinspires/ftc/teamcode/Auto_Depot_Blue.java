@@ -57,6 +57,7 @@ public class Auto_Depot_Blue extends LinearOpMode {
         sleep(2000);
         GoForward(8, 0.4);//Go backwards a few inches to pull block out
         //GoRight(20, 0.8);
+        RotateTo(0, 0.4);
         nav.GoRight(100, 0.4);//Start towards the line
         while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold) //wait until color sensor sees the line
         {
@@ -66,7 +67,7 @@ public class Auto_Depot_Blue extends LinearOpMode {
         }
         nav.StopAll();
         //The robot is now at the line
-
+        RotateTo(0, 0.4);
         //PLACE SKYSTONE 1
         GoRight(12, 0.4);
         fgrabber.FoundationGrabUp();
@@ -104,6 +105,27 @@ public class Auto_Depot_Blue extends LinearOpMode {
         while (!nav.CheckIfAtTargetDestination()) {
             nav.Loop();
             telemetry.addData("looping1: ", true);
+            telemetry.update();
+        }
+        nav.StopAll();
+    }
+
+    public void RotateTo(double angle, double speed)
+    {
+        nav.RotateTo(angle, speed);
+        while (!nav.CheckCloseEnoughRotation())
+        {
+            nav.Loop();
+            telemetry.addData("Turning to ", angle);
+            telemetry.update();
+        }
+        nav.StopAll();
+
+        nav.RotateTo(angle, 0.1);
+        while (!nav.CheckCloseEnoughRotationPrecise())
+        {
+            nav.Loop();
+            telemetry.addData("Turning to precise", angle);
             telemetry.update();
         }
         nav.StopAll();

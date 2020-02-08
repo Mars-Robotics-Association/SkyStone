@@ -103,7 +103,7 @@ public class UDC_Teleop
 
         opmode.telemetry.addData("DRIVE ANGLE: ", DriveAngle);
 
-        //if we need to turn while moving, choose direction
+        //if we need to turn while moving, choose direction and add/subtract that with the target angle
         boolean turnRight = false;
         if (rightStickX > JoystickThreshold)
         {
@@ -115,11 +115,6 @@ public class UDC_Teleop
             turnRight = false;
             DriveAngle += 6 * Math.abs(rightStickX);
         }
-        /*if(Math.abs(rightStickX) > 0)//if turning
-        {
-            opmode.telemetry.addData("turning: ", true);
-            DriveAngleReseted = false;
-        }*/
 
         //Get an offset of the robot so that it can stay on track:
         double offset = angleFollower.GetOffsetToAdd(DriveAngle, Bot.GetRobotAngle(), 0.01, 0, 0);

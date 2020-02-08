@@ -134,6 +134,15 @@ public class CustomChasisTeleop extends OpMode
             tapeMeasureExtensionTime=getRuntime();
         }
 
+        if(gamepad1.dpad_left)
+        {
+            grab.FoundationGrabUp();
+        }
+        if(gamepad1.dpad_right)
+        {
+            grab.FoundationGrabDown();
+        }
+
 
 
         if(gamepad1.dpad_up){

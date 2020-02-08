@@ -38,7 +38,7 @@ public class Auto_Depot_Red extends LinearOpMode {
 
         //START
         fgrabber.FoundationGrabUp();//Make sure grabbers are up
-        GoForward(-28, 0.3);//Go to blocks
+        GoForward(-27, 0.3);//Go to blocks
         //STRAFING RUN 1
         nav.GoRight(50, 0.2);//start strafing along blocks
         while (!(colorSensorSkystone.returnHue() > 100)) //wait until color sensor sees skystone
@@ -49,12 +49,12 @@ public class Auto_Depot_Red extends LinearOpMode {
         }
         nav.StopAll();
         GoRight(2, 0.2);
-        GoForward(-2, 0.4);
+        GoForward(-4, 0.4);
         fgrabber.FoundationGrabDownR();//grab block
-        sleep(2000);
-        GoForward(8, 0.4);//Go backwards a few inches to pull block out
-        //GoRight(-20, 0.8);
-        nav.GoRight(-100, 0.4);//Start towards the line
+        sleep(1000);
+        GoForward(8, 0.6);//Go backwards a few inches to pull block out
+        GoRight(-20, 0.8);
+        nav.GoRight(-100, 0.2);//Start towards the line
         while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold) //wait until color sensor sees the linex
         {
             nav.Loop();
@@ -63,14 +63,13 @@ public class Auto_Depot_Red extends LinearOpMode {
         }
         nav.StopAll();
         //The robot is now at the line
-
         //PLACE SKYSTONE 1
-        GoRight(-12, 0.4);
+        GoRight(-24, 0.6);
         fgrabber.FoundationGrabUp();
         sleep(1000);
-
+        GoRight(18, 0.6);
         //GO TO LINE
-        nav.GoRight(100, 0.4);
+        nav.GoRight(100, 0.2);
         while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold) //wait until color sensor sees the line
         {
             nav.Loop();
@@ -101,6 +100,27 @@ public class Auto_Depot_Red extends LinearOpMode {
         while (!nav.CheckIfAtTargetDestination()) {
             nav.Loop();
             telemetry.addData("looping1: ", true);
+            telemetry.update();
+        }
+        nav.StopAll();
+    }
+
+    public void RotateTo(double angle, double speed)
+    {
+        nav.RotateTo(angle, speed);
+        while (!nav.CheckCloseEnoughRotation())
+        {
+            nav.Loop();
+            telemetry.addData("Turning to ", angle);
+            telemetry.update();
+        }
+        nav.StopAll();
+
+        nav.RotateTo(angle, 0.1);
+        while (!nav.CheckCloseEnoughRotationPrecise())
+        {
+            nav.Loop();
+            telemetry.addData("Turning to precise", angle);
             telemetry.update();
         }
         nav.StopAll();

@@ -63,6 +63,7 @@ public class SkyStoneBot implements Robot
     public void Init()
     {
         opmode.telemetry.addData("SkyStoneStart", true);
+        opmode.telemetry.setMsTransmissionInterval(100);
 
         imu = new IMU(opmode);
         imu.Init();

@@ -15,7 +15,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 public class SimpleFieldNavigation
 {
     private double closeEnoughThresholdDist = 10; //in inches
-    private double closeEnoughThresholdRot = 5; //in degrees
+    private double closeEnoughThresholdRot = 40; //in degrees
+    private double closeEnoughThresholdRotPrecise = 3; //in degrees
 
     private double HueThreshold = 20;
     private double RedHue = 0;
@@ -33,6 +34,7 @@ public class SimpleFieldNavigation
     private double CurrentRot;
 
     private double TurnSpeed = 0;
+    private double StartRot = 0;
 
     PIDAngleFollower PID = null;
     private double pCoefficient = 0.006;
@@ -142,7 +144,7 @@ public class SimpleFieldNavigation
     void RotationControl()
     {
         opmode.telemetry.addData("turning: ", TargetRot);
-        if (!CheckCloseEnoughRotation()) //if not at rotation target
+        if (!CheckCloseEnoughRotationPrecise()) //if not at rotation target
         {
             Bot.RotateTowardsAngle(TargetRot, TurnSpeed);
         }
@@ -199,7 +201,7 @@ public class SimpleFieldNavigation
 
     public boolean CheckCloseEnoughRotation()
     {
-        if(CurrentRot < TargetRot + closeEnoughThresholdRot && CurrentRot > TargetRot - closeEnoughThresholdRot)
+        if(CurrentRot < GetUsableRot() + closeEnoughThresholdRot && CurrentRot > GetUsableRot() - closeEnoughThresholdRot)
         {
             return true;
         }
@@ -208,6 +210,36 @@ public class SimpleFieldNavigation
             //opmode.telemetry.addData("Close Enough Rotation: ", false);
             return false;
         }
+    }
+    public boolean CheckCloseEnoughRotationPrecise()
+    {
+        if(CurrentRot < GetUsableRot() + closeEnoughThresholdRotPrecise && CurrentRot > GetUsableRot() - closeEnoughThresholdRotPrecise)
+        {
+            return true;
+        }
+        else
+        {
+            //opmode.telemetry.addData("Close Enough Rotation: ", false);
+            return false;
+        }
+    }
+
+    private double GetUsableRot()
+    {
+        double newRot = 0;
+        if(TargetRot > 180)
+        {
+            newRot = -360 + TargetRot;
+        }
+        else if(TargetRot < -180)
+        {
+            newRot = 360 + TargetRot;
+        }
+        else
+        {
+            newRot = TargetRot;
+        }
+        return newRot;
     }
 
 }

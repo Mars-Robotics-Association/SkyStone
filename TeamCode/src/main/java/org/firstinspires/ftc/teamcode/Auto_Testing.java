@@ -32,47 +32,90 @@ public class Auto_Testing extends LinearOpMode {
 
         waitForStart();
 
-        nav.RotateTo(180, 0.2);
+        RotateTo(180, 0.4);
+        sleep(1000);
+        RotateTo(90, 0.4);
+        sleep(1000);
+        RotateTo(0, 0.4);
+        sleep(1000);
+        RotateTo(-270, 0.4);
+        sleep(1000);
+        RotateTo(-90, 0.4);
+        sleep(1000);
+
+
+
+        nav.StopAll();
+    }
+
+    public void RotateTo(double angle, double speed)
+    {
+        nav.RotateTo(angle, speed);
         while (!nav.CheckCloseEnoughRotation())
         {
             nav.Loop();
-            telemetry.addData("Turning to ", 180);
+            telemetry.addData("Turning to ", angle);
             telemetry.update();
         }
         nav.StopAll();
 
-        sleep(1000);
-
-        nav.RotateTo(270, 0.2);
-        while (!nav.CheckCloseEnoughRotation())
+        nav.RotateTo(angle, 0.1);
+        while (!nav.CheckCloseEnoughRotationPrecise())
         {
             nav.Loop();
-            telemetry.addData("Turning to ", 270);
+            telemetry.addData("Turning to precise", angle);
             telemetry.update();
         }
         nav.StopAll();
-
-        sleep(1000);
-
-        nav.RotateTo(0, 0.5);
-        while (!nav.CheckCloseEnoughRotation())
-        {
-            telemetry.addData("Turning to ", 0);
-            telemetry.update();
-        }
-        nav.StopAll();
-
-        sleep(1000);
-
-        telemetry.update();
-
-        //Stops all
-        nav.StopAll();
-
-        //Brakes
-        nav.Brake(1);
-
-        sleep(500);
-
     }
 }
+
+/*nav.RotateTo(180, 0.4);
+        while (!nav.CheckCloseEnoughRotation())
+        {
+        nav.Loop();
+        telemetry.addData("Turning to ", 180);
+        telemetry.update();
+        }
+        nav.StopAll();
+
+        sleep(1000);
+
+        nav.RotateTo(270, 0.4);
+        while (!nav.CheckCloseEnoughRotation())
+        {
+        nav.Loop();
+        telemetry.addData("Turning to ", 270);
+        telemetry.update();
+        }
+        nav.StopAll();
+
+        sleep(1000);
+
+        nav.RotateTo(0, 0.4);
+        while (!nav.CheckCloseEnoughRotation())
+        {
+        nav.Loop();
+        telemetry.addData("Turning to ", 0);
+        telemetry.update();
+        }
+
+        sleep(1000);
+
+        nav.RotateTo(-60, 0.2);
+        while (!nav.CheckCloseEnoughRotation())
+        {
+        nav.Loop();
+        telemetry.addData("Turning to ", -60);
+        telemetry.update();
+        }
+
+        sleep(1000);
+
+        nav.RotateTo(-200, 0.2);
+        while (!nav.CheckCloseEnoughRotation())
+        {
+        nav.Loop();
+        telemetry.addData("Turning to ", -200);
+        telemetry.update();
+        }*/
