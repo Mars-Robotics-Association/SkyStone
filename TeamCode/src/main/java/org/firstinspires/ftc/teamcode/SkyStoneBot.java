@@ -54,10 +54,7 @@ public class SkyStoneBot implements Robot
     {
         return RobotAngleOffset;
     }
-    public double GetFinalGyro()
-    {
-        return RobotAngle;
-    }
+    public double GetOriginalGyro(){return Angles.firstAngle;}
 
     @Override
     public void Init()

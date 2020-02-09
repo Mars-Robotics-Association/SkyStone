@@ -97,27 +97,38 @@ public class UDC_Teleop
         if(!DriveAngleReseted)//reset the target drive angle
         {
             opmode.telemetry.addData("RESETING DRRIVE ANGLE: ", true);
-            DriveAngle = Bot.GetRobotAngle();
+            DriveAngle = Bot.GetOriginalGyro();
             DriveAngleReseted = true;
         }
 
-        opmode.telemetry.addData("DRIVE ANGLE: ", DriveAngle);
-
         //if we need to turn while moving, choose direction and add/subtract that with the target angle
         boolean turnRight = false;
-        if (rightStickX > JoystickThreshold)
+        if (rightStickX > JoystickThreshold)//turn right
         {
             turnRight = true;
             DriveAngle -= 6 * Math.abs(rightStickX);
         }
-        if (rightStickX <= JoystickThreshold)
+        else//turn left
         {
             turnRight = false;
             DriveAngle += 6 * Math.abs(rightStickX);
         }
 
+        //Get the Drive angle over the 180 degree wall
+        if(DriveAngle > 180)//go to negative side
+        {
+            DriveAngle = -180 + (DriveAngle - 180);
+        }
+        if(DriveAngle < -180)//go to positive side
+        {
+            DriveAngle = 180 + (DriveAngle + 180);
+        }
+
+        opmode.telemetry.addData("DRIVE ANGLE: ", DriveAngle);
+
         //Get an offset of the robot so that it can stay on track:
-        double offset = angleFollower.GetOffsetToAdd(GetUsableRot(DriveAngle), GetUsableRot(Bot.GetRobotAngle()), 0.01, 0, 0);//gets an offset to keep the robot on track
+        double [] vals = GetUsableRotsForOffset(DriveAngle, Bot.GetOriginalGyro());
+        double offset = angleFollower.GetOffsetToAdd(vals[0], vals[1], 0.01, 0, 0);//gets an offset to keep the robot on track
         opmode.telemetry.addData("Target Angle: ", DriveAngle);
         opmode.telemetry.addData("Current Angle: ", Bot.GetRobotAngle());
         opmode.telemetry.addData("Turn offset: ", offset);
@@ -178,22 +189,26 @@ public class UDC_Teleop
         return rright;
     }
 
-    private double GetUsableRot(double rot)//
+    private double[] GetUsableRotsForOffset(double targetAbsRot, double currentAbsRot)//detects if the two numbers are
     {
-        double newRot = 0;
-        if(rot > 180)
+        double newTargetRot = 0;
+        double newCurrentRot = 0;
+
+        double normalDistance = Math.abs(targetAbsRot - currentAbsRot);
+        double overTheLineDistance = Math.abs(-targetAbsRot - currentAbsRot);
+
+        if(overTheLineDistance < normalDistance)//if need to go over the line
         {
-            newRot = -360 + rot;
+            newTargetRot = targetAbsRot - (180 * Math.abs(targetAbsRot)/targetAbsRot);//offset by 180 towards 0. The abs thing is to detect whether to add or subtract
+            newCurrentRot = targetAbsRot - (180 * Math.abs(currentAbsRot)/currentAbsRot);//offset by 180 towards 0. The abs thing is to detect whether to add or subtract
         }
-        else if(rot < -180)
+        else //everything is normal
         {
-            newRot = 360 + rot;
+            newTargetRot = targetAbsRot;
+            newCurrentRot = currentAbsRot;
         }
-        else
-        {
-            newRot = rot;
-        }
-        return newRot;
+
+        return new double [] {newTargetRot, newCurrentRot};//return values
     }
 
 
