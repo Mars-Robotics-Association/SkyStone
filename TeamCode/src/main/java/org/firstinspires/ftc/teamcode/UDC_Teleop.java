@@ -117,7 +117,7 @@ public class UDC_Teleop
         }
 
         //Get an offset of the robot so that it can stay on track:
-        double offset = angleFollower.GetOffsetToAdd(DriveAngle, Bot.GetRobotAngle(), 0.01, 0, 0);
+        double offset = angleFollower.GetOffsetToAdd(GetUsableRot(DriveAngle), GetUsableRot(Bot.GetRobotAngle()), 0.01, 0, 0);//gets an offset to keep the robot on track
         opmode.telemetry.addData("Target Angle: ", DriveAngle);
         opmode.telemetry.addData("Current Angle: ", Bot.GetRobotAngle());
         opmode.telemetry.addData("Turn offset: ", offset);
@@ -176,6 +176,24 @@ public class UDC_Teleop
     public int getrrightudc(){
         int rright = Bot.getrright();
         return rright;
+    }
+
+    private double GetUsableRot(double rot)//
+    {
+        double newRot = 0;
+        if(rot > 180)
+        {
+            newRot = -360 + rot;
+        }
+        else if(rot < -180)
+        {
+            newRot = 360 + rot;
+        }
+        else
+        {
+            newRot = rot;
+        }
+        return newRot;
     }
 
 

@@ -308,8 +308,6 @@ public class SkyStoneBot implements Robot
         RearLeftBrakePos = RearLeft.getCurrentPosition();
     }
 
-
-
     public boolean CheckIfEncodersCloseEnough()
     {
         //check if the motors are close enough to their target to move on
