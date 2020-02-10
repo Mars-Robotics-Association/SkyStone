@@ -125,9 +125,12 @@ public class UDC_Teleop
         }
 
         opmode.telemetry.addData("DRIVE ANGLE: ", DriveAngle);
+        opmode.telemetry.addData("RAW GYRO: ", Bot.GetOriginalGyro());
 
         //Get an offset of the robot so that it can stay on track:
         double [] vals = GetUsableRotsForOffset(DriveAngle, Bot.GetOriginalGyro());
+        opmode.telemetry.addData("OUT DRIVE ANGLE: ", vals[0]);
+        opmode.telemetry.addData("OUT RAW GYRO: ", vals[1]);
         double offset = angleFollower.GetOffsetToAdd(vals[0], vals[1], 0.01, 0, 0);//gets an offset to keep the robot on track
         opmode.telemetry.addData("Target Angle: ", DriveAngle);
         opmode.telemetry.addData("Current Angle: ", Bot.GetRobotAngle());
@@ -199,8 +202,9 @@ public class UDC_Teleop
 
         if(overTheLineDistance < normalDistance)//if need to go over the line
         {
-            newTargetRot = targetAbsRot - (180 * Math.abs(targetAbsRot)/targetAbsRot);//offset by 180 towards 0. The abs thing is to detect whether to add or subtract
-            newCurrentRot = targetAbsRot - (180 * Math.abs(currentAbsRot)/currentAbsRot);//offset by 180 towards 0. The abs thing is to detect whether to add or subtract
+            newTargetRot = ((targetAbsRot * Math.abs(targetAbsRot)/targetAbsRot)) - (180 * Math.abs(targetAbsRot)/targetAbsRot);//offset by 180 towards 0. The abs thing is to detect whether to add or subtract 170 -> -10
+            newCurrentRot = ((currentAbsRot * Math.abs(currentAbsRot)/currentAbsRot)) - (180 * Math.abs(currentAbsRot)/currentAbsRot);//offset by 180 towards 0. The abs thing is to detect whether to add or subtract -170 -> 10
+            opmode.telemetry.addData("OVER THE LINE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", true);
         }
         else //everything is normal
         {
@@ -210,6 +214,4 @@ public class UDC_Teleop
 
         return new double [] {newTargetRot, newCurrentRot};//return values
     }
-
-
 }
