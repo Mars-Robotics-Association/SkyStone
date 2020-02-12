@@ -95,9 +95,6 @@ public class Auto_Depot_Red extends LinearOpMode {
         sleep(500);
         nav.StopAll();
 
-
-
-
         //Brakes
         nav.SetBrakePos();
         nav.Brake(1);
