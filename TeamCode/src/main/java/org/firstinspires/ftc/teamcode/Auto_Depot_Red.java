@@ -95,6 +95,53 @@ public class Auto_Depot_Red extends LinearOpMode {
         sleep(500);
         nav.StopAll();
 
+
+        //Turns back to 0 degrees
+        GoForward(10, 0.8, -90);
+        RotateTo(0, 0.4);
+
+
+        //Further alignment?
+
+
+        //STRAFING RUN 2
+        nav.GoRight(50, 0.2, 0);//start strafing along blocks
+        while (!(colorSensorSkystone.returnHue() > 100)) //wait until color sensor sees skystone
+        {
+            nav.Loop();
+            telemetry.addData("looping1: ", true);
+            telemetry.update();
+        }
+        nav.StopAll();
+        GoRight(2, 0.2, 0);//align
+        GoForward(-4, 0.5, 0);//Go to block
+        fgrabber.FoundationGrabDownR();//grab block
+        sleep(500);
+
+        //PULL OUT SKYSTONE
+        GoForward(12, 1, 0);//Go backwards a few inches to pull block out
+        RotateTo(-90, 0.4);//Rotate to -90 degrees
+
+
+        //PLACE SKYSTONE 1
+        GoForward(54, 1, -90);
+        fgrabber.FoundationGrabUp();
+        sleep(500);
+        //RotateToPrecise(0);
+        GoForward(-18, 0.6, -90);
+
+
+        //GO TO LINE
+        nav.GoForward(-100, 0.3, -90);
+        while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold) //wait until color sensor sees the line
+        {
+            nav.Loop();
+            telemetry.addData("looping1: ", true);
+            telemetry.update();
+        }
+        nav.StopAll();
+
+
         //Brakes
         nav.SetBrakePos();
         nav.Brake(1);
