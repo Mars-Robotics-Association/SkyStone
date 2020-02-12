@@ -25,10 +25,13 @@
             <Servo name="GripperL" port="0" />
             <Servo name="GripperR" port="1" />
             <Servo name="GripperRotate" port="2" />
-            <Servo name="GripperUpDownRotateLeft" port="3" />
-            <Servo name="GripperUpDownRotateRight" port="4" />
+            <Servo name="GripperUpDownRotateL" port="3" />
+            <Servo name="GripperUpDownRotateR" port="4" />
+            <Servo name="CapstoneDeployer" port="5" />
             <LynxColorSensor name="colorSensorCenter" port="0" bus="0" />
             <LynxColorSensor name="colorSensorLeft" port="0" bus="1" />
+            <REV_VL53L0X_RANGE_SENSOR name="ODSLeft" port="0" bus="3" />
+            <REV_VL53L0X_RANGE_SENSOR name="ODSRight" port="0" bus="2" />
         </LynxModule>
     </LynxUsbDevice>
     <Webcam name="Webcam 1" serialNumber="E811EED0" />

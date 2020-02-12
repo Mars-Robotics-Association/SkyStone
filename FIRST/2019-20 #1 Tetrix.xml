@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <Robot type="FirstInspires-FTC">
-    <LynxUsbDevice name="Expansion Hub Portal 1" serialNumber="DQ1O4APQ" parentModuleAddress="1">
+    <LynxUsbDevice name="Expansion Hub Portal 1" serialNumber="DQ2LNHSG" parentModuleAddress="1">
         <LynxModule name="Expansion Hub 1" port="1">
             <NeveRest40Gearmotor name="FrontRight" port="0" />
             <NeveRest40Gearmotor name="FrontLeft" port="1" />
@@ -21,17 +21,16 @@
             <NeveRest40Gearmotor name="TapeMeasureMotor" port="0" />
             <NeveRest40Gearmotor name="ArmHorizontal" port="1" />
             <NeveRest40Gearmotor name="ArmLeft" port="2" />
-            <TetrixMotor name="ArmRight" port="3" />
+            <NeveRest40Gearmotor name="ArmRight" port="3" />
             <Servo name="GripperL" port="0" />
             <Servo name="GripperR" port="1" />
             <Servo name="GripperRotate" port="2" />
             <Servo name="GripperUpDownRotateLeft" port="3" />
             <Servo name="GripperUpDownRotateRight" port="4" />
-            <RevTouchSensor name="motorGate" port="1" />
-            <LynxColorSensor name="colorSensorLeft" port="0" bus="1" />
             <LynxColorSensor name="colorSensorCenter" port="0" bus="0" />
+            <LynxColorSensor name="colorSensorLeft" port="0" bus="1" />
+            <REV_VL53L0X_RANGE_SENSOR name="ODSRight" port="0" bus="2" />
+            <REV_VL53L0X_RANGE_SENSOR name="ODSLeft" port="0" bus="3" />
         </LynxModule>
     </LynxUsbDevice>
-    <Webcam name="Webcam 1" serialNumber="97B1EED0" />
-    <Webcam name="Webcam 2" serialNumber="E8022FD0" />
 </Robot>
