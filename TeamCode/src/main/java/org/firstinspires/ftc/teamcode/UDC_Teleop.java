@@ -97,7 +97,7 @@ public class UDC_Teleop
         if(!DriveAngleReseted)//reset the target drive angle
         {
             opmode.telemetry.addData("RESETING DRRIVE ANGLE: ", true);
-            DriveAngle = Bot.GetRobotAngle();
+            DriveAngle = Bot.GetOriginalGyro();
             DriveAngleReseted = true;
         }
 
