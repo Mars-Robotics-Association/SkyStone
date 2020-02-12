@@ -39,12 +39,12 @@ public class Auto_Depot_Blue extends LinearOpMode {
         nav.Start();
         telemetry.addData("Status", "Initialized");
 
-        //START
+        /*//START
         fgrabber.FoundationGrabUp();//Make sure grabbers are up
         GoForward(-28, 0.3);//Go to blocks
 
         //STRAFING RUN 1
-        nav.GoRight(-50, 0.2);//start strafing along blocks
+        nav.GoRight(-50, 0.2, true, 0);//start strafing along blocks
         while (!(colorSensorSkystone.returnHue() > 100)) //wait until color sensor sees skystone
         {
             nav.Loop();
@@ -59,7 +59,7 @@ public class Auto_Depot_Blue extends LinearOpMode {
         GoForward(8, 0.4);//Go backwards a few inches to pull block out
         //GoRight(20, 0.8);
         RotateTo(0, 0.4);
-        nav.GoRight(100, 0.4);//Start towards the line
+        nav.GoRight(100, 0.4, true, 0);//Start towards the line
         while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold) //wait until color sensor sees the line
         {
             nav.Loop();
@@ -75,7 +75,7 @@ public class Auto_Depot_Blue extends LinearOpMode {
         sleep(1000);
 
         //GO TO LINE
-        nav.GoRight(-100, 0.4);
+        nav.GoRight(-100, 0.4, true, 0);
         while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold) //wait until color sensor sees the line
         {
             nav.Loop();
@@ -88,11 +88,11 @@ public class Auto_Depot_Blue extends LinearOpMode {
 
         //Brakes
         nav.SetBrakePos();
-        nav.Brake(1);
+        nav.Brake(1);*/
     }
 
-    public void GoForward(double distance, double speed) {
-        nav.GoForward(distance, speed);
+    public void GoForward(double distance, double speed, double moveAngle) {
+        nav.GoForward(distance, speed, moveAngle);
         while (!nav.CheckIfAtTargetDestination()) {
             nav.Loop();
             telemetry.addData("looping1: ", true);
@@ -101,8 +101,8 @@ public class Auto_Depot_Blue extends LinearOpMode {
         nav.StopAll();
     }
 
-    public void GoRight(double distance, double speed) {
-        nav.GoRight(distance, speed);
+    public void GoRight(double distance, double speed, double moveAngle) {
+        nav.GoRight(distance, speed, moveAngle);
         while (!nav.CheckIfAtTargetDestination()) {
             nav.Loop();
             telemetry.addData("looping1: ", true);

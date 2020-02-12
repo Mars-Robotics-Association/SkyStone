@@ -179,17 +179,17 @@ public class SimpleFieldNavigation
         Rotating = false;
     }
 
-    public void GoRight(double distance, double speed)
+    public void GoRight(double distance, double speed, double angleToMoveAt)
     {
-        Bot.GoRightWithEncoder(speed, distance);
+        Bot.GoRightWithEncoder(speed, distance, true, angleToMoveAt);
         pCoefficient = 0.05;
         Navigating = true;
         Rotating = false;
     }
 
-    public void GoForward(double distance, double speed)
+    public void GoForward(double distance, double speed, double angleToMoveAt)
     {
-        Bot.GoForwardWithEncoder(speed, distance);
+        Bot.GoForwardWithEncoder(speed, distance, true, angleToMoveAt);
         pCoefficient = 0.01;
         Navigating = true;
         Rotating = false;
