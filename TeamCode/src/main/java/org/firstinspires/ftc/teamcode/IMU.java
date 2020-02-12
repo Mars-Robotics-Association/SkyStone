@@ -99,7 +99,7 @@ public class IMU
         public void Start()
         {
             // Init the logging of measured acceleration
-            imu.startAccelerationIntegration(new Position(), new Velocity(), 15000);//was 1000
+            imu.startAccelerationIntegration(new Position(), new Velocity(), 150000);//was 1000
         }
 
         public void Loop()

@@ -39,6 +39,8 @@ public class Auto_Depot_Red extends LinearOpMode {
         //START
         fgrabber.FoundationGrabUp();//Make sure grabbers are up
         GoForward(-27, 0.3);//Go to blocks
+
+
         //STRAFING RUN 1
         nav.GoRight(50, 0.2);//start strafing along blocks
         while (!(colorSensorSkystone.returnHue() > 100)) //wait until color sensor sees skystone
@@ -48,37 +50,54 @@ public class Auto_Depot_Red extends LinearOpMode {
             telemetry.update();
         }
         nav.StopAll();
-        GoRight(2, 0.2);
-        GoForward(-4, 0.4);
+        GoRight(2, 0.2);//align
+        GoForward(-4, 0.5);//Go to block
         fgrabber.FoundationGrabDownR();//grab block
-        sleep(1000);
-        GoForward(8, 0.6);//Go backwards a few inches to pull block out
-        GoRight(-20, 0.8);
-        nav.GoRight(-100, 0.2);//Start towards the line
-        while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold) //wait until color sensor sees the linex
-        {
-            nav.Loop();
-            telemetry.addData("looping2: ", true);
-            telemetry.update();
-        }
-        nav.StopAll();
-        //The robot is now at the line
+        sleep(500);
+
+        //PULL OUT SKYSTONE
+        GoForward(12, 1);//Go backwards a few inches to pull block out
+        //RotateToPrecise(0);
+
+
         //PLACE SKYSTONE 1
-        GoRight(-24, 0.6);
+        GoRight(-54, 1);
         fgrabber.FoundationGrabUp();
-        sleep(1000);
+        sleep(500);
+        //RotateToPrecise(0);
+        sleep(500);
         GoRight(18, 0.6);
+
+
         //GO TO LINE
-        nav.GoRight(100, 0.2);
+        nav.GoRight(100, 0.3);
         while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold) //wait until color sensor sees the line
         {
             nav.Loop();
             telemetry.addData("looping1: ", true);
             telemetry.update();
         }
-
-        //Stops all
         nav.StopAll();
+
+
+        //ALIGNS FOR SECOND RUN
+        //aligns with Y on skybridge
+        nav.GoForward(-10, 1);
+        sleep(500);
+        nav.StopAll();
+        nav.ResetGyro();
+        sleep(500);
+
+        GoForward(15, 0.4);
+
+        //Goes to far wall by skystones
+        GoRight(60, 0.4);
+        nav.GoRight(10, 0.8);
+        sleep(500);
+        nav.StopAll();
+
+
+
 
         //Brakes
         nav.SetBrakePos();
@@ -92,7 +111,16 @@ public class Auto_Depot_Red extends LinearOpMode {
             telemetry.addData("looping1: ", true);
             telemetry.update();
         }
+        /*nav.SetMoveSpeed(1);
+        while (!nav.CheckIfAtTargetDestinationPrecise())
+        {
+            nav.Loop();
+            telemetry.addData("looping2: ", true);
+            telemetry.update();
+        }*/
         nav.StopAll();
+        nav.SetBrakePos();
+        nav.Brake(1);
     }
 
     public void GoRight(double distance, double speed) {
@@ -102,7 +130,16 @@ public class Auto_Depot_Red extends LinearOpMode {
             telemetry.addData("looping1: ", true);
             telemetry.update();
         }
+        /*nav.SetMoveSpeed(1);
+        while (!nav.CheckIfAtTargetDestinationPrecise())
+        {
+            nav.Loop();
+            telemetry.addData("looping2: ", true);
+            telemetry.update();
+        }*/
         nav.StopAll();
+        nav.SetBrakePos();
+        nav.Brake(1);
     }
 
     public void RotateTo(double angle, double speed)
@@ -116,6 +153,17 @@ public class Auto_Depot_Red extends LinearOpMode {
         }
         nav.StopAll();
 
+        nav.RotateTo(angle, 0.1);
+        while (!nav.CheckCloseEnoughRotationPrecise())
+        {
+            nav.Loop();
+            telemetry.addData("Turning to precise", angle);
+            telemetry.update();
+        }
+        nav.StopAll();
+    }
+    public void RotateToPrecise(double angle)
+    {
         nav.RotateTo(angle, 0.1);
         while (!nav.CheckCloseEnoughRotationPrecise())
         {

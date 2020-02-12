@@ -68,6 +68,11 @@ public class SimpleFieldNavigation
     {
         return Bot.CheckIfEncodersCloseEnough();
     }
+    public boolean CheckIfAtTargetDestinationPrecise()
+    {
+        return Bot.CheckIfEncodersCloseEnoughPrecise();
+    }
+
 
     public void Init()
     {
@@ -116,7 +121,7 @@ public class SimpleFieldNavigation
 
     void NavigationControl()
     {
-        boolean closeEnough = CheckIfAtTargetDestination();
+        boolean closeEnough = CheckIfAtTargetDestinationPrecise();
         opmode.telemetry.addData("Close enough: ", closeEnough);
 
         if (!closeEnough) //If not close to target
@@ -124,7 +129,7 @@ public class SimpleFieldNavigation
             opmode.telemetry.addData("Not close enough: ", true);
 
             //CODE FOR PID DRIVE CORRECTION
-            double offset = PID.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), 0.01 , 0, 0); //good
+            double offset = PID.GetOffsetToAdd(Bot.TargetAngle, Bot.GetRobotAngle(), 0.0125, 0, 0); //good
             Bot.ApplyTurnOffsetUsingEncoders(offset);
 
             opmode.telemetry.addData("Robot Angle ", Bot.GetRobotAngle());
@@ -188,6 +193,11 @@ public class SimpleFieldNavigation
         pCoefficient = 0.01;
         Navigating = true;
         Rotating = false;
+    }
+
+    public void SetMoveSpeed(double speed)
+    {
+        Bot.SetSpeed(speed);
     }
 
     public void Brake(double power){

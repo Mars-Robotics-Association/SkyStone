@@ -42,6 +42,7 @@ public class Auto_Depot_Blue extends LinearOpMode {
         //START
         fgrabber.FoundationGrabUp();//Make sure grabbers are up
         GoForward(-28, 0.3);//Go to blocks
+
         //STRAFING RUN 1
         nav.GoRight(-50, 0.2);//start strafing along blocks
         while (!(colorSensorSkystone.returnHue() > 100)) //wait until color sensor sees skystone
@@ -121,6 +122,17 @@ public class Auto_Depot_Blue extends LinearOpMode {
         }
         nav.StopAll();
 
+        nav.RotateTo(angle, 0.1);
+        while (!nav.CheckCloseEnoughRotationPrecise())
+        {
+            nav.Loop();
+            telemetry.addData("Turning to precise", angle);
+            telemetry.update();
+        }
+        nav.StopAll();
+    }
+    public void RotateToPrecise(double angle, double speed)
+    {
         nav.RotateTo(angle, 0.1);
         while (!nav.CheckCloseEnoughRotationPrecise())
         {

@@ -60,7 +60,7 @@ public class SkyStoneBot implements Robot
     public void Init()
     {
         opmode.telemetry.addData("SkyStoneStart", true);
-        opmode.telemetry.setMsTransmissionInterval(100);
+        opmode.telemetry.setMsTransmissionInterval(50);
 
         imu = new IMU(opmode);
         imu.Init();
@@ -213,6 +213,19 @@ public class SkyStoneBot implements Robot
         RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
+    public void SetSpeed(double speed)
+    {
+        FrontRightPower = speed;
+        FrontLeftPower = speed;
+        RearRightPower = speed;
+        RearLeftPower = speed;
+
+        FrontRight.setPower(speed);
+        FrontLeft.setPower(speed);
+        RearRight.setPower(speed);
+        RearLeft.setPower(speed);
+    }
+
     public void ApplyTurnOffsetUsingEncoders(double offset)
     {
         //FRONTRIGHT
@@ -306,6 +319,23 @@ public class SkyStoneBot implements Robot
     }
 
     public boolean CheckIfEncodersCloseEnough()
+    {
+        //check if the motors are close enough to their target to move on
+        boolean closeEnoughFR = Math.abs(FrontRight.getCurrentPosition() - FrontRight.getTargetPosition()) < 80;
+        boolean closeEnoughFL = Math.abs(FrontLeft.getCurrentPosition() - FrontLeft.getTargetPosition()) < 80;
+        boolean closeEnoughRR = Math.abs(RearRight.getCurrentPosition() - RearRight.getTargetPosition()) < 80;
+        boolean closeEnoughRL = Math.abs(RearLeft.getCurrentPosition() - RearLeft.getTargetPosition()) < 80;
+        if(closeEnoughFR && closeEnoughFL && closeEnoughRR && closeEnoughRL)//if all are, return true
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public boolean CheckIfEncodersCloseEnoughPrecise()
     {
         //check if the motors are close enough to their target to move on
         boolean closeEnoughFR = Math.abs(FrontRight.getCurrentPosition() - FrontRight.getTargetPosition()) < 40;
