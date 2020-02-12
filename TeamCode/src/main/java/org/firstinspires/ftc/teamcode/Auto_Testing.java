@@ -32,22 +32,22 @@ public class Auto_Testing extends LinearOpMode {
 
         waitForStart();
 
-        GoRight(10, 0.8);
+        /*GoRight(10, 0.8);
         RotateTo(180, 0.4);
         GoForward(10, 0.6);
         RotateTo(90, 0.4);
         GoRight(10, 0.6);
         RotateTo(0, 0.4);
         RotateTo(-270, 0.4);
-        RotateTo(-90, 0.4);
+        RotateTo(-90, 0.4);*/
 
 
 
         nav.StopAll();
     }
 
-    public void GoForward(double distance, double speed) {
-        nav.GoForward(distance, speed);
+    public void GoForward(double distance, double speed, double angle) {
+        nav.GoForward(distance, speed, angle);
         while (!nav.CheckIfAtTargetDestination()) {
             nav.Loop();
             telemetry.addData("looping1: ", true);
@@ -56,8 +56,8 @@ public class Auto_Testing extends LinearOpMode {
         nav.StopAll();
     }
 
-    public void GoRight(double distance, double speed) {
-        nav.GoRight(distance, speed);
+    public void GoRight(double distance, double speed, double angle) {
+        nav.GoRight(distance, speed, angle);
         while (!nav.CheckIfAtTargetDestination()) {
             nav.Loop();
             telemetry.addData("looping1: ", true);

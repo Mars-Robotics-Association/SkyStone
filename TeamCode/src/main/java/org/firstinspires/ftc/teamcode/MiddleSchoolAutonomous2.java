@@ -22,7 +22,7 @@ public class MiddleSchoolAutonomous2 extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         double time = getRuntime();
         //Block: Go forwards to the line
-        nav.GoForward(5, 0.1);
+        nav.GoForward(5, 0.1, 0);
         while (getRuntime()-time<3)
         {
             nav.Loop();

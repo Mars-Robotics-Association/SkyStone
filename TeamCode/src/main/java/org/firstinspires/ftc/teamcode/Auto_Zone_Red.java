@@ -33,7 +33,7 @@ public class Auto_Zone_Red extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
 
 
-        //START
+        /*//START
         fgrabber.FoundationGrabUp();
         GoRight(-18,0.8); //Line up with foundation
         GoForward(-30,0.6); //Go to foundation
@@ -82,12 +82,12 @@ public class Auto_Zone_Red extends LinearOpMode {
 
         //Brakes
         nav.SetBrakePos();
-        nav.Brake(1);
+        nav.Brake(1);*/
     }
 
 
-    public void GoForward(double distance, double speed){
-        nav.GoForward(distance, speed);
+    public void GoForward(double distance, double speed, double angle){
+        nav.GoForward(distance, speed, angle);
         while (!nav.CheckIfAtTargetDestination())
         {
             nav.Loop();
@@ -96,8 +96,8 @@ public class Auto_Zone_Red extends LinearOpMode {
         }
         nav.StopAll();
     }
-    public void GoRight(double distance, double speed){
-        nav.GoRight(distance, speed);
+    public void GoRight(double distance, double speed, double angle){
+        nav.GoRight(distance, speed, angle);
         while (!nav.CheckIfAtTargetDestination())
         {
             nav.Loop();

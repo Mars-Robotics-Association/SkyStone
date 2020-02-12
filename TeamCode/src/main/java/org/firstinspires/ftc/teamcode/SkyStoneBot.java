@@ -152,13 +152,20 @@ public class SkyStoneBot implements Robot
 
     //ENCODER METHODS FOR SIMPLE AUTONOMOUS
 
-    public void GoForwardWithEncoder(double speed, double distance)
+    public void GoForwardWithEncoder(double speed, double distance, boolean MoveAtAngle, double AngleToMoveAt)
     {
         StopAndResetEncoders();
 
         encodedDistance = (int)((EncoderTicksForward)*distance);//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
 
-        TargetAngle = RobotAngle;
+        if(MoveAtAngle)
+        {
+            TargetAngle = AngleToMoveAt;
+        }
+        else
+        {
+            TargetAngle = GetRobotAngle();
+        }
         TargetSpeed = speed;
 
         FrontRight.setTargetPosition(encodedDistance);
@@ -183,13 +190,20 @@ public class SkyStoneBot implements Robot
 
     }
 
-    public void GoRightWithEncoder(double speed, double distance)
+    public void GoRightWithEncoder(double speed, double distance, boolean MoveAtAngle, double AngleToMoveAt)
     {
         StopAndResetEncoders();
 
         encodedDistance = (int)((EncoderTicksSideways)*distance * Math.sqrt(2));//find ticks for distance: ticks per inch = (encoderTicks/wheelDiameter)
 
-        TargetAngle = RobotAngle;
+        if(MoveAtAngle)
+        {
+            TargetAngle = AngleToMoveAt;
+        }
+        else
+        {
+            TargetAngle = GetRobotAngle();
+        }
         TargetSpeed = speed;
 
         FrontRight.setTargetPosition(-encodedDistance);
@@ -322,9 +336,12 @@ public class SkyStoneBot implements Robot
     {
         //check if the motors are close enough to their target to move on
         boolean closeEnoughFR = Math.abs(FrontRight.getCurrentPosition() - FrontRight.getTargetPosition()) < 80;
-        boolean closeEnoughFL = Math.abs(FrontLeft.getCurrentPosition() - FrontLeft.getTargetPosition()) < 80;
+        /*boolean closeEnoughFL = Math.abs(FrontLeft.getCurrentPosition() - FrontLeft.getTargetPosition()) < 80;
         boolean closeEnoughRR = Math.abs(RearRight.getCurrentPosition() - RearRight.getTargetPosition()) < 80;
-        boolean closeEnoughRL = Math.abs(RearLeft.getCurrentPosition() - RearLeft.getTargetPosition()) < 80;
+        boolean closeEnoughRL = Math.abs(RearLeft.getCurrentPosition() - RearLeft.getTargetPosition()) < 80;*/
+        boolean closeEnoughFL = true;
+        boolean closeEnoughRR = true;
+        boolean closeEnoughRL = true;
         if(closeEnoughFR && closeEnoughFL && closeEnoughRR && closeEnoughRL)//if all are, return true
         {
             return true;
@@ -339,9 +356,12 @@ public class SkyStoneBot implements Robot
     {
         //check if the motors are close enough to their target to move on
         boolean closeEnoughFR = Math.abs(FrontRight.getCurrentPosition() - FrontRight.getTargetPosition()) < 40;
-        boolean closeEnoughFL = Math.abs(FrontLeft.getCurrentPosition() - FrontLeft.getTargetPosition()) < 40;
+        /*boolean closeEnoughFL = Math.abs(FrontLeft.getCurrentPosition() - FrontLeft.getTargetPosition()) < 40;
         boolean closeEnoughRR = Math.abs(RearRight.getCurrentPosition() - RearRight.getTargetPosition()) < 40;
-        boolean closeEnoughRL = Math.abs(RearLeft.getCurrentPosition() - RearLeft.getTargetPosition()) < 40;
+        boolean closeEnoughRL = Math.abs(RearLeft.getCurrentPosition() - RearLeft.getTargetPosition()) < 40;*/
+        boolean closeEnoughFL = true;
+        boolean closeEnoughRR = true;
+        boolean closeEnoughRL = true;
         if(closeEnoughFR && closeEnoughFL && closeEnoughRR && closeEnoughRL)//if all are, return true
         {
             return true;

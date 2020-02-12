@@ -30,7 +30,7 @@ public class Auto_Zone_Testing extends LinearOpMode {
 
         //robot starts facing red side (east)
 
-        //Go to foundation and flick it aside
+        /*//Go to foundation and flick it aside
         GoForward(-48, 0.8);//go to foundation
         RotateTo(90,1);//Hit corner of foundation
         RotateTo(90, 0.2);//correct any offset of robot
@@ -61,7 +61,7 @@ public class Auto_Zone_Testing extends LinearOpMode {
 
         //Brakes
         nav.SetBrakePos();
-        nav.Brake(1);
+        nav.Brake(1);*/
 
 
         //Block: Go forwards to the line
@@ -75,8 +75,8 @@ public class Auto_Zone_Testing extends LinearOpMode {
     }
 
 
-    public void GoForward(double distance, double speed){
-        nav.GoForward(distance, speed);
+    public void GoForward(double distance, double speed, double angle){
+        nav.GoForward(distance, speed, angle);
         while (!nav.CheckIfAtTargetDestination())
         {
             nav.Loop();
@@ -85,8 +85,8 @@ public class Auto_Zone_Testing extends LinearOpMode {
         }
         nav.StopAll();
     }
-    public void GoRight(double distance, double speed){
-        nav.GoRight(distance, speed);
+    public void GoRight(double distance, double speed, double angle){
+        nav.GoRight(distance, speed, angle);
         while (!nav.CheckIfAtTargetDestination())
         {
             nav.Loop();
