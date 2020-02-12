@@ -30,8 +30,8 @@
             <Servo name="CapstoneDeployer" port="5" />
             <LynxColorSensor name="colorSensorCenter" port="0" bus="0" />
             <LynxColorSensor name="colorSensorLeft" port="0" bus="1" />
-            <LynxColorSensor name="ODSRight" port="0" bus="2" />
-            <LynxColorSensor name="ODSLeft" port="0" bus="3" />
+            <REV_VL53L0X_RANGE_SENSOR name="ODSLeft" port="0" bus="3" />
+            <REV_VL53L0X_RANGE_SENSOR name="ODSRight" port="0" bus="2" />
         </LynxModule>
     </LynxUsbDevice>
     <Webcam name="Webcam 1" serialNumber="E811EED0" />
