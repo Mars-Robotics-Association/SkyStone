@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 public class _JavaTEST
 {
     static private double robotAngle = 179.8125;
-    static private double DriveAngle = -169.25;
+    static private double DriveAngle = -120.25;
     static private double leftStickBaring = 0;
     static private double rightStickX = 0;
     static private double JoystickThreshold = 0;

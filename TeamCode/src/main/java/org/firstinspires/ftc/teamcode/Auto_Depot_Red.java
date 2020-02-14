@@ -10,7 +10,7 @@ public class Auto_Depot_Red extends LinearOpMode {
     public SimpleFieldNavigation nav = null;
     private ColorSensor colorSensorSkystone;
     private ColorSensor colorSensorBot;
-    private Sensor_Distance distanceSensor;
+    private Sensor_Distance distanceSensor = null;
     public FoundationGrabber fgrabber = null;
 
     private double HueThreshold = 40;
@@ -67,11 +67,11 @@ public class Auto_Depot_Red extends LinearOpMode {
         fgrabber.FoundationGrabUp();
         sleep(500);
         //RotateToPrecise(0);
-        GoForward(10, 0.6, -90);
+        GoForward(10, 0.8, -90);
 
 
         //GO TO LINE
-        nav.GoForward(100, 0.2, -90);
+        nav.GoForward(100, 0.3, -90);
         while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold) //wait until color sensor sees the line
         {
             nav.Loop();
@@ -105,8 +105,8 @@ public class Auto_Depot_Red extends LinearOpMode {
         RotateTo(0, 0.4);
 
 
-        nav.GoRight(7, 0.7, 0);
-        sleep(500);
+        nav.GoRight(10, 0.7, 0);
+        sleep(1000);
         nav.StopAll();
 
 
@@ -143,7 +143,7 @@ public class Auto_Depot_Red extends LinearOpMode {
         fgrabber.FoundationGrabUp();
         sleep(500);
         //RotateToPrecise(0);
-        GoForward(5, 0.6, -90);
+        GoForward(5, 0.8, -90);
 
 
         //GO TO LINE
