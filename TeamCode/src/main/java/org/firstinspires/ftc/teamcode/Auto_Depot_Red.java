@@ -105,15 +105,17 @@ public class Auto_Depot_Red extends LinearOpMode {
         RotateTo(0, 0.4);
 
 
-        /*nav.GoForward(-10, 0.2, 0);
+        nav.GoRight(7, 0.7, 0);
+        sleep(500);
+        nav.StopAll();
+
+
+        nav.GoForward(-10, 0.2, 0);
         while (distanceSensor.GetRangeCM() > 7)
         {
             nav.Loop();
+            telemetry.update();
         }
-        nav.StopAll();*/
-
-        nav.GoRight(7, 0.7, 0);
-        sleep(500);
         nav.StopAll();
 
 
