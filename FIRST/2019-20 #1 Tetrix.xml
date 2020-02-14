@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <Robot type="FirstInspires-FTC">
+    <Webcam name="Webcam 1" serialNumber="97B1EED0" />
     <LynxUsbDevice name="Expansion Hub Portal 1" serialNumber="DQ2LNHSG" parentModuleAddress="1">
         <LynxModule name="Expansion Hub 1" port="1">
             <NeveRest40Gearmotor name="FrontRight" port="0" />
@@ -27,10 +28,11 @@
             <Servo name="GripperRotate" port="2" />
             <Servo name="GripperUpDownRotateLeft" port="3" />
             <Servo name="GripperUpDownRotateRight" port="4" />
-            <LynxColorSensor name="colorSensorCenter" port="0" bus="0" />
-            <LynxColorSensor name="colorSensorLeft" port="0" bus="1" />
             <REV_VL53L0X_RANGE_SENSOR name="ODSRight" port="0" bus="2" />
             <REV_VL53L0X_RANGE_SENSOR name="ODSLeft" port="0" bus="3" />
+            <LynxColorSensor name="colorSensorLeft" port="0" bus="1" />
+            <LynxColorSensor name="colorSensorCenter" port="0" bus="0" />
         </LynxModule>
     </LynxUsbDevice>
+    <Webcam name="Webcam 2" serialNumber="E8022FD0" />
 </Robot>
