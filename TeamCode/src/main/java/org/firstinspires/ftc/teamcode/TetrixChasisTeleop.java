@@ -15,6 +15,8 @@ public class TetrixChasisTeleop extends OpMode
     public ArmAttachmentTetrix arm = null;
     public GripperTetrix gripper = null;
     public FoundationGrabber grab = null;
+    public CapstoneDeployer Deployer = null;
+
 
 
     private RevTouchSensor armUpStop;
@@ -66,6 +68,9 @@ public class TetrixChasisTeleop extends OpMode
 
         gripper = new GripperTetrix(this);
         gripper.Init();
+
+        Deployer = new CapstoneDeployer(this);
+        Deployer.Init();
 
         armUpStop = hardwareMap.get(RevTouchSensor.class, "ArmRetractStop");
     }
@@ -258,6 +263,12 @@ public class TetrixChasisTeleop extends OpMode
         }
         if(gamepad2.left_stick_y<-JoystickThreshold){
             gripperDown();
+        }
+        if(gamepad1.dpad_right){
+            Deployer.DeployCapstone();
+        }
+        else if(gamepad1.dpad_left){
+            Deployer.RetractCapstone();
         }
     }
 
