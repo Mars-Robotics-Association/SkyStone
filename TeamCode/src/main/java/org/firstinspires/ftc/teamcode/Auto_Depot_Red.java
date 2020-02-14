@@ -71,7 +71,7 @@ public class Auto_Depot_Red extends LinearOpMode {
 
 
         //GO TO LINE
-        nav.GoForward(100, 0.3, -90);
+        nav.GoForward(100, 0.2, -90);
         while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold) //wait until color sensor sees the line
         {
             nav.Loop();
@@ -127,7 +127,7 @@ public class Auto_Depot_Red extends LinearOpMode {
         }
         nav.StopAll();
         GoRight(-2, 0.2, 0);//align
-        GoForward(-8, 0.1, 0);//Go to block
+        GoForward(-5, 0.1, 0);//Go to block
         fgrabber.FoundationGrabDownR();//grab block
         sleep(500);
 
