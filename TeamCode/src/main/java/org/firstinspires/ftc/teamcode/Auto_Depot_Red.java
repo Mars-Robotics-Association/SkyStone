@@ -41,7 +41,15 @@ public class Auto_Depot_Red extends LinearOpMode {
 
         //START
         fgrabber.FoundationGrabUp();//Make sure grabbers are up
-        GoForward(-27, 0.3, 0);//Go to blocks
+        GoForward(-18, 0.8, 0);//Go to blocks
+
+        nav.GoForward(-10, 0.2, 0);
+        while (distanceSensor.GetRangeCM() > 7)
+        {
+            nav.Loop();
+            telemetry.update();
+        }
+        nav.StopAll();
 
         //STRAFING RUN 1
         nav.GoRight(50, 0.2, 0);//start strafing along blocks
@@ -53,21 +61,22 @@ public class Auto_Depot_Red extends LinearOpMode {
         }
         nav.StopAll();
         GoRight(2, 0.2, 0);//align
-        GoForward(-5, 0.1, 0);//Go to block
+        GoForward(-3, 0.1, 0);//Go to block
         fgrabber.FoundationGrabDownR();//grab block
-        sleep(500);
+        GoForward(-2, 0.1, 0);//finish going
+        sleep(200);
 
         //PULL OUT SKYSTONE
-        GoForward(8, 1, 0);//Go backwards a few inches to pull block out
+        GoForward(10, 1, 0);//Go backwards a few inches to pull block out
         RotateTo(-90, 0.4);//Rotate to -90 degrees
 
 
         //PLACE SKYSTONE 1
         GoForward(-44, 1, -90);
         fgrabber.FoundationGrabUp();
-        sleep(500);
+        //sleep(500);
         //RotateToPrecise(0);
-        GoForward(10, 0.8, -90);
+        GoForward(10, 1, -90);
 
 
         //GO TO LINE
@@ -94,7 +103,7 @@ public class Auto_Depot_Red extends LinearOpMode {
         RotateTo(-90, 0.4);
 
         //Goes to far wall by skystones
-        GoForward(50, 1, -90);
+        GoForward(45, 1, -90);
 /*        nav.GoForward(15, 0.3, -90);
         sleep(2000);
         nav.StopAll();*/
@@ -110,7 +119,7 @@ public class Auto_Depot_Red extends LinearOpMode {
         nav.StopAll();
 
 
-        nav.GoForward(-10, 0.2, 0);
+        nav.GoForward(-15, 0.2, 0);
         while (distanceSensor.GetRangeCM() > 7)
         {
             nav.Loop();
@@ -129,21 +138,21 @@ public class Auto_Depot_Red extends LinearOpMode {
         }
         nav.StopAll();
         GoRight(-2, 0.2, 0);//align
-        GoForward(-5, 0.1, 0);//Go to block
+        GoForward(-3, 0.1, 0);//Go to block
         fgrabber.FoundationGrabDownR();//grab block
-        sleep(500);
+        GoForward(-2, 0.1, 0);//finish going
+        sleep(200);
 
         //PULL OUT SKYSTONE
-        GoForward(5, 1, 0);//Go backwards a few inches to pull block out
+        GoForward(7, 1, 0);//Go backwards a few inches to pull block out
         RotateTo(-90, 0.4);//Rotate to -90 degrees
 
 
         //PLACE SKYSTONE 2
-        GoForward(-60, 1, -90);
+        GoForward(-65, 1, -90);
         fgrabber.FoundationGrabUp();
-        sleep(500);
         //RotateToPrecise(0);
-        GoForward(5, 0.8, -90);
+        //GoForward(5, 1, -90);
 
 
         //GO TO LINE

@@ -33,27 +33,27 @@ public class Auto_Zone_Red extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
 
 
-        /*//START
+        //START
         fgrabber.FoundationGrabUp();
-        GoRight(-18,0.8); //Line up with foundation
-        GoForward(-30,0.6); //Go to foundation
+        GoRight(-18,0.8, 0); //Line up with foundation
+        GoForward(-30,0.6, 0); //Go to foundation
         fgrabber.FoundationGrabDown(); //Grab foundation
-        sleep(1000);
+        sleep(2000);
 
         //PULL BACK FOUNDATION
-        GoForward(31,0.2);//Pull foundation back
+        GoForward(31,0.3, 0);//Pull foundation back
         sleep(200);
-        nav.GoForward(4,0.8);//slam into wall
-        sleep(500);//wait half a second
+        nav.GoForward(4,0.5, 0);//slam into wall
+        //sleep(500);//wait half a second
         nav.StopAll();//stop going
-        nav.ResetGyro();
-        GoRight(-3, 0.8);
+        /*nav.ResetGyro();
+        GoRight(-3, 0.8, 0);*/
 
         //FREE ROBOT FROM FOUNDATION
         fgrabber.FoundationGrabUp();//move grabbers up
-        GoForward(-2, 0.6);//go forwards a bit
+        //GoForward(-2, 0.6);//go forwards a bit
 
-        //MAKE SURE FOUNDATION IS IN
+        /*//MAKE SURE FOUNDATION IS IN
         GoRight(32, 0.8);//go just beyond foundation
         GoForward(-19, 0.8);//go in front of foundation
         nav.GoRight(-15, 1);//push it into the wall
@@ -62,13 +62,13 @@ public class Auto_Zone_Red extends LinearOpMode {
 
         nav.GoForward(40, 0.8);
         sleep(1500);
-        nav.StopAll();
+        nav.StopAll();*/
 
-        GoRight(-20, 0.8);
+        GoRight(20, 0.8, 0);
 
 
         //DRIVE TO THE LINE
-        nav.GoRight(100, 0.3);//begin driving
+        nav.GoRight(100, 0.3, 0);//begin driving
         while (Math.abs(RedHue - colorSensor.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensor.returnHue()) > HueThreshold)//wait until the line is seen
         {
             nav.Loop();
@@ -82,7 +82,7 @@ public class Auto_Zone_Red extends LinearOpMode {
 
         //Brakes
         nav.SetBrakePos();
-        nav.Brake(1);*/
+        nav.Brake(1);
     }
 
 
