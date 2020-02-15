@@ -2,8 +2,8 @@ package org.firstinspires.ftc.teamcode;
 
 public class _JavaTEST
 {
-    static private double robotAngle = 179.8125;
-    static private double DriveAngle = -169.25;
+    static private double robotAngle = 10;
+    static private double DriveAngle = -10;
     static private double leftStickBaring = 0;
     static private double rightStickX = 0;
     static private double JoystickThreshold = 0;
@@ -62,8 +62,9 @@ public class _JavaTEST
 
         double normalDistance = Math.abs(targetAbsRot - currentAbsRot);
         double overTheLineDistance = Math.abs(-targetAbsRot - currentAbsRot);
+        boolean isInRange = (Math.abs(targetAbsRot) > 90 && Math.abs(currentAbsRot)>90);
 
-        if(overTheLineDistance < normalDistance)//if need to go over the line
+        if(overTheLineDistance < normalDistance && isInRange)//if need to go over the line
         {
             newTargetRot = (targetAbsRot - (180 * (Math.abs(targetAbsRot)/targetAbsRot)));//offset by 180 towards 0. The abs thing is to detect whether to add or subtract 170 -> -10
             newCurrentRot = (currentAbsRot - (180 * (Math.abs(currentAbsRot)/currentAbsRot)));//offset by 180 towards 0. The abs thing is to detect whether to add or subtract -170 -> 10
