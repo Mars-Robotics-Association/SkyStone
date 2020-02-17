@@ -81,8 +81,8 @@ public class GripperTetrix implements Attachment{
         GripperL= opmode.hardwareMap.servo.get("GripperL");
         GripperR= opmode.hardwareMap.servo.get("GripperR");
         GripperRotate= opmode.hardwareMap.servo.get("GripperRotate");
-        GripperUpDownRotateLeft= opmode.hardwareMap.servo.get("GripperUpDownRotateLeft");
-        GripperUpDownRotateRight= opmode.hardwareMap.servo.get("GripperUpDownRotateRight");
+        GripperUpDownRotateLeft= opmode.hardwareMap.servo.get("GripperUpDownRotateL");
+        GripperUpDownRotateRight= opmode.hardwareMap.servo.get("GripperUpDownRotateR");
 
     }
 
