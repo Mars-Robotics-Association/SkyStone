@@ -11,7 +11,7 @@
             <Servo name="FoundationR" port="1" />
             <Servo name="LiftExtendLeft" port="2" />
             <Servo name="LiftExtendRight" port="3" />
-            <Servo name="CapstoneDeploy" port="4" />
+            <Servo name="CapstoneDeployer" port="4" />
             <RevTouchSensor name="ArmRetractStop" port="1" />
             <RevTouchSensor name="ArmUpStop" port="3" />
             <LynxEmbeddedIMU name="imu" port="0" bus="0" />
