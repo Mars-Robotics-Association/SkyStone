@@ -27,6 +27,9 @@ public class Precheck extends LinearOpMode {
     private RevTouchSensor ArmUpStop;
     private Sensor_Distance distanceSensor = null;
     private ColorSensor colorSensor;
+    private ColorSensor colorSensor2;
+    private ColorSensor colorSensor3;
+    private ColorSensor colorSensor4;
 
     @Override
     public void runOpMode() {
@@ -35,6 +38,15 @@ public class Precheck extends LinearOpMode {
 
         colorSensor = new ColorSensor(this, "colorSensorGround");
         colorSensor.Init();
+
+        colorSensor2 = new ColorSensor(this,"colorSensorCenter");
+        colorSensor2.Init();
+
+        colorSensor3 = new ColorSensor(this,"colorSensorLeft");
+        colorSensor3.Init();
+
+        colorSensor4 = new ColorSensor(this,"colorSensorRight");
+        colorSensor4.Init();
 
         gripper = new GripperCustom(this);
         gripper.Init();
@@ -60,7 +72,32 @@ public class Precheck extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
 
         //Run everything needed
+        nav.GoForward(3, 0.2, 0);
+        nav.SetBrakePos();
+        nav.Brake(1);
+        nav.GoForward(-3,0.2,0);
+        nav.SetBrakePos();
+        nav.Brake(1);
+        nav.GoRight(3,0.2,0);
+        nav.SetBrakePos();
+        nav.Brake(1);
+        nav.GoRight(-3,0.2,0);
+        nav.SetBrakePos();
+        telemetry.addData("Simple Movement","Successful");
+
+        telemetry.addData("Distance",distanceSensor.GetRangeCM());
+
+        telemetry.addData("ColorSensorGround",colorSensor.returnHue());
+        telemetry.addData("ColorSensorCenter",colorSensor2.returnHue());
+        telemetry.addData("ColorSensorLeft",colorSensor3.returnHue());
+        telemetry.addData("ColorSensorRight",colorSensor4.returnHue());
+
+        grab.FoundationGrabDown();
+        grab.FoundationGrabUp();
+        telemetry.addData("Foundation Grippers","Successful");
+
         
+
 
         //Stops all
         nav.StopAll();
