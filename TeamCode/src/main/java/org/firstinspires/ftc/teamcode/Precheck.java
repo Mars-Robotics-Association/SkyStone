@@ -17,28 +17,24 @@ Goes forwards to a blue or red line and then brakes
 public class Precheck extends LinearOpMode {
 
     public SimpleFieldNavigation nav = null;
+    public ArmAttachmentCustom arm = null;
+    public FoundationGrabber grab = null;
+    public GripperCustom gripper = null;
+    public TapeMeasure tape =null;
+    public CapstoneDeployer Deployer = null;
 
+    private RevTouchSensor ArmRetractStop;
+    private RevTouchSensor ArmUpStop;
+    private Sensor_Distance distanceSensor = null;
     private ColorSensor colorSensor;
-    private double HueThreshold = 40;
-    private double RedHue = 0;
-    private double BlueHue = 180;
 
     @Override
     public void runOpMode() {
         nav = new SimpleFieldNavigation(this);
         nav.Init();
-        ArmAttachmentCustom arm = null;
-        FoundationGrabber grab = null;
-        GripperCustom gripper = null;
-        TapeMeasure tape =null;
-        CapstoneDeployer Deployer = null;
 
-        RevTouchSensor ArmRetractStop;
-        RevTouchSensor ArmUpStop;
-        Sensor_Distance distanceSensor = null;
-
-        arm = new ArmAttachmentCustom(this);
-        arm.Init();
+        colorSensor = new ColorSensor(this, "colorSensorGround");
+        colorSensor.Init();
 
         gripper = new GripperCustom(this);
         gripper.Init();
@@ -57,17 +53,14 @@ public class Precheck extends LinearOpMode {
 
         distanceSensor = new Sensor_Distance(this, "ODSLeft");
         distanceSensor.Init();
-        colorSensor = new ColorSensor(this, "colorSensorGround");
-        colorSensor.Init();
-
 
         waitForStart();
 
         nav.Start();
         telemetry.addData("Status", "Initialized");
 
-        //Block: Go forwards to the line
-
+        //Run everything needed
+        
 
         //Stops all
         nav.StopAll();
