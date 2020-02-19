@@ -102,11 +102,13 @@ public class CustomChasisTeleop extends OpMode
 
 
         if(gamepad1.left_trigger>JoystickThreshold) {
-            if (distanceSensor.GetRangeCM() < 14) {
+            Teleop.quarterSpeed();
+            if (distanceSensor.GetRangeCM() < 7) {
                 //break
 
                 Teleop.stopWheels();
                 Teleop.brake(1);
+                Teleop.fullSpeed();
 
             } else {
                 ManageDriveMovement();
@@ -115,6 +117,7 @@ public class CustomChasisTeleop extends OpMode
         else{
             ManageDriveMovement();
         }
+        telemetry.addData("ods", distanceSensor.GetRangeCM());
 
 
 
@@ -122,7 +125,6 @@ public class CustomChasisTeleop extends OpMode
         //switch between normal and slow modes
         if(gamepad1.left_bumper) { Teleop.fullSpeed(); }
         if(gamepad1.right_bumper) { Teleop.threeFourthsSpeed(); }
-        if(gamepad1.left_trigger>0.2) { Teleop.quarterSpeed(); }
         if(gamepad1.right_trigger>0.2) { Teleop.brake(1); }
 
         if(gamepad2.x)

@@ -3,10 +3,9 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-//@Disabled
-@Autonomous(name = "Auto_Depot_Red", group = "Autonomous")
-public class Auto_Depot_Red extends LinearOpMode {
-
+@Autonomous(name = "Auto_Combined", group = "Autonomous")
+public class Auto_Combined extends LinearOpMode
+{
     public SimpleFieldNavigation nav = null;
     private ColorSensor colorSensorSkystone;
     private ColorSensor colorSensorBot;
@@ -18,7 +17,8 @@ public class Auto_Depot_Red extends LinearOpMode {
     private double BlueHue = 180;
 
     @Override
-    public void runOpMode() {
+    public void runOpMode()
+    {
         nav = new SimpleFieldNavigation(this);
         nav.Init();
 
@@ -39,11 +39,47 @@ public class Auto_Depot_Red extends LinearOpMode {
         nav.Start();
         telemetry.addData("Status", "Initialized");
 
-        //START
+
+
+        fgrabber.FoundationGrabUp();
+        GoRight(-18,0.8, 0); //Line up with foundation
+        GoForward(-30,0.6, 0); //Go to foundation
+        fgrabber.FoundationGrabDown(); //Grab foundation
+        sleep(1000);
+
+        //PULL BACK FOUNDATION
+        GoForward(31,0.3, 0);//Pull foundation back
+        sleep(200);
+        nav.GoForward(4,1, 0);//slam into wall
+        nav.StopAll();//stop going
+
+        //FREE ROBOT FROM FOUNDATION
+        fgrabber.FoundationGrabUp();//move grabbers up
+
+        GoRight(20, 0.8, 0);
+
+        GoForward(24, 0.8, 0);
+
+
+        //DRIVE TO THE LINE
+        nav.GoRight(100, 0.3, 0);//begin driving
+        while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold)//wait until the line is seen
+        {
+            nav.Loop();
+            telemetry.addData("looping1: ", true);
+            telemetry.addData("Hue: ", colorSensorBot.returnHue());
+            telemetry.update();
+        }
+
+
+
+
+
+        //START SKYSTONE RETRIEVAL
         fgrabber.FoundationGrabUp();//Make sure grabbers are up
         GoForward(-18, 0.8, 0);//Go to blocks
 
-        nav.GoForward(-10, 0.1, 0);
+        nav.GoForward(-10, 0.2, 0);
         while (distanceSensor.GetRangeCM() > 7)
         {
             nav.Loop();
@@ -52,7 +88,7 @@ public class Auto_Depot_Red extends LinearOpMode {
         nav.StopAll();
 
         //STRAFING RUN 1
-        nav.GoRight(50, 0.4, 0);//start strafing along blocks
+        nav.GoRight(50, 0.2, 0);//start strafing along blocks
         while (!(colorSensorSkystone.returnHue() > 100)) //wait until color sensor sees skystone
         {
             nav.Loop();
@@ -60,15 +96,15 @@ public class Auto_Depot_Red extends LinearOpMode {
             telemetry.update();
         }
         nav.StopAll();
-       // GoRight(2, 0.2, 0);//align
-        GoForward(-4, 0.3, 0);//Go to block
+        // GoRight(2, 0.2, 0);//align
+        GoForward(-3, 0.1, 0);//Go to block
         fgrabber.FoundationGrabDownR();//grab block
         sleep(250);
         GoForward(-2, 0.1, 0);//finish going
 
 
         //PULL OUT SKYSTONE
-        GoForward(7, 1, 0);//Go backwards a few inches to pull block out
+        GoForward(10, 1, 0);//Go backwards a few inches to pull block out
         RotateTo(-90, 0.4);//Rotate to -90 degrees
 
 
@@ -91,22 +127,22 @@ public class Auto_Depot_Red extends LinearOpMode {
         RotateTo(-90, 0.4);
 
         //move towards middle a little
-        GoRight(8, 0.8, -90);
+        GoRight(10, 0.5, -90);
 
         RotateToPrecise(-90);
 
         //Goes to far wall by skystones
-        GoForward(42, 1, -90);
+        GoForward(45, 1, -90);
 
         RotateTo(0, 0.4);
 
-        /*nav.GoRight(10, 1, 0);
+        nav.GoRight(10, 1, 0);
         sleep(800);
-        nav.StopAll();*/
+        nav.StopAll();
 
 
         //Line up to blocks
-        nav.GoForward(-15, 0.1, 0);
+        nav.GoForward(-15, 0.3, 0);
         while (distanceSensor.GetRangeCM() > 7)
         {
             nav.Loop();
@@ -116,7 +152,7 @@ public class Auto_Depot_Red extends LinearOpMode {
 
 
         //STRAFING RUN 2
-        nav.GoRight(-50, 0.3, 0);//start strafing along blocks
+        nav.GoRight(-50, 0.2, 0);//start strafing along blocks
         while (!(colorSensorSkystone.returnHue() > 100)) //wait until color sensor sees skystone
         {
             nav.Loop();
@@ -138,7 +174,7 @@ public class Auto_Depot_Red extends LinearOpMode {
 
         //GO TO LINE
         GoForward(-25, 1, -90);
-        GoRight(-10, 0.8, -90);
+        GoRight(-5, 0.8, -90);
         nav.GoForward(-40, 0.3, -90);
         while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold) //wait until color sensor sees the line
         {
@@ -159,7 +195,6 @@ public class Auto_Depot_Red extends LinearOpMode {
         nav.SetBrakePos();
         nav.Brake(1);
     }
-
     public void GoForward(double distance, double speed, double angle) {
         nav.GoForward(distance, speed, angle);
         while (!nav.CheckIfAtTargetDestination()) {
@@ -167,13 +202,7 @@ public class Auto_Depot_Red extends LinearOpMode {
             telemetry.addData("looping1: ", true);
             telemetry.update();
         }
-        /*nav.SetMoveSpeed(1);
-        while (!nav.CheckIfAtTargetDestinationPrecise())
-        {
-            nav.Loop();
-            telemetry.addData("looping2: ", true);
-            telemetry.update();
-        }*/
+
         nav.StopAll();
         nav.SetBrakePos();
         nav.Brake(1);
@@ -230,157 +259,3 @@ public class Auto_Depot_Red extends LinearOpMode {
         nav.StopAll();
     }
 }
-
-    /*nav = new SimpleFieldNavigation(this);
-            nav.Init();
-
-            fgrabber = new FoundationGrabber(this);
-            fgrabber.Init();
-
-            colorSensorSkystone = new ColorSensor(this, "colorSensorLeft");
-            colorSensorSkystone.Init();
-
-            colorSensorBot = new ColorSensor(this, "colorSensorGround");
-            colorSensorBot.Init();
-
-            distanceSensor = new Sensor_Distance(this, "ODSLeft");
-            distanceSensor.Init();
-
-            waitForStart();
-
-            nav.Start();
-            telemetry.addData("Status", "Initialized");
-
-            //START
-            fgrabber.FoundationGrabUp();//Make sure grabbers are up
-            GoForward(-18, 0.8, 0);//Go to blocks
-
-            nav.GoForward(-10, 0.2, 0);
-            while (distanceSensor.GetRangeCM() > 7)
-            {
-            nav.Loop();
-            telemetry.update();
-            }
-            nav.StopAll();
-
-            //STRAFING RUN 1
-            nav.GoRight(50, 0.2, 0);//start strafing along blocks
-            while (!(colorSensorSkystone.returnHue() > 100)) //wait until color sensor sees skystone
-            {
-            nav.Loop();
-            telemetry.addData("looping1: ", true);
-            telemetry.update();
-            }
-            nav.StopAll();
-            GoRight(2, 0.2, 0);//align
-            GoForward(-3, 0.1, 0);//Go to block
-            fgrabber.FoundationGrabDownR();//grab block
-            GoForward(-2, 0.1, 0);//finish going
-            sleep(200);
-
-            //PULL OUT SKYSTONE
-            GoForward(10, 1, 0);//Go backwards a few inches to pull block out
-            RotateTo(-90, 0.4);//Rotate to -90 degrees
-
-
-            //PLACE SKYSTONE 1
-            GoForward(-44, 1, -90);
-            fgrabber.FoundationGrabUp();
-            //sleep(500);
-            //RotateToPrecise(0);
-            GoForward(10, 1, -90);
-
-
-            //GO TO LINE
-            nav.GoForward(100, 0.3, -90);
-            while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold) //wait until color sensor sees the line
-            {
-            nav.Loop();
-            telemetry.addData("looping1: ", true);
-            telemetry.update();
-            }
-            nav.StopAll();
-
-
-            //ALIGNS FOR SECOND RUN
-            //aligns with Y on skybridge
-        *//*nav.GoRight(20, 1, -90);
-        sleep(1500);
-        nav.StopAll();
-        //nav.ResetGyro();
-        sleep(500);
-
-        GoRight(-15, 0.4, -90);*//*
-
-            RotateTo(-90, 0.4);
-
-            //Goes to far wall by skystones
-            GoForward(45, 1, -90);
-*//*        nav.GoForward(15, 0.3, -90);
-        sleep(2000);
-        nav.StopAll();*//*
-
-
-            //Turns back to 0 degrees
-            //GoForward(-5, 0.8, -90);
-            RotateTo(0, 0.4);
-
-
-            nav.GoRight(10, 0.7, 0);
-            sleep(1000);
-            nav.StopAll();
-
-
-            nav.GoForward(-15, 0.2, 0);
-            while (distanceSensor.GetRangeCM() > 7)
-            {
-            nav.Loop();
-            telemetry.update();
-            }
-            nav.StopAll();
-
-
-            //STRAFING RUN 2
-            nav.GoRight(-50, 0.2, 0);//start strafing along blocks
-            while (!(colorSensorSkystone.returnHue() > 100)) //wait until color sensor sees skystone
-            {
-            nav.Loop();
-            telemetry.addData("looping1: ", true);
-            telemetry.update();
-            }
-            nav.StopAll();
-            GoRight(-2, 0.2, 0);//align
-            GoForward(-3, 0.1, 0);//Go to block
-            fgrabber.FoundationGrabDownR();//grab block
-            GoForward(-2, 0.1, 0);//finish going
-            sleep(200);
-
-            //PULL OUT SKYSTONE
-            GoForward(7, 1, 0);//Go backwards a few inches to pull block out
-            RotateTo(-90, 0.4);//Rotate to -90 degrees
-
-
-            //PLACE SKYSTONE 2
-            GoForward(-65, 1, -90);
-            fgrabber.FoundationGrabUp();
-            //RotateToPrecise(0);
-            //GoForward(5, 1, -90);
-
-
-            //GO TO LINE
-            nav.GoForward(100, 0.3, -90);
-            while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold) //wait until color sensor sees the line
-            {
-            nav.Loop();
-            telemetry.addData("looping1: ", true);
-            telemetry.update();
-            }
-            nav.StopAll();
-
-
-            //Brakes
-            nav.SetBrakePos();
-            nav.Brake(1);*/
-
-
-
