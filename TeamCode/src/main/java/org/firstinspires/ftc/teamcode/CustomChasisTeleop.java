@@ -253,11 +253,11 @@ public class CustomChasisTeleop extends OpMode
             arm.IntakeOff();
         }
 
-        if(gamepad2.right_stick_y < -0.4)//move lift up
+        if(gamepad2.right_stick_y < -0.4  && !ArmRetractStop.isPressed())//move lift up
         {
             arm.LiftUp();
         }
-        else if(gamepad2.right_stick_y >0.4  && !ArmRetractStop.isPressed())//move lift down
+        else if(gamepad2.right_stick_y >0.4)//move lift down
         {
             arm.LiftDown();
         }
