@@ -32,6 +32,8 @@ public class CustomChasisTeleop extends OpMode
 
     private RevTouchSensor ArmRetractStop;
     private RevTouchSensor ArmUpStop;
+    private Sensor_Distance distanceSensor = null;
+
 
     @Override
     public void init()
@@ -59,6 +61,8 @@ public class CustomChasisTeleop extends OpMode
         ArmRetractStop = hardwareMap.get(RevTouchSensor.class, "ArmRetractStop");
         ArmUpStop = hardwareMap.get(RevTouchSensor.class, "ArmUpStop");
 
+        distanceSensor = new Sensor_Distance(this, "ODSLeft");
+        distanceSensor.Init();
 
     }
 
@@ -96,12 +100,31 @@ public class CustomChasisTeleop extends OpMode
             Teleop.headlessMode = false;
         }
 
-        ManageDriveMovement();
+
+        if(gamepad1.left_trigger>JoystickThreshold) {
+            Teleop.quarterSpeed();
+            if (distanceSensor.GetRangeCM() < 7) {
+                //break
+
+                Teleop.stopWheels();
+                Teleop.brake(1);
+                Teleop.fullSpeed();
+
+            } else {
+                ManageDriveMovement();
+            }
+        }
+        else{
+            ManageDriveMovement();
+        }
+        telemetry.addData("ods", distanceSensor.GetRangeCM());
+
+
+
 
         //switch between normal and slow modes
         if(gamepad1.left_bumper) { Teleop.fullSpeed(); }
         if(gamepad1.right_bumper) { Teleop.threeFourthsSpeed(); }
-        if(gamepad1.left_trigger>0.2) { Teleop.quarterSpeed(); }
         if(gamepad1.right_trigger>0.2) { Teleop.brake(1); }
 
         if(gamepad2.x)
@@ -175,37 +198,34 @@ public class CustomChasisTeleop extends OpMode
 
     public void ManageDriveMovement()//Manages general drive input
     {
-        if(Jc.leftStickPower > JoystickThreshold) //Move
-        {
-            Teleop.chooseDirection(Jc.rightStickX, Jc.leftStickBaring, Jc.leftStickPower);
-            stopping = false;
-        }
-        else if(Jc.rightStickX > JoystickThreshold) //Turn Right
-        {
-            Teleop.turnRight();
-            stopping = false;
-        }
-        else if(Jc.rightStickX < -JoystickThreshold) //Turn Left
-        {
-            Teleop.turnLeft();
-            stopping = false;
-        }
-        else if(gamepad1.dpad_up){
-            //Teleop.RawForwards(1);
-        }
-        else if(gamepad1.dpad_down){
-            //Teleop.RawForwards(-1);
-        }
-        else if(gamepad1.dpad_right){
-            //Teleop.RawRight(1);
-        }
-        else if(gamepad1.dpad_left){
-            //Teleop.RawRight(-1);
-        }
-        else //STOP
-        {
-            Teleop.stopWheels();
-        }
+
+            if (Jc.leftStickPower > JoystickThreshold) //Move
+            {
+                Teleop.chooseDirection(Jc.rightStickX, Jc.leftStickBaring, Jc.leftStickPower);
+                stopping = false;
+            } else if (Jc.rightStickX > JoystickThreshold) //Turn Right
+            {
+                Teleop.turnRight();
+                stopping = false;
+            } else if (Jc.rightStickX < -JoystickThreshold) //Turn Left
+            {
+                Teleop.turnLeft();
+                stopping = false;
+            } else if (gamepad1.dpad_up) {
+                //Teleop.RawForwards(1);
+            } else if (gamepad1.dpad_down) {
+                //Teleop.RawForwards(-1);
+            } else if (gamepad1.dpad_right) {
+                //Teleop.RawRight(1);
+            } else if (gamepad1.dpad_left) {
+                //Teleop.RawRight(-1);
+            } else //STOP
+                {
+                    Teleop.stopWheels();
+            }
+
+
+    }
         /*else //STOP
         {
             if(!stopping)
@@ -218,7 +238,7 @@ public class CustomChasisTeleop extends OpMode
 
             }
         }*/
-    }
+
 
     public void ManageArmMovement()//Manages the Arm/Lift
     {
@@ -235,7 +255,7 @@ public class CustomChasisTeleop extends OpMode
             arm.IntakeOff();
         }
 
-        if(gamepad2.right_stick_y < -0.4)//move lift up
+        if(gamepad2.right_stick_y < -0.4  && !ArmRetractStop.isPressed())//move lift up
         {
             arm.LiftUp();
         }
@@ -264,7 +284,7 @@ public class CustomChasisTeleop extends OpMode
             arm.LiftStopVertical();
         }
 
-        if(gamepad2.left_stick_y>0.4  && !ArmRetractStop.isPressed())////extend arm
+        if(gamepad2.left_stick_y>0.4)////extend arm
         {
             arm.LiftRetract();
             telemetry.addData("should","move  retract");

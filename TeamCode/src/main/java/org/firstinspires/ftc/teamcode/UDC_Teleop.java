@@ -197,8 +197,9 @@ public class UDC_Teleop
 
         double normalDistance = Math.abs(targetAbsRot - currentAbsRot);
         double overTheLineDistance = Math.abs(-targetAbsRot - currentAbsRot);
+        boolean goNormal = normalDistance < 180;
 
-        if(overTheLineDistance < normalDistance)//if need to go over the line
+        if(!goNormal)//if need to go over the line
         {
             newTargetRot = (targetAbsRot - (180 * (Math.abs(targetAbsRot)/targetAbsRot)));//offset by 180 towards 0. The abs thing is to detect whether to add or subtract 170 -> -10
             newCurrentRot = (currentAbsRot - (180 * (Math.abs(currentAbsRot)/currentAbsRot)));//offset by 180 towards 0. The abs thing is to detect whether to add or subtract -170 -> 10

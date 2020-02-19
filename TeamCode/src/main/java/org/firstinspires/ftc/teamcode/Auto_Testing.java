@@ -17,6 +17,7 @@ public class Auto_Testing extends LinearOpMode {
     public SimpleFieldNavigation nav = null;
     public ArmAttachmentCustom arm = null;
     public ColorSensor colorSensorSkystone = null;
+    private Sensor_Distance distanceSensor = null;
 
     @Override
     public void runOpMode()
@@ -30,16 +31,18 @@ public class Auto_Testing extends LinearOpMode {
         colorSensorSkystone = new ColorSensor(this, "colorSensorLeft");
         colorSensorSkystone.Init();
 
+        distanceSensor = new Sensor_Distance(this, "ODSLeft");
+        distanceSensor.Init();
+
         waitForStart();
 
-        /*GoRight(10, 0.8);
-        RotateTo(180, 0.4);
-        GoForward(10, 0.6);
-        RotateTo(90, 0.4);
-        GoRight(10, 0.6);
-        RotateTo(0, 0.4);
-        RotateTo(-270, 0.4);
-        RotateTo(-90, 0.4);*/
+        nav.GoForward(-10, 0.2, 0);
+        while (distanceSensor.GetRangeCM() > 7)
+        {
+            nav.Loop();
+            telemetry.update();
+        }
+        nav.StopAll();
 
 
 
