@@ -38,31 +38,16 @@ public class Auto_Zone_Red extends LinearOpMode {
         GoRight(-18,0.8, 0); //Line up with foundation
         GoForward(-30,0.6, 0); //Go to foundation
         fgrabber.FoundationGrabDown(); //Grab foundation
-        sleep(2000);
+        sleep(1000);
 
         //PULL BACK FOUNDATION
         GoForward(31,0.3, 0);//Pull foundation back
         sleep(200);
-        nav.GoForward(4,0.5, 0);//slam into wall
-        //sleep(500);//wait half a second
+        nav.GoForward(4,1, 0);//slam into wall
         nav.StopAll();//stop going
-        /*nav.ResetGyro();
-        GoRight(-3, 0.8, 0);*/
 
         //FREE ROBOT FROM FOUNDATION
         fgrabber.FoundationGrabUp();//move grabbers up
-        //GoForward(-2, 0.6);//go forwards a bit
-
-        /*//MAKE SURE FOUNDATION IS IN
-        GoRight(32, 0.8);//go just beyond foundation
-        GoForward(-19, 0.8);//go in front of foundation
-        nav.GoRight(-15, 1);//push it into the wall
-        sleep(1000);//wait 1 second
-        nav.StopAll();//stop
-
-        nav.GoForward(40, 0.8);
-        sleep(1500);
-        nav.StopAll();*/
 
         GoRight(20, 0.8, 0);
 
