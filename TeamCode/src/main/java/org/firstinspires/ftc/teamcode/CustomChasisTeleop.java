@@ -32,6 +32,8 @@ public class CustomChasisTeleop extends OpMode
 
     private RevTouchSensor ArmRetractStop;
     private RevTouchSensor ArmUpStop;
+    private Sensor_Distance distanceSensor = null;
+
 
     @Override
     public void init()
@@ -59,6 +61,8 @@ public class CustomChasisTeleop extends OpMode
         ArmRetractStop = hardwareMap.get(RevTouchSensor.class, "ArmRetractStop");
         ArmUpStop = hardwareMap.get(RevTouchSensor.class, "ArmUpStop");
 
+        distanceSensor = new Sensor_Distance(this, "ODSLeft");
+        distanceSensor.Init();
 
     }
 
@@ -96,7 +100,24 @@ public class CustomChasisTeleop extends OpMode
             Teleop.headlessMode = false;
         }
 
-        ManageDriveMovement();
+
+        if(gamepad1.left_trigger>JoystickThreshold) {
+            if (distanceSensor.GetRangeCM() < 14) {
+                //break
+
+                Teleop.stopWheels();
+                Teleop.brake(1);
+
+            } else {
+                ManageDriveMovement();
+            }
+        }
+        else{
+            ManageDriveMovement();
+        }
+
+
+
 
         //switch between normal and slow modes
         if(gamepad1.left_bumper) { Teleop.fullSpeed(); }
@@ -175,37 +196,34 @@ public class CustomChasisTeleop extends OpMode
 
     public void ManageDriveMovement()//Manages general drive input
     {
-        if(Jc.leftStickPower > JoystickThreshold) //Move
-        {
-            Teleop.chooseDirection(Jc.rightStickX, Jc.leftStickBaring, Jc.leftStickPower);
-            stopping = false;
-        }
-        else if(Jc.rightStickX > JoystickThreshold) //Turn Right
-        {
-            Teleop.turnRight();
-            stopping = false;
-        }
-        else if(Jc.rightStickX < -JoystickThreshold) //Turn Left
-        {
-            Teleop.turnLeft();
-            stopping = false;
-        }
-        else if(gamepad1.dpad_up){
-            //Teleop.RawForwards(1);
-        }
-        else if(gamepad1.dpad_down){
-            //Teleop.RawForwards(-1);
-        }
-        else if(gamepad1.dpad_right){
-            //Teleop.RawRight(1);
-        }
-        else if(gamepad1.dpad_left){
-            //Teleop.RawRight(-1);
-        }
-        else //STOP
-        {
-            Teleop.stopWheels();
-        }
+
+            if (Jc.leftStickPower > JoystickThreshold) //Move
+            {
+                Teleop.chooseDirection(Jc.rightStickX, Jc.leftStickBaring, Jc.leftStickPower);
+                stopping = false;
+            } else if (Jc.rightStickX > JoystickThreshold) //Turn Right
+            {
+                Teleop.turnRight();
+                stopping = false;
+            } else if (Jc.rightStickX < -JoystickThreshold) //Turn Left
+            {
+                Teleop.turnLeft();
+                stopping = false;
+            } else if (gamepad1.dpad_up) {
+                //Teleop.RawForwards(1);
+            } else if (gamepad1.dpad_down) {
+                //Teleop.RawForwards(-1);
+            } else if (gamepad1.dpad_right) {
+                //Teleop.RawRight(1);
+            } else if (gamepad1.dpad_left) {
+                //Teleop.RawRight(-1);
+            } else //STOP
+                {
+                    Teleop.stopWheels();
+            }
+
+
+    }
         /*else //STOP
         {
             if(!stopping)
@@ -218,7 +236,7 @@ public class CustomChasisTeleop extends OpMode
 
             }
         }*/
-    }
+
 
     public void ManageArmMovement()//Manages the Arm/Lift
     {
