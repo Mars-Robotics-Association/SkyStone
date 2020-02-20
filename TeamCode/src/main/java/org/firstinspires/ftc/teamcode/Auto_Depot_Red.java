@@ -60,11 +60,11 @@ public class Auto_Depot_Red extends LinearOpMode {
             telemetry.update();
         }
         nav.StopAll();
-       // GoRight(2, 0.2, 0);//align
-        GoForward(-4, 0.3, 0);//Go to block
+        GoRight(-2, 0.2, 0);//align
+        GoForward(-3, 0.3, 0);//Go to block
         fgrabber.FoundationGrabDownR();//grab block
+        GoForward(-3, 0.1, 0);//finish going
         sleep(250);
-        GoForward(-2, 0.1, 0);//finish going
 
 
         //PULL OUT SKYSTONE
@@ -91,18 +91,18 @@ public class Auto_Depot_Red extends LinearOpMode {
         RotateTo(-90, 0.4);
 
         //move towards middle a little
-        GoRight(8, 0.8, -90);
+        GoRight(3, 0.8, -90);
 
         RotateToPrecise(-90);
 
         //Goes to far wall by skystones
-        GoForward(42, 1, -90);
+        GoForward(35, 1, -90);
 
         RotateTo(0, 0.4);
 
-        /*nav.GoRight(10, 1, 0);
-        sleep(800);
-        nav.StopAll();*/
+        nav.GoRight(15, 0.8, 0);
+        sleep(1000);
+        nav.StopAll();
 
 
         //Line up to blocks
@@ -138,7 +138,7 @@ public class Auto_Depot_Red extends LinearOpMode {
 
         //GO TO LINE
         GoForward(-25, 1, -90);
-        GoRight(-10, 0.8, -90);
+        GoRight(-8, 0.8, -90);
         nav.GoForward(-40, 0.3, -90);
         while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold) //wait until color sensor sees the line
         {

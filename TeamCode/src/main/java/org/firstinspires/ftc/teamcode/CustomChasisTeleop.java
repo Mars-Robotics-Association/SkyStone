@@ -32,7 +32,7 @@ public class CustomChasisTeleop extends OpMode
 
     private RevTouchSensor ArmRetractStop;
     private RevTouchSensor ArmUpStop;
-    private Sensor_Distance distanceSensor = null;
+    private Sensor_Distance distanceSensor;
 
 
     @Override
