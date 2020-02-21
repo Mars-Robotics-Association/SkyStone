@@ -247,6 +247,8 @@ public class CustomChasisTeleop extends OpMode
 
     public void ManageArmMovement()//Manages the Arm/Lift
     {
+        telemetry.addData("arm position",arm.getarmval());
+
         if(gamepad2.right_trigger > 0.2)//turn the wheel intake on
         {
             arm.IntakeOn();
