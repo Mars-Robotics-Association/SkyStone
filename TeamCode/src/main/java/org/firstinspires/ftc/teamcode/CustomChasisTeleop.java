@@ -132,21 +132,29 @@ public class CustomChasisTeleop extends OpMode
         if(gamepad1.right_bumper) { Teleop.threeFourthsSpeed(); }
         if(gamepad1.right_trigger>0.2) { Teleop.brake(1); }
 
+
+
         if(gamepad2.x)
         {
-            //pick up stone
+            Deployer.RetractCapstone();
         }
         else if (gamepad2.y)
         {
-            //put down stone.
+            Deployer.DeployCapstone();
         }
         if(gamepad2.a)
         {
-            grab.FoundationGrabUp();
+            grab.FoundationGrabDownLeft();        }
+        else{
+            grab.FoundationGrabUpLeft();
         }
+
         if (gamepad2.b)
         {
-            grab.FoundationGrabDown();
+            grab.FoundationGrabDownRight();
+        }
+        else{
+            grab.FoundationGrabUpRight();
         }
 
 
@@ -186,12 +194,7 @@ public class CustomChasisTeleop extends OpMode
             telemetry.addData("arm vertical: ",armval);
             telemetry.update();
         }
-        if(gamepad1.dpad_right){
-            Deployer.DeployCapstone();
-        }
-        else if(gamepad1.dpad_left){
-            Deployer.RetractCapstone();
-        }
+
 
         ManageArmMovement();
         ManageGripperMovement();
@@ -247,6 +250,8 @@ public class CustomChasisTeleop extends OpMode
 
     public void ManageArmMovement()//Manages the Arm/Lift
     {
+        telemetry.addData("arm position",arm.getarmval());
+
         if(gamepad2.right_trigger > 0.2)//turn the wheel intake on
         {
             arm.IntakeOn();
