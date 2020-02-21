@@ -32,7 +32,9 @@ public class CustomChasisTeleop extends OpMode
 
     private RevTouchSensor ArmRetractStop;
     private RevTouchSensor ArmUpStop;
-    private Sensor_Distance distanceSensor;
+    private Sensor_Distance LeftdistanceSensor = null;
+    private Sensor_Distance RightdistanceSensor = null;
+
 
 
     @Override
@@ -61,8 +63,10 @@ public class CustomChasisTeleop extends OpMode
         ArmRetractStop = hardwareMap.get(RevTouchSensor.class, "ArmRetractStop");
         ArmUpStop = hardwareMap.get(RevTouchSensor.class, "ArmUpStop");
 
-        distanceSensor = new Sensor_Distance(this, "ODSLeft");
-        distanceSensor.Init();
+        LeftdistanceSensor = new Sensor_Distance(this, "ODSLeft");
+        LeftdistanceSensor.Init();
+        RightdistanceSensor = new Sensor_Distance(this, "ODSRight");
+        RightdistanceSensor.Init();
 
     }
 
@@ -103,7 +107,7 @@ public class CustomChasisTeleop extends OpMode
 
         if(gamepad1.left_trigger>JoystickThreshold) {
             Teleop.quarterSpeed();
-            if (distanceSensor.GetRangeCM() < 7) {
+            if (LeftdistanceSensor.GetRangeCM() < 7||RightdistanceSensor.GetRangeCM() < 7) {
                 //break
 
                 Teleop.stopWheels();
@@ -117,7 +121,8 @@ public class CustomChasisTeleop extends OpMode
         else{
             ManageDriveMovement();
         }
-        telemetry.addData("ods", distanceSensor.GetRangeCM());
+        telemetry.addData("ods", LeftdistanceSensor.GetRangeCM());
+        telemetry.addData("ods", RightdistanceSensor.GetRangeCM());
 
 
 
