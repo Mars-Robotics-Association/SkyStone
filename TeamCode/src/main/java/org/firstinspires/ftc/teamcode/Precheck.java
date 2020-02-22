@@ -131,6 +131,10 @@ public class Precheck extends LinearOpMode {
         arm.LiftStopVertical();
         telemetry.addData("arm pt 2","Successful");
 
+
+        telemetry.update();
+        sleep(10000);
+
         //Stops all
         nav.StopAll();
 
