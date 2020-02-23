@@ -104,7 +104,7 @@ public class Precheck extends LinearOpMode {
         sleep(1000);
         telemetry.addData("Intake","Successful");
 
-        arm.LiftUp();
+        arm.LiftUp(0.5);
         sleep(1000);
         arm.LiftStopVertical();
         arm.LiftExtend();
@@ -126,7 +126,7 @@ public class Precheck extends LinearOpMode {
         arm.LiftRetract();
         sleep(1000);
         arm.LiftStopHorizontal();
-        arm.LiftDown();
+        arm.LiftDown(0.5);
         sleep(1000);
         arm.LiftStopVertical();
         telemetry.addData("arm pt 2","Successful");
