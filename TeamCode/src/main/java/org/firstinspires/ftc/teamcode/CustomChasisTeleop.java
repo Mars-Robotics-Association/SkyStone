@@ -32,6 +32,7 @@ public class CustomChasisTeleop extends OpMode
 
     private RevTouchSensor ArmRetractStop;
     private RevTouchSensor ArmUpStop;
+    private RevTouchSensor ArmBottomReset;
     private Sensor_Distance LeftdistanceSensor = null;
     private Sensor_Distance RightdistanceSensor = null;
 
@@ -43,6 +44,8 @@ public class CustomChasisTeleop extends OpMode
     private boolean autoToggle1 = false;
     private boolean autoToggle2 = false;
     private boolean autoToggle3 = false;
+
+    private boolean armTouchSensorReset = false;
 
 
     @Override
@@ -70,6 +73,7 @@ public class CustomChasisTeleop extends OpMode
 
         ArmRetractStop = hardwareMap.get(RevTouchSensor.class, "ArmRetractStop");
         ArmUpStop = hardwareMap.get(RevTouchSensor.class, "ArmUpStop");
+        ArmBottomReset = hardwareMap.get(RevTouchSensor.class, "ArmDownReset");
 
         LeftdistanceSensor = new Sensor_Distance(this, "ODSLeft");
         LeftdistanceSensor.Init();
@@ -210,7 +214,7 @@ public class CustomChasisTeleop extends OpMode
         {
             grab.FoundationGrabUp();
         }
-        if(gamepad1.dpad_right) 
+        if(gamepad1.dpad_right)
         {
             grab.FoundationGrabDown();
         }
@@ -243,30 +247,30 @@ public class CustomChasisTeleop extends OpMode
     public void ManageDriveMovement()//Manages general drive input
     {
 
-            if (Jc.leftStickPower > JoystickThreshold) //Move
-            {
-                Teleop.chooseDirection(Jc.rightStickX, Jc.leftStickBaring, Jc.leftStickPower);
-                stopping = false;
-            } else if (Jc.rightStickX > JoystickThreshold) //Turn Right
-            {
-                Teleop.turnRight();
-                stopping = false;
-            } else if (Jc.rightStickX < -JoystickThreshold) //Turn Left
-            {
-                Teleop.turnLeft();
-                stopping = false;
-            } else if (gamepad1.dpad_up) {
-                //Teleop.RawForwards(1);
-            } else if (gamepad1.dpad_down) {
-                //Teleop.RawForwards(-1);
-            } else if (gamepad1.dpad_right) {
-                //Teleop.RawRight(1);
-            } else if (gamepad1.dpad_left) {
-                //Teleop.RawRight(-1);
-            } else //STOP
-                {
-                    Teleop.stopWheels();
-            }
+        if (Jc.leftStickPower > JoystickThreshold) //Move
+        {
+            Teleop.chooseDirection(Jc.rightStickX, Jc.leftStickBaring, Jc.leftStickPower);
+            stopping = false;
+        } else if (Jc.rightStickX > JoystickThreshold) //Turn Right
+        {
+            Teleop.turnRight();
+            stopping = false;
+        } else if (Jc.rightStickX < -JoystickThreshold) //Turn Left
+        {
+            Teleop.turnLeft();
+            stopping = false;
+        } else if (gamepad1.dpad_up) {
+            //Teleop.RawForwards(1);
+        } else if (gamepad1.dpad_down) {
+            //Teleop.RawForwards(-1);
+        } else if (gamepad1.dpad_right) {
+            //Teleop.RawRight(1);
+        } else if (gamepad1.dpad_left) {
+            //Teleop.RawRight(-1);
+        } else //STOP
+        {
+            Teleop.stopWheels();
+        }
 
 
     }
@@ -286,7 +290,20 @@ public class CustomChasisTeleop extends OpMode
 
     public void ManageArmMovement()//Manages the Arm/Lift
     {
-        telemetry.addData("arm position",arm.getarmval());
+        telemetry.addData("arm position: ",arm.getarmval());
+
+        telemetry.addData("Arm Reset Button pressed: ", ArmBottomReset.isPressed());
+        telemetry.addData("Arm reset: ", armTouchSensorReset);
+
+        if(ArmBottomReset.isPressed() && !armTouchSensorReset)
+        {
+            armTouchSensorReset = true;
+            arm.StopAndResetArm();
+        }
+        if(!ArmBottomReset.isPressed())
+        {
+            armTouchSensorReset = false;
+        }
 
         if(gamepad2.right_trigger > 0.2)//turn the wheel intake on
         {
@@ -304,22 +321,31 @@ public class CustomChasisTeleop extends OpMode
 
         if(autoToggle1 || autoToggle2 || autoToggle3)
         {
-            if(gamepad2.x)
+            if(gamepad2.x || gamepad2.right_stick_button || gamepad2.left_stick_button || gamepad2.y)
             {
                 autoToggle1 = false;
                 autoToggle2 = false;
                 autoToggle3 = false;
             }
+            if(arm.isArmInRange(-7100) && autoToggle1)
+            {
+                autoToggle1 = false;
+            }
+            if(arm.isArmInRange(-4100) && autoToggle2)
+            {
+                autoToggle2 = false;
+            }
             if(arm.isArmInRange(0) && autoToggle3)
             {
                 gripper.GripperOpen();
+                autoToggle3 = false;
             }
         }
         else
         {
             if(gamepad2.left_stick_button)//Full rotate to other side (take block from intake)
             {
-                arm.VerticalGoToPosition(-8100);
+                arm.VerticalGoToPosition(-6100);
                 gripper.GripperUpDownSetPosition(0);
                 gripper.GripperClose();
                 gripper.GripperRotateParallel();

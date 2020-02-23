@@ -167,8 +167,8 @@ public class Auto_Combined extends LinearOpMode
 
 
         //PULL OUT SKYSTONE
-        GoForward(13, 1, 0);//Go backwards a few inches to pull block out
-        RotateTo(-90, 0.4);//Rotate to -90 degrees
+        GoForward(10, 1, 0);//Go backwards a few inches to pull block out //13
+        RotateTo(-90, 0.6);//Rotate to -90 degrees //was 0.4
 
 
         //GO TO LINE

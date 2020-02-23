@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -182,5 +183,11 @@ public class ArmAttachmentCustom implements Attachment {
         {
             return false;
         }
+    }
+
+    public void StopAndResetArm()
+    {
+        ArmVertical.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        ArmVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 }
