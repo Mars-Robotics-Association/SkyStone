@@ -167,13 +167,13 @@ public class Auto_Combined extends LinearOpMode
 
 
         //PULL OUT SKYSTONE
-        GoForward(5, 1, 0);//Go backwards a few inches to pull block out
+        GoForward(13, 1, 0);//Go backwards a few inches to pull block out
         RotateTo(-90, 0.4);//Rotate to -90 degrees
 
 
         //GO TO LINE
         GoForward(-25, 1, -90);
-        GoRight(-8, 1, -90);
+        //GoRight(-8, 1, -90);
         nav.GoForward(-40, 0.3, -90);
         while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold) //wait until color sensor sees the line
         {
