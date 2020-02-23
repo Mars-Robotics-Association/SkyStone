@@ -155,6 +155,11 @@ public class GripperCustom implements Attachment{
         GripperRotate.setPosition(gripperPosition);
     }
 
+    public void GripperRotateParallel()
+    {
+        GripperRotate.setPosition(0.5);
+    }
+
     public void GripperUpDownRotate(double percentToAdd)
     {
         gripperVRPosition += percentToAdd;
@@ -178,6 +183,12 @@ public class GripperCustom implements Attachment{
 
         GripperUpDownR.setPosition(gripperVRPosition);
         GripperUpDownL.setPosition(gripperVLPosition);
+    }
+
+    public void GripperUpDownSetPosition(double pos)
+    {
+        GripperUpDownR.setPosition(pos);
+        GripperUpDownL.setPosition(1-pos);
     }
 
 

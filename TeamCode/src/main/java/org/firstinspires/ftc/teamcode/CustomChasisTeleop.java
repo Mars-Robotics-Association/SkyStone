@@ -35,6 +35,14 @@ public class CustomChasisTeleop extends OpMode
     private Sensor_Distance LeftdistanceSensor = null;
     private Sensor_Distance RightdistanceSensor = null;
 
+    private boolean fGrabberDownR = false;
+    private boolean fGrabberDownL = false;
+    private boolean aPressed = false;
+    private boolean bPressed = false;
+
+    private boolean autoToggle1 = false;
+    private boolean autoToggle2 = false;
+    private boolean autoToggle3 = false;
 
 
     @Override
@@ -106,8 +114,7 @@ public class CustomChasisTeleop extends OpMode
 
 
         if(gamepad1.left_trigger>JoystickThreshold) {
-            Teleop.quarterSpeed();
-            if (LeftdistanceSensor.GetRangeCM() < 7||RightdistanceSensor.GetRangeCM() < 7) {
+            if (LeftdistanceSensor.GetRangeCM() < 24||RightdistanceSensor.GetRangeCM() < 24) {
                 //break
 
                 Teleop.stopWheels();
@@ -129,7 +136,7 @@ public class CustomChasisTeleop extends OpMode
 
         //switch between normal and slow modes
         if(gamepad1.left_bumper) { Teleop.fullSpeed(); }
-        if(gamepad1.right_bumper) { Teleop.threeFourthsSpeed(); }
+        if(gamepad1.right_bumper) { Teleop.halfSpeed(); }
         if(gamepad1.right_trigger>0.2) { Teleop.brake(1); }
 
 
@@ -142,24 +149,57 @@ public class CustomChasisTeleop extends OpMode
         {
             Deployer.DeployCapstone();
         }
-        if(gamepad2.a)
-        {
-            grab.FoundationGrabDownLeft();        }
-        else{
-            grab.FoundationGrabUpLeft();
-        }
 
-        if (gamepad2.b)
+
+        if(gamepad2.a && !aPressed)
         {
-            grab.FoundationGrabDownRight();
+            aPressed = true;
+            if(fGrabberDownL)
+            {
+                grab.FoundationGrabUpL();
+                fGrabberDownL = false;
+            }
+            else
+            {
+                grab.FoundationGrabDownL();
+                fGrabberDownL = true;
+            }
         }
-        else{
-            grab.FoundationGrabUpRight();
+        else {aPressed = false;}
+
+
+        if (gamepad2.b && !bPressed)
+        {
+            bPressed = true;
+            if(fGrabberDownR)
+            {
+                grab.FoundationGrabUpR();
+                fGrabberDownR = false;
+            }
+            else
+            {
+                grab.FoundationGrabDownR();
+                fGrabberDownR = true;
+            }
         }
+        else {bPressed = false;}
+
 
 
         if (gamepad1.dpad_down&&(getRuntime()-tapeMeasureExtensionTime<2)){
-            tape.TapeMeasureMotorOn();
+            tape.TapeMeasureMotorOut();
+            if(!tapeMeasureExtending){
+                tapeMeasureExtensionTime=getRuntime();
+            }
+            tapeMeasureExtending =true;
+        }
+        else{
+            tape.TapeMeasureMotorOff();
+            tapeMeasureExtensionTime=getRuntime();
+        }
+
+        if (gamepad1.dpad_up&&(getRuntime()-tapeMeasureExtensionTime<2)){
+            tape.TapeMeasureMotorIn();
             if(!tapeMeasureExtending){
                 tapeMeasureExtensionTime=getRuntime();
             }
@@ -265,54 +305,94 @@ public class CustomChasisTeleop extends OpMode
             arm.IntakeOff();
         }
 
-        if(gamepad2.right_stick_y < -0.4  && !ArmRetractStop.isPressed())//move lift up
+
+        if(autoToggle1 || autoToggle2 || autoToggle3)
         {
-            arm.LiftUp();
+            if(gamepad2.x)
+            {
+                autoToggle1 = false;
+                autoToggle2 = false;
+                autoToggle3 = false;
+            }
+            if(arm.isArmInRange(0) && autoToggle3)
+            {
+                gripper.GripperOpen();
+            }
         }
-        else if(gamepad2.right_stick_y >0.4)//move lift down
+        else
         {
-            arm.LiftDown();
-        }
-        /*else if(gamepad1.dpad_up) //placeholder for move to position
-        {
-            arm.VerticalGoToPosition(100);
-        }
-        else if(gamepad1.dpad_left) //placeholder for move to position
-        {
-            arm.VerticalGoToPosition(200);
-        }
-        else if(gamepad1.dpad_down) //placeholder for move to position
-        {
-            arm.VerticalGoToPosition(300);
-        }
-        else if(gamepad1.dpad_right) //placeholder for move to position
-        {
-            arm.VerticalGoToPosition(400);
-        }*/
-        else//stop the arm from moving up or down
-        {
-            arm.LiftStopVertical();
+            if(gamepad2.left_stick_button)//Full rotate to other side (take block from intake)
+            {
+                arm.VerticalGoToPosition(-8100);
+                gripper.GripperUpDownSetPosition(0);
+                gripper.GripperClose();
+                gripper.GripperRotateParallel();
+                arm.IntakeReverse();
+                autoToggle1 = true;
+                autoToggle2 = false;
+                autoToggle3 = false;
+            }
+            else if(gamepad2.right_stick_button)//Halfway
+            {
+                arm.VerticalGoToPosition(-4100);
+                gripper.GripperUpDownSetPosition(0);
+                gripper.GripperClose();
+                gripper.GripperRotateParallel();
+                arm.IntakeReverse();
+                autoToggle1 = false;
+                autoToggle2 = true;
+                autoToggle3 = false;
+            }
+            else if(gamepad2.y)//Grab block from intake
+            {
+                arm.VerticalGoToPosition(0);
+                gripper.GripperUpDownSetPosition(1);
+                gripper.GripperClose();
+                gripper.GripperRotateParallel();
+                arm.IntakeReverse();
+                autoToggle1 = false;
+                autoToggle2 = false;
+                autoToggle3 = true;
+            }
+
+
+            if(gamepad2.right_stick_y < -0.4  && !ArmRetractStop.isPressed())//move lift up
+            {
+                arm.LiftUp(-gamepad2.right_stick_y);
+            }
+            else if(gamepad2.right_stick_y >0.4)//move lift down
+            {
+                arm.LiftDown(gamepad2.right_stick_y);
+            }
+
+            else if(!autoToggle1 && !autoToggle2 && !autoToggle3)//stop the arm from moving up or down
+            {
+                arm.Stop();
+            }
+
+            if(gamepad2.left_stick_y>0.4)////extend arm
+            {
+                arm.LiftRetract();
+                telemetry.addData("should","move  retract");
+            }
+
+            else if (gamepad2.left_stick_y<-0.4 && !ArmUpStop.isPressed())//retract arm
+            {
+                arm.LiftExtend();
+                telemetry.addData("should","move  extend");
+
+            }
+            else//stop the arm from moving left or right
+            {
+                arm.LiftStopHorizontal();
+                telemetry.addData("should","not move");
+
+            }
+            telemetry.addData("arm telmetry test",true);
         }
 
-        if(gamepad2.left_stick_y>0.4)////extend arm
-        {
-            arm.LiftRetract();
-            telemetry.addData("should","move  retract");
-        }
 
-        else if (gamepad2.left_stick_y<-0.4 && !ArmUpStop.isPressed())//retract arm
-        {
-            arm.LiftExtend();
-            telemetry.addData("should","move  extend");
 
-        }
-        else//stop the arm from moving left or right
-        {
-            arm.LiftStopHorizontal();
-            telemetry.addData("should","not move");
-
-        }
-        telemetry.addData("arm telmetry test",true);
 
 /*                  telemetry.addData("should","move  extend");
 
