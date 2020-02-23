@@ -42,23 +42,24 @@ public class Auto_Combined extends LinearOpMode
 
 
         fgrabber.FoundationGrabUp();
-        GoRight(-18,0.8, 0); //Line up with foundation
-        GoForward(-30,0.6, 0); //Go to foundation
+        GoRight(-15,0.8, 0); //Line up with foundation
+        GoForward(-25,0.6, 0); //Go to foundation
+        GoForward(-5, 0.3, 0);//Go slower
         fgrabber.FoundationGrabDown(); //Grab foundation
         sleep(1000);
 
         //PULL BACK FOUNDATION
-        GoForward(31,0.3, 0);//Pull foundation back
+        GoForward(31,0.4, 0);//Pull foundation back
         sleep(200);
-        nav.GoForward(4,1, 0);//slam into wall
-        nav.StopAll();//stop going
+        /*nav.GoForward(4,1, 0);//slam into wall
+        nav.StopAll();//stop going*/
 
         //FREE ROBOT FROM FOUNDATION
         fgrabber.FoundationGrabUp();//move grabbers up
 
-        GoRight(20, 0.8, 0);
+        GoRight(33, 1, 0);
 
-        GoForward(24, 0.8, 0);
+        GoForward(-12, 1, 0);
 
 
         //DRIVE TO THE LINE
@@ -71,16 +72,14 @@ public class Auto_Combined extends LinearOpMode
             telemetry.update();
         }
 
-
-
-
+        RotateToPrecise(0);
 
         //START SKYSTONE RETRIEVAL
         fgrabber.FoundationGrabUp();//Make sure grabbers are up
-        GoForward(-18, 0.8, 0);//Go to blocks
+        GoRight(24, 1, 0);//Go to blocks
 
         nav.GoForward(-10, 0.2, 0);
-        while (distanceSensor.GetRangeCM() > 7)
+        while (distanceSensor.GetRangeCM() > 12)
         {
             nav.Loop();
             telemetry.update();
@@ -88,7 +87,7 @@ public class Auto_Combined extends LinearOpMode
         nav.StopAll();
 
         //STRAFING RUN 1
-        nav.GoRight(50, 0.2, 0);//start strafing along blocks
+        nav.GoRight(50, 0.3, 0);//start strafing along blocks
         while (!(colorSensorSkystone.returnHue() > 100)) //wait until color sensor sees skystone
         {
             nav.Loop();
@@ -96,15 +95,15 @@ public class Auto_Combined extends LinearOpMode
             telemetry.update();
         }
         nav.StopAll();
-        // GoRight(2, 0.2, 0);//align
-        GoForward(-3, 0.1, 0);//Go to block
+        GoRight(2, 0.3, 0);//align
+        GoForward(-3, 0.3, 0);//Go to block
         fgrabber.FoundationGrabDownR();//grab block
+        GoForward(-3, 0.1, 0);//finish going
         sleep(250);
-        GoForward(-2, 0.1, 0);//finish going
 
 
         //PULL OUT SKYSTONE
-        GoForward(10, 1, 0);//Go backwards a few inches to pull block out
+        GoForward(7, 1, 0);//Go backwards a few inches to pull block out
         RotateTo(-90, 0.4);//Rotate to -90 degrees
 
 
@@ -127,22 +126,22 @@ public class Auto_Combined extends LinearOpMode
         RotateTo(-90, 0.4);
 
         //move towards middle a little
-        GoRight(10, 0.5, -90);
+        GoRight(-3, 0.8, -90);
 
         RotateToPrecise(-90);
 
         //Goes to far wall by skystones
-        GoForward(45, 1, -90);
+        GoForward(35, 1, -90);
 
         RotateTo(0, 0.4);
 
-        nav.GoRight(10, 1, 0);
-        sleep(800);
+        nav.GoRight(15, 1, 0);
+        sleep(1000);
         nav.StopAll();
 
 
         //Line up to blocks
-        nav.GoForward(-15, 0.3, 0);
+        nav.GoForward(-15, 0.2, 0);
         while (distanceSensor.GetRangeCM() > 7)
         {
             nav.Loop();
@@ -152,7 +151,7 @@ public class Auto_Combined extends LinearOpMode
 
 
         //STRAFING RUN 2
-        nav.GoRight(-50, 0.2, 0);//start strafing along blocks
+        nav.GoRight(-50, 0.3, 0);//start strafing along blocks
         while (!(colorSensorSkystone.returnHue() > 100)) //wait until color sensor sees skystone
         {
             nav.Loop();
@@ -174,7 +173,7 @@ public class Auto_Combined extends LinearOpMode
 
         //GO TO LINE
         GoForward(-25, 1, -90);
-        GoRight(-5, 0.8, -90);
+        GoRight(-8, 1, -90);
         nav.GoForward(-40, 0.3, -90);
         while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold) //wait until color sensor sees the line
         {

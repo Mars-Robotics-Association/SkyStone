@@ -44,7 +44,7 @@ public class Auto_Depot_Red extends LinearOpMode {
         GoForward(-18, 0.8, 0);//Go to blocks
 
         nav.GoForward(-10, 0.1, 0);
-        while (distanceSensor.GetRangeCM() > 7)
+        while (distanceSensor.GetRangeCM() > 12)
         {
             nav.Loop();
             telemetry.update();
@@ -52,7 +52,7 @@ public class Auto_Depot_Red extends LinearOpMode {
         nav.StopAll();
 
         //STRAFING RUN 1
-        nav.GoRight(50, 0.4, 0);//start strafing along blocks
+        nav.GoRight(50, 0.2, 0);//start strafing along blocks
         while (!(colorSensorSkystone.returnHue() > 100)) //wait until color sensor sees skystone
         {
             nav.Loop();
@@ -60,7 +60,7 @@ public class Auto_Depot_Red extends LinearOpMode {
             telemetry.update();
         }
         nav.StopAll();
-        GoRight(-2, 0.2, 0);//align
+        GoRight(2, 0.2, 0);//align
         GoForward(-3, 0.3, 0);//Go to block
         fgrabber.FoundationGrabDownR();//grab block
         GoForward(-3, 0.1, 0);//finish going
@@ -91,7 +91,7 @@ public class Auto_Depot_Red extends LinearOpMode {
         RotateTo(-90, 0.4);
 
         //move towards middle a little
-        GoRight(3, 0.8, -90);
+        GoRight(-3, 0.8, -90);
 
         RotateToPrecise(-90);
 

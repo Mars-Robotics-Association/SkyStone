@@ -33,36 +33,28 @@ public class Auto_Zone_Blue extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
 
 
-
-        /*fgrabber.FoundationGrabUp();
-        GoRight(18,0.8); //Line up with foundation
-        GoForward(-30,0.6); //Go to foundation
+        //START
+        fgrabber.FoundationGrabUp();
+        GoRight(18,0.8, 0); //Line up with foundation
+        GoForward(-30,0.6, 0); //Go to foundation
         fgrabber.FoundationGrabDown(); //Grab foundation
         sleep(1000);
 
-        GoForward(31,0.2);//Pull foundation back
+        //PULL BACK FOUNDATION
+        GoForward(31,0.3, 0);//Pull foundation back
         sleep(200);
-        nav.GoForward(4,0.6);//slam into wall
-        sleep(500);//wait half a second
+        nav.GoForward(4,1, 0);//slam into wall
         nav.StopAll();//stop going
-        nav.ResetGyro();
-        GoRight(2, 0.6);
 
+        //FREE ROBOT FROM FOUNDATION
         fgrabber.FoundationGrabUp();//move grabbers up
-        GoForward(-3, 0.6);//go forwards a bit
+
+        GoRight(-20, 0.8, 0);
 
 
-        GoRight(-32, 0.8);//go just beyond foundation
-        GoForward(-19, 0.8);//go in front of foundation
-        nav.GoRight(15, 1);//push it into the wall
-        sleep(1000);//wait 1 second
-        nav.StopAll();//stop
-
-
-        //begin line finding
-
-        nav.GoRight(-100, 0.4);
-        while (Math.abs(RedHue - colorSensor.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensor.returnHue()) > HueThreshold)
+        //DRIVE TO THE LINE
+        nav.GoRight(-100, 0.3, 0);//begin driving
+        while (Math.abs(RedHue - colorSensor.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensor.returnHue()) > HueThreshold)//wait until the line is seen
         {
             nav.Loop();
             telemetry.addData("looping1: ", true);
@@ -75,17 +67,7 @@ public class Auto_Zone_Blue extends LinearOpMode {
 
         //Brakes
         nav.SetBrakePos();
-        nav.Brake(1);*/
-
-
-        //Block: Go forwards to the line
-
-
-        //Stops all
-
-
-
-
+        nav.Brake(1);
     }
 
 

@@ -60,20 +60,20 @@ public class ArmAttachmentCustom implements Attachment {
     @Override
     public void Stop()
     {
-//test
+        ArmVertical.setPower(0);
     }
 
-    public void LiftUp () //Moves the lift up and resets the resting target for LiftStopVertical
+    public void LiftUp (double speed) //Moves the lift up and resets the resting target for LiftStopVertical
     {
         ArmVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        ArmVertical.setPower(0.85*Vratio);
+        ArmVertical.setPower(1* speed);
         VerticalsRestingPos = ArmVertical.getCurrentPosition();
     }
 
-    public void LiftDown () //Moves the lift down and resets the resting target for LiftStopVertical
+    public void LiftDown (double speed) //Moves the lift down and resets the resting target for LiftStopVertical
     {
         ArmVertical.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        ArmVertical.setPower(-0.85 *Vratio);
+        ArmVertical.setPower(-1 * speed);
         VerticalsRestingPos = ArmVertical.getCurrentPosition();
     }
 
@@ -92,7 +92,7 @@ public class ArmAttachmentCustom implements Attachment {
     {
         ArmVertical.setTargetPosition(target);
         ArmVertical.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        ArmVertical.setPower(0.5);
+        ArmVertical.setPower(1);
         VerticalsRestingPos = ArmVertical.getCurrentPosition();
     }
 
@@ -170,5 +170,17 @@ public class ArmAttachmentCustom implements Attachment {
     public int getarmval(){
         int armval = ArmVertical.getCurrentPosition();
         return armval;
+    }
+
+    public boolean isArmInRange(double targetPos)
+    {
+        if(Math.abs(ArmVertical.getCurrentPosition() - targetPos) < 50)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
