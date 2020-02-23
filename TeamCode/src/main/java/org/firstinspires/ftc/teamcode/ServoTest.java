@@ -37,7 +37,6 @@ public class ServoTest extends OpMode
 
         if(gamepad1.a){
             GripperL.setPosition(0.3);
-            GripperL.setDirection(1);
         }
         if(gamepad1.b){GripperL.setPosition(0.5);}
         telemetry.update();
