@@ -36,6 +36,9 @@ public class Precheck extends LinearOpMode {
         nav = new SimpleFieldNavigation(this);
         nav.Init();
 
+        arm.Init();
+        arm = new ArmAttachmentCustom(this);
+
         colorSensor = new ColorSensor(this, "colorSensorGround");
         colorSensor.Init();
 
@@ -96,8 +99,41 @@ public class Precheck extends LinearOpMode {
         grab.FoundationGrabUp();
         telemetry.addData("Foundation Grippers","Successful");
 
-        
+        arm.IntakeOn();
+        arm.IntakeOff();
+        sleep(1000);
+        telemetry.addData("Intake","Successful");
 
+        arm.LiftUp();
+        sleep(1000);
+        arm.LiftStopVertical();
+        arm.LiftExtend();
+        sleep(1000);
+        arm.LiftStopHorizontal();
+        telemetry.addData("arm pt 1","Successful");
+
+        gripper.GripperOpen();
+        telemetry.addData("Gripper","Open");
+        gripper.GripperClose();
+        telemetry.addData("Gripper","Closed");
+        gripper.GripperRotatePosition(0.5);
+        gripper.GripperRotatePosition(0.5);
+        telemetry.addData("Gripper","Rotated");
+        gripper.GripperUpDownRotate(0.2);
+        gripper.GripperUpDownRotate(-0.2);
+        telemetry.addData("Gripper","Rotated Up-Down");
+
+        arm.LiftRetract();
+        sleep(1000);
+        arm.LiftStopHorizontal();
+        arm.LiftDown();
+        sleep(1000);
+        arm.LiftStopVertical();
+        telemetry.addData("arm pt 2","Successful");
+
+
+        telemetry.update();
+        sleep(10000);
 
         //Stops all
         nav.StopAll();
