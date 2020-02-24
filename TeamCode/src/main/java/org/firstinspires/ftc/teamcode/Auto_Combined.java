@@ -174,7 +174,7 @@ public class Auto_Combined extends LinearOpMode
         //GO TO LINE
         GoForward(-25, 1, -90);
         //GoRight(-8, 1, -90);
-        nav.GoForward(-40, 0.3, -90);
+        nav.GoForward(-40, 0.4, -90);
         while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold) //wait until color sensor sees the line
         {
             nav.Loop();
@@ -185,9 +185,9 @@ public class Auto_Combined extends LinearOpMode
 
 
         //PLACE SKYSTONE 2
-        GoForward(-12, 1, -90);
+        GoForward(-10, 1, -90);
         fgrabber.FoundationGrabUp();
-        GoForward(12, 1, -90);
+        GoForward(8, 1, -90);
 
 
         //Brakes

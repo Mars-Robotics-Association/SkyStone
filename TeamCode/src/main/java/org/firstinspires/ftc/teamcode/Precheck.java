@@ -36,8 +36,8 @@ public class Precheck extends LinearOpMode {
         nav = new SimpleFieldNavigation(this);
         nav.Init();
 
-        arm.Init();
         arm = new ArmAttachmentCustom(this);
+        arm.Init();
 
         colorSensor = new ColorSensor(this, "colorSensorGround");
         colorSensor.Init();
