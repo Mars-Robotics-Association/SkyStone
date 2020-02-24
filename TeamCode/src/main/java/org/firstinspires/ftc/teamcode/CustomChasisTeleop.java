@@ -330,10 +330,12 @@ public class CustomChasisTeleop extends OpMode
             if(arm.isArmInRange(-7100) && autoToggle1)
             {
                 autoToggle1 = false;
+                //gripper.GripperRotatePerpendicular();
             }
             if(arm.isArmInRange(-4100) && autoToggle2)
             {
                 autoToggle2 = false;
+                //gripper.GripperRotatePerpendicular();
             }
             if(arm.isArmInRange(0) && autoToggle3)
             {
