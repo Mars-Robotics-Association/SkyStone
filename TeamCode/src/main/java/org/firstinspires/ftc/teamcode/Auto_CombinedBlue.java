@@ -3,8 +3,8 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-@Autonomous(name = "Auto_Combined_Red", group = "Autonomous")
-public class Auto_Combined extends LinearOpMode
+@Autonomous(name = "Auto_Combined_Blue", group = "Autonomous")
+public class Auto_CombinedBlue extends LinearOpMode
 {
     public SimpleFieldNavigation nav = null;
     private ColorSensor colorSensorSkystone;
@@ -25,13 +25,13 @@ public class Auto_Combined extends LinearOpMode
         fgrabber = new FoundationGrabber(this);
         fgrabber.Init();
 
-        colorSensorSkystone = new ColorSensor(this, "colorSensorLeft");
+        colorSensorSkystone = new ColorSensor(this, "colorSensorRight");
         colorSensorSkystone.Init();
 
         colorSensorBot = new ColorSensor(this, "colorSensorGround");
         colorSensorBot.Init();
 
-        distanceSensor = new Sensor_Distance(this, "ODSLeft");
+        distanceSensor = new Sensor_Distance(this, "ODSRight");
         distanceSensor.Init();
 
         waitForStart();
@@ -42,9 +42,9 @@ public class Auto_Combined extends LinearOpMode
 
 
         fgrabber.FoundationGrabUp();
-        GoRight(-15,1, 0); //Line up with foundation
-        GoForward(-25,1, 0); //Go to foundation
-        GoForward(-5, 0.3, 0);//Go slower
+        GoRight(15,1, 0); //Line up with foundation
+        GoForward(-20,1, 0); //Go to foundation
+        GoForward(-10, 0.3, 0);//Go slower
         fgrabber.FoundationGrabDown(); //Grab foundation
         sleep(800);
 
@@ -55,13 +55,13 @@ public class Auto_Combined extends LinearOpMode
         //FREE ROBOT FROM FOUNDATION
         fgrabber.FoundationGrabUp();//move grabbers up
 
-        GoRight(33, 1, 0);
+        GoRight(-33, 1, 0);
 
         GoForward(-10, 1, 0);
 
 
         //DRIVE TO THE LINE
-        nav.GoRight(100, 0.3, 0);//begin driving
+        nav.GoRight(-100, 0.3, 0);//begin driving
         while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold)//wait until the line is seen
         {
             nav.Loop();
@@ -74,9 +74,9 @@ public class Auto_Combined extends LinearOpMode
 
         //START SKYSTONE RETRIEVAL
         fgrabber.FoundationGrabUp();//Make sure grabbers are up
-        GoRight(20, 1, 0);//Go to blocks
+        GoRight(-20, 1, 0);//Go to blocks
 
-        nav.GoForward(-10, 0.2, 0);
+        nav.GoForward(-15, 0.2, 0);
         while (distanceSensor.GetRangeCM() > 15)
         {
             nav.Loop();
@@ -85,7 +85,7 @@ public class Auto_Combined extends LinearOpMode
         nav.StopAll();
 
         //STRAFING RUN 1
-        nav.GoRight(50, 0.3, 0);//start strafing along blocks
+        nav.GoRight(-50, 0.3, 0);//start strafing along blocks
         while (!(colorSensorSkystone.returnHue() > 100)) //wait until color sensor sees skystone
         {
             nav.Loop();
@@ -93,21 +93,21 @@ public class Auto_Combined extends LinearOpMode
             telemetry.update();
         }
         nav.StopAll();
-        GoRight(2, 0.3, 0);//align
+        GoRight(-2, 0.3, 0);//align
         GoForward(-3, 0.3, 0);//Go to block
-        fgrabber.FoundationGrabDownR();//grab block
+        fgrabber.FoundationGrabDownL();//grab block
         GoForward(-3, 0.1, 0);//finish going
         sleep(250);
 
 
         //PULL OUT SKYSTONE
         GoForward(7, 1, 0);//Go backwards a few inches to pull block out
-        RotateTo(-90, 0.4);//Rotate to -90 degrees
+        RotateTo(90, 0.4);//Rotate to 90 degrees
 
 
         //GO TO LINE
-        GoForward(-12, 1, -90);
-        nav.GoForward(-30, 0.3, -90);
+        GoForward(-12, 1, 90);
+        nav.GoForward(-30, 0.3, 90);
         while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold) //wait until color sensor sees the line
         {
             nav.Loop();
@@ -118,22 +118,22 @@ public class Auto_Combined extends LinearOpMode
 
         //PLACE SKYSTONE 1
         fgrabber.FoundationGrabUp();
-        GoForward(-12, 1, -90);
-        GoForward(22, 1, -90);
+        GoForward(-12, 1, 90);
+        GoForward(22, 1, 90);
 
-        RotateTo(-90, 0.4);
+        RotateTo(90, 0.4);
 
         //move towards middle a little
-        GoRight(-3, 0.8, -90);
+        GoRight(3, 0.8, 90);
 
-        RotateToPrecise(-90);
+        RotateToPrecise(90);
 
         //Goes to far wall by skystones
-        GoForward(35, 1, -90);
+        GoForward(35, 1, 90);
 
         RotateTo(0, 0.4);
 
-        nav.GoRight(15, 1, 0);
+        nav.GoRight(-15, 1, 0);
         sleep(1000);
         nav.StopAll();
 
@@ -149,7 +149,7 @@ public class Auto_Combined extends LinearOpMode
 
 
         //STRAFING RUN 2
-        nav.GoRight(-50, 0.3, 0);//start strafing along blocks
+        nav.GoRight(50, 0.3, 0);//start strafing along blocks
         while (!(colorSensorSkystone.returnHue() > 100)) //wait until color sensor sees skystone
         {
             nav.Loop();
@@ -157,22 +157,22 @@ public class Auto_Combined extends LinearOpMode
             telemetry.update();
         }
         nav.StopAll();
-        GoRight(-2, 0.2, 0);//align
+        GoRight(2, 0.2, 0);//align
         GoForward(-3, 0.1, 0);//Go to block
-        fgrabber.FoundationGrabDownR();//grab block
+        fgrabber.FoundationGrabDownL();//grab block
         GoForward(-3, 0.1, 0);//finish going
         sleep(200);
 
 
         //PULL OUT SKYSTONE
         GoForward(10, 1, 0);//Go backwards a few inches to pull block out //13
-        RotateTo(-90, 0.6);//Rotate to -90 degrees //was 0.4
+        RotateTo(90, 0.6);//Rotate to 90 degrees //was 0.4
 
 
         //GO TO LINE
-        GoForward(-25, 1, -90);
-        //GoRight(-8, 1, -90);
-        nav.GoForward(-40, 0.4, -90);
+        GoForward(-25, 1, 90);
+        //GoRight(-8, 1, 90);
+        nav.GoForward(-40, 0.4, 90);
         while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold) //wait until color sensor sees the line
         {
             nav.Loop();
@@ -184,8 +184,8 @@ public class Auto_Combined extends LinearOpMode
 
         //PLACE SKYSTONE 2
         fgrabber.FoundationGrabUp();
-        GoForward(-10, 1, -90);
-        GoForward(8, 1, -90);
+        GoForward(-10, 1, 90);
+        GoForward(8, 1, 90);
 
 
         //Brakes
