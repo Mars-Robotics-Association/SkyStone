@@ -6,6 +6,10 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 @Autonomous(name = "Auto_Master", group = "Iterative")
 public class _Auto_Master extends LinearOpMode
 {
+    DigitalChannel ColorSwitch;
+    DigitalChannel SkystoneSwitch;
+    DigitalChannel FoundationSwitch;
+
     private boolean redBlueSwitch = false;
     private boolean foundationSwitch = false;
     private boolean skystoneSwitch = false;
@@ -23,6 +27,16 @@ public class _Auto_Master extends LinearOpMode
     @Override
     public void runOpMode()
     {
+        ColorSwitch = hardwareMap.get(DigitalChannel.class, "ColorSwitch");
+        SkystoneSwitch = hardwareMap.get(DigitalChannel.class, "SkystoneSwitch");
+        FoundationSwitch = hardwareMap.get(DigitalChannel.class, "FoundationSwitch");
+
+        ColorSwitch.setMode(DigitalChannel.Mode.INPUT);
+        SkystoneSwitch.setMode(DigitalChannel.Mode.INPUT);
+        FoundationSwitch.setMode(DigitalChannel.Mode.INPUT);
+
+
+
         nav = new SimpleFieldNavigation(this);
         nav.Init();
 
@@ -37,6 +51,16 @@ public class _Auto_Master extends LinearOpMode
 
         distanceSensor = new Sensor_Distance(this, "ODSLeft");
         distanceSensor.Init();
+
+        redBlueSwitch=ColorSwitch.getState();
+        skystoneSwitch=SkystoneSwitch.getState();
+        foundationSwitch=FoundationSwitch.getState();
+
+        telemetry.addData("redBlueSwitch",redBlueSwitch);
+        telemetry.addData("skystoneSwitch", skystoneSwitch);
+        telemetry.addData("foundationSwitch", foundationSwitch);
+        telemetry.update();
+
 
         waitForStart();
 
