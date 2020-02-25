@@ -76,15 +76,19 @@ public class Precheck extends LinearOpMode {
 
         //Run everything needed
         nav.GoForward(3, 0.2, 0);
+        sleep(5000);
         nav.SetBrakePos();
         nav.Brake(1);
         nav.GoForward(-3,0.2,0);
+        sleep(5000);
         nav.SetBrakePos();
         nav.Brake(1);
         nav.GoRight(3,0.2,0);
+        sleep(5000);
         nav.SetBrakePos();
         nav.Brake(1);
         nav.GoRight(-3,0.2,0);
+        sleep(5000);
         nav.SetBrakePos();
         telemetry.addData("Simple Movement","Successful");
 
@@ -96,38 +100,47 @@ public class Precheck extends LinearOpMode {
         telemetry.addData("ColorSensorRight",colorSensor4.returnHue());
 
         grab.FoundationGrabDown();
+        sleep(5000);
         grab.FoundationGrabUp();
+        sleep(5000);
         telemetry.addData("Foundation Grippers","Successful");
 
         arm.IntakeOn();
+        sleep(5000);
         arm.IntakeOff();
-        sleep(1000);
+        sleep(5000);
         telemetry.addData("Intake","Successful");
 
         arm.LiftUp(0.5);
-        sleep(1000);
+        sleep(5000);
         arm.LiftStopVertical();
         arm.LiftExtend();
-        sleep(1000);
+        sleep(5000);
         arm.LiftStopHorizontal();
         telemetry.addData("arm pt 1","Successful");
 
         gripper.GripperOpen();
+        sleep(5000);
         telemetry.addData("Gripper","Open");
         gripper.GripperClose();
+        sleep(5000);
         telemetry.addData("Gripper","Closed");
         gripper.GripperRotatePosition(0.5);
-        gripper.GripperRotatePosition(0.5);
+        sleep(5000);
+        gripper.GripperRotatePosition(-0.5);
+        sleep(5000);
         telemetry.addData("Gripper","Rotated");
         gripper.GripperUpDownRotate(0.2);
+        sleep(5000);
         gripper.GripperUpDownRotate(-0.2);
+        sleep(5000);
         telemetry.addData("Gripper","Rotated Up-Down");
 
         arm.LiftRetract();
-        sleep(1000);
+        sleep(5000);
         arm.LiftStopHorizontal();
         arm.LiftDown(0.5);
-        sleep(1000);
+        sleep(5000);
         arm.LiftStopVertical();
         telemetry.addData("arm pt 2","Successful");
 
