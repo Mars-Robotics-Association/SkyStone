@@ -20,7 +20,7 @@ public class CustomChasisTeleop extends OpMode
     private double DriveSpeedMultiplier;
     private double TurnSpeedMultiplier;
 
-    private double JoystickThreshold = 0.2;
+    private double JoystickThreshold = 0.05;
 
     private int[] MaxMotorPositions = {0,0,0,0};
     private int[] PreviousMotorPositions = {0,0,0,0};

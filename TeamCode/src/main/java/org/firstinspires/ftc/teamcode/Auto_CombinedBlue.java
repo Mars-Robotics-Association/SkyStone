@@ -41,12 +41,16 @@ public class Auto_CombinedBlue extends LinearOpMode
 
 
 
+        //START
         fgrabber.FoundationGrabUp();
-        GoRight(15,1, 0); //Line up with foundation
-        GoForward(-20,1, 0); //Go to foundation
-        GoForward(-10, 0.3, 0);//Go slower
+        GoRight(18,1, 0); //Line up with foundation
+        nav.GoForward(10, 0.7, 0);
+        sleep(500);
+        nav.StopAll();
+        GoForward(-29,0.6, 0); //Go to foundation
         fgrabber.FoundationGrabDown(); //Grab foundation
         sleep(800);
+
 
         //PULL BACK FOUNDATION
         GoForward(3,0.3, 0);//Pull foundation back
@@ -57,7 +61,7 @@ public class Auto_CombinedBlue extends LinearOpMode
 
         GoRight(-33, 1, 0);
 
-        GoForward(-10, 1, 0);
+        GoForward(-16, 1, 0);
 
 
         //DRIVE TO THE LINE
@@ -71,6 +75,8 @@ public class Auto_CombinedBlue extends LinearOpMode
         }
 
         RotateToPrecise(0);
+
+        //GoForward(-5, 0.5, 0);
 
         //START SKYSTONE RETRIEVAL
         fgrabber.FoundationGrabUp();//Make sure grabbers are up

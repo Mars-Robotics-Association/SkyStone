@@ -36,7 +36,10 @@ public class Auto_Zone_Blue extends LinearOpMode {
         //START
         fgrabber.FoundationGrabUp();
         GoRight(18,0.8, 0); //Line up with foundation
-        GoForward(-30,0.6, 0); //Go to foundation
+        nav.GoForward(10, 0.5, 0);
+        sleep(1000);
+        nav.StopAll();
+        GoForward(-29,0.6, 0); //Go to foundation
         fgrabber.FoundationGrabDown(); //Grab foundation
         sleep(1000);
 
