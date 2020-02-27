@@ -40,7 +40,7 @@ public class Auto_Combined extends LinearOpMode
         telemetry.addData("Status", "Initialized");
 
 
-
+        //START
         fgrabber.FoundationGrabUp();
         GoRight(-15,1, 0); //Line up with foundation
         GoForward(-25,1, 0); //Go to foundation
