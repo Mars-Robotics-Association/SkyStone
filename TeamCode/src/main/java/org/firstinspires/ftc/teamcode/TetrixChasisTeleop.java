@@ -2,12 +2,14 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.ftccommon.SoundPlayer;
 import com.qualcomm.hardware.rev.RevTouchSensor;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import java.io.File;
 
 @TeleOp(name="TetrixChasisTeleop", group="Iterative Opmode")
+@Disabled
 public class TetrixChasisTeleop extends OpMode
 {
     private JoystickCalc Jc = null;
