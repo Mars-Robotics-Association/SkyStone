@@ -339,11 +339,11 @@ public class CustomChasisTeleop extends OpMode
                 autoToggle2 = false;
                 //gripper.GripperRotatePerpendicular();
             }
-            if(ArmBottomReset.isPressed() && autoToggle3)
+            if(arm.isArmInRange(0) && autoToggle3)
             {
                 gripper.GripperOpen();
                 autoToggle3 = false;
-                arm.VerticalGoToPosition(0);
+                arm.LiftUp(1);
             }
         }
         else
@@ -372,7 +372,7 @@ public class CustomChasisTeleop extends OpMode
             }
             else if(gamepad2.y)//Grab block from intake
             {
-                arm.VerticalGoToPosition(300);
+                arm.VerticalGoToPosition(0);
                 gripper.GripperUpDownSetPosition(1);
                 gripper.GripperClose();
                 gripper.GripperRotateParallel();

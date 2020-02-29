@@ -72,9 +72,9 @@ public class _Auto_Master extends LinearOpMode
 
         if(foundationSwitch && skystoneSwitch)
         {
-            if(redBlueSwitch)
+            if(!redBlueSwitch)
             {
-                telemetry.addData("red combined", true);
+                telemetry.addData("blue combined", true);
                 fgrabber.FoundationGrabUp();
                 telemetry.update();
 
@@ -232,7 +232,7 @@ public class _Auto_Master extends LinearOpMode
 
             else
             {
-                telemetry.addData("blue combined", true);
+                telemetry.addData("red combined", true);
                 fgrabber.FoundationGrabUp();
                 telemetry.update();
                 GoRight(18,1, 0); //Line up with foundation
