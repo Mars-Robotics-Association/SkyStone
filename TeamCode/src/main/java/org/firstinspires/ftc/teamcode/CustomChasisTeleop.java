@@ -192,7 +192,7 @@ public class CustomChasisTeleop extends OpMode
 
 
 
-        if (gamepad1.dpad_down&&(getRuntime()-tapeMeasureExtensionTime<2)){
+        if (gamepad1.dpad_down&&(getRuntime()-tapeMeasureExtensionTime<0.5)){
             tape.TapeMeasureMotorOut();
             if(!tapeMeasureExtending){
                 tapeMeasureExtensionTime=getRuntime();
@@ -200,7 +200,7 @@ public class CustomChasisTeleop extends OpMode
             tapeMeasureExtending =true;
         }
 
-        else if (gamepad1.dpad_up&&(getRuntime()-tapeMeasureExtensionTime<2)){
+        else if (gamepad1.dpad_up&&(getRuntime()-tapeMeasureExtensionTime<0.5)){
             tape.TapeMeasureMotorIn();
             if(tapeMeasureExtending){
                 tapeMeasureExtensionTime=getRuntime();
