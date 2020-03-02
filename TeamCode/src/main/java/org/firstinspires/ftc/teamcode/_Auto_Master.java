@@ -96,7 +96,7 @@ public class _Auto_Master extends LinearOpMode
                 GoForward(-10, 1, 0);
 
 
-                //DRIVE TO THE LINE 
+                //DRIVE TO THE LINE
                 nav.GoRight(100, 0.3, 0);//begin driving
                 while (Math.abs(RedHue - colorSensorBot.returnHue()) > HueThreshold && Math.abs(BlueHue - colorSensorBot.returnHue()) > HueThreshold)//wait until the line is seen
                 {
