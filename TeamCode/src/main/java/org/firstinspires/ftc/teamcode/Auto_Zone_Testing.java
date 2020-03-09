@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 
-@Autonomous(name = "Auto_Zone_TESTING", group = "Autonomous")
+//@Autonomous(name = "Auto_Zone_TESTING", group = "Autonomous")
 public class Auto_Zone_Testing extends LinearOpMode {
 
     public SimpleFieldNavigation nav = null;

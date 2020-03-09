@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-@Autonomous(name = "Auto_Encoder_Testing", group = "Autonomous")
+//@Autonomous(name = "Auto_Encoder_Testing", group = "Autonomous")
 public class Auto_Encoder_Testing extends LinearOpMode
 {
     public SimpleFieldNavigation nav = null;

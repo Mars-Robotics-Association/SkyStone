@@ -113,10 +113,10 @@ public class CustomChasisTeleop extends OpMode
         {
             Teleop.headlessMode = true;
         }
-        if(gamepad1.b)
+        /*if(gamepad1.b)
         {
             Teleop.headlessMode = false;
-        }
+        }*/
 
 
         if(gamepad1.left_trigger>JoystickThreshold) {
@@ -147,14 +147,14 @@ public class CustomChasisTeleop extends OpMode
 
 
 
-        if(gamepad2.x)
+        /*if(gamepad2.x)
         {
             Deployer.RetractCapstone();
         }
         else if (gamepad2.y)
         {
             Deployer.DeployCapstone();
-        }
+        }*/
 
 
         if(gamepad2.a && !aPressed)
